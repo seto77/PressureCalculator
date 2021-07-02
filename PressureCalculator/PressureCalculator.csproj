@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyVersion>2021.7.2.1048</AssemblyVersion>
+    <FileVersion>2021.7.2.1048</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Crystallography.Controls\Crystallography.Controls.csproj" />
+    <ProjectReference Include="..\Crystallography\Crystallography.csproj" />
+  </ItemGroup>
+
+</Project>
