@@ -20,9 +20,22 @@ namespace PressureCalculator{
     {
 
         /// <summary>
-        /// 必要なデザイナ変数です。
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
         #region コントロール
         public Profile Original,BottomProfile;
@@ -32,9 +45,7 @@ namespace PressureCalculator{
 		public Graphics gOriginal,gDifferentiation;
 		public bool MouseRange=true;
 		
-		public string FileName="";
-		public Thread thread;
-        public DateTime time, oldTime;
+     
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.NumericUpDown numericUpDownDifferentiationRunningAverage;
         private System.Windows.Forms.NumericUpDown numericUpDownOriginalRunningAverage;
@@ -46,7 +57,7 @@ namespace PressureCalculator{
 		private System.Windows.Forms.TextBox textBoxAkahama2004A;
 		private System.Windows.Forms.TextBox textBoxAkahama2004B;
 		private System.Windows.Forms.TextBox textBoxAkahama2004C;
-        private System.Windows.Forms.TextBox textBoxAkahama2004P;
+        private System.Windows.Forms.TextBox textBoxDiamondAkahama2004P;
 		private System.Windows.Forms.NumericUpDown numericUpDownOriginalGaussian;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown numericUpDownDifferentiationGaussian;
@@ -71,18 +82,18 @@ namespace PressureCalculator{
         private TextBox textBoxMaoP;
         private GroupBox groupBoxAkahama2006;
         private Label label29;
-        private TextBox textBoxAkahama2006Nu;
+        private TextBox textBoxDiamondRamanNu;
         private Label label30;
         private TextBox textBoxAkahama2006K0;
         private TextBox textBoxAkahama2006K0Prime;
         private Label label31;
         private Label label32;
-        private TextBox textBoxAkahama2006P;
+        private TextBox textBoxDiamondAkahama2006P;
         private Label label35;
         private TextBox textBoxMaoQuasiP;
         private Label label42;
         private Label label44;
-        private TextBox textBoxAkahama2006Nu0;
+        private TextBox textBoxDiamondRamanNu0;
         private Label label43;
         private Label label33;
         private Label label46;
@@ -224,24 +235,13 @@ namespace PressureCalculator{
         private Crystallography.Controls.NumericBox numericBoxMaoHydroA;
         #endregion
      
-		/// <summary>
-		/// 使用されているリソースに後処理を実行します。
-		/// </summary>
-		protected override void Dispose( bool disposing ) {
-			if( disposing ) {
-				if (components != null) {
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
-
 		#region Windows フォーム デザイナで生成されたコード 
 		/// <summary>
 		/// デザイナ サポートに必要なメソッドです。このメソッドの内容を
 		/// コード エディタで変更しないでください。
 		/// </summary>
 		private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.numericUpDownDifferentiationRunningAverage = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownOriginalRunningAverage = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
@@ -252,7 +252,7 @@ namespace PressureCalculator{
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBoxAkahama2004P = new System.Windows.Forms.TextBox();
+            this.textBoxDiamondAkahama2004P = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.numericUpDownOriginalGaussian = new System.Windows.Forms.NumericUpDown();
@@ -276,6 +276,8 @@ namespace PressureCalculator{
             this.textBoxMaoHydroP = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.groupBoxMao = new System.Windows.Forms.GroupBox();
+            this.radioButtonTempUnitK = new System.Windows.Forms.RadioButton();
+            this.radioButtonTempUnitC = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBoxMaoP = new System.Windows.Forms.TextBox();
             this.numericBoxMaoA = new Crystallography.Controls.NumericBox();
@@ -303,20 +305,27 @@ namespace PressureCalculator{
             this.numericBoxRubyRefT = new Crystallography.Controls.NumericBox();
             this.numericBoxRubyRefR1 = new Crystallography.Controls.NumericBox();
             this.numericBoxRubyR1 = new Crystallography.Controls.NumericBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBoxAkahama2006 = new System.Windows.Forms.GroupBox();
-            this.textBoxAkahama2006P = new System.Windows.Forms.TextBox();
+            this.textBoxDiamondFratandunoHigh = new System.Windows.Forms.TextBox();
+            this.textBoxDiamondAkahama2006P = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.textBoxAkahama2006Nu0 = new System.Windows.Forms.TextBox();
+            this.textBoxDiamondRamanNu0 = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
-            this.textBoxAkahama2006Nu = new System.Windows.Forms.TextBox();
+            this.textBoxDiamondRamanNu = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.textBoxAkahama2006K0 = new System.Windows.Forms.TextBox();
             this.textBoxAkahama2006K0Prime = new System.Windows.Forms.TextBox();
+            this.textBoxDiamondFratandunoLow = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.flowLayoutPanelEOS = new System.Windows.Forms.FlowLayoutPanel();
@@ -429,9 +438,12 @@ namespace PressureCalculator{
             this.label103 = new System.Windows.Forms.Label();
             this.textBoxT = new System.Windows.Forms.TextBox();
             this.label102 = new System.Windows.Forms.Label();
-            this.radioButtonTempUnitC = new System.Windows.Forms.RadioButton();
-            this.radioButtonTempUnitK = new System.Windows.Forms.RadioButton();
-            this.label17 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.readToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportAsCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.watchNewFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDifferentiationRunningAverage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOriginalRunningAverage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOriginalGaussian)).BeginInit();
@@ -461,6 +473,7 @@ namespace PressureCalculator{
             this.groupBoxRe.SuspendLayout();
             this.panelEOS.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // numericUpDownDifferentiationRunningAverage
@@ -520,47 +533,47 @@ namespace PressureCalculator{
             // 
             // textBoxAkahama2004A
             // 
-            this.textBoxAkahama2004A.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2004A.Location = new System.Drawing.Point(297, 21);
+            this.textBoxAkahama2004A.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxAkahama2004A.Location = new System.Drawing.Point(293, 16);
             this.textBoxAkahama2004A.Name = "textBoxAkahama2004A";
-            this.textBoxAkahama2004A.Size = new System.Drawing.Size(44, 21);
+            this.textBoxAkahama2004A.Size = new System.Drawing.Size(44, 22);
             this.textBoxAkahama2004A.TabIndex = 0;
             this.textBoxAkahama2004A.Text = "66.9";
             this.textBoxAkahama2004A.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
             // 
             // textBoxAkahama2004B
             // 
-            this.textBoxAkahama2004B.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2004B.Location = new System.Drawing.Point(353, 21);
+            this.textBoxAkahama2004B.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxAkahama2004B.Location = new System.Drawing.Point(355, 16);
             this.textBoxAkahama2004B.Name = "textBoxAkahama2004B";
-            this.textBoxAkahama2004B.Size = new System.Drawing.Size(44, 21);
+            this.textBoxAkahama2004B.Size = new System.Drawing.Size(44, 22);
             this.textBoxAkahama2004B.TabIndex = 0;
             this.textBoxAkahama2004B.Text = "-0.5281";
             this.textBoxAkahama2004B.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
             // 
             // textBoxAkahama2004C
             // 
-            this.textBoxAkahama2004C.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2004C.Location = new System.Drawing.Point(421, 21);
+            this.textBoxAkahama2004C.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxAkahama2004C.Location = new System.Drawing.Point(427, 16);
             this.textBoxAkahama2004C.Name = "textBoxAkahama2004C";
-            this.textBoxAkahama2004C.Size = new System.Drawing.Size(44, 21);
+            this.textBoxAkahama2004C.Size = new System.Drawing.Size(44, 22);
             this.textBoxAkahama2004C.TabIndex = 0;
             this.textBoxAkahama2004C.Text = "3.585";
             this.textBoxAkahama2004C.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
             // 
             // label5
             // 
-            this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(268, 25);
+            this.label5.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(264, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 12);
             this.label5.TabIndex = 1;
-            this.label5.Text = "P=";
+            this.label5.Text = "P =";
             // 
             // label6
             // 
-            this.label6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(341, 25);
+            this.label6.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(337, 19);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(12, 12);
             this.label6.TabIndex = 1;
@@ -568,8 +581,8 @@ namespace PressureCalculator{
             // 
             // label7
             // 
-            this.label7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(397, 25);
+            this.label7.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(399, 19);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(24, 12);
             this.label7.TabIndex = 1;
@@ -577,29 +590,29 @@ namespace PressureCalculator{
             // 
             // label8
             // 
-            this.label8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(465, 25);
+            this.label8.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(475, 19);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 12);
             this.label8.TabIndex = 1;
             this.label8.Text = "E-4 ν^2=";
             // 
-            // textBoxAkahama2004P
+            // textBoxDiamondAkahama2004P
             // 
-            this.textBoxAkahama2004P.BackColor = System.Drawing.Color.Navy;
-            this.textBoxAkahama2004P.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2004P.ForeColor = System.Drawing.Color.White;
-            this.textBoxAkahama2004P.Location = new System.Drawing.Point(608, 15);
-            this.textBoxAkahama2004P.Name = "textBoxAkahama2004P";
-            this.textBoxAkahama2004P.ReadOnly = true;
-            this.textBoxAkahama2004P.Size = new System.Drawing.Size(71, 26);
-            this.textBoxAkahama2004P.TabIndex = 0;
-            this.textBoxAkahama2004P.Text = "0";
+            this.textBoxDiamondAkahama2004P.BackColor = System.Drawing.Color.Navy;
+            this.textBoxDiamondAkahama2004P.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxDiamondAkahama2004P.ForeColor = System.Drawing.Color.White;
+            this.textBoxDiamondAkahama2004P.Location = new System.Drawing.Point(615, 11);
+            this.textBoxDiamondAkahama2004P.Name = "textBoxDiamondAkahama2004P";
+            this.textBoxDiamondAkahama2004P.ReadOnly = true;
+            this.textBoxDiamondAkahama2004P.Size = new System.Drawing.Size(71, 27);
+            this.textBoxDiamondAkahama2004P.TabIndex = 0;
+            this.textBoxDiamondAkahama2004P.Text = "0";
             // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(685, 22);
+            this.label9.Location = new System.Drawing.Point(688, 18);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(34, 12);
             this.label9.TabIndex = 1;
@@ -698,7 +711,7 @@ namespace PressureCalculator{
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 106);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 130);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -714,8 +727,8 @@ namespace PressureCalculator{
             this.splitContainer1.Panel2.Controls.Add(this.graphControlBottom);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel2);
             this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(725, 324);
-            this.splitContainer1.SplitterDistance = 150;
+            this.splitContainer1.Size = new System.Drawing.Size(725, 296);
+            this.splitContainer1.SplitterDistance = 136;
             this.splitContainer1.TabIndex = 6;
             // 
             // graphControlTop
@@ -750,7 +763,7 @@ namespace PressureCalculator{
             this.graphControlTop.MousePositionVisible = true;
             this.graphControlTop.Name = "graphControlTop";
             this.graphControlTop.OriginPosition = new System.Drawing.Point(40, 20);
-            this.graphControlTop.Size = new System.Drawing.Size(725, 122);
+            this.graphControlTop.Size = new System.Drawing.Size(725, 108);
             this.graphControlTop.Smoothing = false;
             this.graphControlTop.TabIndex = 5;
             this.graphControlTop.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -815,7 +828,7 @@ namespace PressureCalculator{
             this.graphControlBottom.MousePositionVisible = true;
             this.graphControlBottom.Name = "graphControlBottom";
             this.graphControlBottom.OriginPosition = new System.Drawing.Point(40, 20);
-            this.graphControlBottom.Size = new System.Drawing.Size(725, 142);
+            this.graphControlBottom.Size = new System.Drawing.Size(725, 128);
             this.graphControlBottom.Smoothing = false;
             this.graphControlBottom.TabIndex = 6;
             this.graphControlBottom.TextFont = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -905,7 +918,7 @@ namespace PressureCalculator{
             this.radioButtonDiamondRaman.TabStop = true;
             this.radioButtonDiamondRaman.Text = "Diamond Raman";
             this.radioButtonDiamondRaman.UseVisualStyleBackColor = true;
-            this.radioButtonDiamondRaman.CheckedChanged += new System.EventHandler(this.radioButtonMOde_CheckedChanged);
+            this.radioButtonDiamondRaman.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
             // 
             // radioButtonRubyFluorescence
             // 
@@ -917,7 +930,7 @@ namespace PressureCalculator{
             this.radioButtonRubyFluorescence.TabIndex = 7;
             this.radioButtonRubyFluorescence.Text = "Ruby Fluorescence";
             this.radioButtonRubyFluorescence.UseVisualStyleBackColor = true;
-            this.radioButtonRubyFluorescence.CheckedChanged += new System.EventHandler(this.radioButtonMOde_CheckedChanged);
+            this.radioButtonRubyFluorescence.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -926,7 +939,7 @@ namespace PressureCalculator{
             this.flowLayoutPanel1.Controls.Add(this.radioButtonRubyFluorescence);
             this.flowLayoutPanel1.Controls.Add(this.radioButtonEOS);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(725, 24);
             this.flowLayoutPanel1.TabIndex = 9;
@@ -941,7 +954,7 @@ namespace PressureCalculator{
             this.radioButtonEOS.TabIndex = 7;
             this.radioButtonEOS.Text = "EOS";
             this.radioButtonEOS.UseVisualStyleBackColor = true;
-            this.radioButtonEOS.CheckedChanged += new System.EventHandler(this.radioButtonMOde_CheckedChanged);
+            this.radioButtonEOS.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
             // 
             // textBoxMaoHydroP
             // 
@@ -983,6 +996,31 @@ namespace PressureCalculator{
             this.groupBoxMao.TabIndex = 12;
             this.groupBoxMao.TabStop = false;
             this.groupBoxMao.Text = "Pressure calculation from the ruby fluorescence";
+            // 
+            // radioButtonTempUnitK
+            // 
+            this.radioButtonTempUnitK.AutoSize = true;
+            this.radioButtonTempUnitK.Checked = true;
+            this.radioButtonTempUnitK.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.radioButtonTempUnitK.Location = new System.Drawing.Point(53, 88);
+            this.radioButtonTempUnitK.Name = "radioButtonTempUnitK";
+            this.radioButtonTempUnitK.Size = new System.Drawing.Size(32, 19);
+            this.radioButtonTempUnitK.TabIndex = 7;
+            this.radioButtonTempUnitK.TabStop = true;
+            this.radioButtonTempUnitK.Text = "K";
+            this.radioButtonTempUnitK.UseVisualStyleBackColor = true;
+            this.radioButtonTempUnitK.CheckedChanged += new System.EventHandler(this.radioButtonTempUnit_CheckedChanged);
+            // 
+            // radioButtonTempUnitC
+            // 
+            this.radioButtonTempUnitC.AutoSize = true;
+            this.radioButtonTempUnitC.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.radioButtonTempUnitC.Location = new System.Drawing.Point(93, 88);
+            this.radioButtonTempUnitC.Name = "radioButtonTempUnitC";
+            this.radioButtonTempUnitC.Size = new System.Drawing.Size(37, 19);
+            this.radioButtonTempUnitC.TabIndex = 7;
+            this.radioButtonTempUnitC.Text = "℃";
+            this.radioButtonTempUnitC.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -1200,7 +1238,7 @@ namespace PressureCalculator{
             this.groupBox2.Size = new System.Drawing.Size(583, 48);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Temperature dependency (Ragan et al. 1992)";
+            this.groupBox2.Text = "Temperature dependency (Ragan et al., 1992) (Applicable in the range of 50-600K)";
             // 
             // numericBoxRubyRagan
             // 
@@ -1380,52 +1418,80 @@ namespace PressureCalculator{
             this.numericBoxRubyR1.Value = 694.65D;
             this.numericBoxRubyR1.ValueChanged += new Crystallography.Controls.NumericBox.MyEventHandler(this.numericBoxRubyR1_ValueChanged);
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.Location = new System.Drawing.Point(6, 68);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(108, 17);
+            this.label17.TabIndex = 1;
+            this.label17.Text = "Temperature unit";
+            // 
             // groupBoxAkahama2006
             // 
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2006P);
+            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondFratandunoHigh);
+            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondAkahama2006P);
             this.groupBoxAkahama2006.Controls.Add(this.label44);
             this.groupBoxAkahama2006.Controls.Add(this.label29);
             this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2004A);
             this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2004B);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2006Nu0);
+            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondRamanNu0);
             this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2004C);
             this.groupBoxAkahama2006.Controls.Add(this.label43);
             this.groupBoxAkahama2006.Controls.Add(this.label5);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2006Nu);
+            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondRamanNu);
             this.groupBoxAkahama2006.Controls.Add(this.label6);
             this.groupBoxAkahama2006.Controls.Add(this.label30);
             this.groupBoxAkahama2006.Controls.Add(this.label7);
             this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2006K0);
             this.groupBoxAkahama2006.Controls.Add(this.label8);
             this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2006K0Prime);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2004P);
+            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondFratandunoLow);
+            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondAkahama2004P);
             this.groupBoxAkahama2006.Controls.Add(this.label4);
+            this.groupBoxAkahama2006.Controls.Add(this.label20);
+            this.groupBoxAkahama2006.Controls.Add(this.label19);
             this.groupBoxAkahama2006.Controls.Add(this.label3);
+            this.groupBoxAkahama2006.Controls.Add(this.label24);
             this.groupBoxAkahama2006.Controls.Add(this.label31);
             this.groupBoxAkahama2006.Controls.Add(this.label9);
             this.groupBoxAkahama2006.Controls.Add(this.label33);
+            this.groupBoxAkahama2006.Controls.Add(this.label21);
             this.groupBoxAkahama2006.Controls.Add(this.label32);
             this.groupBoxAkahama2006.Controls.Add(this.label35);
             this.groupBoxAkahama2006.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBoxAkahama2006.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxAkahama2006.Location = new System.Drawing.Point(0, 430);
+            this.groupBoxAkahama2006.Location = new System.Drawing.Point(0, 426);
             this.groupBoxAkahama2006.Name = "groupBoxAkahama2006";
-            this.groupBoxAkahama2006.Size = new System.Drawing.Size(725, 120);
+            this.groupBoxAkahama2006.Size = new System.Drawing.Size(725, 124);
             this.groupBoxAkahama2006.TabIndex = 13;
             this.groupBoxAkahama2006.TabStop = false;
             this.groupBoxAkahama2006.Text = "Pressure calculation from the Raman edge";
             // 
-            // textBoxAkahama2006P
+            // textBoxDiamondFratandunoHigh
             // 
-            this.textBoxAkahama2006P.BackColor = System.Drawing.Color.Navy;
-            this.textBoxAkahama2006P.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2006P.ForeColor = System.Drawing.Color.White;
-            this.textBoxAkahama2006P.Location = new System.Drawing.Point(608, 40);
-            this.textBoxAkahama2006P.Name = "textBoxAkahama2006P";
-            this.textBoxAkahama2006P.ReadOnly = true;
-            this.textBoxAkahama2006P.Size = new System.Drawing.Size(71, 26);
-            this.textBoxAkahama2006P.TabIndex = 0;
-            this.textBoxAkahama2006P.Text = "0";
+            this.textBoxDiamondFratandunoHigh.BackColor = System.Drawing.Color.Navy;
+            this.textBoxDiamondFratandunoHigh.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxDiamondFratandunoHigh.ForeColor = System.Drawing.Color.White;
+            this.textBoxDiamondFratandunoHigh.Location = new System.Drawing.Point(615, 92);
+            this.textBoxDiamondFratandunoHigh.Name = "textBoxDiamondFratandunoHigh";
+            this.textBoxDiamondFratandunoHigh.ReadOnly = true;
+            this.textBoxDiamondFratandunoHigh.Size = new System.Drawing.Size(71, 27);
+            this.textBoxDiamondFratandunoHigh.TabIndex = 0;
+            this.textBoxDiamondFratandunoHigh.Text = "0";
+            // 
+            // textBoxDiamondAkahama2006P
+            // 
+            this.textBoxDiamondAkahama2006P.BackColor = System.Drawing.Color.Navy;
+            this.textBoxDiamondAkahama2006P.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxDiamondAkahama2006P.ForeColor = System.Drawing.Color.White;
+            this.textBoxDiamondAkahama2006P.Location = new System.Drawing.Point(615, 38);
+            this.textBoxDiamondAkahama2006P.Name = "textBoxDiamondAkahama2006P";
+            this.textBoxDiamondAkahama2006P.ReadOnly = true;
+            this.textBoxDiamondAkahama2006P.Size = new System.Drawing.Size(71, 27);
+            this.textBoxDiamondAkahama2006P.TabIndex = 0;
+            this.textBoxDiamondAkahama2006P.Text = "0";
             // 
             // label44
             // 
@@ -1445,15 +1511,15 @@ namespace PressureCalculator{
             this.label29.TabIndex = 1;
             this.label29.Text = "ν";
             // 
-            // textBoxAkahama2006Nu0
+            // textBoxDiamondRamanNu0
             // 
-            this.textBoxAkahama2006Nu0.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2006Nu0.Location = new System.Drawing.Point(36, 39);
-            this.textBoxAkahama2006Nu0.Name = "textBoxAkahama2006Nu0";
-            this.textBoxAkahama2006Nu0.Size = new System.Drawing.Size(63, 22);
-            this.textBoxAkahama2006Nu0.TabIndex = 0;
-            this.textBoxAkahama2006Nu0.Text = "1334";
-            this.textBoxAkahama2006Nu0.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
+            this.textBoxDiamondRamanNu0.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxDiamondRamanNu0.Location = new System.Drawing.Point(36, 39);
+            this.textBoxDiamondRamanNu0.Name = "textBoxDiamondRamanNu0";
+            this.textBoxDiamondRamanNu0.Size = new System.Drawing.Size(63, 22);
+            this.textBoxDiamondRamanNu0.TabIndex = 0;
+            this.textBoxDiamondRamanNu0.Text = "1334";
+            this.textBoxDiamondRamanNu0.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
             // 
             // label43
             // 
@@ -1464,15 +1530,15 @@ namespace PressureCalculator{
             this.label43.TabIndex = 1;
             this.label43.Text = "cm^-1";
             // 
-            // textBoxAkahama2006Nu
+            // textBoxDiamondRamanNu
             // 
-            this.textBoxAkahama2006Nu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2006Nu.Location = new System.Drawing.Point(35, 16);
-            this.textBoxAkahama2006Nu.Name = "textBoxAkahama2006Nu";
-            this.textBoxAkahama2006Nu.Size = new System.Drawing.Size(64, 22);
-            this.textBoxAkahama2006Nu.TabIndex = 0;
-            this.textBoxAkahama2006Nu.Text = "0";
-            this.textBoxAkahama2006Nu.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
+            this.textBoxDiamondRamanNu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxDiamondRamanNu.Location = new System.Drawing.Point(35, 16);
+            this.textBoxDiamondRamanNu.Name = "textBoxDiamondRamanNu";
+            this.textBoxDiamondRamanNu.Size = new System.Drawing.Size(64, 22);
+            this.textBoxDiamondRamanNu.TabIndex = 0;
+            this.textBoxDiamondRamanNu.Text = "0";
+            this.textBoxDiamondRamanNu.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
             // 
             // label30
             // 
@@ -1485,73 +1551,129 @@ namespace PressureCalculator{
             // 
             // textBoxAkahama2006K0
             // 
-            this.textBoxAkahama2006K0.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2006K0.Location = new System.Drawing.Point(301, 43);
+            this.textBoxAkahama2006K0.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxAkahama2006K0.Location = new System.Drawing.Point(309, 43);
             this.textBoxAkahama2006K0.Name = "textBoxAkahama2006K0";
-            this.textBoxAkahama2006K0.Size = new System.Drawing.Size(44, 21);
+            this.textBoxAkahama2006K0.Size = new System.Drawing.Size(44, 22);
             this.textBoxAkahama2006K0.TabIndex = 0;
             this.textBoxAkahama2006K0.Text = "547";
             this.textBoxAkahama2006K0.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
             // 
             // textBoxAkahama2006K0Prime
             // 
-            this.textBoxAkahama2006K0Prime.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2006K0Prime.Location = new System.Drawing.Point(475, 44);
+            this.textBoxAkahama2006K0Prime.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxAkahama2006K0Prime.Location = new System.Drawing.Point(474, 43);
             this.textBoxAkahama2006K0Prime.Name = "textBoxAkahama2006K0Prime";
-            this.textBoxAkahama2006K0Prime.Size = new System.Drawing.Size(44, 21);
+            this.textBoxAkahama2006K0Prime.Size = new System.Drawing.Size(44, 22);
             this.textBoxAkahama2006K0Prime.TabIndex = 0;
             this.textBoxAkahama2006K0Prime.Text = "3.75";
             this.textBoxAkahama2006K0Prime.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
             // 
+            // textBoxDiamondFratandunoLow
+            // 
+            this.textBoxDiamondFratandunoLow.BackColor = System.Drawing.Color.Navy;
+            this.textBoxDiamondFratandunoLow.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxDiamondFratandunoLow.ForeColor = System.Drawing.Color.White;
+            this.textBoxDiamondFratandunoLow.Location = new System.Drawing.Point(615, 65);
+            this.textBoxDiamondFratandunoLow.Name = "textBoxDiamondFratandunoLow";
+            this.textBoxDiamondFratandunoLow.ReadOnly = true;
+            this.textBoxDiamondFratandunoLow.Size = new System.Drawing.Size(71, 27);
+            this.textBoxDiamondFratandunoLow.TabIndex = 0;
+            this.textBoxDiamondFratandunoLow.Text = "0";
+            // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(157, 25);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(160, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 12);
+            this.label4.Size = new System.Drawing.Size(90, 13);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Akahama (2004)";
+            this.label4.Text = "Akahama (2004):";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label20.Location = new System.Drawing.Point(160, 100);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(430, 13);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "Fratanduono+ (2021, >200GPa):  P = 199.49 - 852.78 × Δν/ν0 + 3103.8 × (Δν/ν0)² = " +
+    "";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label19.Location = new System.Drawing.Point(160, 73);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(387, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "Fratanduono+ (2021, <300GPa):  P = 503.77 × Δν/ν0 + 753.83 × (Δν/ν0)² = ";
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(157, 47);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(160, 46);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 12);
+            this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Akahama (2006)";
+            this.label3.Text = "Akahama (2006):";
+            // 
+            // label24
+            // 
+            this.label24.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label24.Location = new System.Drawing.Point(688, 72);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(34, 12);
+            this.label24.TabIndex = 1;
+            this.label24.Text = "GPa";
             // 
             // label31
             // 
-            this.label31.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label31.Location = new System.Drawing.Point(268, 47);
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label31.Location = new System.Drawing.Point(264, 46);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(31, 12);
+            this.label31.Size = new System.Drawing.Size(39, 13);
             this.label31.TabIndex = 1;
-            this.label31.Text = "P=K0";
+            this.label31.Text = "P = K0";
             // 
             // label33
             // 
-            this.label33.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label33.Location = new System.Drawing.Point(518, 47);
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label33.Location = new System.Drawing.Point(520, 46);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(101, 12);
+            this.label33.Size = new System.Drawing.Size(65, 13);
             this.label33.TabIndex = 1;
             this.label33.Text = "-1)*Δν/ν0]=";
             // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label21.Location = new System.Drawing.Point(691, 99);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(34, 12);
+            this.label21.TabIndex = 1;
+            this.label21.Text = "GPa";
+            // 
             // label32
             // 
-            this.label32.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label32.Location = new System.Drawing.Point(347, 47);
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label32.Location = new System.Drawing.Point(357, 46);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(198, 12);
+            this.label32.Size = new System.Drawing.Size(115, 13);
             this.label32.TabIndex = 1;
-            this.label32.Text = "*Δν/ν0 * [1+1/2 (K0\'";
+            this.label32.Text = "× Δν/ν0 × [1+1/2 (K0\'";
             // 
             // label35
             // 
             this.label35.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label35.Location = new System.Drawing.Point(686, 46);
+            this.label35.Location = new System.Drawing.Point(691, 45);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(34, 12);
             this.label35.TabIndex = 1;
@@ -2685,7 +2807,7 @@ namespace PressureCalculator{
             this.panelEOS.Controls.Add(this.flowLayoutPanelEOS);
             this.panelEOS.Controls.Add(this.panel2);
             this.panelEOS.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelEOS.Location = new System.Drawing.Point(0, 24);
+            this.panelEOS.Location = new System.Drawing.Point(0, 48);
             this.panelEOS.Name = "panelEOS";
             this.panelEOS.Size = new System.Drawing.Size(725, 82);
             this.panelEOS.TabIndex = 15;
@@ -2705,7 +2827,7 @@ namespace PressureCalculator{
             // 
             this.label103.AutoSize = true;
             this.label103.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label103.Location = new System.Drawing.Point(7, 3);
+            this.label103.Location = new System.Drawing.Point(7, 5);
             this.label103.Name = "label103";
             this.label103.Size = new System.Drawing.Size(87, 14);
             this.label103.TabIndex = 18;
@@ -2714,7 +2836,7 @@ namespace PressureCalculator{
             // textBoxT
             // 
             this.textBoxT.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxT.Location = new System.Drawing.Point(94, -1);
+            this.textBoxT.Location = new System.Drawing.Point(94, 2);
             this.textBoxT.Name = "textBoxT";
             this.textBoxT.Size = new System.Drawing.Size(83, 22);
             this.textBoxT.TabIndex = 17;
@@ -2730,39 +2852,55 @@ namespace PressureCalculator{
             this.label102.TabIndex = 18;
             this.label102.Text = "K";
             // 
-            // radioButtonTempUnitC
+            // menuStrip1
             // 
-            this.radioButtonTempUnitC.AutoSize = true;
-            this.radioButtonTempUnitC.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButtonTempUnitC.Location = new System.Drawing.Point(93, 88);
-            this.radioButtonTempUnitC.Name = "radioButtonTempUnitC";
-            this.radioButtonTempUnitC.Size = new System.Drawing.Size(37, 19);
-            this.radioButtonTempUnitC.TabIndex = 7;
-            this.radioButtonTempUnitC.Text = "℃";
-            this.radioButtonTempUnitC.UseVisualStyleBackColor = true;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(725, 24);
+            this.menuStrip1.TabIndex = 16;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // radioButtonTempUnitK
+            // fileToolStripMenuItem
             // 
-            this.radioButtonTempUnitK.AutoSize = true;
-            this.radioButtonTempUnitK.Checked = true;
-            this.radioButtonTempUnitK.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButtonTempUnitK.Location = new System.Drawing.Point(53, 88);
-            this.radioButtonTempUnitK.Name = "radioButtonTempUnitK";
-            this.radioButtonTempUnitK.Size = new System.Drawing.Size(32, 19);
-            this.radioButtonTempUnitK.TabIndex = 7;
-            this.radioButtonTempUnitK.TabStop = true;
-            this.radioButtonTempUnitK.Text = "K";
-            this.radioButtonTempUnitK.UseVisualStyleBackColor = true;
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.readToolStripMenuItem,
+            this.exportAsCSVToolStripMenuItem,
+            this.watchNewFileToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
             // 
-            // label17
+            // readToolStripMenuItem
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(6, 68);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(108, 17);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "Temperature unit";
+            this.readToolStripMenuItem.Name = "readToolStripMenuItem";
+            this.readToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.readToolStripMenuItem.Text = "Load";
+            this.readToolStripMenuItem.Click += new System.EventHandler(this.menuItemFileRead_Click);
+            // 
+            // exportAsCSVToolStripMenuItem
+            // 
+            this.exportAsCSVToolStripMenuItem.Name = "exportAsCSVToolStripMenuItem";
+            this.exportAsCSVToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.exportAsCSVToolStripMenuItem.Text = "Export as CSV";
+            this.exportAsCSVToolStripMenuItem.Click += new System.EventHandler(this.menuItemExport_Click);
+            // 
+            // watchNewFileToolStripMenuItem
+            // 
+            this.watchNewFileToolStripMenuItem.Checked = true;
+            this.watchNewFileToolStripMenuItem.CheckOnClick = true;
+            this.watchNewFileToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.watchNewFileToolStripMenuItem.Name = "watchNewFileToolStripMenuItem";
+            this.watchNewFileToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.watchNewFileToolStripMenuItem.Text = "Reload the file if it is updated";
+            this.watchNewFileToolStripMenuItem.CheckedChanged += new System.EventHandler(this.menuItemWatchFile_Click);
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // FormMain
             // 
@@ -2774,7 +2912,9 @@ namespace PressureCalculator{
             this.Controls.Add(this.groupBoxMao);
             this.Controls.Add(this.panelEOS);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "Pressure Calculator";
             this.Closed += new System.EventHandler(this.FormDiamondRaman_Closed);
@@ -2830,6 +2970,8 @@ namespace PressureCalculator{
             this.panelEOS.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2842,6 +2984,18 @@ namespace PressureCalculator{
         private RadioButton radioButtonTempUnitK;
         private RadioButton radioButtonTempUnitC;
         private Label label17;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem readToolStripMenuItem;
+        private ToolStripMenuItem exportAsCSVToolStripMenuItem;
+        private ToolStripMenuItem watchNewFileToolStripMenuItem;
+        private System.Windows.Forms.Timer timer;
+        private TextBox textBoxDiamondFratandunoHigh;
+        private TextBox textBoxDiamondFratandunoLow;
+        private Label label20;
+        private Label label19;
+        private Label label24;
+        private Label label21;
     }
 	
     

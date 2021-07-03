@@ -13,11 +13,17 @@ using System.Linq;
 namespace PressureCalculator{
 	
 	
+
+
+
 	/// <summary>
 	/// Form1 の概要の説明です。
 	/// </summary>
 	public partial class FormMain : Form
     {
+
+        private DateTime lastWriteTime;
+        public string currentFileName = "";
 
         private double fittingRangeDiamond=6;
         private double fittingRangeRuby = 3;
@@ -30,22 +36,18 @@ namespace PressureCalculator{
 
         private void FormMain_Load(object sender, System.EventArgs e)
         {
-
             MouseRange = false;
-            //menuItemWatchFile.Checked = true;
-            thread = new Thread(new ThreadStart(WatchFile));
-            time = oldTime = DateTime.Now;
-            thread.Start();        // スレッドの起動
+
+            timer.Start();
 
             ReadInitialRegistry();
 
-            radioButtonMOde_CheckedChanged(new object(), new EventArgs());
+            radioButtonMode_CheckedChanged(new object(), new EventArgs());
 
             numericBoxRubyRefR1_ValueChanged(sender, e);
         }
         private void FormDiamondRaman_Closed(object sender, System.EventArgs e)
         {
-            //thread.Abort();			// スレッドの中止
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -79,9 +81,14 @@ namespace PressureCalculator{
                 this.fittingRangeRuby = Convert.ToDouble(regKey.GetValue("fittingRangeRuby", fittingRangeRuby));
                 this.fittingRangeDiamond = Convert.ToDouble(regKey.GetValue("fittingRangeDiamond", fittingRangeDiamond));
 
-                this.textBoxAkahama2006Nu0.Text = (string)regKey.GetValue("textBoxAkahama2006Nu0.Text", textBoxAkahama2006Nu0.Text);
+                this.textBoxDiamondRamanNu0.Text = (string)regKey.GetValue("textBoxAkahama2006Nu0.Text", textBoxDiamondRamanNu0.Text);
                 numericBoxRubyRefR1.Text = (string)regKey.GetValue("numericBoxRubyR1_0.Text", numericBoxRubyRefR1.Text);
                 numericBoxRubyRefT.Text = (string)regKey.GetValue("numericBoxRubyRefT.Text", numericBoxRubyRefT.Text);
+                numericBoxRubyRefR1.Text = (string)regKey.GetValue("numericBoxRubyRefR1.Text", numericBoxRubyRefT.Text);
+
+                this.radioButtonTempUnitK.Checked = (string)regKey.GetValue("radioButtonTempUnitK.Checked", "True") == "True";
+                this.radioButtonTempUnitC.Checked = (string)regKey.GetValue("radioButtonTempUnitC.Checked", "True") == "True";
+
 
                 regKey.Close();
             }
@@ -103,67 +110,28 @@ namespace PressureCalculator{
 
             regKey.SetValue("fittingRangeRuby", fittingRangeRuby);
             regKey.SetValue("fittingRangeDiamond", fittingRangeDiamond);
-            regKey.SetValue("textBoxAkahama2006Nu0.Text", textBoxAkahama2006Nu0.Text);
+            regKey.SetValue("textBoxAkahama2006Nu0.Text", textBoxDiamondRamanNu0.Text);
             regKey.SetValue("textBoxMaoRamda0.Text", numericBoxRubyRefR1.Text);
             regKey.SetValue("numericBoxRubyRefT.Text", numericBoxRubyRefT.Text);
+            regKey.SetValue("numericBoxRubyRefR1.Text", numericBoxRubyRefR1.Text);
+
+            regKey.SetValue("radioButtonTempUnitK.Checked", radioButtonDiamondRaman.Checked);
+            regKey.SetValue("radioButtonTempUnitC.Checked", radioButtonDiamondRaman.Checked);
 
 
             regKey.Close();
         }
         #endregion
 
-        #region Drag&Drop
-        private void FormMain_DragDrop(object sender, DragEventArgs e)
-        {
-            //コントロール内にドロップされたとき実行される
-            //ドロップされたすべてのファイル名を取得する
-            string[] fileName = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            //ListBoxに追加する
-            if (fileName.Length == 1)
-            {
-                skipFitting = true;
-                Original = readFile(fileName[0]);
-                CalcSmoothingAndDifferentiation();
-                graphControlTop.Profile = OriginalSmooth;
-                graphControlBottom.Profile = BottomProfileSmooth;
-                skipFitting = false;
-                SearchBandEdge();
 
-            }
-        }
-
-        private void FormMain_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-                e.Effect = DragDropEffects.Copy; //ドラッグされたデータ形式を調べ、ファイルのときはコピーとする
-            else
-                e.Effect = DragDropEffects.None;//ファイル以外は受け付けない
-        }
-        #endregion
 
         #region ファイル読み込み関連
-        //監視スレッドから呼び出されるFileRead
-        private void FileRead() {
-			try {
-                Original = readFile(FileName);
-				CalcSmoothingAndDifferentiation();
-
-                graphControlTop.Profile = OriginalSmooth;
-                graphControlBottom.Profile = BottomProfileSmooth;
-                SearchBandEdge();
-
-			}
-			catch {
-				MessageBox.Show("ファイルを開けません");
-				return;
-			}
-		}
+       
 
 
         private Profile readFile(string fileName)
         {
-
-            var reader = new StreamReader(fileName, Encoding.GetEncoding("Shift_JIS"));
+            var reader = new StreamReader(fileName, Encoding.GetEncoding("UTF-8"));
             var contents = new List<string>();
             string str;
             while ((str = reader.ReadLine()) != null)
@@ -196,6 +164,13 @@ namespace PressureCalculator{
                             }
                         }
                     }
+
+            if (profile.Pt != null && profile.Pt.Count > 0)
+            {
+                currentFileName = fileName;
+                lastWriteTime = File.GetLastWriteTime(currentFileName);
+                this.Text = "Pressure Calculator    " + currentFileName;
+            }
 
             return profile;
         }
@@ -453,7 +428,7 @@ namespace PressureCalculator{
                 graphControlBottom.ReplaceProfile(2, null);
                 graphControlBottom.ReplaceProfile(3, null);
 
-                textBoxAkahama2006Nu.Text = pf[0].X.ToString();
+                textBoxDiamondRamanNu.Text = pf[0].X.ToString();
             }
             else if (radioButtonRubyFluorescence.Checked)//Ruby 蛍光のとき
             {
@@ -574,7 +549,7 @@ namespace PressureCalculator{
                 graphControlBottom.ReplaceProfile(2, null);
                 graphControlBottom.ReplaceProfile(3, null);
 
-                textBoxAkahama2006Nu.Text = bestEdge.ToString();
+                textBoxDiamondRamanNu.Text = bestEdge.ToString();
             }
             else
             {
@@ -665,39 +640,27 @@ namespace PressureCalculator{
         }
         #endregion
 
-        #region クリップボード監視関連
-        private void  WatchFile() 
-		{  //クリップボード監視
-			while(true) {
-				if(File.Exists(FileName)){
-					time= File.GetLastWriteTime(FileName);
-					if(time>oldTime && time!=oldTime){
-						Thread.Sleep(200);
-						FileRead();
-						oldTime=time;
-						Thread.Sleep(2000);
-					}
-					Thread.Sleep(100) ;
-				}
-			}
-		}
-
-
-
-
-
-        #endregion
+      
 
         private void textBoxNu_TextChanged(object sender, System.EventArgs e)
         {
             try
             {
+                var nu = Convert.ToDouble(textBoxDiamondRamanNu.Text);
+                var nuPerNu0 = (nu - Convert.ToDouble(textBoxDiamondRamanNu0.Text)) / Convert.ToDouble(textBoxDiamondRamanNu0.Text);
+
+
                 //Akahama2004
-                var nu = Convert.ToDouble(textBoxAkahama2006Nu.Text);
-                textBoxAkahama2004P.Text = (Convert.ToDouble(textBoxAkahama2004A.Text) + Convert.ToDouble(textBoxAkahama2004B.Text) * nu + Convert.ToDouble(textBoxAkahama2004C.Text) * 0.0001 * nu * nu).ToString();
+                textBoxDiamondAkahama2004P.Text = 
+                    (Convert.ToDouble(textBoxAkahama2004A.Text) + Convert.ToDouble(textBoxAkahama2004B.Text) * nu + Convert.ToDouble(textBoxAkahama2004C.Text) * 0.0001 * nu * nu).ToString("f2");
                 //Akahama2006
-                var nuovernu0 = (Convert.ToDouble(textBoxAkahama2006Nu.Text) - Convert.ToDouble(textBoxAkahama2006Nu0.Text)) / Convert.ToDouble(textBoxAkahama2006Nu0.Text);
-                textBoxAkahama2006P.Text = (Convert.ToDouble(textBoxAkahama2006K0.Text) * nuovernu0 * (1 + 0.5 * (Convert.ToDouble(textBoxAkahama2006K0Prime.Text) - 1) * nuovernu0)).ToString();
+                textBoxDiamondAkahama2006P.Text = 
+                    (Convert.ToDouble(textBoxAkahama2006K0.Text) * nuPerNu0 * (1 + 0.5 * (Convert.ToDouble(textBoxAkahama2006K0Prime.Text) - 1) * nuPerNu0)).ToString("f2");
+                //Fratanduno 2021 Low
+                textBoxDiamondFratandunoLow.Text = (530.77 * nuPerNu0 + 753.83 * nuPerNu0 * nuPerNu0).ToString("f2");
+                //Fratanduno 2021 High
+                textBoxDiamondFratandunoHigh.Text = (199.49 - 852.78 * nuPerNu0 + 3103.8 * nuPerNu0 * nuPerNu0).ToString("f2");
+
             }
             catch
             {
@@ -705,7 +668,7 @@ namespace PressureCalculator{
             }
         }
 
-        private void radioButtonMOde_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonMode_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonDiamondRaman.Checked)
             {
@@ -798,7 +761,7 @@ namespace PressureCalculator{
         private void calcRaganParameter() 
         {
             var r = numericBoxRubyRefR1.Value;
-            var t = numericBoxRubyRefT.Value;
+            var t = radioButtonTempUnitK.Checked ? numericBoxRubyRefT.Value : numericBoxRubyRefT.Value - 273.15;
             numericBoxRubyRagan.Value = 1E7 / r - 4.49E-2 * t + 4.81E-4 * t * t - 3.71E-7 * t * t * t;
         }
 
@@ -830,7 +793,7 @@ namespace PressureCalculator{
         private void numericBoxRubyRagan_ValueChanged(object sender, EventArgs e)
         {
             if(checkBoxRubyR1_0CalculatedFromRagan.Checked)
-            calcR1_0();
+                calcR1_0();
         }
 
         /// <summary>
@@ -840,7 +803,6 @@ namespace PressureCalculator{
         /// <param name="e"></param>
         private void numericBoxRubyT_ValueChanged(object sender, EventArgs e)
         {
-            
             if (checkBoxRubyR1_0CalculatedFromRagan.Checked)
                 calcR1_0();
         }
@@ -850,7 +812,7 @@ namespace PressureCalculator{
         /// </summary>
         private void calcR1_0()
         {
-            var t = numericBoxRubyT.Value;
+            var t = radioButtonTempUnitK.Checked ? numericBoxRubyT.Value : numericBoxRubyT.Value - 273.15;
             var prm = numericBoxRubyRagan.Value;
             numericBoxRubyR1_0.Enabled = true;
 
@@ -896,6 +858,15 @@ namespace PressureCalculator{
             var delta = (numericBoxRubyR1.Value - numericBoxRubyR1_0.Value) / numericBoxRubyR1_0.Value;
             //Shen et al
             textBoxShenP.Text = (numericBoxShenA.Value * (delta + delta * delta * 5.63)).ToString("f2");
+        }
+
+        private void radioButtonTempUnit_CheckedChanged(object sender, EventArgs e)
+        {
+            numericBoxRubyRefT.FooterText = numericBoxRubyT.FooterText
+                = radioButtonTempUnitC.Checked ? "℃" : "K";
+
+            numericBoxRubyRefT_ValueChanged(sender, e);
+            numericBoxRubyT_ValueChanged(sender, e);
         }
 
         #endregion
@@ -1148,59 +1119,67 @@ namespace PressureCalculator{
 
         #endregion
 
-        #region メニューアイテム
 
-        private void menuItemWatchFile_Click(object sender, System.EventArgs e)
+
+        #region Drag&Drop
+        private void FormMain_DragDrop(object sender, DragEventArgs e)
         {
-            //if(menuItemWatchFile.Checked){
-            //	menuItemWatchFile.Checked=false;
-            //	thread.Abort();			// スレッドの中止
-            //}
-            //else {
-            //	menuItemWatchFile.Checked=true;
-            //	thread = new Thread(new ThreadStart(WatchFile));
-            //	thread.Start() ;        // スレッドの起動
-            //}
+            //コントロール内にドロップされたとき実行される
+            //ドロップされたすべてのファイル名を取得する
+            string[] fileNames = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            //ListBoxに追加する
+            if (fileNames.Length == 1)
+            {
+                skipFitting = true;
+                Original = readFile(fileNames[0]);
+                CalcSmoothingAndDifferentiation();
+                graphControlTop.Profile = OriginalSmooth;
+                graphControlBottom.Profile = BottomProfileSmooth;
+                skipFitting = false;
+                SearchBandEdge();
+
+            }
         }
+
+        private void FormMain_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy; //ドラッグされたデータ形式を調べ、ファイルのときはコピーとする
+            else
+                e.Effect = DragDropEffects.None;//ファイル以外は受け付けない
+        }
+        #endregion
+
+        #region メニューアイテム
 
         private void menuItemExport_Click(object sender, EventArgs e)
         {
 
             if (graphControlTop.Profile != null && graphControlTop.Profile.Pt != null && graphControlTop.Profile.Pt.Count != 0)
             {
-                PointD[] pt = new PointD[0];
-                pt = graphControlTop.Profile.Pt.ToArray();
-            //クリップボードにcsvデータを保存
-            
-                
-                var dlg = new SaveFileDialog();
-                dlg.Filter = "*.csv|*.csv";
-                if(dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    using(StreamWriter sw = new StreamWriter(dlg.FileName))
+                var pt = graphControlTop.Profile.Pt.ToArray();
+                //クリップボードにcsvデータを保存
+                var dlg = new SaveFileDialog { Filter = "*.csv|*.csv" };
+                if (dlg.ShowDialog() == DialogResult.OK)
+                    using (var sw = new StreamWriter(dlg.FileName))
                     {
                         for (int i = 0; i < pt.Length; i++)
                             sw.WriteLine(pt[i].X.ToString() + "," + pt[i].Y.ToString());
                         sw.Close();
                     }
             }
-
-
         }
 
 
         //メニューから呼び出されるFileRead
         private void menuItemFileRead_Click(object sender, System.EventArgs e)
         {
-            OpenFileDialog Dlg = new OpenFileDialog();
-            //Dlg.Filter= "WinSpec Converted Data(txt)|*.txt";
+            var Dlg = new OpenFileDialog();
             if (Dlg.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    if (!File.Exists(Dlg.FileName)) return;  // ファイルの有無をチェック
-                    FileName = Dlg.FileName;
-                    this.Text = "Diamond Raman    " + FileName;
-                    time = oldTime = File.GetLastWriteTime(FileName);
+                    if (!File.Exists(Dlg.FileName))  return;  // ファイルの有無をチェック
                     Original = readFile(Dlg.FileName);
                     CalcSmoothingAndDifferentiation();
                     graphControlTop.Profile = OriginalSmooth;
@@ -1214,13 +1193,46 @@ namespace PressureCalculator{
                 }
             }
         }
+
+        private void menuItemWatchFile_Click(object sender, System.EventArgs e)
+        {
+            if (watchNewFileToolStripMenuItem.Checked)
+                timer.Start();
+            else
+                timer.Stop();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            //ファイルの更新を監視
+            if (File.Exists(currentFileName))
+            {
+                var time = File.GetLastWriteTime(currentFileName);
+                Thread.Sleep(200);
+                if (time > lastWriteTime)
+                {
+                    try
+                    {
+                        Original = readFile(currentFileName);
+                        CalcSmoothingAndDifferentiation();
+                        graphControlTop.Profile = OriginalSmooth;
+                        graphControlBottom.Profile = BottomProfileSmooth;
+                        SearchBandEdge();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("ファイルを開けません");
+                        return;
+                    }
+                }
+                Thread.Sleep(200);
+            }
+        }
+
         #endregion
 
-
-
-
     }
-	
-    
+
+
 
 }
