@@ -17,7 +17,6 @@ namespace Crystallography.Controls
 
         public FormPeriodicTable formPeriodicTable;
 
-
         public string Filter
         {
             get
@@ -26,11 +25,11 @@ namespace Crystallography.Controls
 
                 //名前
                 if (checkBoxSearchName.Checked && textBoxSearchName.Text != "")
-                    filter.Add(string.Join(" AND ", textBoxSearchName.Text.Split().Select(s => $"Name LIKE '*{s}*'")));
+                    filter.Add(string.Join(" AND ", textBoxSearchName.Text.Split(" ", true).Select(s => $"Name LIKE '*{s}*'")));
 
                 //Reference
                 if (checkBoxSearchRefference.Checked && textBoxSearchRefference.Text != "")
-                    filter.Add(string.Join(" AND ", textBoxSearchRefference.Text.Split().Select(s => $"(Authors LIKE '*{s}*' OR Title LIKE '*{s}*' OR Journal LIKE '*{s}*')")));
+                    filter.Add(string.Join(" AND ", textBoxSearchRefference.Text.Split(" ", true).Select(s => $"(Authors LIKE '*{s}*' OR Title LIKE '*{s}*' OR Journal LIKE '*{s}*')")));
 
                 if (checkBoxSearchCrystalSystem.Checked && comboBoxSearchCrystalSystem.SelectedIndex >= 0)
                     filter.Add($" CrystalSystem = '{comboBoxSearchCrystalSystem.Text}'");
@@ -93,7 +92,20 @@ namespace Crystallography.Controls
         public SearchCrystalControl()
         {
             InitializeComponent();
+            this.Load += SearchCrystalControl_Load;
+        }
+
+        private void SearchCrystalControl_Load(object sender, EventArgs e)
+        {
             formPeriodicTable = new FormPeriodicTable();
+
+            var parent = this.Parent;
+            while (!(parent is Form) && parent != null)
+                parent = parent.Parent;
+            if (parent == null)
+                return;
+            var form = parent as Form;
+            formPeriodicTable.Owner = form;
         }
 
         #endregion
@@ -119,7 +131,11 @@ namespace Crystallography.Controls
 
         private void checkBoxD3_CheckedChanged(object sender, EventArgs e) => numericBoxD3.Enabled = numericBoxD3Err.Enabled = checkBoxD3.Checked;
 
-        private void buttonPeriodicTable_Click(object sender, EventArgs e) => formPeriodicTable.Visible = true;
+        private void buttonPeriodicTable_Click(object sender, EventArgs e)
+        {
+            formPeriodicTable.Visible = true;
+            formPeriodicTable.BringToFront();
+        }
 
 
         #endregion

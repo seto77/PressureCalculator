@@ -12,6 +12,8 @@ using System.ComponentModel;
 using System.Drawing;
 using MessagePack;
 using MessagePack.Resolvers;
+using System.Threading.Tasks;
+using System.Buffers;
 
 #endregion
 
@@ -30,15 +32,21 @@ namespace Crystallography.Controls
 
         readonly Stopwatch sw = new();
 
-        readonly ReaderWriterLockSlim rwlock = new();
+        static readonly ReaderWriterLockSlim rwlock = new();
 
         readonly MessagePackSerializerOptions msgOptions = StandardResolverAllowPrivate.Options.WithCompression(MessagePackCompression.Lz4BlockArray);
 
         byte[] serialize<T>(T c) => MessagePackSerializer.Serialize(c, msgOptions);
 
-        T deserialize<T>(ReadOnlyMemory<byte> buffer, out int byteRead) => MessagePackSerializer.Deserialize<T>(buffer, msgOptions, out byteRead);
-        T deserialize<T>(object obj) => MessagePackSerializer.Deserialize<T>((byte[])obj, msgOptions);
+        //T deserialize<T>(ReadOnlyMemory<byte> buffer, out int byteRead) =>
+        //    MessagePackSerializer.Deserialize<T>(buffer, msgOptions, out byteRead);
 
+        Crystal2[] deserialize(ReadOnlyMemory<byte> buffer, out int byteRead) =>
+            MessagePackSerializer.Deserialize<Crystal2[]>(buffer, msgOptions, out byteRead);
+
+        Crystal2[] deserialize(Stream buffer) =>
+            MessagePackSerializer.Deserialize<Crystal2[]>(buffer, msgOptions);
+        T deserialize<T>(object obj) => MessagePackSerializer.Deserialize<T>((byte[])obj, msgOptions);
         public Crystal Crystal => Crystal2.GetCrystal(Crystal2);
       
         public Crystal2 Crystal2 => dataSet.DataTableCrystalDatabase.Get(bindingSource.Current);
@@ -89,61 +97,42 @@ namespace Crystallography.Controls
             this.Enabled = false;
             ReadDatabaseWorker.RunWorkerAsync(filename);
         }
+
+        readonly object lockObj = new();
         private void ReadDatabaseWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             var filename = (string)e.Argument;
             try
             {
                 sw.Restart();
-                //if (filename.ToLower().EndsWith("cdb2"))
-                //{
-                //    var progressStep = 500;
-                //    using var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
-                //    var formatter = new BinaryFormatter();
-                //    var total = (int)formatter.Deserialize(fs);
-                //    for (int i = 0; i < total; i++)
-                //    {
-                //        var c = (Crystal2)formatter.Deserialize(fs);
-                //        dataTable.Add(c);
-
-                //        if (i > progressStep * 2 && i % progressStep == 0)
-                //            report(i, total, sw.ElapsedMilliseconds, "Loading database...");
-                //    }
-                //}
-                //else 
                 if (filename.ToLower().EndsWith("cdb3"))
                 {
                     using var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
                     int flag = readByte(fs), total = readInt(fs);
                     if (flag == 100)//単一ファイルの時
                     {
-                        var b = new ReadOnlyMemory<byte>(File.ReadAllBytes(filename))[5..];
-                        while (b.Length != 0)
+                        while (fs.Length != fs.Position)
                         {
-                            deserialize<Crystal2[]>(b, out var byteRead).AsParallel().Select(c2 => dataTable.CreateRow(c2))
-                                        .ToList().ForEach(r => dataTable.Rows.Add(r));
-
+                            deserialize(fs).AsParallel().Select(c2 => dataTable.CreateRow(c2)).ToList().ForEach(r => dataTable.Rows.Add(r));
                             ReadDatabaseWorker.ReportProgress(0, report(dataTable.Rows.Count, total, sw.ElapsedMilliseconds, "Loading database..."));
-                            b = b[byteRead..];
                         }
                     }
                     else if (flag == 200)//分割ファイルの時
                     {
                         var fileNum = readInt(fs);
                         var fileNames = Enumerable.Range(0, fileNum).Select(i =>
-                                $"{filename.Remove(filename.Length - 5, 5)}\\{Path.GetFileNameWithoutExtension(filename)}.{i:000}").AsParallel();
+                                $"{filename.Remove(filename.Length - 5, 5)}\\{Path.GetFileNameWithoutExtension(filename)}.{i:000}")
+                            .AsParallel();
 
                         fileNames.ForAll(fn =>
                         {
-                            var b = new ReadOnlyMemory<byte>(File.ReadAllBytes(fn));
-                            while (b.Length != 0)
+                            using var stream = new FileStream(fn, FileMode.Open);
+                            while (stream.Length != stream.Position)
                             {
-                                var rows = Array.ConvertAll(deserialize<Crystal2[]>(b, out var byteRead), dataTable.CreateRow);
-                                rwlock.EnterWriteLock();
-                                try { foreach (var r in rows) dataTable.Rows.Add(r); }
-                                finally { rwlock.ExitWriteLock(); }
+                                var rows = deserialize(stream).Select(c2 => dataTable.CreateRow(c2)).ToArray();
+                                lock (lockObj)
+                                    foreach (var r in rows) dataTable.Rows.Add(r);
                                 ReadDatabaseWorker.ReportProgress(0, report(dataTable.Rows.Count, total, sw.ElapsedMilliseconds, "Loading database..."));
-                                b = b[byteRead..];
                             }
                         });
                     }
@@ -153,7 +142,7 @@ namespace Crystallography.Controls
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString()+"\r\nFailed to load database. Sorry.");
+                MessageBox.Show($"{ex}\r\nFailed to load database. Sorry.");
             }
             bindingSource.Position = 0;
         }
@@ -373,8 +362,26 @@ namespace Crystallography.Controls
         #region 結晶の追加、削除、変更
         public void AddCrystal(Crystal2 crystal2)
         {
-
             dataTable.Add(crystal2);
+        }
+
+        public void AddCrystals(IEnumerable< Crystal2> crystal2)
+        {
+            var originalDataMember = dataGridView.DataMember;
+            dataGridView.DataMember = "";
+
+            var originalAutoSizeColumnsMode = dataGridView.AutoSizeColumnsMode;
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+
+            var originalAutoSizeRowsMode = dataGridView.AutoSizeRowsMode;
+            dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+            foreach (var c in crystal2)
+                dataTable.Add(c);
+
+            dataGridView.DataMember = originalDataMember;
+            dataGridView.AutoSizeColumnsMode = originalAutoSizeColumnsMode;
+            dataGridView.AutoSizeRowsMode = originalAutoSizeRowsMode;
         }
 
         public void ChangeCrystal(Crystal2 crystal2)
@@ -396,7 +403,44 @@ namespace Crystallography.Controls
         {
             CrystalChanged?.Invoke(sender, e);
         }
+
+        public void RecalculateDensityAndFormula()
+        {
+            var sw = new Stopwatch();
+            sw.Restart();
+            for(int i= 0; i<dataSet.DataTableCrystalDatabase.Count; i++)
+            {
+                var c = dataSet.DataTableCrystalDatabase.Get(i).ToCrystal();
+                //c.GetFormulaAndDensity();
+                dataSet.DataTableCrystalDatabase.Rows[i]["Formula"] = c.ChemicalFormulaSum;
+                dataSet.DataTableCrystalDatabase.Rows[i]["Density"] = c.Density;
+
+                if (i % 200 == 0)
+                {
+                    (double progress, string message)= report(i, dataSet.DataTableCrystalDatabase.Count, sw.ElapsedMilliseconds, "Now recalculating Density and Formula. ");
+
+                    ProgressChanged?.Invoke(this, progress, message);
+                    Application.DoEvents();
+                }
+            }
+        }
         #endregion
 
+        bool registResizeEvent = false;
+        private void CrystalDatabaseControl_Resize(object sender, EventArgs e)
+        {
+            if (!this.DesignMode && !registResizeEvent)
+            {
+                var parent = this.Parent;
+                while (!(parent is Form) && parent != null)
+                    parent = parent.Parent;
+                if (parent == null)
+                    return;
+                var form = parent as Form;
+                form.ResizeBegin += (s, ea) => SuspendLayout();
+                form.ResizeEnd += (s, ea) => ResumeLayout();
+                registResizeEvent = true;
+            }
+        }
     }
 }

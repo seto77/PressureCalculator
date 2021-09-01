@@ -177,8 +177,6 @@ namespace Crystallography
             if (m.RowCount != m.ColumnCount)
                 throw new ArgumentException("Matrix should be square");
 
-            int p = 9; // order of Padé 
-
             double k = 0;
             double mNorm = m.L1Norm();
             if (mNorm > 0.5)
@@ -186,6 +184,15 @@ namespace Crystallography
                 k = Math.Ceiling(Math.Log(mNorm) / Math.Log(2.0));
                 m = m.Divide(Math.Pow(2.0, k));
             }
+            
+            int p = m.L1Norm() switch  // order of Padé 
+            {
+                < 1.495585217958292e-002 => 3,
+                < 2.539398330063230e-001 => 5,
+                < 9.504178996162932e-001 => 7,
+                < 2.097847961257068e+000 => 9,
+                _ =>13
+            };
 
             Matrix<Complex> N = DMat.CreateIdentity(m.RowCount), D = N;
             Matrix<Complex> m_pow_j = m;
@@ -272,7 +279,7 @@ namespace Crystallography
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static double ToDouble(this string s) => !s.Contains("/") ? Convert.ToDouble(s) : s.Split("/")[0].ToDouble() / s.Split("/")[1].ToDouble();
+        public static double ToDouble(this string s) => !s.Contains("/") ? Convert.ToDouble(s) : s.Split("/", true)[0].ToDouble() / s.Split("/", true)[1].ToDouble();
 
         /// <summary>
         /// 拡張メソッド.  ConvertToInt32を拡張メソッドとして呼び出す. 変換できない場合は例外発生

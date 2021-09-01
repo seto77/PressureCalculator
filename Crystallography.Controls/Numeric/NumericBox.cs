@@ -1,3 +1,4 @@
+using MathNet.Numerics;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -33,7 +34,7 @@ namespace Crystallography.Controls
             {
                 if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
                     return true;
-                Control ctrl = this;
+                System.Windows.Forms.Control ctrl = this;
                 while (ctrl != null)
                 {
                     if (ctrl.Site != null && ctrl.Site.DesignMode)
@@ -43,6 +44,12 @@ namespace Crystallography.Controls
                 return false;
             }
         }
+
+        /// <summary>
+        /// 丸め誤差が生じているとき(例えば7.11のはずなのに 7.110000000000001とか、6.011のはずなのに6.010999999999999とか)
+        /// その誤差を解消して表示する
+        /// </summary>
+        public int RoundErrorAccuracy { get; set; } = -1;
 
         /// <summary>
         /// UpDownボタンを有効にするかどうか
@@ -137,6 +144,8 @@ namespace Crystallography.Controls
                 toolTip.SetToolTip(textBox, value);
                 toolTip.SetToolTip(labelFooter, value);
                 toolTip.SetToolTip(labelHeader, value);
+                toolTip.SetToolTip(this, value);
+
             }
         }
 
@@ -257,6 +266,11 @@ namespace Crystallography.Controls
                     Invoke(new Action(() => Value = value), null);
                 else if (this.numericalValue != value)
                 {
+                    if (RoundErrorAccuracy > 0)
+                    {
+                        value = value.Round(RoundErrorAccuracy);
+                    }
+
                     if (RestrictLimitValue)
                     {
                         if (Maximum <= value)
@@ -373,7 +387,19 @@ namespace Crystallography.Controls
         public bool ShowTrigonomeric { set; get; } = false;
 
         [DefaultValue("0")]
-        public new string Text { set => textBox.Text = value; get => numericalValue.ToString(); }
+        public new string Text {
+            set
+            {
+                textBox.Text = value;
+                if (RoundErrorAccuracy > 0)
+                {
+                    var val = Value;
+                    Value = val;
+                }
+
+            }
+            get => numericalValue.ToString(); 
+        }
 
         [Category("Appearance properties")]
         [DefaultValue(true)]

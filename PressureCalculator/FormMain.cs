@@ -36,6 +36,8 @@ namespace PressureCalculator{
 
         private void FormMain_Load(object sender, System.EventArgs e)
         {
+            this.Text = Version.Software + "  " + Version.VersionAndDate;
+
             MouseRange = false;
 
             timer.Start();
@@ -126,9 +128,6 @@ namespace PressureCalculator{
 
 
         #region ファイル読み込み関連
-       
-
-
         private Profile readFile(string fileName)
         {
             var reader = new StreamReader(fileName, Encoding.GetEncoding("UTF-8"));
@@ -648,7 +647,6 @@ namespace PressureCalculator{
             {
                 var nu = Convert.ToDouble(textBoxDiamondRamanNu.Text);
                 var nuPerNu0 = (nu - Convert.ToDouble(textBoxDiamondRamanNu0.Text)) / Convert.ToDouble(textBoxDiamondRamanNu0.Text);
-
 
                 //Akahama2004
                 textBoxDiamondAkahama2004P.Text = 

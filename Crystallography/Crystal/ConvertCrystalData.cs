@@ -146,7 +146,7 @@ namespace Crystallography
 			for (; line < str.Length; line++)
 				if (str[line].StartsWith(" Cell Constants"))
 				{
-					string[] cellconstants = str[line + 1].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+					string[] cellconstants = str[line + 1].Split(' ',true);
 					a = Convert.ToDouble(cellconstants[0]) / 10.0;
 					b = Convert.ToDouble(cellconstants[1]) / 10.0;
 					c = Convert.ToDouble(cellconstants[2]) / 10.0;
@@ -159,7 +159,7 @@ namespace Crystallography
 			for (; line < str.Length; line++)
 				if (str[line].StartsWith(" Space Group Number"))
 				{
-					string s = (str[line].Split(new char[] { '=' }, StringSplitOptions.RemoveEmptyEntries)[1]).Trim();
+					string s = (str[line].Split('=',true)[1]).Trim();
 					int num = Convert.ToInt32(s.Substring(1, 3));
 					int sub = Convert.ToInt32(s.Substring(4, 1));
 					spaceGroupSeriesNum = SymmetryStatic.GetSeriesNumber(num, sub);
@@ -175,14 +175,14 @@ namespace Crystallography
 					if (str[line].StartsWith("No ="))
 					{
 						var tempCrystal = new Crystal((a, b, c, alpha, beta, gamma), null, spaceGroupSeriesNum,
-							ChemicalFormula.Split(new char[] { '=' }, StringSplitOptions.RemoveEmptyEntries)[1].Trim() + "-" + (n++).ToString(), Color.Blue);
+							ChemicalFormula.Split('=',true)[1].Trim() + "-" + (n++).ToString(), Color.Blue);
 						tempCrystal.Note = wavelength + "  " + ChemicalFormula + "\r\n" + str[line];
 						line++;
 						for (; line < str.Length; line++)
 						{
 							if (str[line].Length == 0)
 								break;
-							string[] s = str[line].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+							string[] s = str[line].Split( ' ',true);
 							string label = s[0];
 							//ラベル名から元素を決める
 							string temp;
@@ -340,16 +340,14 @@ namespace Crystallography
 			else if (Title.Contains("_database_code_amcsd"))
 				Title = Title.Replace("_database_code_amcsd", "\r\n_database_code_amcsd");
 
-
-
 			n++; if (str.Length <= n) return null;
 
 			double xShift = 0, yShift = 0, zShift = 0;
-			if (!str[n].StartsWith("atom") && str[n].Split(" ").Length == 3)
+			if (!str[n].StartsWith("atom") && str[n].Split(" ", true).Length == 3)
 			{
-				xShift = ConvertToDouble(str[n].Split(" ")[0]);
-				yShift = ConvertToDouble(str[n].Split(" ")[1]);
-				zShift = ConvertToDouble(str[n].Split(" ")[2]);
+				xShift = ConvertToDouble(str[n].Split(" ", true)[0]);
+				yShift = ConvertToDouble(str[n].Split(" ", true)[1]);
+				zShift = ConvertToDouble(str[n].Split(" ", true)[2]);
 				n++; if (str.Length <= n) return null;
 			}
 
@@ -381,15 +379,15 @@ namespace Crystallography
 				IsUtypeUsed = false;
 			}
 
-			var tempStr = str[n].Split(" ");
+			var tempStr = str[n].Split(" ", true);
 			var l = new int[tempStr.Length + 1];
 			l[0] = 0;
 
 			for (int i = 0; i < tempStr.Length; i++)//各入力値の文字位置を決める。
 				l[i + 1] = str[n].IndexOf(tempStr[i]) + tempStr[i].Length;
 			for (int i = n + 1; i < str.Length; i++)//最初のatomラベルだけ例外があるようなのでそれに対処
-				if (l[1] < str[i].Split(" ")[0].Length)
-					l[1] = str[i].Split(" ")[0].Length;
+				if (l[1] < str[i].Split(" ", true)[0].Length)
+					l[1] = str[i].Split(" ", true)[0].Length;
 
 			//三方あるいは六方
 			bool isHex = crystal.sym >= 430 && crystal.sym <= 488;
@@ -399,7 +397,7 @@ namespace Crystallography
 			{//原子座標読み取りループ開始
 				str[i] = str[i].PadRight(str[n].Length, ' ');
 
-				var item = str[i].Split(" ");
+				var item = str[i].Split(" ", true);
 				if (item.Length != l.Length - 1)
 				{
 					item = new string[l.Length - 1];
@@ -499,7 +497,7 @@ namespace Crystallography
 		{
 			double A, B, C, Alfa, Beta, Gamma;
 			int symmetrySeriesNumber = -1;
-			var s= str.Split(" ");
+			var s= str.Split(" ", true);
 			if (s.Length != 7)
 				return null;
 			try
@@ -713,7 +711,7 @@ namespace Crystallography
 					return 0;
 				else if (str.IndexOf('/') > 0)
 				{
-					var temp = str.Split('/');
+					var temp = str.Split('/', true);
 					return temp.Length == 2 ? Convert.ToDouble(temp[0]) / Convert.ToDouble(temp[1]) : 0;
 				}
 				else if (IsHex)
@@ -760,32 +758,71 @@ namespace Crystallography
 		#endregion
 
 		#region CIFファイルの読み込み
+		static readonly Random r = new Random();
 
+		static readonly string[] ignoreWords1 = new[] { "_shelx_hkl_", "_shelx_fab_", "_shelx_res_" };
+		static readonly string[] ignoreWords2 = new[] { "_refln", "_geom", "_platon" };
 		private static Crystal2 ConvertFromCIF(string fileName)
 		{
 			var stringList = new List<string>();
-			string strTemp;
 			using (var reader = new StreamReader(fileName))
-				while ((strTemp = reader.ReadLine()) != null)
-					stringList.Add(strTemp);
-			return ConvertFromCIF(stringList.ToArray());
+			{
+				var strTemp = reader.ReadToEnd();
+				if(strTemp.Contains("\r\n"))
+					strTemp = strTemp.Replace("\r\n", "\n");
+				if (strTemp.Contains("\r")) 
+					strTemp = strTemp.Replace("\r", "\n");
+
+				stringList = strTemp.Split('\n', true).ToList();
+            }
+
+			foreach (var word in ignoreWords1)
+			{
+				int start = -1, end = -1;
+				while ((start = stringList.IndexOf(word + "file"))>-1 &&
+					(end = stringList.FindIndex(s=>s.StartsWith(word + "checksum")))>-1)
+					stringList.RemoveRange(Math.Min(start, end), Math.Abs(start - end));
+			}
+			foreach (var word in ignoreWords2)
+			{
+				int start = -1;
+				while ((start = stringList.FindIndex(s => s.StartsWith(word)) - 1) > -1)
+				{
+					if (stringList[start] == "loop_")
+					{
+						var end = start + 1;
+						while (stringList[end].StartsWith(word))
+							end++;
+
+						for (; end < stringList.Count; end++)
+							if (stringList[end] == "loop_" || stringList[end].StartsWith("_") || stringList[end].StartsWith("#"))
+								break;
+						stringList.RemoveRange(start, end - start);
+					}
+					else
+						stringList.RemoveAt(start + 1);
+						
+				}
+			}
+			return ConvertFromCIF(stringList);
 		}
+
 
 		/// <summary>
 		/// CIFファイルを読み込む
 		/// </summary>
 		/// <param name="str"></param>
 		/// <returns></returns>
-		private static Crystal2 ConvertFromCIF(string[] str)
+		private static Crystal2 ConvertFromCIF(List<string> str)
 		{
 			//まず ;と; で囲まれている複数にわたる行を一行にする
 			var tempStr = new List<string>();
 			var note = "";
 			if (str[0].StartsWith("data"))
 				note = str[0];
-			for (int n = 0; n < str.Length; n++)
+			for (int n = 0; n < str.Count; n++)
 			{
-				while ((str[n].StartsWith("#") || str[n].Trim().Length == 0) && n < str.Length - 1)
+				while ((str[n].StartsWith("#") || str[n].Trim().Length == 0) && n < str.Count - 1)
 					n++;
 				//全ての先頭行の空白あるいはタブを削除する
 				str[n] = str[n].Replace("\t", " ");
@@ -799,10 +836,10 @@ namespace Crystallography
 					{
 						temp.Append(str[n] + " ");
 						n++;
-						if (n > str.Length - 1 || str[n].TrimEnd(' ').StartsWith(";"))
+						if (n > str.Count - 1 || str[n].TrimEnd(' ').StartsWith(";"))
 							break;
 					}
-					tempStr.Add("'" + (temp.ToString()).Trim().TrimStart(';').TrimEnd(';').TrimStart(' ').TrimEnd(' ') + "'");
+					tempStr.Add("'" + temp.ToString().Trim().TrimStart(';').TrimEnd(';').TrimStart(' ').TrimEnd(' ') + "'");
 				}
 				else
 					tempStr.Add(str[n]);
@@ -814,7 +851,7 @@ namespace Crystallography
 				if (tempStr[n].IndexOf("''") > -1)//''という文字列が含まれていたら
 				{
 					var temp = tempStr[n].Remove(0, tempStr[n].IndexOf("'"));
-					temp = temp.Replace("''", "ここにはスペースがはいります。");
+					temp = temp.Replace("''", "薔");
 					tempStr[n] = tempStr[n].Remove(tempStr[n].IndexOf("'")) + temp;
 				}
 
@@ -827,7 +864,7 @@ namespace Crystallography
 						if (next == -1)
 							break;
 						var substring = tempStr[n].Substring(firstIndex, next - firstIndex + 1);
-						substring = substring.Replace(" ", "ここにはスペースがはいります。");
+						substring = substring.Replace(" ", "薔");
 						substring = substring.Replace("'", "");
 
 						tempStr[n] = tempStr[n].Substring(0, firstIndex) + substring + tempStr[n][(next + 1)..];
@@ -837,7 +874,7 @@ namespace Crystallography
 				if (tempStr[n].IndexOf("\"") > -1)//#\"が含まれていたら
 				{
 					string temp = tempStr[n].Remove(0, tempStr[n].IndexOf("\""));
-					temp = temp.Replace("\"", "").TrimEnd(' ').TrimStart(' ').Replace(" ", "ここにはスペースがはいります。");
+					temp = temp.Replace("\"", "").TrimEnd(' ').TrimStart(' ').Replace(" ", "薔");
 					tempStr[n] = tempStr[n].Remove(tempStr[n].IndexOf("\"")) + temp;
 				}
 			}
@@ -847,19 +884,19 @@ namespace Crystallography
 			{
 				if (tempStr[n].StartsWith("loop_") && tempStr[n + 1].IndexOf(" ") > -1)
 				{
-					string[] temp = tempStr[n + 1].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+					string[] temp = tempStr[n + 1].Split(' ', true);
 					tempStr[n + 1] = temp[0];
 					tempStr.Insert(n + 2, temp[1]);
 				}
 			}
-			str = tempStr.ToArray();
+			str = tempStr;
 
 			var CIF = new List<List<(string Label, string Data)>>();
-			for (int n = 0; n < str.Length; n++)
+			for (int n = 0; n < str.Count; n++)
 			{
 				if (str[n].Trim().StartsWith("_"))
 				{//単体アイテムのとき
-					var temp = str[n].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+					var temp = str[n].Split(' ', true);
 					string tempLabel = temp[0], tempData;
 					if (temp.Length == 2)
 						tempData = temp[1];
@@ -870,7 +907,7 @@ namespace Crystallography
 					}
 					else
 						tempData = "";
-					CIF.Add(new List<(string Label, string Data)>(new[] { (tempLabel, tempData.Replace("ここにはスペースがはいります。", " ")) }));
+					CIF.Add(new List<(string Label, string Data)>(new[] { (tempLabel, tempData.Replace("薔", " ")) }));
 				}
 				else if (str[n].Trim().StartsWith("loop_"))
 				{//ループのとき
@@ -879,13 +916,13 @@ namespace Crystallography
 					var tempLoopDatas = new List<string>();
 					n++;
 					//"_"で始まるラベルを数える
-					while (n < str.Length && str[n].Trim().StartsWith("_"))
+					while (n < str.Count && str[n].Trim().StartsWith("_"))
 						tempLoopLabels.Add(str[n++].Trim());
 
 					//次に"_"か"loop_"か"#End of"で始まる行が出てくるまでループ
-					while (n < str.Length && !str[n].Trim().StartsWith("_") && !str[n].Trim().StartsWith("loop_") && !str[n].Trim().StartsWith("#End of"))
+					while (n < str.Count && !str[n].Trim().StartsWith("_") && !str[n].Trim().StartsWith("loop_") && !str[n].Trim().StartsWith("#End of"))
 					{
-						temp = str[n].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+						temp = str[n].Split(' ', true);
 						for (int i = 0; i < temp.Length; i++)
 							tempLoopDatas.Add(temp[i]);
 						n++;
@@ -897,7 +934,7 @@ namespace Crystallography
 						{
 							var cif_Group = new List<(string Label, string Data)>();
 							for (int j = 0; j < tempLoopLabels.Count; j++)
-								cif_Group.Add((tempLoopLabels[j], tempLoopDatas[i * tempLoopLabels.Count + j].Replace("ここにはスペースがはいります。", " ")));
+								cif_Group.Add((tempLoopLabels[j], tempLoopDatas[i * tempLoopLabels.Count + j].Replace("薔", " ")));
 							CIF.Add(cif_Group);
 						}
 					}
@@ -905,9 +942,10 @@ namespace Crystallography
 			}
 			//ここまででCIF_Groupクラスのリストが完成
 
-			string a="", b = "", c = "", alpha = "", beta = "", gamma = "";
+			string a = "", b = "", c = "", alpha = "", beta = "", gamma = "";
 			string name = "", sectionTitle = "", journalNameFull = "", journalCodenASTM = "";
-			string volume = "", year = "", pageFirst = "", pageLast = "", issue = "", journal = "";
+			string volume = "", year = "", pageFirst = "", pageLast = "", issue = "";
+			StringBuilder journal = new StringBuilder();
 			List<string> spaceGroupNameHM = new(), spaceGroupNameHall = new();
 			string chemical_formula_sum = "", chemical_formula_structural = "";
 			int symmetry_Int_Tables_number = -1;
@@ -960,7 +998,8 @@ namespace Crystallography
 			else
 			{
 				for (int i = 0; i < Math.Max(spaceGroupNameHall.Count, spaceGroupNameHM.Count); i++)
-				{ var HM = i < spaceGroupNameHM.Count ? spaceGroupNameHM[i] : "";
+				{
+					var HM = i < spaceGroupNameHM.Count ? spaceGroupNameHM[i] : "";
 					var Hall = i < spaceGroupNameHall.Count ? spaceGroupNameHall[i] : "";
 					sgnum = SearchSGseriesNumberForCIF(HM, Hall, symmetry_Int_Tables_number, a == b && b == c && alpha == beta && beta == gamma, alpha == "90", beta == "90", gamma == "90");
 					if (sgnum != -1)
@@ -972,9 +1011,11 @@ namespace Crystallography
 				return null;
 
 			#region 対象操作がCIFファイル中に記載されている場合は、本当に現在の空間群でよいかどうかをチェック
+
+			var shift = new V3(0, 0, 0);
 			var p = new V3(0.111, 0.234, 0.457);//適当な一般位置
 			var tempAtom = WyckoffPosition.GetEquivalentAtomsPosition((p.X, p.Y, p.Z), sgnum).Atom;
-			var shift = new V3(0, 0, 0);
+
 			if (operations.Count != 0 && operations.Count == tempAtom.Count)
 			{
 				var th = 0.0000001;
@@ -986,14 +1027,14 @@ namespace Crystallography
 					{
 						sExpr = sExpr.Replace(" ", "").Replace(",+", ",").TrimStart(new[] { '+' });
 						sExpr = "new [] {" + sExpr.Replace("/", ".0/").Replace(".0.0", ".0") + "}";//分子に小数点を加える
-					   
-						var f =  DynamicExpressionParser.ParseLambda(prms, typeof(double[]), sExpr).Compile() as Func<double, double, double, double[]>;
+
+						var f = DynamicExpressionParser.ParseLambda(prms, typeof(double[]), sExpr).Compile() as Func<double, double, double, double[]>;
 						return (x, y, z) => { var d = f(x, y, z); return new V3(d[0], d[1], d[2]); };
 					}
 					catch (Exception e)
 					{
 						if (AssemblyState.IsDebug)
-							System.Windows.Forms.MessageBox.Show( e.Message);
+							System.Windows.Forms.MessageBox.Show(e.Message);
 						return null;
 					}
 				}
@@ -1004,7 +1045,7 @@ namespace Crystallography
 					var shiftCandidates = new[] { 0, 0.125, 0.25, -0.125, -0.25 };
 
 					var temp = tempAtom.Select(a => norm(new V3(a.X, a.Y, a.Z))).ToList();
-					temp.Sort((o1, o2) => Math.Abs(o1.X-o2.X)> th ? o1.X.CompareTo(o2.X) : (Math.Abs(o1.Y - o2.Y)>th ? o1.Y.CompareTo(o2.Y) : o1.Z.CompareTo(o2.Z)));
+					temp.Sort((o1, o2) => Math.Abs(o1.X - o2.X) > th ? o1.X.CompareTo(o2.X) : (Math.Abs(o1.Y - o2.Y) > th ? o1.Y.CompareTo(o2.Y) : o1.Z.CompareTo(o2.Z)));
 					var source = temp.Select((pos, i) => (pos, i)).ToList();
 
 					var match = false;
@@ -1047,8 +1088,8 @@ namespace Crystallography
 			foreach (var cif in atomCIF)
 			{
 				//原子の情報
-				string atomLabel="", atomSymbol="", thermalDisplaceType="";
-				string x = "", y = "", z = "", occ="1";
+				string atomLabel = "", atomSymbol = "", thermalDisplaceType = "";
+				string x = "", y = "", z = "", occ = "1";
 				string uIso = "", u11 = "", u22 = "", u33 = "", u12 = "", u13 = "", u23 = "";
 				string bIso = "", b11 = "", b22 = "", b33 = "", b12 = "", b13 = "", b23 = "";
 
@@ -1072,7 +1113,7 @@ namespace Crystallography
 					}
 				}
 
-				if(shift.X!=0 || shift.Y!=0 || shift.Z!=0)
+				if (shift.X != 0 || shift.Y != 0 || shift.Z != 0)
 				{
 					x = Crystal2.Compose(Crystal2.Decompose(x, sgnum).Value + shift.X, Crystal2.Decompose(x, sgnum).Error);
 					y = Crystal2.Compose(Crystal2.Decompose(y, sgnum).Value + shift.Y, Crystal2.Decompose(y, sgnum).Error);
@@ -1132,7 +1173,7 @@ namespace Crystallography
 				var isU = bIso == "" && b11 == "" && b12 == "" && b13 == "" && b22 == "" && b23 == "" && b33 == "";
 				//非等方性が全て ”” だったら、等方性と判断
 				var isIso = isU ?
-					u11 == "" && u12 == "" && u13 == "" && u22 == "" && u23 == "" && u33 == "":
+					u11 == "" && u12 == "" && u13 == "" && u22 == "" && u23 == "" && u33 == "" :
 					b11 == "" && b12 == "" && b13 == "" && b22 == "" && b23 == "" && b33 == "";
 
 				var iso = isU ? uIso : bIso;
@@ -1141,7 +1182,7 @@ namespace Crystallography
 					iso = "0";
 
 				var aniso = isU ? //11, 22, 33, 12, 23, 31の順番
-					new[] { u11,u22,u33,u12,u23,u13}:
+					new[] { u11, u22, u33, u12, u23, u13 } :
 					new[] { b11, b22, b33, b12, b23, b13 };
 
 				if (atomicNumber > 0)
@@ -1153,32 +1194,28 @@ namespace Crystallography
 				}
 			}
 
-			if (journalNameFull != "" || journalCodenASTM != "") journal += journalNameFull + " " + journalCodenASTM;
-			if (issue != "") journal += ", " + issue;
-			if (volume != "") journal += ", " + volume;
-			if (year != "") journal += "(" + year + ")";
-			if (pageFirst != "") journal += ", " + pageFirst;
-			if (pageLast != "") journal += "-" + pageLast;
+			if (journalNameFull != "" || journalCodenASTM != "") journal.Append(journalNameFull).Append(' ').Append(journalCodenASTM);
+			if (issue != "") journal.Append(", ").Append(issue);
+			if (volume != "") journal.Append(", ").Append(volume);
+			if (year != "") journal.Append('(').Append(year).Append(')');
+			if (pageFirst != "") journal.Append(", ").Append(pageFirst);
+			if (pageLast != "") journal.Append('-').Append(pageLast);
 
-			string authours = "";
+			var authours = new StringBuilder();
 			foreach (string s in author)
-				authours += s + "; ";
+				authours.Append(s).Append("; ");
 
-			var r = new Random();
-
-			var c2 = new Crystal2
+			return new Crystal2
 			{
 				CellTexts = new[] { a, b, c, alpha, beta, gamma },
 				sym = (short)sgnum,
 				name = name,
 				atoms = atoms,
-				auth = authours,
-				jour = journal,
+				auth = authours.ToString(),
+				jour = journal.ToString(),
 				sect = sectionTitle,
 				argb = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255)).ToArgb()
 			};
-
-			return c2;
 		}
 
 		private static V3 norm(V3 v)
@@ -1511,7 +1548,7 @@ namespace Crystallography
 
 		#endregion
 
-		#region CIファイルへの変換
+		#region CIFファイルへの変換
 
 		public static string ConvertToCIF(Crystal crystal)
 		{
@@ -1524,7 +1561,7 @@ namespace Crystallography
 
 			sb.AppendLine("loop_");
 			sb.AppendLine("_publ_author_name");
-			foreach (string str in crystal.PublAuthorName.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+			foreach (string str in crystal.PublAuthorName.Split( ',' ,true))
 				sb.AppendLine("'" + str.Trim() + "'");
 
 			sb.AppendLine("_journal_name '" + crystal.Journal + "'");
@@ -1533,7 +1570,7 @@ namespace Crystallography
 			sb.AppendLine("_publ_section_title");
 			sb.AppendLine(";");
 			string title = "";
-			foreach (string t in crystal.PublSectionTitle.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+			foreach (string t in crystal.PublSectionTitle.Split(' ',true))
 			{
 				if ((title + " " + t).Length > 80)
 				{
@@ -1583,7 +1620,7 @@ namespace Crystallography
 				{
 					for (int i = 0; i < flag.Length; i++)
 					{
-						string[] xyz = wp.Split(new char[] { ',' });
+						string[] xyz = wp.Split(',',true);
 						for (int j = 0; j < flag[i].Length; j++)
 						{
 							if (flag[i][j])
@@ -1601,14 +1638,14 @@ namespace Crystallography
 				{
 					sb.AppendLine("  '" + wp + "'");//(0,0,0)
 													//(1/3,2/3,2/3)
-					string[] xyz = wp.Split(new char[] { ',' });
+					string[] xyz = wp.Split(',',true);
 					xyz[0] += "+1/3";
 					xyz[1] += "+2/3";
 					if (xyz[2].EndsWith("+1/2")) xyz[2] = xyz[2].Replace("+1/2", "+1/6");
 					else xyz[2] += "+2/3";
 					sb.AppendLine($"  '{xyz[0]},{xyz[1]},{xyz[2]}'");
 					//(2/3,1/3,1/3)
-					xyz = wp.Split(new char[] { ',' });
+					xyz = wp.Split(',',true);
 					xyz[0] += "+2/3";
 					xyz[1] += "+1/3";
 					if (xyz[2].EndsWith("+1/2")) xyz[2] = xyz[2].Replace("+1/2", "+5/6");

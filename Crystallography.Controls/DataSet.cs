@@ -10,6 +10,7 @@ using MessagePack.Resolvers;
 using MessagePack;
 using System.Threading;
 using System.Text;
+using System.Buffers;
 
 namespace Crystallography.Controls
 {
@@ -207,11 +208,9 @@ namespace Crystallography.Controls
         partial class DataTableCrystalDatabaseDataTable
         {
 
-            readonly ReaderWriterLockSlim rwlock = new ReaderWriterLockSlim();
-
-            readonly MessagePackSerializerOptions msgOptions = StandardResolverAllowPrivate.Options.WithCompression(MessagePackCompression.Lz4BlockArray);
-            byte[] serialize<T>(T c) => MessagePackSerializer.Serialize(c, msgOptions);
-            T deserialize<T>(object obj) => MessagePackSerializer.Deserialize<T>((byte[])obj, msgOptions);
+            static readonly MessagePackSerializerOptions msgOptions = StandardResolverAllowPrivate.Options.WithCompression(MessagePackCompression.Lz4BlockArray);
+            static byte[] serialize(Crystal2 c) => MessagePackSerializer.Serialize(c, msgOptions);
+            static T deserialize<T>(object obj) => MessagePackSerializer.Deserialize<T>((byte[])obj, msgOptions);
 
 
             /// <summary>
@@ -220,6 +219,14 @@ namespace Crystallography.Controls
             /// <param name="o"></param>
             /// <returns></returns>
             public Crystal2 Get(object o) => o is DataRowView drv && drv.Row is DataTableCrystalDatabaseRow r ? deserialize<Crystal2>(r[SerializedCrystal2Column]) : null;
+
+
+            /// <summary>
+            /// 引数はbindingSourceMain.Currentオブジェクト. 
+            /// </summary>
+            /// <param name="o"></param>
+            /// <returns></returns>
+            public Crystal2 Get(int i) =>deserialize<Crystal2>(Rows[i][0]);
 
             public void Add(Crystal2 crystal) => Add(CreateRow(crystal));
             public void Add(DataTableCrystalDatabaseRow row) => Rows.Add(row);
@@ -242,44 +249,31 @@ namespace Crystallography.Controls
                         src[j] = target[j];
                 }
             }
+
+            object lockObj = new object();
             public DataTableCrystalDatabaseRow CreateRow(Crystal2 c)
             {
-                var elementList = new StringBuilder();
-                foreach (var n in c.atoms.Select(a => a.AtomNo).Distinct())
-                    elementList.Append($"{n:000} ");
-
-                var d = new float[8];
-                if (c.d != null)
-                    Array.Copy(c.d, d, c.d.Length);
-
                 DataTableCrystalDatabaseRow dr;
-                try
-                {
-
-                    rwlock.EnterWriteLock();
+                lock(lockObj)
                     dr = NewDataTableCrystalDatabaseRow();
-                }
-                finally { rwlock.ExitWriteLock(); }
-
-                var (cellValues, _) = c.Cell;
 
                 dr.SerializedCrystal2 = serialize(c);
                 dr.Name = c.name;
                 dr.Formula = c.formula;
                 dr.Density = c.density;
-                dr.A = cellValues.A;
-                dr.B = cellValues.B;
-                dr.C = cellValues.C;
-                dr.Alpha = cellValues.Alpha;
-                dr.Beta = cellValues.Beta;
-                dr.Gamma = cellValues.Gamma;
+                (dr.A, dr.B, dr.C, dr.Alpha, dr.Beta, dr.Gamma) = c.Cell.Values;
                 dr.CrystalSystem = SymmetryStatic.StrArray[c.sym][16];//s.CrystalSystemStr;
                 dr.PointGroup = SymmetryStatic.StrArray[c.sym][13];
                 dr.SpaceGroup = SymmetryStatic.StrArray[c.sym][3];
                 dr.Authors = c.auth;
                 dr.Title = Crystal2.GetFullTitle(c.sect);
                 dr.Journal = Crystal2.GetFullJournal(c.jour);
-                dr.Elements = elementList.ToString();
+                dr.Elements = string.Join(' ', c.atoms.Select(a => a.AtomNo).Distinct().Select(b => b.ToString("000")));
+
+                
+                var d = ArrayPool<float>.Shared.Rent(8);
+                if (c.d != null)
+                    Array.Copy(c.d, d, c.d.Length);
                 dr.D1 = d[0] * 10;
                 dr.D2 = d[1] * 10;
                 dr.D3 = d[2] * 10;
@@ -288,6 +282,7 @@ namespace Crystallography.Controls
                 dr.D6 = d[5] * 10;
                 dr.D7 = d[6] * 10;
                 dr.D8 = d[7] * 10;
+                ArrayPool<float>.Shared.Return(d);
 
                 return dr;
             }

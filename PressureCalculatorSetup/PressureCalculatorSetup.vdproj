@@ -173,7 +173,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_C8E792C9E3544094BC936B8F7F5808CA"
             {
-            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[LocalAppDataFolder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -222,7 +222,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PressureCalculatorSetup"
         "ProductCode" = "8:{4C2176D7-3B7C-46FE-AAB7-F2542302FCD1}"
-        "PackageCode" = "8:{402CFE82-5758-48A8-A008-CBADEA6C96AA}"
+        "PackageCode" = "8:{BF048F0D-B30C-441E-9EA2-9064F8327DF3}"
         "UpgradeCode" = "8:{AB8CAB9D-1085-4D04-8812-8107672A0B5C}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

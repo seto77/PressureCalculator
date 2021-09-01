@@ -9,6 +9,11 @@ namespace PressureCalculator
     class Version
     {
 
+        static public string Software =
+            "Pressure Calculator"
+            ;
+        static public string VersionAndDate { get => History.Remove(0, 10).Remove(20); }
+
         static public string History =
            "History" +
            "\r\n ver1.002(2020/07/03) Changed a framework to .Net 5.0; Added two diamond Raman equations (Fratanduono et al., 2021)." +
