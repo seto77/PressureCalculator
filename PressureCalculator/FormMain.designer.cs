@@ -1021,6 +1021,7 @@ namespace PressureCalculator{
             this.radioButtonTempUnitC.TabIndex = 7;
             this.radioButtonTempUnitC.Text = "℃";
             this.radioButtonTempUnitC.UseVisualStyleBackColor = true;
+            this.radioButtonTempUnitC.CheckedChanged += new System.EventHandler(this.radioButtonTempUnit_CheckedChanged);
             // 
             // groupBox4
             // 
@@ -1074,6 +1075,7 @@ namespace PressureCalculator{
             this.numericBoxMaoA.MinimumSize = new System.Drawing.Size(1, 23);
             this.numericBoxMaoA.Name = "numericBoxMaoA";
             this.numericBoxMaoA.RadianValue = 33.231068957972035D;
+            this.numericBoxMaoA.RoundErrorAccuracy = -1;
             this.numericBoxMaoA.Size = new System.Drawing.Size(103, 25);
             this.numericBoxMaoA.TabIndex = 3;
             this.numericBoxMaoA.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -1093,6 +1095,7 @@ namespace PressureCalculator{
             this.numericBoxMaoQuasiA.MinimumSize = new System.Drawing.Size(1, 23);
             this.numericBoxMaoQuasiA.Name = "numericBoxMaoQuasiA";
             this.numericBoxMaoQuasiA.RadianValue = 33.231068957972035D;
+            this.numericBoxMaoQuasiA.RoundErrorAccuracy = -1;
             this.numericBoxMaoQuasiA.Size = new System.Drawing.Size(123, 25);
             this.numericBoxMaoQuasiA.TabIndex = 3;
             this.numericBoxMaoQuasiA.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -1112,6 +1115,7 @@ namespace PressureCalculator{
             this.numericBoxShenA.MinimumSize = new System.Drawing.Size(1, 23);
             this.numericBoxShenA.Name = "numericBoxShenA";
             this.numericBoxShenA.RadianValue = 32.637657012293964D;
+            this.numericBoxShenA.RoundErrorAccuracy = -1;
             this.numericBoxShenA.Size = new System.Drawing.Size(131, 25);
             this.numericBoxShenA.TabIndex = 3;
             this.numericBoxShenA.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -1131,6 +1135,7 @@ namespace PressureCalculator{
             this.numericBoxMaoHydroA.MinimumSize = new System.Drawing.Size(1, 23);
             this.numericBoxMaoHydroA.Name = "numericBoxMaoHydroA";
             this.numericBoxMaoHydroA.RadianValue = 33.231068957972035D;
+            this.numericBoxMaoHydroA.RoundErrorAccuracy = -1;
             this.numericBoxMaoHydroA.Size = new System.Drawing.Size(123, 25);
             this.numericBoxMaoHydroA.TabIndex = 3;
             this.numericBoxMaoHydroA.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -1253,6 +1258,7 @@ namespace PressureCalculator{
             this.numericBoxRubyRagan.MinimumSize = new System.Drawing.Size(1, 23);
             this.numericBoxRubyRagan.Name = "numericBoxRubyRagan";
             this.numericBoxRubyRagan.RadianValue = 251.72883801514215D;
+            this.numericBoxRubyRagan.RoundErrorAccuracy = -1;
             this.numericBoxRubyRagan.Size = new System.Drawing.Size(542, 25);
             this.numericBoxRubyRagan.TabIndex = 3;
             this.numericBoxRubyRagan.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -1294,11 +1300,12 @@ namespace PressureCalculator{
             this.numericBoxRubyT.HeaderText = "T =";
             this.numericBoxRubyT.Location = new System.Drawing.Point(11, 18);
             this.numericBoxRubyT.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxRubyT.MaximumSize = new System.Drawing.Size(1000, 25);
+            this.numericBoxRubyT.MaximumSize = new System.Drawing.Size(1000, 23);
             this.numericBoxRubyT.MinimumSize = new System.Drawing.Size(1, 23);
             this.numericBoxRubyT.Name = "numericBoxRubyT";
             this.numericBoxRubyT.RadianValue = 5.18624587230115D;
-            this.numericBoxRubyT.Size = new System.Drawing.Size(103, 25);
+            this.numericBoxRubyT.RoundErrorAccuracy = -1;
+            this.numericBoxRubyT.Size = new System.Drawing.Size(116, 23);
             this.numericBoxRubyT.TabIndex = 3;
             this.numericBoxRubyT.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.numericBoxRubyT.Value = 297.15D;
@@ -1310,7 +1317,7 @@ namespace PressureCalculator{
             this.checkBoxRubyTemeratureSameAsRef.Checked = true;
             this.checkBoxRubyTemeratureSameAsRef.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxRubyTemeratureSameAsRef.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBoxRubyTemeratureSameAsRef.Location = new System.Drawing.Point(118, 20);
+            this.checkBoxRubyTemeratureSameAsRef.Location = new System.Drawing.Point(135, 20);
             this.checkBoxRubyTemeratureSameAsRef.Name = "checkBoxRubyTemeratureSameAsRef";
             this.checkBoxRubyTemeratureSameAsRef.Size = new System.Drawing.Size(135, 21);
             this.checkBoxRubyTemeratureSameAsRef.TabIndex = 7;
@@ -1331,6 +1338,7 @@ namespace PressureCalculator{
             this.numericBoxRubyR1_0.MinimumSize = new System.Drawing.Size(1, 23);
             this.numericBoxRubyR1_0.Name = "numericBoxRubyR1_0";
             this.numericBoxRubyR1_0.RadianValue = 12.12392964897861D;
+            this.numericBoxRubyR1_0.RoundErrorAccuracy = -1;
             this.numericBoxRubyR1_0.Size = new System.Drawing.Size(171, 25);
             this.numericBoxRubyR1_0.TabIndex = 3;
             this.numericBoxRubyR1_0.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -1370,11 +1378,12 @@ namespace PressureCalculator{
             this.numericBoxRubyRefT.FooterText = "K";
             this.numericBoxRubyRefT.Location = new System.Drawing.Point(46, 21);
             this.numericBoxRubyRefT.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxRubyRefT.MaximumSize = new System.Drawing.Size(1000, 25);
+            this.numericBoxRubyRefT.MaximumSize = new System.Drawing.Size(1000, 23);
             this.numericBoxRubyRefT.MinimumSize = new System.Drawing.Size(1, 23);
             this.numericBoxRubyRefT.Name = "numericBoxRubyRefT";
             this.numericBoxRubyRefT.RadianValue = 5.18624587230115D;
-            this.numericBoxRubyRefT.Size = new System.Drawing.Size(63, 25);
+            this.numericBoxRubyRefT.RoundErrorAccuracy = -1;
+            this.numericBoxRubyRefT.Size = new System.Drawing.Size(67, 23);
             this.numericBoxRubyRefT.TabIndex = 3;
             this.numericBoxRubyRefT.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.numericBoxRubyRefT.Value = 297.15D;
@@ -1393,6 +1402,7 @@ namespace PressureCalculator{
             this.numericBoxRubyRefR1.MinimumSize = new System.Drawing.Size(1, 23);
             this.numericBoxRubyRefR1.Name = "numericBoxRubyRefR1";
             this.numericBoxRubyRefR1.RadianValue = 12.116948331970631D;
+            this.numericBoxRubyRefR1.RoundErrorAccuracy = -1;
             this.numericBoxRubyRefR1.Size = new System.Drawing.Size(243, 25);
             this.numericBoxRubyRefR1.TabIndex = 3;
             this.numericBoxRubyRefR1.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -1412,6 +1422,7 @@ namespace PressureCalculator{
             this.numericBoxRubyR1.MinimumSize = new System.Drawing.Size(1, 27);
             this.numericBoxRubyR1.Name = "numericBoxRubyR1";
             this.numericBoxRubyR1.RadianValue = 12.12392964897861D;
+            this.numericBoxRubyR1.RoundErrorAccuracy = -1;
             this.numericBoxRubyR1.Size = new System.Drawing.Size(125, 29);
             this.numericBoxRubyR1.TabIndex = 3;
             this.numericBoxRubyR1.TextFont = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);

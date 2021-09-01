@@ -117,8 +117,8 @@ namespace PressureCalculator{
             regKey.SetValue("numericBoxRubyRefT.Text", numericBoxRubyRefT.Text);
             regKey.SetValue("numericBoxRubyRefR1.Text", numericBoxRubyRefR1.Text);
 
-            regKey.SetValue("radioButtonTempUnitK.Checked", radioButtonDiamondRaman.Checked);
-            regKey.SetValue("radioButtonTempUnitC.Checked", radioButtonDiamondRaman.Checked);
+            regKey.SetValue("radioButtonTempUnitK.Checked", radioButtonTempUnitK.Checked);
+            regKey.SetValue("radioButtonTempUnitC.Checked", radioButtonTempUnitC.Checked);
 
 
             regKey.Close();
@@ -759,7 +759,7 @@ namespace PressureCalculator{
         private void calcRaganParameter() 
         {
             var r = numericBoxRubyRefR1.Value;
-            var t = radioButtonTempUnitK.Checked ? numericBoxRubyRefT.Value : numericBoxRubyRefT.Value - 273.15;
+            var t = radioButtonTempUnitK.Checked ? numericBoxRubyRefT.Value : numericBoxRubyRefT.Value + 273.15;
             numericBoxRubyRagan.Value = 1E7 / r - 4.49E-2 * t + 4.81E-4 * t * t - 3.71E-7 * t * t * t;
         }
 
@@ -810,7 +810,7 @@ namespace PressureCalculator{
         /// </summary>
         private void calcR1_0()
         {
-            var t = radioButtonTempUnitK.Checked ? numericBoxRubyT.Value : numericBoxRubyT.Value - 273.15;
+            var t = radioButtonTempUnitK.Checked ? numericBoxRubyT.Value : numericBoxRubyT.Value + 273.15;
             var prm = numericBoxRubyRagan.Value;
             numericBoxRubyR1_0.Enabled = true;
 
@@ -860,8 +860,17 @@ namespace PressureCalculator{
 
         private void radioButtonTempUnit_CheckedChanged(object sender, EventArgs e)
         {
-            numericBoxRubyRefT.FooterText = numericBoxRubyT.FooterText
-                = radioButtonTempUnitC.Checked ? "℃" : "K";
+            if(radioButtonTempUnitC.Checked)
+            {
+                numericBoxRubyRefT.FooterText = numericBoxRubyT.FooterText =  "℃" ;
+                numericBoxRubyRefT.Minimum = numericBoxRubyT.Minimum =  -273.15;
+            }
+            else 
+            {
+                numericBoxRubyRefT.FooterText = numericBoxRubyT.FooterText =  "K";
+                numericBoxRubyRefT.Minimum = numericBoxRubyT.Minimum = 0;
+
+            }
 
             numericBoxRubyRefT_ValueChanged(sender, e);
             numericBoxRubyT_ValueChanged(sender, e);
