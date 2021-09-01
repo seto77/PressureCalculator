@@ -50,6 +50,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -105,7 +113,7 @@
                 "Name" = "8:.NET Core"
                 "Message" = "8:[VSDNETCOREMSG]"
                 "AllowLaterVersions" = "11:FALSE"
-                "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet/thank-you/runtime-desktop-5.0.7-windows-x64-installer"
+                "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet/thank-you/runtime-desktop-5.0.9-windows-x64-installer"
                 "IsNETCore" = "11:TRUE"
                 "Architecture" = "2:0"
                 "Runtime" = "2:0"
@@ -221,15 +229,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PressureCalculatorSetup"
-        "ProductCode" = "8:{4C2176D7-3B7C-46FE-AAB7-F2542302FCD1}"
-        "PackageCode" = "8:{BF048F0D-B30C-441E-9EA2-9064F8327DF3}"
+        "ProductCode" = "8:{CD9A42E6-A956-495F-93D6-FF1F8BD329C6}"
+        "PackageCode" = "8:{0B92E97B-C721-44CF-84D9-F87540532044}"
         "UpgradeCode" = "8:{AB8CAB9D-1085-4D04-8812-8107672A0B5C}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.1.002"
+        "ProductVersion" = "8:0.1.003"
         "Manufacturer" = "8:Crystallography Software"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/seto77/PressureCalculator/"
