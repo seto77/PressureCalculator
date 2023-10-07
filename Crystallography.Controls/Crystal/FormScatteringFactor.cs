@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -19,6 +20,8 @@ namespace Crystallography.Controls
         {
             //CrystalContorolでCystalが変更されたときのイベントを登録
             CrystalControl.CrystalChanged += new EventHandler(crystalControl_CrystalChanged);
+            typeof(DataGridView).GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(dataGridView2, true, null);
+
         }
 
         private void FormCrystallographicInformation_FormClosing(object sender, FormClosingEventArgs e)
@@ -32,8 +35,8 @@ namespace Crystallography.Controls
         //CrystalContorolでCystalが変更されたとき
         private void crystalControl_CrystalChanged(object sender, EventArgs e)
         {
-           
-                numericUpDownThresholdD.Minimum = (decimal)((Crystal.A + Crystal.B + Crystal.C) / 20);
+
+            numericUpDownThresholdD.Minimum = (decimal)((Crystal.A + Crystal.B + Crystal.C) / 20);
             if (this.Visible)
                 SetSortedPlanes();
         }
@@ -112,16 +115,15 @@ namespace Crystallography.Controls
                 for (int i = 0; i < c.VectorOfG.Count; i++)
                 {
                     Vector3D g = c.VectorOfG[i];
-                    int multi = 0;
-                    double twoTheta = 2 * Math.Asin(g.Length* waveLengthControl1.WaveLength / 2);
-                    bool irreducible = SymmetryStatic.IsRootIndex(g.Index, c.Symmetry, ref multi);
+                    double twoTheta = 2 * Math.Asin(g.Length * waveLengthControl1.WaveLength / 2);
+                    bool irreducible = SymmetryStatic.IsRootIndex(g.Index, c.Symmetry, out int multi);
                     if (irreducible && !double.IsNaN(twoTheta))
                     {
                         var magnitude2 = g.F.Real * g.F.Real + g.F.Imaginary * g.F.Imaginary;
                         if (waveLengthControl1.WaveSource == WaveSource.Xray)
-                            c.VectorOfG[i].RawIntensity = magnitude2 * multi / c.CellVolumeSqure * (1 + Math.Cos(twoTheta) * Math.Cos(twoTheta)) / Math.Sin(twoTheta) / Math.Sin(twoTheta / 2);
+                            c.VectorOfG[i].RawIntensity = magnitude2 * multi / c.CellVolumeSquare * (1 + Math.Cos(twoTheta) * Math.Cos(twoTheta)) / Math.Sin(twoTheta) / Math.Sin(twoTheta / 2);
                         else
-                            c.VectorOfG[i].RawIntensity = magnitude2 * multi / c.CellVolumeSqure / Math.Sin(twoTheta) / Math.Sin(twoTheta / 2);
+                            c.VectorOfG[i].RawIntensity = magnitude2 * multi / c.CellVolumeSquare / Math.Sin(twoTheta) / Math.Sin(twoTheta / 2);
 
                         max = Math.Max(max, c.VectorOfG[i].RawIntensity);
                     }
@@ -150,18 +152,17 @@ namespace Crystallography.Controls
 
             foreach (Vector3D g in c.VectorOfG)
             {
-                int multi = 0;
-                bool irreducible = SymmetryStatic.IsRootIndex(g.Index, c.Symmetry, ref multi);
+                bool irreducible = SymmetryStatic.IsRootIndex(g.Index, c.Symmetry, out int multi);
                 if (!checkBoxHideEquivalentPlane.Checked || irreducible)
                 {
                     var condition = c.Symmetry.CheckExtinctionRule(g.Index);//SymmetryStatic.CheckExtinctionRule(g.h, g.k, g.l, c.Symmetry);
                     if (!checkBoxHideProhibitedPlanes.Checked || condition.Length == 0)
                     {
-                        var d = 1 / g.Length* 10;
-                        var twoTheta = 2 * Math.Asin(g.Length* waveLengthControl1.WaveLength / 2) / Math.PI * 180;
+                        var d = 1 / g.Length * 10;
+                        var twoTheta = 2 * Math.Asin(g.Length * waveLengthControl1.WaveLength / 2) / Math.PI * 180;
                         if (double.IsNaN(twoTheta))
                             twoTheta = double.PositiveInfinity;
-                       dataSet.DataTableScatteringFactor.Add(g.Index.h, g.Index.k, g.Index.l, multi, d, twoTheta, g.F, g.RelativeIntensity, g.Extinction);
+                        dataSet.DataTableScatteringFactor.Add(g.Index.h, g.Index.k, g.Index.l, multi, d, twoTheta, g.F, g.RelativeIntensity, g.Extinction);
                     }
                 }
             }
@@ -176,6 +177,6 @@ namespace Crystallography.Controls
 
 
 
-  
+
     }
 }

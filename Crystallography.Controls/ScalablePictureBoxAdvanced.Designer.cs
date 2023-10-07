@@ -28,566 +28,468 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelTrackBar = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.trackBarAdvancedMinimum = new Crystallography.Controls.TrackBarAdvanced();
-            this.trackBarAdvancedMaximum = new Crystallography.Controls.TrackBarAdvanced();
-            this.label = new System.Windows.Forms.Label();
-            this.comboBoxScale2 = new System.Windows.Forms.ComboBox();
-            this.comboBoxScale1 = new System.Windows.Forms.ComboBox();
-            this.comboBoxGradient = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.flowLayoutPanelGradient = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanelImageFilter = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanelDustScratches = new System.Windows.Forms.FlowLayoutPanel();
-            this.checkBoxDustScratches = new System.Windows.Forms.CheckBox();
-            this.numericBoxDustScratchesRadius = new Crystallography.Controls.NumericBox();
-            this.numericBoxDustScratchesThreshold = new Crystallography.Controls.NumericBox();
-            this.flowLayoutPanelGaussianBlur2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.checkBoxGaussianBlur = new System.Windows.Forms.CheckBox();
-            this.numericBoxGaussianRadius = new Crystallography.Controls.NumericBox();
-            this.panelUpper = new System.Windows.Forms.Panel();
-            this.buttonCopyToClipBoard = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.scalablePictureBox = new Crystallography.Controls.ScalablePictureBox();
-            this.graphControl = new Crystallography.Controls.GraphControl();
-            this.panelTrackBar.SuspendLayout();
-            this.flowLayoutPanelGradient.SuspendLayout();
-            this.flowLayoutPanelImageFilter.SuspendLayout();
-            this.flowLayoutPanelDustScratches.SuspendLayout();
-            this.flowLayoutPanelGaussianBlur2.SuspendLayout();
-            this.panelUpper.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScalablePictureBoxAdvanced));
+            panelTrackBar = new System.Windows.Forms.Panel();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            trackBarAdvancedMinimum = new TrackBarAdvanced();
+            trackBarAdvancedMaximum = new TrackBarAdvanced();
+            label = new System.Windows.Forms.Label();
+            comboBoxScale2 = new System.Windows.Forms.ComboBox();
+            comboBoxScale1 = new System.Windows.Forms.ComboBox();
+            comboBoxGradient = new System.Windows.Forms.ComboBox();
+            label7 = new System.Windows.Forms.Label();
+            label9 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            flowLayoutPanelGradient = new System.Windows.Forms.FlowLayoutPanel();
+            flowLayoutPanelImageFilter = new System.Windows.Forms.FlowLayoutPanel();
+            flowLayoutPanelDustScratches = new System.Windows.Forms.FlowLayoutPanel();
+            checkBoxDustScratches = new System.Windows.Forms.CheckBox();
+            numericBoxDustScratchesRadius = new NumericBox();
+            numericBoxDustScratchesThreshold = new NumericBox();
+            flowLayoutPanelGaussianBlur2 = new System.Windows.Forms.FlowLayoutPanel();
+            checkBoxGaussianBlur = new System.Windows.Forms.CheckBox();
+            numericBoxGaussianFWHM = new NumericBox();
+            panelUpper = new System.Windows.Forms.Panel();
+            statusStrip1 = new System.Windows.Forms.StatusStrip();
+            toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            scalablePictureBox = new ScalablePictureBox();
+            graphControl = new GraphControl();
+            panel1 = new System.Windows.Forms.Panel();
+            label14 = new System.Windows.Forms.Label();
+            labelResolution = new System.Windows.Forms.Label();
+            buttonMag1 = new System.Windows.Forms.Button();
+            buttonMag2 = new System.Windows.Forms.Button();
+            buttonMag4 = new System.Windows.Forms.Button();
+            buttonMag_2 = new System.Windows.Forms.Button();
+            buttonMag_4 = new System.Windows.Forms.Button();
+            buttonMag_8 = new System.Windows.Forms.Button();
+            buttonMag_16 = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
+            panelTrackBar.SuspendLayout();
+            flowLayoutPanelGradient.SuspendLayout();
+            flowLayoutPanelImageFilter.SuspendLayout();
+            flowLayoutPanelDustScratches.SuspendLayout();
+            flowLayoutPanelGaussianBlur2.SuspendLayout();
+            panelUpper.SuspendLayout();
+            statusStrip1.SuspendLayout();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // panelTrackBar
             // 
-            this.panelTrackBar.AutoSize = true;
-            this.panelTrackBar.Controls.Add(this.label2);
-            this.panelTrackBar.Controls.Add(this.label3);
-            this.panelTrackBar.Controls.Add(this.trackBarAdvancedMinimum);
-            this.panelTrackBar.Controls.Add(this.trackBarAdvancedMaximum);
-            this.panelTrackBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelTrackBar.Location = new System.Drawing.Point(0, 354);
-            this.panelTrackBar.Margin = new System.Windows.Forms.Padding(2);
-            this.panelTrackBar.Name = "panelTrackBar";
-            this.panelTrackBar.Size = new System.Drawing.Size(397, 54);
-            this.panelTrackBar.TabIndex = 7;
+            resources.ApplyResources(panelTrackBar, "panelTrackBar");
+            panelTrackBar.Controls.Add(label2);
+            panelTrackBar.Controls.Add(label3);
+            panelTrackBar.Controls.Add(trackBarAdvancedMinimum);
+            panelTrackBar.Controls.Add(trackBarAdvancedMaximum);
+            panelTrackBar.Name = "panelTrackBar";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 6);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 15);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Min.";
+            resources.ApplyResources(label2, "label2");
+            label2.Name = "label2";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2, 30);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 15);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Max.";
+            resources.ApplyResources(label3, "label3");
+            label3.Name = "label3";
             // 
             // trackBarAdvancedMinimum
             // 
-            this.trackBarAdvancedMinimum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBarAdvancedMinimum.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.trackBarAdvancedMinimum.ControlHeight = 22;
-            this.trackBarAdvancedMinimum.DecimalPlaces = 0;
-            this.trackBarAdvancedMinimum.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.trackBarAdvancedMinimum.FooterFont = new System.Drawing.Font("Segoe UI Symbol", 9.75F);
-            this.trackBarAdvancedMinimum.FooterText = "";
-            this.trackBarAdvancedMinimum.HeaderFont = new System.Drawing.Font("Segoe UI Symbol", 9.75F);
-            this.trackBarAdvancedMinimum.HeaderText = "";
-            this.trackBarAdvancedMinimum.Location = new System.Drawing.Point(42, 3);
-            this.trackBarAdvancedMinimum.LogScrollBar = false;
-            this.trackBarAdvancedMinimum.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.trackBarAdvancedMinimum.Maximum = 65D;
-            this.trackBarAdvancedMinimum.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.trackBarAdvancedMinimum.Minimum = 0D;
-            this.trackBarAdvancedMinimum.MinimumSize = new System.Drawing.Size(1, 22);
-            this.trackBarAdvancedMinimum.Name = "trackBarAdvancedMinimum";
-            this.trackBarAdvancedMinimum.NumericBoxSize = 84;
-            this.trackBarAdvancedMinimum.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarAdvancedMinimum.Size = new System.Drawing.Size(352, 22);
-            this.trackBarAdvancedMinimum.Smart_Increment = true;
-            this.trackBarAdvancedMinimum.TabIndex = 4;
-            this.trackBarAdvancedMinimum.TickStyle = System.Windows.Forms.TickStyle.BottomRight;
-            this.trackBarAdvancedMinimum.UpDown_Increment = 1D;
-            this.trackBarAdvancedMinimum.Value = 0D;
-            this.trackBarAdvancedMinimum.ValueChanged += new Crystallography.Controls.TrackBarAdvanced.ValueChangedDelegate(this.trackBarAdvancedMinimum_ValueChanged);
+            resources.ApplyResources(trackBarAdvancedMinimum, "trackBarAdvancedMinimum");
+            trackBarAdvancedMinimum.ControlHeight = 22;
+            trackBarAdvancedMinimum.DecimalPlaces = 0;
+            trackBarAdvancedMinimum.LogScrollBar = false;
+            trackBarAdvancedMinimum.Maximum = 65D;
+            trackBarAdvancedMinimum.Minimum = 0D;
+            trackBarAdvancedMinimum.Name = "trackBarAdvancedMinimum";
+            trackBarAdvancedMinimum.NumericBoxSize = 84;
+            trackBarAdvancedMinimum.Orientation = System.Windows.Forms.Orientation.Vertical;
+            trackBarAdvancedMinimum.Smart_Increment = true;
+            trackBarAdvancedMinimum.TickStyle = System.Windows.Forms.TickStyle.BottomRight;
+            trackBarAdvancedMinimum.UpDown_Increment = 1D;
+            trackBarAdvancedMinimum.Value = 0D;
+            trackBarAdvancedMinimum.ValueChanged += trackBarAdvancedMinimum_ValueChanged;
             // 
             // trackBarAdvancedMaximum
             // 
-            this.trackBarAdvancedMaximum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBarAdvancedMaximum.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.trackBarAdvancedMaximum.ControlHeight = 22;
-            this.trackBarAdvancedMaximum.DecimalPlaces = 0;
-            this.trackBarAdvancedMaximum.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.trackBarAdvancedMaximum.FooterFont = new System.Drawing.Font("Segoe UI Symbol", 9.75F);
-            this.trackBarAdvancedMaximum.FooterText = "";
-            this.trackBarAdvancedMaximum.HeaderFont = new System.Drawing.Font("Segoe UI Symbol", 9.75F);
-            this.trackBarAdvancedMaximum.HeaderText = "";
-            this.trackBarAdvancedMaximum.Location = new System.Drawing.Point(42, 29);
-            this.trackBarAdvancedMaximum.LogScrollBar = false;
-            this.trackBarAdvancedMaximum.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.trackBarAdvancedMaximum.Maximum = 65535D;
-            this.trackBarAdvancedMaximum.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.trackBarAdvancedMaximum.Minimum = 0D;
-            this.trackBarAdvancedMaximum.MinimumSize = new System.Drawing.Size(1, 22);
-            this.trackBarAdvancedMaximum.Name = "trackBarAdvancedMaximum";
-            this.trackBarAdvancedMaximum.NumericBoxSize = 84;
-            this.trackBarAdvancedMaximum.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarAdvancedMaximum.Size = new System.Drawing.Size(352, 22);
-            this.trackBarAdvancedMaximum.Smart_Increment = true;
-            this.trackBarAdvancedMaximum.TabIndex = 4;
-            this.trackBarAdvancedMaximum.TickStyle = System.Windows.Forms.TickStyle.BottomRight;
-            this.trackBarAdvancedMaximum.UpDown_Increment = 1D;
-            this.trackBarAdvancedMaximum.Value = 0D;
-            this.trackBarAdvancedMaximum.ValueChanged += new Crystallography.Controls.TrackBarAdvanced.ValueChangedDelegate(this.trackBarAdvancedMaximum_ValueChanged);
+            resources.ApplyResources(trackBarAdvancedMaximum, "trackBarAdvancedMaximum");
+            trackBarAdvancedMaximum.ControlHeight = 22;
+            trackBarAdvancedMaximum.DecimalPlaces = 0;
+            trackBarAdvancedMaximum.LogScrollBar = false;
+            trackBarAdvancedMaximum.Maximum = 65535D;
+            trackBarAdvancedMaximum.Minimum = 0D;
+            trackBarAdvancedMaximum.Name = "trackBarAdvancedMaximum";
+            trackBarAdvancedMaximum.NumericBoxSize = 84;
+            trackBarAdvancedMaximum.Orientation = System.Windows.Forms.Orientation.Vertical;
+            trackBarAdvancedMaximum.Smart_Increment = true;
+            trackBarAdvancedMaximum.TickStyle = System.Windows.Forms.TickStyle.BottomRight;
+            trackBarAdvancedMaximum.UpDown_Increment = 1D;
+            trackBarAdvancedMaximum.Value = 0D;
+            trackBarAdvancedMaximum.ValueChanged += trackBarAdvancedMaximum_ValueChanged;
             // 
             // label
             // 
-            this.label.AutoSize = true;
-            this.label.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label.Location = new System.Drawing.Point(0, 2);
-            this.label.Margin = new System.Windows.Forms.Padding(2, 2, 2, 0);
-            this.label.Name = "label";
-            this.label.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.label.Size = new System.Drawing.Size(0, 17);
-            this.label.TabIndex = 9;
+            resources.ApplyResources(label, "label");
+            label.Name = "label";
             // 
             // comboBoxScale2
             // 
-            this.comboBoxScale2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxScale2.FormattingEnabled = true;
-            this.comboBoxScale2.Items.AddRange(new object[] {
-            "Gray scale",
-            "Cold-Warm scale"});
-            this.comboBoxScale2.Location = new System.Drawing.Point(282, 2);
-            this.comboBoxScale2.Margin = new System.Windows.Forms.Padding(0);
-            this.comboBoxScale2.Name = "comboBoxScale2";
-            this.comboBoxScale2.Size = new System.Drawing.Size(97, 23);
-            this.comboBoxScale2.TabIndex = 36;
-            this.comboBoxScale2.SelectedIndexChanged += new System.EventHandler(this.comboBoxScale_SelectedIndexChanged);
+            comboBoxScale2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxScale2.FormattingEnabled = true;
+            comboBoxScale2.Items.AddRange(new object[] { resources.GetString("comboBoxScale2.Items"), resources.GetString("comboBoxScale2.Items1"), resources.GetString("comboBoxScale2.Items2"), resources.GetString("comboBoxScale2.Items3") });
+            resources.ApplyResources(comboBoxScale2, "comboBoxScale2");
+            comboBoxScale2.Name = "comboBoxScale2";
+            comboBoxScale2.SelectedIndexChanged += comboBoxScale_SelectedIndexChanged;
             // 
             // comboBoxScale1
             // 
-            this.comboBoxScale1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxScale1.FormattingEnabled = true;
-            this.comboBoxScale1.Items.AddRange(new object[] {
-            "Log Scale",
-            "Liner Scale"});
-            this.comboBoxScale1.Location = new System.Drawing.Point(164, 2);
-            this.comboBoxScale1.Margin = new System.Windows.Forms.Padding(0);
-            this.comboBoxScale1.Name = "comboBoxScale1";
-            this.comboBoxScale1.Size = new System.Drawing.Size(80, 23);
-            this.comboBoxScale1.TabIndex = 35;
-            this.comboBoxScale1.SelectedIndexChanged += new System.EventHandler(this.comboBoxScale_SelectedIndexChanged);
+            comboBoxScale1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxScale1.FormattingEnabled = true;
+            comboBoxScale1.Items.AddRange(new object[] { resources.GetString("comboBoxScale1.Items"), resources.GetString("comboBoxScale1.Items1") });
+            resources.ApplyResources(comboBoxScale1, "comboBoxScale1");
+            comboBoxScale1.Name = "comboBoxScale1";
+            comboBoxScale1.SelectedIndexChanged += comboBoxScale_SelectedIndexChanged;
             // 
             // comboBoxGradient
             // 
-            this.comboBoxGradient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxGradient.FormattingEnabled = true;
-            this.comboBoxGradient.Items.AddRange(new object[] {
-            "Positive ",
-            "Negative"});
-            this.comboBoxGradient.Location = new System.Drawing.Point(54, 2);
-            this.comboBoxGradient.Margin = new System.Windows.Forms.Padding(0);
-            this.comboBoxGradient.Name = "comboBoxGradient";
-            this.comboBoxGradient.Size = new System.Drawing.Size(74, 23);
-            this.comboBoxGradient.TabIndex = 34;
-            this.comboBoxGradient.SelectedIndexChanged += new System.EventHandler(this.comboBoxScale_SelectedIndexChanged);
+            comboBoxGradient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxGradient.FormattingEnabled = true;
+            comboBoxGradient.Items.AddRange(new object[] { resources.GetString("comboBoxGradient.Items"), resources.GetString("comboBoxGradient.Items1") });
+            resources.ApplyResources(comboBoxGradient, "comboBoxGradient");
+            comboBoxGradient.Name = "comboBoxGradient";
+            comboBoxGradient.SelectedIndexChanged += comboBoxScale_SelectedIndexChanged;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label7.Location = new System.Drawing.Point(130, 4);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 15);
-            this.label7.TabIndex = 37;
-            this.label7.Text = "Scale";
+            resources.ApplyResources(label7, "label7");
+            label7.Name = "label7";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(246, 4);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(36, 15);
-            this.label9.TabIndex = 38;
-            this.label9.Text = "Color";
+            resources.ApplyResources(label9, "label9");
+            label9.Name = "label9";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(2, 4);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 15);
-            this.label5.TabIndex = 39;
-            this.label5.Text = "Gradient";
+            resources.ApplyResources(label5, "label5");
+            label5.Name = "label5";
             // 
             // flowLayoutPanelGradient
             // 
-            this.flowLayoutPanelGradient.AutoSize = true;
-            this.flowLayoutPanelGradient.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanelGradient.Controls.Add(this.label5);
-            this.flowLayoutPanelGradient.Controls.Add(this.comboBoxGradient);
-            this.flowLayoutPanelGradient.Controls.Add(this.label7);
-            this.flowLayoutPanelGradient.Controls.Add(this.comboBoxScale1);
-            this.flowLayoutPanelGradient.Controls.Add(this.label9);
-            this.flowLayoutPanelGradient.Controls.Add(this.comboBoxScale2);
-            this.flowLayoutPanelGradient.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanelGradient.Location = new System.Drawing.Point(0, 478);
-            this.flowLayoutPanelGradient.Margin = new System.Windows.Forms.Padding(2);
-            this.flowLayoutPanelGradient.Name = "flowLayoutPanelGradient";
-            this.flowLayoutPanelGradient.Padding = new System.Windows.Forms.Padding(0, 2, 0, 4);
-            this.flowLayoutPanelGradient.Size = new System.Drawing.Size(397, 29);
-            this.flowLayoutPanelGradient.TabIndex = 11;
+            resources.ApplyResources(flowLayoutPanelGradient, "flowLayoutPanelGradient");
+            flowLayoutPanelGradient.Controls.Add(label5);
+            flowLayoutPanelGradient.Controls.Add(comboBoxGradient);
+            flowLayoutPanelGradient.Controls.Add(label7);
+            flowLayoutPanelGradient.Controls.Add(comboBoxScale1);
+            flowLayoutPanelGradient.Controls.Add(label9);
+            flowLayoutPanelGradient.Controls.Add(comboBoxScale2);
+            flowLayoutPanelGradient.Name = "flowLayoutPanelGradient";
             // 
             // flowLayoutPanelImageFilter
             // 
-            this.flowLayoutPanelImageFilter.AutoSize = true;
-            this.flowLayoutPanelImageFilter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanelImageFilter.Controls.Add(this.flowLayoutPanelDustScratches);
-            this.flowLayoutPanelImageFilter.Controls.Add(this.flowLayoutPanelGaussianBlur2);
-            this.flowLayoutPanelImageFilter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanelImageFilter.Location = new System.Drawing.Point(0, 507);
-            this.flowLayoutPanelImageFilter.Margin = new System.Windows.Forms.Padding(2);
-            this.flowLayoutPanelImageFilter.Name = "flowLayoutPanelImageFilter";
-            this.flowLayoutPanelImageFilter.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.flowLayoutPanelImageFilter.Size = new System.Drawing.Size(397, 54);
-            this.flowLayoutPanelImageFilter.TabIndex = 12;
+            resources.ApplyResources(flowLayoutPanelImageFilter, "flowLayoutPanelImageFilter");
+            flowLayoutPanelImageFilter.Controls.Add(flowLayoutPanelDustScratches);
+            flowLayoutPanelImageFilter.Controls.Add(flowLayoutPanelGaussianBlur2);
+            flowLayoutPanelImageFilter.Name = "flowLayoutPanelImageFilter";
             // 
             // flowLayoutPanelDustScratches
             // 
-            this.flowLayoutPanelDustScratches.AutoSize = true;
-            this.flowLayoutPanelDustScratches.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanelDustScratches.Controls.Add(this.checkBoxDustScratches);
-            this.flowLayoutPanelDustScratches.Controls.Add(this.numericBoxDustScratchesRadius);
-            this.flowLayoutPanelDustScratches.Controls.Add(this.numericBoxDustScratchesThreshold);
-            this.flowLayoutPanelDustScratches.Location = new System.Drawing.Point(0, 2);
-            this.flowLayoutPanelDustScratches.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanelDustScratches.Name = "flowLayoutPanelDustScratches";
-            this.flowLayoutPanelDustScratches.Size = new System.Drawing.Size(353, 25);
-            this.flowLayoutPanelDustScratches.TabIndex = 42;
+            resources.ApplyResources(flowLayoutPanelDustScratches, "flowLayoutPanelDustScratches");
+            flowLayoutPanelDustScratches.Controls.Add(checkBoxDustScratches);
+            flowLayoutPanelDustScratches.Controls.Add(numericBoxDustScratchesRadius);
+            flowLayoutPanelDustScratches.Controls.Add(numericBoxDustScratchesThreshold);
+            flowLayoutPanelDustScratches.Name = "flowLayoutPanelDustScratches";
             // 
             // checkBoxDustScratches
             // 
-            this.checkBoxDustScratches.AutoSize = true;
-            this.checkBoxDustScratches.Location = new System.Drawing.Point(2, 2);
-            this.checkBoxDustScratches.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxDustScratches.Name = "checkBoxDustScratches";
-            this.checkBoxDustScratches.Size = new System.Drawing.Size(110, 19);
-            this.checkBoxDustScratches.TabIndex = 40;
-            this.checkBoxDustScratches.Text = "Dust&&Scratches";
-            this.checkBoxDustScratches.UseVisualStyleBackColor = true;
-            this.checkBoxDustScratches.CheckedChanged += new System.EventHandler(this.imageFilterProperty_Changed);
+            resources.ApplyResources(checkBoxDustScratches, "checkBoxDustScratches");
+            checkBoxDustScratches.Name = "checkBoxDustScratches";
+            checkBoxDustScratches.UseVisualStyleBackColor = true;
+            checkBoxDustScratches.CheckedChanged += imageFilterProperty_Changed;
             // 
             // numericBoxDustScratchesRadius
             // 
-                       this.numericBoxDustScratchesRadius.BackColor = System.Drawing.SystemColors.Control;
-            this.numericBoxDustScratchesRadius.DecimalPlaces = 1;
-            this.numericBoxDustScratchesRadius.Font = new System.Drawing.Font("Segoe UI Symbol", 9F);
-            this.numericBoxDustScratchesRadius.FooterFont = new System.Drawing.Font("Segoe UI Symbol", 9F);
-            this.numericBoxDustScratchesRadius.FooterText = "pix.";
-            this.numericBoxDustScratchesRadius.HeaderFont = new System.Drawing.Font("Segoe UI Symbol", 9F);
-            this.numericBoxDustScratchesRadius.HeaderText = "Radius";
-            this.numericBoxDustScratchesRadius.Location = new System.Drawing.Point(114, 0);
-            this.numericBoxDustScratchesRadius.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxDustScratchesRadius.Maximum = 5D;
-            this.numericBoxDustScratchesRadius.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.numericBoxDustScratchesRadius.Minimum = 0D;
-            this.numericBoxDustScratchesRadius.MinimumSize = new System.Drawing.Size(1, 25);
-                       this.numericBoxDustScratchesRadius.Name = "numericBoxDustScratchesRadius";
-            this.numericBoxDustScratchesRadius.Padding = new System.Windows.Forms.Padding(0, 0, 1, 0);
-            this.numericBoxDustScratchesRadius.RadianValue = 0.017453292519943295D;
-                        this.numericBoxDustScratchesRadius.RestrictLimitValue = true;
-            this.numericBoxDustScratchesRadius.ShowFraction = false;
-            this.numericBoxDustScratchesRadius.ShowPositiveSign = false;
-            this.numericBoxDustScratchesRadius.ShowUpDown = true;
-            this.numericBoxDustScratchesRadius.Size = new System.Drawing.Size(123, 25);
-            this.numericBoxDustScratchesRadius.SkipEventDuringInput = false;
-            this.numericBoxDustScratchesRadius.SmartIncrement = false;
-            this.numericBoxDustScratchesRadius.TabIndex = 43;
-                        this.numericBoxDustScratchesRadius.TextBoxForeColor = System.Drawing.SystemColors.WindowText;
-                        this.numericBoxDustScratchesRadius.ThonsandsSeparator = true;
-            this.numericBoxDustScratchesRadius.ToolTip = "";
-            this.numericBoxDustScratchesRadius.UpDown_Increment = 0.5D;
-            this.numericBoxDustScratchesRadius.Value = 1D;
-            this.numericBoxDustScratchesRadius.Visible = false;
-                        this.numericBoxDustScratchesRadius.ValueChanged += new Crystallography.Controls.NumericBox.MyEventHandler(this.imageFilterProperty_Changed);
+            numericBoxDustScratchesRadius.BackColor = System.Drawing.SystemColors.Control;
+            numericBoxDustScratchesRadius.DecimalPlaces = 1;
+            resources.ApplyResources(numericBoxDustScratchesRadius, "numericBoxDustScratchesRadius");
+            numericBoxDustScratchesRadius.FooterBackColor = System.Drawing.SystemColors.Control;
+            numericBoxDustScratchesRadius.HeaderBackColor = System.Drawing.SystemColors.Control;
+            numericBoxDustScratchesRadius.Maximum = 5D;
+            numericBoxDustScratchesRadius.Minimum = 0D;
+            numericBoxDustScratchesRadius.Name = "numericBoxDustScratchesRadius";
+            numericBoxDustScratchesRadius.RadianValue = 0.017453292519943295D;
+            numericBoxDustScratchesRadius.RoundErrorAccuracy = -1;
+            numericBoxDustScratchesRadius.ShowUpDown = true;
+            numericBoxDustScratchesRadius.SkipEventDuringInput = false;
+            numericBoxDustScratchesRadius.ThonsandsSeparator = true;
+            numericBoxDustScratchesRadius.UpDown_Increment = 0.5D;
+            numericBoxDustScratchesRadius.Value = 1D;
+            numericBoxDustScratchesRadius.ValueChanged += imageFilterProperty_Changed;
             // 
             // numericBoxDustScratchesThreshold
             // 
-                       this.numericBoxDustScratchesThreshold.BackColor = System.Drawing.SystemColors.Control;
-            this.numericBoxDustScratchesThreshold.DecimalPlaces = 0;
-            this.numericBoxDustScratchesThreshold.Font = new System.Drawing.Font("Segoe UI Symbol", 9F);
-            this.numericBoxDustScratchesThreshold.FooterFont = new System.Drawing.Font("Segoe UI Symbol", 9F);
-                        this.numericBoxDustScratchesThreshold.HeaderFont = new System.Drawing.Font("Segoe UI Symbol", 9F);
-            this.numericBoxDustScratchesThreshold.HeaderText = "Threshold";
-            this.numericBoxDustScratchesThreshold.Location = new System.Drawing.Point(237, 0);
-            this.numericBoxDustScratchesThreshold.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxDustScratchesThreshold.Maximum = 10D;
-            this.numericBoxDustScratchesThreshold.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.numericBoxDustScratchesThreshold.Minimum = 0D;
-            this.numericBoxDustScratchesThreshold.MinimumSize = new System.Drawing.Size(1, 25);
-                       this.numericBoxDustScratchesThreshold.Name = "numericBoxDustScratchesThreshold";
-            this.numericBoxDustScratchesThreshold.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.numericBoxDustScratchesThreshold.RadianValue = 0.052359877559829883D;
-                        this.numericBoxDustScratchesThreshold.RestrictLimitValue = true;
-            this.numericBoxDustScratchesThreshold.ShowFraction = false;
-            this.numericBoxDustScratchesThreshold.ShowPositiveSign = false;
-            this.numericBoxDustScratchesThreshold.ShowUpDown = true;
-            this.numericBoxDustScratchesThreshold.Size = new System.Drawing.Size(116, 25);
-            this.numericBoxDustScratchesThreshold.SkipEventDuringInput = false;
-            this.numericBoxDustScratchesThreshold.SmartIncrement = true;
-            this.numericBoxDustScratchesThreshold.TabIndex = 43;
-                        this.numericBoxDustScratchesThreshold.TextBoxForeColor = System.Drawing.SystemColors.WindowText;
-                        this.numericBoxDustScratchesThreshold.ThonsandsSeparator = true;
-            this.numericBoxDustScratchesThreshold.ToolTip = "";
-            this.numericBoxDustScratchesThreshold.UpDown_Increment = 1D;
-            this.numericBoxDustScratchesThreshold.Value = 3D;
-            this.numericBoxDustScratchesThreshold.Visible = false;
-                        this.numericBoxDustScratchesThreshold.ValueChanged += new Crystallography.Controls.NumericBox.MyEventHandler(this.imageFilterProperty_Changed);
+            numericBoxDustScratchesThreshold.BackColor = System.Drawing.SystemColors.Control;
+            numericBoxDustScratchesThreshold.DecimalPlaces = 0;
+            resources.ApplyResources(numericBoxDustScratchesThreshold, "numericBoxDustScratchesThreshold");
+            numericBoxDustScratchesThreshold.FooterBackColor = System.Drawing.SystemColors.Control;
+            numericBoxDustScratchesThreshold.HeaderBackColor = System.Drawing.SystemColors.Control;
+            numericBoxDustScratchesThreshold.Maximum = 10D;
+            numericBoxDustScratchesThreshold.Minimum = 0D;
+            numericBoxDustScratchesThreshold.Name = "numericBoxDustScratchesThreshold";
+            numericBoxDustScratchesThreshold.RadianValue = 0.052359877559829883D;
+            numericBoxDustScratchesThreshold.RoundErrorAccuracy = -1;
+            numericBoxDustScratchesThreshold.ShowUpDown = true;
+            numericBoxDustScratchesThreshold.SkipEventDuringInput = false;
+            numericBoxDustScratchesThreshold.SmartIncrement = true;
+            numericBoxDustScratchesThreshold.ThonsandsSeparator = true;
+            numericBoxDustScratchesThreshold.Value = 3D;
+            numericBoxDustScratchesThreshold.ValueChanged += imageFilterProperty_Changed;
             // 
             // flowLayoutPanelGaussianBlur2
             // 
-            this.flowLayoutPanelGaussianBlur2.AutoSize = true;
-            this.flowLayoutPanelGaussianBlur2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanelGaussianBlur2.Controls.Add(this.checkBoxGaussianBlur);
-            this.flowLayoutPanelGaussianBlur2.Controls.Add(this.numericBoxGaussianRadius);
-            this.flowLayoutPanelGaussianBlur2.Location = new System.Drawing.Point(0, 27);
-            this.flowLayoutPanelGaussianBlur2.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanelGaussianBlur2.Name = "flowLayoutPanelGaussianBlur2";
-            this.flowLayoutPanelGaussianBlur2.Size = new System.Drawing.Size(264, 25);
-            this.flowLayoutPanelGaussianBlur2.TabIndex = 42;
+            resources.ApplyResources(flowLayoutPanelGaussianBlur2, "flowLayoutPanelGaussianBlur2");
+            flowLayoutPanelGaussianBlur2.Controls.Add(checkBoxGaussianBlur);
+            flowLayoutPanelGaussianBlur2.Controls.Add(numericBoxGaussianFWHM);
+            flowLayoutPanelGaussianBlur2.Name = "flowLayoutPanelGaussianBlur2";
             // 
             // checkBoxGaussianBlur
             // 
-            this.checkBoxGaussianBlur.AutoSize = true;
-            this.checkBoxGaussianBlur.Location = new System.Drawing.Point(2, 2);
-            this.checkBoxGaussianBlur.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxGaussianBlur.Name = "checkBoxGaussianBlur";
-            this.checkBoxGaussianBlur.Size = new System.Drawing.Size(97, 19);
-            this.checkBoxGaussianBlur.TabIndex = 40;
-            this.checkBoxGaussianBlur.Text = "Gaussian Blur";
-            this.checkBoxGaussianBlur.UseVisualStyleBackColor = true;
-            this.checkBoxGaussianBlur.CheckedChanged += new System.EventHandler(this.imageFilterProperty_Changed);
+            resources.ApplyResources(checkBoxGaussianBlur, "checkBoxGaussianBlur");
+            checkBoxGaussianBlur.Name = "checkBoxGaussianBlur";
+            checkBoxGaussianBlur.UseVisualStyleBackColor = true;
+            checkBoxGaussianBlur.CheckedChanged += imageFilterProperty_Changed;
             // 
-            // numericBoxGaussianRadius
+            // numericBoxGaussianFWHM
             // 
-                       this.numericBoxGaussianRadius.BackColor = System.Drawing.SystemColors.Control;
-            this.numericBoxGaussianRadius.DecimalPlaces = 1;
-            this.numericBoxGaussianRadius.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F);
-            this.numericBoxGaussianRadius.FooterFont = new System.Drawing.Font("Segoe UI Symbol", 9F);
-            this.numericBoxGaussianRadius.FooterText = "pix.";
-            this.numericBoxGaussianRadius.HeaderFont = new System.Drawing.Font("Segoe UI Symbol", 9F);
-            this.numericBoxGaussianRadius.HeaderText = "Radius (HWHM)";
-            this.numericBoxGaussianRadius.Location = new System.Drawing.Point(101, 0);
-            this.numericBoxGaussianRadius.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxGaussianRadius.Maximum = 100D;
-            this.numericBoxGaussianRadius.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.numericBoxGaussianRadius.Minimum = 0D;
-            this.numericBoxGaussianRadius.MinimumSize = new System.Drawing.Size(1, 25);
-                       this.numericBoxGaussianRadius.Name = "numericBoxGaussianRadius";
-            this.numericBoxGaussianRadius.Padding = new System.Windows.Forms.Padding(0, 0, 1, 0);
-            this.numericBoxGaussianRadius.RadianValue = 0.017453292519943295D;
-                        this.numericBoxGaussianRadius.RestrictLimitValue = true;
-            this.numericBoxGaussianRadius.ShowFraction = false;
-            this.numericBoxGaussianRadius.ShowPositiveSign = false;
-            this.numericBoxGaussianRadius.ShowUpDown = true;
-            this.numericBoxGaussianRadius.Size = new System.Drawing.Size(163, 25);
-            this.numericBoxGaussianRadius.SkipEventDuringInput = false;
-            this.numericBoxGaussianRadius.SmartIncrement = true;
-            this.numericBoxGaussianRadius.TabIndex = 43;
-                        this.numericBoxGaussianRadius.TextBoxForeColor = System.Drawing.SystemColors.WindowText;
-                        this.numericBoxGaussianRadius.ThonsandsSeparator = true;
-            this.numericBoxGaussianRadius.ToolTip = "";
-            this.numericBoxGaussianRadius.UpDown_Increment = 1D;
-            this.numericBoxGaussianRadius.Value = 1D;
-            this.numericBoxGaussianRadius.Visible = false;
-                        this.numericBoxGaussianRadius.ValueChanged += new Crystallography.Controls.NumericBox.MyEventHandler(this.imageFilterProperty_Changed);
+            numericBoxGaussianFWHM.BackColor = System.Drawing.SystemColors.Control;
+            numericBoxGaussianFWHM.DecimalPlaces = 1;
+            resources.ApplyResources(numericBoxGaussianFWHM, "numericBoxGaussianFWHM");
+            numericBoxGaussianFWHM.FooterBackColor = System.Drawing.SystemColors.Control;
+            numericBoxGaussianFWHM.HeaderBackColor = System.Drawing.SystemColors.Control;
+            numericBoxGaussianFWHM.Maximum = 100D;
+            numericBoxGaussianFWHM.Minimum = 0D;
+            numericBoxGaussianFWHM.Name = "numericBoxGaussianFWHM";
+            numericBoxGaussianFWHM.RadianValue = 0.017453292519943295D;
+            numericBoxGaussianFWHM.RoundErrorAccuracy = -1;
+            numericBoxGaussianFWHM.ShowUpDown = true;
+            numericBoxGaussianFWHM.SkipEventDuringInput = false;
+            numericBoxGaussianFWHM.SmartIncrement = true;
+            numericBoxGaussianFWHM.ThonsandsSeparator = true;
+            numericBoxGaussianFWHM.Value = 1D;
+            numericBoxGaussianFWHM.ValueChanged += imageFilterProperty_Changed;
             // 
             // panelUpper
             // 
-            this.panelUpper.Controls.Add(this.buttonCopyToClipBoard);
-            this.panelUpper.Controls.Add(this.label);
-            this.panelUpper.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUpper.Location = new System.Drawing.Point(0, 0);
-            this.panelUpper.Margin = new System.Windows.Forms.Padding(2);
-            this.panelUpper.Name = "panelUpper";
-            this.panelUpper.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.panelUpper.Size = new System.Drawing.Size(397, 26);
-            this.panelUpper.TabIndex = 13;
-            // 
-            // buttonCopyToClipBoard
-            // 
-            this.buttonCopyToClipBoard.AutoSize = true;
-            this.buttonCopyToClipBoard.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonCopyToClipBoard.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonCopyToClipBoard.Location = new System.Drawing.Point(282, 2);
-            this.buttonCopyToClipBoard.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCopyToClipBoard.Name = "buttonCopyToClipBoard";
-            this.buttonCopyToClipBoard.Size = new System.Drawing.Size(115, 22);
-            this.buttonCopyToClipBoard.TabIndex = 10;
-            this.buttonCopyToClipBoard.Text = "Copy To ClipBoard";
-            this.buttonCopyToClipBoard.UseVisualStyleBackColor = true;
-            this.buttonCopyToClipBoard.Click += new System.EventHandler(this.buttonCopyToClipBoard_Click);
+            panelUpper.Controls.Add(label);
+            resources.ApplyResources(panelUpper, "panelUpper");
+            panelUpper.Name = "panelUpper";
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1,
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 561);
-            this.statusStrip1.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(397, 22);
-            this.statusStrip1.TabIndex = 14;
-            this.statusStrip1.Text = "statusStrip1";
+            statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripProgressBar1, toolStripStatusLabel1 });
+            resources.ApplyResources(statusStrip1, "statusStrip1");
+            statusStrip1.Name = "statusStrip1";
             // 
             // toolStripProgressBar1
             // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            toolStripProgressBar1.Name = "toolStripProgressBar1";
+            resources.ApplyResources(toolStripProgressBar1, "toolStripProgressBar1");
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(10, 17);
-            this.toolStripStatusLabel1.Text = " ";
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            resources.ApplyResources(toolStripStatusLabel1, "toolStripStatusLabel1");
             // 
             // scalablePictureBox
             // 
-            this.scalablePictureBox.AutoSize = true;
-            this.scalablePictureBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.scalablePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scalablePictureBox.FixZoomAndCenter = false;
-            this.scalablePictureBox.FocusEventEnabled = false;
-            this.scalablePictureBox.HorizontalFlip = false;
-            this.scalablePictureBox.Location = new System.Drawing.Point(0, 26);
-            this.scalablePictureBox.ManualSpotMode = false;
-            this.scalablePictureBox.Margin = new System.Windows.Forms.Padding(0);
-            this.scalablePictureBox.MouseScaling = true;
-            this.scalablePictureBox.MouseTranslation = true;
-            this.scalablePictureBox.Name = "scalablePictureBox";
-            this.scalablePictureBox.ShowAreaRectangle = false;
-            this.scalablePictureBox.ShowRimRentangle = false;
-            this.scalablePictureBox.Size = new System.Drawing.Size(397, 328);
-            this.scalablePictureBox.TabIndex = 0;
-            this.scalablePictureBox.VerticalFlip = false;
-            this.scalablePictureBox.Zoom = 128D;
-            this.scalablePictureBox.Paint2 += new System.Windows.Forms.PaintEventHandler(this.scalablePictureBox_Paint2);
-            this.scalablePictureBox.MouseMove2 += new Crystallography.Controls.ScalablePictureBox.MouseEvent(this.scalablePictureBox1_MouseMove2);
-            this.scalablePictureBox.MouseUp2 += new Crystallography.Controls.ScalablePictureBox.MouseEvent(this.scalablePictureBox_MouseUp2);
-            this.scalablePictureBox.MouseDown2 += new Crystallography.Controls.ScalablePictureBox.MouseEvent(this.scalablePictureBox_MouseDown2);
-            this.scalablePictureBox.MouseWheel2 += new Crystallography.Controls.ScalablePictureBox.MouseEvent(this.scalablePictureBox_MouseWheel2);
-            this.scalablePictureBox.DrawingAreaChanged += new Crystallography.Controls.ScalablePictureBox.DrawingAreaChangedEvent(this.scalablePictureBox_DrawingAreaChanged);
+            resources.ApplyResources(scalablePictureBox, "scalablePictureBox");
+            scalablePictureBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            scalablePictureBox.FixZoomAndCenter = false;
+            scalablePictureBox.FocusEventEnabled = false;
+            scalablePictureBox.HorizontalFlip = false;
+            scalablePictureBox.ManualSpotMode = false;
+            scalablePictureBox.MouseScaling = true;
+            scalablePictureBox.MouseTranslation = true;
+            scalablePictureBox.Name = "scalablePictureBox";
+            scalablePictureBox.ShowAreaRectangle = false;
+            scalablePictureBox.ShowRimRentangle = false;
+            scalablePictureBox.Title = ((string, System.Drawing.Font, System.Drawing.Color, System.Drawing.Color))resources.GetObject("scalablePictureBox.Title");
+            scalablePictureBox.TitleVisible = false;
+            scalablePictureBox.VerticalFlip = false;
+            scalablePictureBox.Zoom = 128D;
+            scalablePictureBox.Paint2 += scalablePictureBox_Paint2;
+            scalablePictureBox.MouseMove2 += scalablePictureBox1_MouseMove2;
+            scalablePictureBox.MouseUp2 += scalablePictureBox_MouseUp2;
+            scalablePictureBox.MouseDown2 += scalablePictureBox_MouseDown2;
+            scalablePictureBox.MouseWheel2 += scalablePictureBox_MouseWheel2;
+            scalablePictureBox.DrawingAreaChanged += scalablePictureBox_DrawingAreaChanged;
             // 
             // graphControl
             // 
-            this.graphControl.AllowMouseOperation = true;
-            this.graphControl.BackgroundColor = System.Drawing.Color.White;
-            this.graphControl.BottomMargin = 0D;
-            this.graphControl.DivisionLineColor = System.Drawing.Color.Gray;
-            this.graphControl.DivisionSubLineColor = System.Drawing.Color.LightGray;
-            this.graphControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.graphControl.FixRangeHorizontal = false;
-            this.graphControl.FixRangeVertical = false;
-            this.graphControl.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.graphControl.GraphName = "";
-            this.graphControl.HorizontalGradiationTextVisivle = true;
-            this.graphControl.Interpolation = false;
-            this.graphControl.IsIntegerX = false;
-            this.graphControl.IsIntegerY = false;
-            this.graphControl.LabelX = "X:";
-            this.graphControl.LabelY = "Y:";
-            this.graphControl.LeftMargin = 0F;
-            this.graphControl.LineColor = System.Drawing.Color.Red;
-            this.graphControl.LineWidth = 1F;
-            this.graphControl.Location = new System.Drawing.Point(0, 408);
-            this.graphControl.LowerX = 0D;
-            this.graphControl.LowerY = 0D;
-            this.graphControl.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.graphControl.MaximalX = 1D;
-            this.graphControl.MaximalY = 1D;
-            this.graphControl.MinimalX = 0D;
-            this.graphControl.MinimalY = 0D;
-            this.graphControl.Mode = Crystallography.Controls.GraphControl.DrawingMode.Histogram;
-            this.graphControl.MousePositionVisible = true;
-            this.graphControl.Name = "graphControl";
-            this.graphControl.OriginPosition = new System.Drawing.Point(20, 20);
-            this.graphControl.Size = new System.Drawing.Size(397, 70);
-            this.graphControl.Smoothing = false;
-            this.graphControl.TabIndex = 1;
-            this.graphControl.TextFont = new System.Drawing.Font("メイリオ", 7F);
-            this.graphControl.UnitX = "";
-            this.graphControl.UnitY = "";
-            this.graphControl.UpperText = "";
-            this.graphControl.UpperTextVisible = false;
-            this.graphControl.UpperX = 1D;
-            this.graphControl.UpperY = 1D;
-            this.graphControl.UseLineWidth = true;
-            this.graphControl.VerticalGradiationTextVisivle = true;
-            this.graphControl.XLog = false;
-            this.graphControl.XScaleLineVisible = true;
-            this.graphControl.YLog = true;
-            this.graphControl.YScaleLineVisible = true;
-            this.graphControl.LinePositionChanged += new Crystallography.Controls.GraphControl.LinePositionChengedEventHandler(this.graphControl_LinePositionChanged);
+            graphControl.AllowMouseOperation = true;
+            graphControl.AxisLineColor = System.Drawing.Color.Gray;
+            graphControl.AxisTextColor = System.Drawing.Color.Black;
+            graphControl.AxisTextFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            graphControl.AxisXTextVisible = true;
+            graphControl.AxisYTextVisible = true;
+            graphControl.BackgroundColor = System.Drawing.Color.White;
+            graphControl.BottomMargin = 0D;
+            graphControl.DivisionLineColor = System.Drawing.Color.LightGray;
+            graphControl.DivisionLineXVisible = true;
+            graphControl.DivisionLineYVisible = true;
+            resources.ApplyResources(graphControl, "graphControl");
+            graphControl.DrawingRange = (RectangleD)resources.GetObject("graphControl.DrawingRange");
+            graphControl.FixRangeHorizontal = false;
+            graphControl.FixRangeVertical = false;
+            graphControl.GraphTitle = "";
+            graphControl.Interpolation = false;
+            graphControl.IsIntegerX = false;
+            graphControl.IsIntegerY = false;
+            graphControl.LabelX = "X:";
+            graphControl.LabelY = "Y:";
+            graphControl.LeftMargin = 0F;
+            graphControl.LineWidth = 1F;
+            graphControl.LowerX = 0D;
+            graphControl.LowerY = 0D;
+            graphControl.MaximalX = 1D;
+            graphControl.MaximalY = 1D;
+            graphControl.MinimalX = 0D;
+            graphControl.MinimalY = 0D;
+            graphControl.Mode = GraphControl.DrawingMode.Histogram;
+            graphControl.MousePositionVisible = false;
+            graphControl.MousePositionXDigit = -1;
+            graphControl.MousePositionYDigit = -1;
+            graphControl.Name = "graphControl";
+            graphControl.OriginPosition = new System.Drawing.Point(20, 20);
+            graphControl.Profile = null;
+            graphControl.Smoothing = false;
+            graphControl.UnitX = "";
+            graphControl.UnitY = "";
+            graphControl.UpperPanelFont = new System.Drawing.Font("メイリオ", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            graphControl.UpperPanelVisible = false;
+            graphControl.UpperX = 1D;
+            graphControl.UpperY = 1D;
+            graphControl.UseLineWidth = true;
+            graphControl.VerticalLineColor = System.Drawing.Color.Red;
+            graphControl.XLog = false;
+            graphControl.YLog = true;
+            graphControl.LinePositionChanged += graphControl_LinePositionChanged;
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(panel1, "panel1");
+            panel1.Controls.Add(label14);
+            panel1.Controls.Add(labelResolution);
+            panel1.Controls.Add(buttonMag1);
+            panel1.Controls.Add(buttonMag2);
+            panel1.Controls.Add(buttonMag4);
+            panel1.Controls.Add(buttonMag_2);
+            panel1.Controls.Add(buttonMag_4);
+            panel1.Controls.Add(buttonMag_8);
+            panel1.Controls.Add(buttonMag_16);
+            panel1.Controls.Add(label1);
+            panel1.Name = "panel1";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(label14, "label14");
+            label14.Name = "label14";
+            // 
+            // labelResolution
+            // 
+            resources.ApplyResources(labelResolution, "labelResolution");
+            labelResolution.Name = "labelResolution";
+            // 
+            // buttonMag1
+            // 
+            resources.ApplyResources(buttonMag1, "buttonMag1");
+            buttonMag1.Name = "buttonMag1";
+            buttonMag1.UseVisualStyleBackColor = true;
+            buttonMag1.Click += buttonMag_Click;
+            // 
+            // buttonMag2
+            // 
+            resources.ApplyResources(buttonMag2, "buttonMag2");
+            buttonMag2.Name = "buttonMag2";
+            buttonMag2.UseVisualStyleBackColor = true;
+            buttonMag2.Click += buttonMag_Click;
+            // 
+            // buttonMag4
+            // 
+            resources.ApplyResources(buttonMag4, "buttonMag4");
+            buttonMag4.Name = "buttonMag4";
+            buttonMag4.UseVisualStyleBackColor = true;
+            buttonMag4.Click += buttonMag_Click;
+            // 
+            // buttonMag_2
+            // 
+            resources.ApplyResources(buttonMag_2, "buttonMag_2");
+            buttonMag_2.Name = "buttonMag_2";
+            buttonMag_2.UseVisualStyleBackColor = true;
+            buttonMag_2.Click += buttonMag_Click;
+            // 
+            // buttonMag_4
+            // 
+            resources.ApplyResources(buttonMag_4, "buttonMag_4");
+            buttonMag_4.Name = "buttonMag_4";
+            buttonMag_4.UseVisualStyleBackColor = true;
+            buttonMag_4.Click += buttonMag_Click;
+            // 
+            // buttonMag_8
+            // 
+            resources.ApplyResources(buttonMag_8, "buttonMag_8");
+            buttonMag_8.Name = "buttonMag_8";
+            buttonMag_8.UseVisualStyleBackColor = true;
+            buttonMag_8.Click += buttonMag_Click;
+            // 
+            // buttonMag_16
+            // 
+            resources.ApplyResources(buttonMag_16, "buttonMag_16");
+            buttonMag_16.Name = "buttonMag_16";
+            buttonMag_16.UseVisualStyleBackColor = true;
+            buttonMag_16.Click += buttonMag_Click;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(label1, "label1");
+            label1.Name = "label1";
             // 
             // ScalablePictureBoxAdvanced
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Controls.Add(this.scalablePictureBox);
-            this.Controls.Add(this.panelTrackBar);
-            this.Controls.Add(this.graphControl);
-            this.Controls.Add(this.flowLayoutPanelGradient);
-            this.Controls.Add(this.flowLayoutPanelImageFilter);
-            this.Controls.Add(this.panelUpper);
-            this.Controls.Add(this.statusStrip1);
-            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Name = "ScalablePictureBoxAdvanced";
-            this.Size = new System.Drawing.Size(397, 583);
-            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ScalablePictureBoxAdvanced_DragDrop);
-            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ScalablePictureBoxAdvanced_DragEnter);
-            this.panelTrackBar.ResumeLayout(false);
-            this.panelTrackBar.PerformLayout();
-            this.flowLayoutPanelGradient.ResumeLayout(false);
-            this.flowLayoutPanelGradient.PerformLayout();
-            this.flowLayoutPanelImageFilter.ResumeLayout(false);
-            this.flowLayoutPanelImageFilter.PerformLayout();
-            this.flowLayoutPanelDustScratches.ResumeLayout(false);
-            this.flowLayoutPanelDustScratches.PerformLayout();
-            this.flowLayoutPanelGaussianBlur2.ResumeLayout(false);
-            this.flowLayoutPanelGaussianBlur2.PerformLayout();
-            this.panelUpper.ResumeLayout(false);
-            this.panelUpper.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            resources.ApplyResources(this, "$this");
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            Controls.Add(scalablePictureBox);
+            Controls.Add(panel1);
+            Controls.Add(panelTrackBar);
+            Controls.Add(graphControl);
+            Controls.Add(flowLayoutPanelGradient);
+            Controls.Add(flowLayoutPanelImageFilter);
+            Controls.Add(panelUpper);
+            Controls.Add(statusStrip1);
+            Name = "ScalablePictureBoxAdvanced";
+            DragDrop += ScalablePictureBoxAdvanced_DragDrop;
+            DragEnter += ScalablePictureBoxAdvanced_DragEnter;
+            panelTrackBar.ResumeLayout(false);
+            panelTrackBar.PerformLayout();
+            flowLayoutPanelGradient.ResumeLayout(false);
+            flowLayoutPanelGradient.PerformLayout();
+            flowLayoutPanelImageFilter.ResumeLayout(false);
+            flowLayoutPanelImageFilter.PerformLayout();
+            flowLayoutPanelDustScratches.ResumeLayout(false);
+            flowLayoutPanelDustScratches.PerformLayout();
+            flowLayoutPanelGaussianBlur2.ResumeLayout(false);
+            flowLayoutPanelGaussianBlur2.PerformLayout();
+            panelUpper.ResumeLayout(false);
+            panelUpper.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -611,14 +513,24 @@
         private System.Windows.Forms.CheckBox checkBoxGaussianBlur;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelGaussianBlur2;
         private System.Windows.Forms.Panel panelUpper;
-        private System.Windows.Forms.Button buttonCopyToClipBoard;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelDustScratches;
         private System.Windows.Forms.CheckBox checkBoxDustScratches;
         private NumericBox numericBoxDustScratchesThreshold;
         private NumericBox numericBoxDustScratchesRadius;
-        private NumericBox numericBoxGaussianRadius;
+        private NumericBox numericBoxGaussianFWHM;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label labelResolution;
+        private System.Windows.Forms.Button buttonMag1;
+        private System.Windows.Forms.Button buttonMag2;
+        private System.Windows.Forms.Button buttonMag4;
+        private System.Windows.Forms.Button buttonMag_2;
+        private System.Windows.Forms.Button buttonMag_4;
+        private System.Windows.Forms.Button buttonMag_8;
+        private System.Windows.Forms.Button buttonMag_16;
+        private System.Windows.Forms.Label label1;
     }
 }

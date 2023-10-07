@@ -59,7 +59,7 @@ namespace Crystallography.Controls
 
         private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (skipEvent) 
+            if (skipEvent)
                 return;
             if (crystal != null && crystal.Atoms != null && crystal.Atoms.Length > 0 && comboBox.SelectedIndex < Crystal.Atoms.Length)
             {
@@ -102,17 +102,17 @@ namespace Crystallography.Controls
                 bool flag = false;
                 Parallel.For(-max, max + 1, xShift =>
                 {
-                      for (int yShift = -max; yShift <= max; yShift++)
-                          for (int zShift = -max; zShift <= max; zShift++)
-                          {
-                              if (Math.Abs(xShift) == max || Math.Abs(yShift) == max || Math.Abs(zShift) == max)
-                              {
-                                  foreach (Atoms atm in crystal.Atoms)
-                                      foreach (var v in atm.Atom)
-                                      {
-                                          var tempPos = mat * (v + new Vector3DBase(xShift, yShift, zShift));
-                                          if (max2 > (tempPos - pos).Length2)
-                                          {
+                    for (int yShift = -max; yShift <= max; yShift++)
+                        for (int zShift = -max; zShift <= max; zShift++)
+                        {
+                            if (Math.Abs(xShift) == max || Math.Abs(yShift) == max || Math.Abs(zShift) == max)
+                            {
+                                foreach (Atoms atm in crystal.Atoms)
+                                    foreach (var v in atm.Atom)
+                                    {
+                                        var tempPos = mat * (v + new Vector3DBase(xShift, yShift, zShift));
+                                        if (max2 > (tempPos - pos).Length2)
+                                        {
                                             rwLock.EnterWriteLock();
                                             try
                                             {
@@ -120,10 +120,10 @@ namespace Crystallography.Controls
                                                 flag = true;//一個でも見つけられたら続行
                                             }
                                             finally { rwLock.ExitWriteLock(); }
-                                          }
-                                      }
-                              }
-                          }
+                                        }
+                                    }
+                            }
+                        }
                 });
                 if (flag == false && max > 2)
                     break;
@@ -136,9 +136,9 @@ namespace Crystallography.Controls
 
         private Bitmap bmp;
         private Graphics g;
-        private Point OriginPos = new Point(30, 30);
+        private Point OriginPos = new(30, 30);
         private double UpperX, LowerX, UpperY, LowerY;
-        private Profile profile = new();
+        private readonly Profile profile = new();
         private double BottomMargin = 0;
 
         private void DrawGraph(List<(string Label, double Distance)> atoms)

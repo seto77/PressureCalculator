@@ -63,6 +63,8 @@
             this.tabPageElasticity = new System.Windows.Forms.TabPage();
             this.elasticityControl1 = new Crystallography.Controls.ElasticityControl();
             this.tabPageStrainStress = new System.Windows.Forms.TabPage();
+            this.buttonStressSet = new System.Windows.Forms.Button();
+            this.numericBoxStrain33 = new Crystallography.Controls.NumericBox();
             this.numericBoxHill = new Crystallography.Controls.NumericBox();
             this.label116 = new System.Windows.Forms.Label();
             this.label117 = new System.Windows.Forms.Label();
@@ -86,7 +88,6 @@
             this.numericBoxStress23 = new Crystallography.Controls.NumericBox();
             this.numericBoxStress13 = new Crystallography.Controls.NumericBox();
             this.numericBoxStress12 = new Crystallography.Controls.NumericBox();
-            this.numericBoxStrain33 = new Crystallography.Controls.NumericBox();
             this.numericBoxStrain11 = new Crystallography.Controls.NumericBox();
             this.numericBoxStrain22 = new Crystallography.Controls.NumericBox();
             this.numericBoxStrain12 = new Crystallography.Controls.NumericBox();
@@ -127,10 +128,12 @@
             this.exportThisCrystalAsCIFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendThisCrystalToOtherSoftwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.clearAllDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.revertCellConstantsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.strainControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertToP1SymmetryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertToSuperstructureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertToAnotherSpacegroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -205,13 +208,13 @@
             // 
             // flowLayoutPanel4
             // 
+            resources.ApplyResources(this.flowLayoutPanel4, "flowLayoutPanel4");
             this.flowLayoutPanel4.Controls.Add(this.numericBoxVolume);
             this.flowLayoutPanel4.Controls.Add(this.numericBoxCellMass);
             this.flowLayoutPanel4.Controls.Add(this.numericBoxMolarVolume);
             this.flowLayoutPanel4.Controls.Add(this.numericBoxMolarMass);
             this.flowLayoutPanel4.Controls.Add(this.numericBoxDensity);
             this.flowLayoutPanel4.Controls.Add(this.colorControl);
-            resources.ApplyResources(this.flowLayoutPanel4, "flowLayoutPanel4");
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             // 
             // numericBoxVolume
@@ -525,6 +528,7 @@
             // tabPageStrainStress
             // 
             this.tabPageStrainStress.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageStrainStress.Controls.Add(this.buttonStressSet);
             this.tabPageStrainStress.Controls.Add(this.numericBoxStrain33);
             this.tabPageStrainStress.Controls.Add(this.numericBoxHill);
             this.tabPageStrainStress.Controls.Add(this.label116);
@@ -556,6 +560,26 @@
             this.tabPageStrainStress.Controls.Add(this.numericBoxStrain13);
             resources.ApplyResources(this.tabPageStrainStress, "tabPageStrainStress");
             this.tabPageStrainStress.Name = "tabPageStrainStress";
+            // 
+            // buttonStressSet
+            // 
+            resources.ApplyResources(this.buttonStressSet, "buttonStressSet");
+            this.buttonStressSet.Name = "buttonStressSet";
+            this.buttonStressSet.UseVisualStyleBackColor = true;
+            this.buttonStressSet.Click += new System.EventHandler(this.buttonStressSet_Click);
+            // 
+            // numericBoxStrain33
+            // 
+            resources.ApplyResources(this.numericBoxStrain33, "numericBoxStrain33");
+            this.numericBoxStrain33.BackColor = System.Drawing.SystemColors.Control;
+            this.numericBoxStrain33.FooterBackColor = System.Drawing.SystemColors.Control;
+            this.numericBoxStrain33.HeaderBackColor = System.Drawing.SystemColors.Control;
+            this.numericBoxStrain33.Name = "numericBoxStrain33";
+            this.numericBoxStrain33.RestrictLimitValue = false;
+            this.numericBoxStrain33.RoundErrorAccuracy = -1;
+            this.numericBoxStrain33.SkipEventDuringInput = false;
+            this.numericBoxStrain33.SmartIncrement = true;
+            this.numericBoxStrain33.TextFont = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             // 
             // numericBoxHill
             // 
@@ -729,19 +753,6 @@
             this.numericBoxStress12.SkipEventDuringInput = false;
             this.numericBoxStress12.SmartIncrement = true;
             this.numericBoxStress12.TextFont = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            // 
-            // numericBoxStrain33
-            // 
-            resources.ApplyResources(this.numericBoxStrain33, "numericBoxStrain33");
-            this.numericBoxStrain33.BackColor = System.Drawing.SystemColors.Control;
-            this.numericBoxStrain33.FooterBackColor = System.Drawing.SystemColors.Control;
-            this.numericBoxStrain33.HeaderBackColor = System.Drawing.SystemColors.Control;
-            this.numericBoxStrain33.Name = "numericBoxStrain33";
-            this.numericBoxStrain33.RestrictLimitValue = false;
-            this.numericBoxStrain33.RoundErrorAccuracy = -1;
-            this.numericBoxStrain33.SkipEventDuringInput = false;
-            this.numericBoxStrain33.SmartIncrement = true;
-            this.numericBoxStrain33.TextFont = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             // 
             // numericBoxStrain11
             // 
@@ -1064,10 +1075,12 @@
             this.exportThisCrystalAsCIFToolStripMenuItem,
             this.sendThisCrystalToOtherSoftwareToolStripMenuItem,
             this.toolStripSeparator1,
-            this.clearAllDataToolStripMenuItem,
             this.revertCellConstantsToolStripMenuItem,
             this.toolStripSeparator3,
-            this.strainControlToolStripMenuItem});
+            this.strainControlToolStripMenuItem,
+            this.convertToP1SymmetryToolStripMenuItem,
+            this.convertToSuperstructureToolStripMenuItem,
+            this.convertToAnotherSpacegroupToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
             resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
@@ -1111,11 +1124,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
-            // clearAllDataToolStripMenuItem
-            // 
-            this.clearAllDataToolStripMenuItem.Name = "clearAllDataToolStripMenuItem";
-            resources.ApplyResources(this.clearAllDataToolStripMenuItem, "clearAllDataToolStripMenuItem");
-            // 
             // revertCellConstantsToolStripMenuItem
             // 
             this.revertCellConstantsToolStripMenuItem.Name = "revertCellConstantsToolStripMenuItem";
@@ -1132,6 +1140,24 @@
             this.strainControlToolStripMenuItem.Name = "strainControlToolStripMenuItem";
             resources.ApplyResources(this.strainControlToolStripMenuItem, "strainControlToolStripMenuItem");
             this.strainControlToolStripMenuItem.Click += new System.EventHandler(this.strainControlToolStripMenuItem_Click);
+            // 
+            // convertToP1SymmetryToolStripMenuItem
+            // 
+            this.convertToP1SymmetryToolStripMenuItem.Name = "convertToP1SymmetryToolStripMenuItem";
+            resources.ApplyResources(this.convertToP1SymmetryToolStripMenuItem, "convertToP1SymmetryToolStripMenuItem");
+            this.convertToP1SymmetryToolStripMenuItem.Click += new System.EventHandler(this.convertToP1ToolStripMenuItem_Click);
+            // 
+            // convertToSuperstructureToolStripMenuItem
+            // 
+            this.convertToSuperstructureToolStripMenuItem.Name = "convertToSuperstructureToolStripMenuItem";
+            resources.ApplyResources(this.convertToSuperstructureToolStripMenuItem, "convertToSuperstructureToolStripMenuItem");
+            this.convertToSuperstructureToolStripMenuItem.Click += new System.EventHandler(this.convertToSuperstructureToolStripMenuItem_Click);
+            // 
+            // convertToAnotherSpacegroupToolStripMenuItem
+            // 
+            this.convertToAnotherSpacegroupToolStripMenuItem.Name = "convertToAnotherSpacegroupToolStripMenuItem";
+            resources.ApplyResources(this.convertToAnotherSpacegroupToolStripMenuItem, "convertToAnotherSpacegroupToolStripMenuItem");
+            this.convertToAnotherSpacegroupToolStripMenuItem.Click += new System.EventHandler(this.convertToAnotherSpacegroupToolStripMenuItem_Click);
             // 
             // textBoxName
             // 
@@ -1263,7 +1289,6 @@
         private System.Windows.Forms.ToolStripMenuItem sendThisCrystalToOtherSoftwareToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scatteringFactorToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem clearAllDataToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
@@ -1352,5 +1377,9 @@
         private System.Windows.Forms.Button buttonSymmetryInfo;
         private System.Windows.Forms.Button buttonScatteringFactor;
         private EOSControl eosControl;
+        private System.Windows.Forms.Button buttonStressSet;
+        private System.Windows.Forms.ToolStripMenuItem convertToP1SymmetryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convertToSuperstructureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convertToAnotherSpacegroupToolStripMenuItem;
     }
 }

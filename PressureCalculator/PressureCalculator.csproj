@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyVersion>2021.9.1.0940</AssemblyVersion>
     <FileVersion>2021.9.1.0940</FileVersion>

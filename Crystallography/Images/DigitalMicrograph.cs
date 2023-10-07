@@ -13,10 +13,10 @@ namespace Crystallography
         {
             public double AccVoltage { get; set; }
             public double PixelSizeInMicron { get; set; }
-            public PixelUnitEnum PixelUnit { get; set; }
+            public LengthUnitEnum PixelUnit { get; set; }
             public double PixelScale { get; set; }
 
-            public Property(double accVoltage, double pixelSizeInMicron, double pixelScale, PixelUnitEnum pixelUnit)
+            public Property(double accVoltage, double pixelSizeInMicron, double pixelScale, LengthUnitEnum pixelUnit)
             {
                 AccVoltage = accVoltage;
                 PixelSizeInMicron = pixelSizeInMicron;
@@ -41,7 +41,7 @@ namespace Crystallography
 
             public Loader(string fileName)
             {
-                var br = new BinaryReader(new FileStream(fileName, FileMode.Open, FileAccess.ReadWrite));
+                var br = new BinaryReader(new FileStream(fileName, FileMode.Open, FileAccess.Read));
 
                 byte[] i1 = new byte[1], i2 = new byte[2], i4 = new byte[4];
 
@@ -76,7 +76,7 @@ namespace Crystallography
                 for (int i = 0; i < NumberOfTags; i++)
                 {
                     TagInfo tagInfo = new TagInfo(br, Version);//Tagの読み込みはTagInfoクラスに任せる
-                    if (tagInfo.TagName == "")
+                    if (tagInfo.TagName.Length == 0)
                         tagInfo.TagName = i.ToString();
                     Tag.Add(tagInfo.TagName, tagInfo);
                 }
@@ -125,7 +125,7 @@ namespace Crystallography
                     for (int i = 0; i < NumberOfTagsInTagDirectory; i++)
                     {
                         TagInfo tagInfo = new TagInfo(br, version);//TagInfoを再起呼び出し
-                        if (tagInfo.TagName == "")
+                        if (tagInfo.TagName.Length == 0)
                             tagInfo.TagName = i.ToString();
                         Tag.Add(tagInfo.TagName, tagInfo);
                     }

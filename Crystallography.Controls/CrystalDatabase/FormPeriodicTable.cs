@@ -8,14 +8,14 @@ namespace Crystallography.Controls
 {
     public partial class FormPeriodicTable : Form
     {
-        public int[] Includes => button.Where(b => b.BackColor == IncludeColor).Select(b => (int)b.Tag).ToArray();
+        public byte[] Includes => button.Where(b => b.BackColor == IncludeColor).Select(b => (byte)((int)b.Tag)).ToArray();
         public string[] IncludesStr => Includes.Select(i => i.ToString("000")).ToArray();
 
-        public int[] Excludes => button.Where(b => b.BackColor == ExcludeColor).Select(b => (int)b.Tag).ToArray();
+        public byte[] Excludes => button.Where(b => b.BackColor == ExcludeColor).Select(b => (byte)((int)b.Tag)).ToArray();
         public string[] ExcludesStr => Excludes.Select(i => i.ToString("000")).ToArray();
 
 
-        private readonly List<Button> button = new List<Button>();
+        private readonly List<Button> button = new();
 
         private readonly Color ExcludeColor = Color.LightCoral;
         private readonly Color IncludeColor = Color.LightBlue;
@@ -195,15 +195,15 @@ namespace Crystallography.Controls
             labelAc.Location = new Point(14, height * 8 + 4);
             for (int i = 89; i <= 103; i++) button[i].Location = new Point((i - 89 + 3) * width, height * 8);//Ac~Lr
 
-            this.ClientSize = new Size(18 * width , height * 9 + buttonOK.Height + 5);
+            this.ClientSize = new Size(18 * width, height * 9 + buttonOK.Height + 5);
 
-           // buttonOK.Location = new Point(button[103].Location.X + width - buttonOK.Width,
-          //      button[103].Location.Y + height + 4);
+            // buttonOK.Location = new Point(button[103].Location.X + width - buttonOK.Width,
+            //      button[103].Location.Y + height + 4);
 
-           //Size = new Size(buttonOK.Location.X + buttonOK.Width + 4, buttonOK.Location.Y + buttonOK.Height + 4);
+            //Size = new Size(buttonOK.Location.X + buttonOK.Width + 4, buttonOK.Location.Y + buttonOK.Height + 4);
 
 
-               ;
+            ;
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -249,11 +249,11 @@ namespace Crystallography.Controls
 
         private void FormPeriodicTable_Load(object sender, EventArgs e)
         {
-          //  buttonOK.Location = new Point(button[103].Location.X + button[103].Width - buttonOK.Width,
-          //        button[103].Location.Y + button[103].Height + 4);
+            //  buttonOK.Location = new Point(button[103].Location.X + button[103].Width - buttonOK.Width,
+            //        button[103].Location.Y + button[103].Height + 4);
 
-           // Size = new Size(buttonOK.Location.X + buttonOK.Width + 4, buttonOK.Location.Y + buttonOK.Height + 4);
-          //  buttonOK.BringToFront();
+            // Size = new Size(buttonOK.Location.X + buttonOK.Width + 4, buttonOK.Location.Y + buttonOK.Height + 4);
+            //  buttonOK.BringToFront();
         }
     }
 }

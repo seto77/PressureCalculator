@@ -2,15 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Xml.Schema;
-using System.Numerics;
-using System.Collections.Concurrent;
 
 namespace Crystallography
 {
@@ -125,7 +121,7 @@ namespace Crystallography
         #endregion フィールド、プロパティ
 
         public event ProgressChangedEventHandler ProgressChanged;
-        
+
         [XmlIgnoreAttribute]
         readonly Stopwatch stopwatch = new Stopwatch();
         //private object lockObj = new object();
@@ -141,7 +137,7 @@ namespace Crystallography
             BaseCrystal = baseCrystal;
             setCrystallineRotation();
             setCrystallineSolidAngle();
-            Density = Enumerable.Repeat(1.0,TotalCrystalline).ToArray();
+            Density = Enumerable.Repeat(1.0, TotalCrystalline).ToArray();
             if (vec == null || vec[0].Length != SquareDiv)
                 initializeVec();
         }
@@ -178,7 +174,7 @@ namespace Crystallography
         /// <param name="center"></param>
         /// <param name="resolution"></param>
         /// <param name="maskedArea"></param>
-        public void SetGVector(Crystal crystal, AreaDetector detector, bool applyTiltMatrix = true, bool removeZeroIntensity = true, bool calcSpotShape=true)
+        public void SetGVector(Crystal crystal, AreaDetector detector, bool applyTiltMatrix = true, bool removeZeroIntensity = true, bool calcSpotShape = true)
         {
             ImageWidh = detector.ImageWidth;
             ImageHeight = detector.ImageHeight;
@@ -205,6 +201,9 @@ namespace Crystallography
                 length = max;
             }
             crystal.SetVectorOfG(detector.WaveLength / 2 / Math.Sin(Math.Atan(length / detector.CameraLength) / 2.0), detector.WaveSource);
+            if (crystal.VectorOfG.Count == 0)
+                return;
+
             var temp = new List<Vector3D>();
             foreach (var g in crystal.VectorOfG)
                 if (removeZeroIntensity)
@@ -259,7 +258,7 @@ namespace Crystallography
                 G[i].Intensity2 /= maxInt;
                 DeviationThreshold[i] = Math.Max(3, Math.Log10(G[i].Intensity2) * 3);//最小で3, 最大で9
             }
-            if(calcSpotShape)
+            if (calcSpotShape)
                 setSpotShapes(detector);
         }
 
@@ -521,7 +520,7 @@ namespace Crystallography
         /// </summary>
         public void setCrystallineRotation()
         {
-           
+
             Rotations1 = new Matrix3D[SquareDiv * SquareDiv];
             Parallel.For(0, SquareDiv, y =>
             {
@@ -535,7 +534,7 @@ namespace Crystallography
                     double cosPhi = u / sinTheta, sinPhi = v / sinTheta;
                     if (sinTheta == 0)
                     { cosPhi = 1; sinPhi = 0; }
-                    Rotations1[y *SquareDiv + x] = new Matrix3D(cosPhi, -sinPhi, 0, sinPhi, cosPhi, 0, 0, 0, 1) * new Matrix3D(1, 0, 0, 0, cosTheta, sinTheta, 0, -sinTheta, cosTheta);
+                    Rotations1[y * SquareDiv + x] = new Matrix3D(cosPhi, -sinPhi, 0, sinPhi, cosPhi, 0, 0, 0, 1) * new Matrix3D(1, 0, 0, 0, cosTheta, sinTheta, 0, -sinTheta, cosTheta);
                 }
             });
 
@@ -554,7 +553,7 @@ namespace Crystallography
                 for (int j = 0; j < Rotations2.Length; j++)
                 {
                     var mat = Rotations1[i] * Rotations2[j];
-                    int baseIndex = i* RotationDiv +j;
+                    int baseIndex = i * RotationDiv + j;
                     for (int plane = 0; plane < 6; plane++)
                         Rotations[plane * m + baseIndex] = ConvertRotationByPlane(mat, plane);
                 }
@@ -574,7 +573,7 @@ namespace Crystallography
                     double cosPhi = u / sinTheta, sinPhi = v / sinTheta;
                     if (sinTheta == 0)
                     { cosPhi = 1; sinPhi = 0; }
-                    SubRot1[y* SquareDiv * BaseCrystal.SubDivision + x] 
+                    SubRot1[y * SquareDiv * BaseCrystal.SubDivision + x]
                     = new Matrix3D(cosPhi, -sinPhi, 0, sinPhi, cosPhi, 0, 0, 0, 1) * new Matrix3D(1, 0, 0, 0, cosTheta, sinTheta, 0, -sinTheta, cosTheta);
                 }
             });
@@ -673,8 +672,24 @@ namespace Crystallography
         public void SetDiffractedPixels(AreaDetector detector)
         {
             stopwatch.Restart();
+            BaseCrystal.ElasticStiffness[0, 0] = BaseCrystal.ElasticStiffness[1, 1] = 1350;
+            BaseCrystal.ElasticStiffness[2, 2] = 1310;
+            BaseCrystal.ElasticStiffness[3, 3] = BaseCrystal.ElasticStiffness[4, 4] = 400;
+            BaseCrystal.ElasticStiffness[5, 5] = 230;
+            BaseCrystal.ElasticStiffness[0, 1] = BaseCrystal.ElasticStiffness[1, 0] = 890;
+            BaseCrystal.ElasticStiffness[0, 2] = BaseCrystal.ElasticStiffness[2, 0] = 900;
+            BaseCrystal.ElasticStiffness[1, 2] = BaseCrystal.ElasticStiffness[2, 1] = 900;
 
             var elasticity = new Elasticity(DenseMatrix.OfArray(BaseCrystal.ElasticStiffness), Elasticity.Mode.Stiffness);
+
+            BaseCrystal.Stress.E11 = -10;
+            BaseCrystal.Stress.E22 = 5;
+            BaseCrystal.Stress.E33 = 5;
+            BaseCrystal.Strain.E11 = 0;
+            BaseCrystal.Strain.E22 = 0;
+            BaseCrystal.Strain.E33 = 0;
+            BaseCrystal.HillCoefficient = 1;
+
             bool strainFree = BaseCrystal.Stress.IsZero() && BaseCrystal.Strain.IsZero();
             bool rotationFree = WholeRotation.IsIdentity();
             double ewaldR = 1 / detector.WaveLength, ewaldR2 = ewaldR * ewaldR;
@@ -749,7 +764,7 @@ namespace Crystallography
                          (elasticity.GetStrainByHill(BaseCrystal.Symmetry, r, BaseCrystal.Stress, BaseCrystal.Strain, BaseCrystal.HillCoefficient) + new Matrix3D()).Inverse() * r).ToArray();
 
                 var result = new Dictionary<int, double>();
-                
+
                 var rotArray = rotations.Select(r => r.ToArrayRowMajorOrder()).ToArray();
 
                 foreach (int gNum in ValidIndex[num])
@@ -793,7 +808,7 @@ namespace Crystallography
                         }
                     }
                 }
-                return result.Select(r =>(r.Key, r.Value)).ToArray();
+                return result.Select(r => (r.Key, r.Value)).ToArray();
             }
             #endregion
 
@@ -804,6 +819,7 @@ namespace Crystallography
                 ProgressChanged?.Invoke(this, new ProgressChangedEventArgs((int)(100.0 * ratio), new object[] { ratio, $"Elapsed: {sec:f2}sec.  Remaining: {sec * (1 - ratio) / ratio:f2}sec." }));
 
                 Parallel.For(TotalCrystalline / div * i, Math.Min(TotalCrystalline, TotalCrystalline / div * (i + 1)), num =>
+                //for(int num= TotalCrystalline / div * i; num< Math.Min(TotalCrystalline, TotalCrystalline / div * (i + 1)); i++)
                 {
                     if (ValidIndex[num] == null)
                         ValidIndex[num] = searchValidIndex(num);

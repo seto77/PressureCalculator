@@ -14,7 +14,7 @@ namespace Crystallography.Controls
             {
                 Text = value.Text;
                 var progress = (int)(progressBar.Maximum * value.Ratio);
-                progressBar.Value = progress < progressBar.Maximum ? progress : progressBar.Maximum ;
+                progressBar.Value = progress < progressBar.Maximum ? progress : progressBar.Maximum;
                 Application.DoEvents();
             }
         }
@@ -33,10 +33,10 @@ namespace Crystallography.Controls
                     checkBoxCloseWindow.Visible = true;
 
                     textBox.Visible = false;
-                    
+
                     labelSoftwareAndVersion.Visible = true;
 
-                    ClientSize = new Size(400, progressBar.Height + flowLayoutPanelSoftwareInformation.Height + panelOK.Height);
+                    ClientSize = new Size(420, progressBar.Height + flowLayoutPanelSoftwareInformation.Height + panelOK.Height);
                 }
                 else
                 {
@@ -70,7 +70,7 @@ namespace Crystallography.Controls
             }
         }
 
-        private string software="";// e.g., "ReciPro"　
+        private string software = "";// e.g., "ReciPro"　
         public string Software
         {
             get => software;
@@ -81,7 +81,7 @@ namespace Crystallography.Controls
             }
         }
 
-        private string versionAndDate="";// e.g., "ver3.456(2020/12/31)"　
+        private string versionAndDate = "";// e.g., "ver3.456(2020/12/31)"　
         public string VersionAndDate
         {
             get => versionAndDate;
@@ -90,9 +90,14 @@ namespace Crystallography.Controls
                 versionAndDate = value;
                 labelSoftwareAndVersion.Text = software + "  " + versionAndDate;
 
-                var year =versionAndDate.Split(new[] { '/', '(' }, StringSplitOptions.RemoveEmptyEntries)[1];
-                labelCopyRight.Text = "Copyright(C) 2005-" + year + "   Yusuke Seto";
+                var year = versionAndDate.Split(new[] { '/', '(' }, StringSplitOptions.RemoveEmptyEntries)[1];
+                labelCopyRight.Text = "Copyright(C) 2005-" + year;
             }
+        }
+        public string Author
+        {
+            get => labelAuthor.Text;
+            set => labelAuthor.Text = value;
         }
 
         public string History { get; set; } = "";
@@ -155,5 +160,11 @@ namespace Crystallography.Controls
         #endregion
 
         private void setToolTips() => textBox.Text = hint.Length > 0 ? hint[new Random().Next(hint.Length)] : "";
+
+        private void checkBoxCloseWindow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxCloseWindow.Checked)
+                Visible = false;
+        }
     }
 }
