@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_89C8BAC1235A4798A348AEED1276C164"
+        "MsmKey" = "8:_26112D64DA024FDA8358D640A59DD136"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_FA38798AC655491B9C8A469AAA307A78"
+        "MsmKey" = "8:_4CFC2D5AD9F04911B3307477AB595032"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -77,7 +77,7 @@
         "InstallerBootstrapper" = "3:2"
             "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
             {
-            "Enabled" = "11:TRUE"
+            "Enabled" = "11:FALSE"
             "PromptEnabled" = "11:TRUE"
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
@@ -86,7 +86,7 @@
                 {
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.5.0.x86"
                     {
-                    "Name" = "8:.NET ランタイム 5.0.6 (x86)"
+                    "Name" = "8:.NET ランタイム 5.0.17 (x86)"
                     "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.5.0.x86"
                     }
                 }
@@ -113,7 +113,7 @@
                 "Name" = "8:.NET Core"
                 "Message" = "8:[VSDNETCOREMSG]"
                 "AllowLaterVersions" = "11:FALSE"
-                "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet/thank-you/runtime-desktop-5.0.9-windows-x64-installer"
+                "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet/thank-you/runtime-desktop-7.0.0-windows-x64-installer"
                 "IsNETCore" = "11:TRUE"
                 "Architecture" = "2:0"
                 "Runtime" = "2:0"
@@ -122,27 +122,7 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_89C8BAC1235A4798A348AEED1276C164"
-            {
-            "SourcePath" = "8:..\\LICENSE.rtf"
-            "TargetName" = "8:LICENSE.rtf"
-            "Tag" = "8:"
-            "Folder" = "8:_C8E792C9E3544094BC936B8F7F5808CA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FA38798AC655491B9C8A469AAA307A78"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4CFC2D5AD9F04911B3307477AB595032"
             {
             "SourcePath" = "8:..\\PressureCalculator\\bin\\Release\\net7.0-windows\\PressureCalculator.exe"
             "TargetName" = "8:PressureCalculator.exe"
@@ -228,9 +208,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:PressureCalculatorSetup"
+        "ProductName" = "8:PressureCalculator"
         "ProductCode" = "8:{D206C7E0-A404-4AB3-A174-597378672228}"
-        "PackageCode" = "8:{1E696ECB-688A-4000-8867-1EE3F78447CB}"
+        "PackageCode" = "8:{A81F7B98-4C90-48D0-AF33-7B166A7A9621}"
         "UpgradeCode" = "8:{AB8CAB9D-1085-4D04-8812-8107672A0B5C}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -350,7 +330,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A77408F25BD14418AFAC03E88736AEEA"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_242696A4F47D49B28BE816203DDAC400"
             {
             "Name" = "8:PressureCalculator"
             "Arguments" = "8:"
@@ -358,13 +338,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_2A3DFCC865954AB1B74DE549C78DF2D1"
+            "Target" = "8:_4CFC2D5AD9F04911B3307477AB595032"
+            "Folder" = "8:_F7ABE7946F1D495D802AB28CD316997B"
             "WorkingFolder" = "8:_C8E792C9E3544094BC936B8F7F5808CA"
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F644FCFB488745F39D1CB6F452891E5D"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_43EDF44AB10F4BFB80C7F39666E8750B"
             {
             "Name" = "8:PressureCalculator"
             "Arguments" = "8:"
@@ -372,8 +352,8 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_F7ABE7946F1D495D802AB28CD316997B"
+            "Target" = "8:_4CFC2D5AD9F04911B3307477AB595032"
+            "Folder" = "8:_2A3DFCC865954AB1B74DE549C78DF2D1"
             "WorkingFolder" = "8:_C8E792C9E3544094BC936B8F7F5808CA"
             "Icon" = "8:"
             "Feature" = "8:"
@@ -394,53 +374,6 @@
             "Attributes" = "3:1"
                 "Dialogs"
                 {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_A6AA3F0A0DFC419D85A43AB72EC34D77"
-                    {
-                    "Sequence" = "3:110"
-                    "DisplayName" = "8:ライセンス条項"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminLicenseDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "EulaText"
-                            {
-                            "Name" = "8:EulaText"
-                            "DisplayName" = "8:#1008"
-                            "Description" = "8:#1108"
-                            "Type" = "3:6"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:2"
-                            "Value" = "8:_89C8BAC1235A4798A348AEED1276C164"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "Sunken"
-                            {
-                            "Name" = "8:Sunken"
-                            "DisplayName" = "8:#1007"
-                            "Description" = "8:#1107"
-                            "Type" = "3:5"
-                            "ContextData" = "8:4;True=4;False=0"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:0"
-                            "Value" = "3:4"
-                            "DefaultValue" = "3:4"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_C8F2EE38B11A4962901D6241F38B4D4D"
                     {
                     "Sequence" = "3:120"
@@ -547,53 +480,6 @@
                             "Setting" = "3:0"
                             "Value" = "3:1"
                             "DefaultValue" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_CD3989A417DD4233A40C5AB2C1D7DB81"
-                    {
-                    "Sequence" = "3:200"
-                    "DisplayName" = "8:ライセンス条項"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdLicenseDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "EulaText"
-                            {
-                            "Name" = "8:EulaText"
-                            "DisplayName" = "8:#1008"
-                            "Description" = "8:#1108"
-                            "Type" = "3:6"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:2"
-                            "Value" = "8:_89C8BAC1235A4798A348AEED1276C164"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "Sunken"
-                            {
-                            "Name" = "8:Sunken"
-                            "DisplayName" = "8:#1007"
-                            "Description" = "8:#1107"
-                            "Type" = "3:5"
-                            "ContextData" = "8:4;True=4;False=0"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:0"
-                            "Value" = "3:4"
-                            "DefaultValue" = "3:4"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -731,35 +617,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_8E38389ED3C7402C93E2CFFE8BAB3245"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C8E792C9E3544094BC936B8F7F5808CA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Any CPU"
-            "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
-            "OutputProjectGuid" = "8:{F081CA7D-FC41-4FA1-BCB6-A0ED29219AD6}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B0DEC19C8138444BBD278B1C27DF7F48"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_26112D64DA024FDA8358D640A59DD136"
             {
             "SourcePath" = "8:..\\PressureCalculator\\obj\\Release\\net7.0-windows\\apphost.exe"
             "TargetName" = "8:"
@@ -779,41 +637,8 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Any CPU"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:PublishItems"
-            "OutputProjectGuid" = "8:{E8F2C902-2755-4230-B21C-7AB73E2B4DA7}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                "ExcludeFilter" = "8:*.exe"
-                "ExcludeFilter" = "8:*.so.*"
-                "ExcludeFilter" = "8:*.so"
-                "ExcludeFilter" = "8:*.dylib"
-                "ExcludeFilter" = "8:MathNet.Numerics.MKL.dll"
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B13818D32F624FEDA5227A9C6D204CDB"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C8E792C9E3544094BC936B8F7F5808CA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Any CPU"
-            "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
             "OutputProjectGuid" = "8:{E8F2C902-2755-4230-B21C-7AB73E2B4DA7}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
