@@ -10,19 +10,20 @@ using Crystallography;
 using Microsoft.Win32;
 using System.Linq;
 
-namespace PressureCalculator{
-	
-	
-	/// <summary>
-	/// Form1 の概要の説明です。
-	/// </summary>
-	partial class FormMain : System.Windows.Forms.Form
+namespace PressureCalculator
+{
+
+
+    /// <summary>
+    /// Form1 の概要の説明です。
+    /// </summary>
+    partial class FormMain : System.Windows.Forms.Form
     {
 
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -38,29 +39,29 @@ namespace PressureCalculator{
         }
 
         #region コントロール
-        public Profile Original,BottomProfile;
-		public Profile OriginalSmooth,BottomProfileSmooth;
-		public double UppestKayser,UpperKayser,LowestKayser,LowerKayser,UppestCount,UpperCount,LowestCount,LowerCount,UpperDiff,LowerDiff,UppestDiff,LowestDiff;
-		public Bitmap BmpOriginal,BmpDifferentiation;
-		public Graphics gOriginal,gDifferentiation;
-		public bool MouseRange=true;
-		
-     
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.NumericUpDown numericUpDownDifferentiationRunningAverage;
-        private System.Windows.Forms.NumericUpDown numericUpDownOriginalRunningAverage;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.TextBox textBoxAkahama2004A;
-		private System.Windows.Forms.TextBox textBoxAkahama2004B;
-		private System.Windows.Forms.TextBox textBoxAkahama2004C;
-        private System.Windows.Forms.TextBox textBoxDiamondAkahama2004P;
-		private System.Windows.Forms.NumericUpDown numericUpDownOriginalGaussian;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.NumericUpDown numericUpDownDifferentiationGaussian;
+        public Profile Original, BottomProfile;
+        public Profile OriginalSmooth, BottomProfileSmooth;
+        public double UppestKayser, UpperKayser, LowestKayser, LowerKayser, UppestCount, UpperCount, LowestCount, LowerCount, UpperDiff, LowerDiff, UppestDiff, LowestDiff;
+        public Bitmap BmpOriginal, BmpDifferentiation;
+        public Graphics gOriginal, gDifferentiation;
+        public bool MouseRange = true;
+
+
+        private Label label2;
+        private NumericUpDown numericUpDownDifferentiationRunningAverage;
+        private NumericUpDown numericUpDownOriginalRunningAverage;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private Label label9;
+        private TextBox textBoxAkahama2004A;
+        private TextBox textBoxAkahama2004B;
+        private TextBox textBoxAkahama2004C;
+        private TextBox textBoxDiamondAkahama2004P;
+        private NumericUpDown numericUpDownOriginalGaussian;
+        private Label label12;
+        private NumericUpDown numericUpDownDifferentiationGaussian;
         private Label label14;
         private Label labelBottomTitle;
         private Label label13;
@@ -234,2759 +235,2775 @@ namespace PressureCalculator{
         private Crystallography.Controls.NumericBox numericBoxShenA;
         private Crystallography.Controls.NumericBox numericBoxMaoHydroA;
         #endregion
-     
-		#region Windows フォーム デザイナで生成されたコード 
-		/// <summary>
-		/// デザイナ サポートに必要なメソッドです。このメソッドの内容を
-		/// コード エディタで変更しないでください。
-		/// </summary>
-		private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
-            this.numericUpDownDifferentiationRunningAverage = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownOriginalRunningAverage = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxAkahama2004A = new System.Windows.Forms.TextBox();
-            this.textBoxAkahama2004B = new System.Windows.Forms.TextBox();
-            this.textBoxAkahama2004C = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBoxDiamondAkahama2004P = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.numericUpDownOriginalGaussian = new System.Windows.Forms.NumericUpDown();
-            this.label12 = new System.Windows.Forms.Label();
-            this.labelBottomTitle = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDownDifferentiationGaussian = new System.Windows.Forms.NumericUpDown();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.graphControlTop = new Crystallography.Controls.GraphControl();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.graphControlBottom = new Crystallography.Controls.GraphControl();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.numericUpDownFitRange = new System.Windows.Forms.NumericUpDown();
-            this.labelDimension = new System.Windows.Forms.Label();
-            this.radioButtonDiamondRaman = new System.Windows.Forms.RadioButton();
-            this.radioButtonRubyFluorescence = new System.Windows.Forms.RadioButton();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.radioButtonEOS = new System.Windows.Forms.RadioButton();
-            this.textBoxMaoHydroP = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.groupBoxMao = new System.Windows.Forms.GroupBox();
-            this.radioButtonTempUnitK = new System.Windows.Forms.RadioButton();
-            this.radioButtonTempUnitC = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBoxMaoP = new System.Windows.Forms.TextBox();
-            this.numericBoxMaoA = new Crystallography.Controls.NumericBox();
-            this.numericBoxMaoQuasiA = new Crystallography.Controls.NumericBox();
-            this.numericBoxShenA = new Crystallography.Controls.NumericBox();
-            this.numericBoxMaoHydroA = new Crystallography.Controls.NumericBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBoxMaoQuasiP = new System.Windows.Forms.TextBox();
-            this.label107 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.textBoxShenP = new System.Windows.Forms.TextBox();
-            this.label104 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericBoxRubyRagan = new Crystallography.Controls.NumericBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBoxRubyR1_0CalculatedFromRagan = new System.Windows.Forms.CheckBox();
-            this.numericBoxRubyT = new Crystallography.Controls.NumericBox();
-            this.checkBoxRubyTemeratureSameAsRef = new System.Windows.Forms.CheckBox();
-            this.numericBoxRubyR1_0 = new Crystallography.Controls.NumericBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonRubyRefR1Set = new System.Windows.Forms.Button();
-            this.numericBoxRubyRefT = new Crystallography.Controls.NumericBox();
-            this.numericBoxRubyRefR1 = new Crystallography.Controls.NumericBox();
-            this.numericBoxRubyR1 = new Crystallography.Controls.NumericBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.groupBoxAkahama2006 = new System.Windows.Forms.GroupBox();
-            this.textBoxDiamondFratandunoHigh = new System.Windows.Forms.TextBox();
-            this.textBoxDiamondAkahama2006P = new System.Windows.Forms.TextBox();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.textBoxDiamondRamanNu0 = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.textBoxDiamondRamanNu = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.textBoxAkahama2006K0 = new System.Windows.Forms.TextBox();
-            this.textBoxAkahama2006K0Prime = new System.Windows.Forms.TextBox();
-            this.textBoxDiamondFratandunoLow = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.flowLayoutPanelEOS = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBoxGold = new System.Windows.Forms.GroupBox();
-            this.textBoxGoldJamieson = new System.Windows.Forms.TextBox();
-            this.textBoxGoldAnderson = new System.Windows.Forms.TextBox();
-            this.textBoxGoldTsuchiya = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.textBoxGoldSim = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label70 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBoxGold_a = new System.Windows.Forms.TextBox();
-            this.textBoxGold_a0 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.groupBoxPlatinum = new System.Windows.Forms.GroupBox();
-            this.textBoxPtA0 = new System.Windows.Forms.TextBox();
-            this.textBoxPtJamieson = new System.Windows.Forms.TextBox();
-            this.textBoxPtHolems = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.textBoxPtA = new System.Windows.Forms.TextBox();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.groupBoxNaClB1 = new System.Windows.Forms.GroupBox();
-            this.textBoxNaClB1_a0 = new System.Windows.Forms.TextBox();
-            this.textBoxNaClB1_a = new System.Windows.Forms.TextBox();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.textBoxNaClB1Brown = new System.Windows.Forms.TextBox();
-            this.label62 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.groupBoxNaClB2 = new System.Windows.Forms.GroupBox();
-            this.textBoxNaClB2_a0 = new System.Windows.Forms.TextBox();
-            this.textBoxNaClB2_a = new System.Windows.Forms.TextBox();
-            this.textBoxNaClB2SataMgO = new System.Windows.Forms.TextBox();
-            this.textBoxNaClB2SataPt = new System.Windows.Forms.TextBox();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label71 = new System.Windows.Forms.Label();
-            this.groupBoxPericlase = new System.Windows.Forms.GroupBox();
-            this.label72 = new System.Windows.Forms.Label();
-            this.label73 = new System.Windows.Forms.Label();
-            this.textBoxMgOAizawa = new System.Windows.Forms.TextBox();
-            this.label74 = new System.Windows.Forms.Label();
-            this.textBoxMgODewaele = new System.Windows.Forms.TextBox();
-            this.textBoxMgOJacson = new System.Windows.Forms.TextBox();
-            this.textBoxMgOA0 = new System.Windows.Forms.TextBox();
-            this.label75 = new System.Windows.Forms.Label();
-            this.label76 = new System.Windows.Forms.Label();
-            this.label77 = new System.Windows.Forms.Label();
-            this.label78 = new System.Windows.Forms.Label();
-            this.textBoxMgOA = new System.Windows.Forms.TextBox();
-            this.label79 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
-            this.label81 = new System.Windows.Forms.Label();
-            this.groupBoxCorundum = new System.Windows.Forms.GroupBox();
-            this.label82 = new System.Windows.Forms.Label();
-            this.textBoxCorundumDubrovinsky = new System.Windows.Forms.TextBox();
-            this.textBoxColundumV0 = new System.Windows.Forms.TextBox();
-            this.label83 = new System.Windows.Forms.Label();
-            this.label84 = new System.Windows.Forms.Label();
-            this.textBoxCorundumV = new System.Windows.Forms.TextBox();
-            this.label85 = new System.Windows.Forms.Label();
-            this.label86 = new System.Windows.Forms.Label();
-            this.label87 = new System.Windows.Forms.Label();
-            this.groupBoxAr = new System.Windows.Forms.GroupBox();
-            this.textBoxArA0 = new System.Windows.Forms.TextBox();
-            this.textBoxArA = new System.Windows.Forms.TextBox();
-            this.textBoxArJephcoat = new System.Windows.Forms.TextBox();
-            this.label88 = new System.Windows.Forms.Label();
-            this.textBoxArRoss = new System.Windows.Forms.TextBox();
-            this.label89 = new System.Windows.Forms.Label();
-            this.label90 = new System.Windows.Forms.Label();
-            this.label91 = new System.Windows.Forms.Label();
-            this.label92 = new System.Windows.Forms.Label();
-            this.label93 = new System.Windows.Forms.Label();
-            this.label94 = new System.Windows.Forms.Label();
-            this.label95 = new System.Windows.Forms.Label();
-            this.groupBoxRe = new System.Windows.Forms.GroupBox();
-            this.label96 = new System.Windows.Forms.Label();
-            this.textBoxReZha = new System.Windows.Forms.TextBox();
-            this.textBoxReV0 = new System.Windows.Forms.TextBox();
-            this.label97 = new System.Windows.Forms.Label();
-            this.label98 = new System.Windows.Forms.Label();
-            this.textBoxReV = new System.Windows.Forms.TextBox();
-            this.label99 = new System.Windows.Forms.Label();
-            this.label100 = new System.Windows.Forms.Label();
-            this.label101 = new System.Windows.Forms.Label();
-            this.panelEOS = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label103 = new System.Windows.Forms.Label();
-            this.textBoxT = new System.Windows.Forms.TextBox();
-            this.label102 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.readToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportAsCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.watchNewFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDifferentiationRunningAverage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOriginalRunningAverage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOriginalGaussian)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDifferentiationGaussian)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFitRange)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.groupBoxMao.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBoxAkahama2006.SuspendLayout();
-            this.flowLayoutPanelEOS.SuspendLayout();
-            this.groupBoxGold.SuspendLayout();
-            this.groupBoxPlatinum.SuspendLayout();
-            this.groupBoxNaClB1.SuspendLayout();
-            this.groupBoxNaClB2.SuspendLayout();
-            this.groupBoxPericlase.SuspendLayout();
-            this.groupBoxCorundum.SuspendLayout();
-            this.groupBoxAr.SuspendLayout();
-            this.groupBoxRe.SuspendLayout();
-            this.panelEOS.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.SuspendLayout();
+
+        #region Windows フォーム デザイナで生成されたコード 
+        /// <summary>
+        /// デザイナ サポートに必要なメソッドです。このメソッドの内容を
+        /// コード エディタで変更しないでください。
+        /// </summary>
+        private void InitializeComponent()
+        {
+            components = new Container();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(FormMain));
+            numericUpDownDifferentiationRunningAverage = new NumericUpDown();
+            numericUpDownOriginalRunningAverage = new NumericUpDown();
+            label2 = new Label();
+            textBoxAkahama2004A = new TextBox();
+            textBoxAkahama2004B = new TextBox();
+            textBoxAkahama2004C = new TextBox();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            textBoxDiamondAkahama2004P = new TextBox();
+            label9 = new Label();
+            label14 = new Label();
+            numericUpDownOriginalGaussian = new NumericUpDown();
+            label12 = new Label();
+            labelBottomTitle = new Label();
+            label13 = new Label();
+            label1 = new Label();
+            numericUpDownDifferentiationGaussian = new NumericUpDown();
+            splitContainer1 = new SplitContainer();
+            graphControlTop = new Crystallography.Controls.GraphControl();
+            flowLayoutPanel3 = new FlowLayoutPanel();
+            graphControlBottom = new Crystallography.Controls.GraphControl();
+            flowLayoutPanel4 = new FlowLayoutPanel();
+            textBoxFittingInformation = new TextBox();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            label10 = new Label();
+            numericUpDownFitRange = new NumericUpDown();
+            labelDimension = new Label();
+            radioButtonDiamondRaman = new RadioButton();
+            radioButtonRubyFluorescence = new RadioButton();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            radioButtonEOS = new RadioButton();
+            textBoxMaoHydroP = new TextBox();
+            label28 = new Label();
+            groupBoxMao = new GroupBox();
+            radioButtonTempUnitK = new RadioButton();
+            radioButtonTempUnitC = new RadioButton();
+            groupBox4 = new GroupBox();
+            textBoxMaoP = new TextBox();
+            numericBoxMaoA = new Crystallography.Controls.NumericBox();
+            numericBoxMaoQuasiA = new Crystallography.Controls.NumericBox();
+            numericBoxShenA = new Crystallography.Controls.NumericBox();
+            numericBoxMaoHydroA = new Crystallography.Controls.NumericBox();
+            label42 = new Label();
+            label18 = new Label();
+            textBoxMaoQuasiP = new TextBox();
+            label107 = new Label();
+            label46 = new Label();
+            label45 = new Label();
+            label34 = new Label();
+            textBoxShenP = new TextBox();
+            label104 = new Label();
+            groupBox2 = new GroupBox();
+            numericBoxRubyRagan = new Crystallography.Controls.NumericBox();
+            groupBox3 = new GroupBox();
+            checkBoxRubyR1_0CalculatedFromRagan = new CheckBox();
+            numericBoxRubyT = new Crystallography.Controls.NumericBox();
+            checkBoxRubyTemeratureSameAsRef = new CheckBox();
+            numericBoxRubyR1_0 = new Crystallography.Controls.NumericBox();
+            groupBox1 = new GroupBox();
+            buttonRubyRefR1Set = new Button();
+            numericBoxRubyRefT = new Crystallography.Controls.NumericBox();
+            numericBoxRubyRefR1 = new Crystallography.Controls.NumericBox();
+            numericBoxRubyR1 = new Crystallography.Controls.NumericBox();
+            label17 = new Label();
+            groupBoxAkahama2006 = new GroupBox();
+            textBoxDiamondFratandunoHigh = new TextBox();
+            textBoxDiamondAkahama2006P = new TextBox();
+            label44 = new Label();
+            label29 = new Label();
+            textBoxDiamondRamanNu0 = new TextBox();
+            label43 = new Label();
+            textBoxDiamondRamanNu = new TextBox();
+            label30 = new Label();
+            textBoxAkahama2006K0 = new TextBox();
+            textBoxAkahama2006K0Prime = new TextBox();
+            textBoxDiamondFratandunoLow = new TextBox();
+            label4 = new Label();
+            label20 = new Label();
+            label19 = new Label();
+            label3 = new Label();
+            label24 = new Label();
+            label31 = new Label();
+            label33 = new Label();
+            label21 = new Label();
+            label32 = new Label();
+            label35 = new Label();
+            flowLayoutPanelEOS = new FlowLayoutPanel();
+            groupBoxGold = new GroupBox();
+            textBoxGoldJamieson = new TextBox();
+            textBoxGoldAnderson = new TextBox();
+            textBoxGoldTsuchiya = new TextBox();
+            label50 = new Label();
+            textBoxGoldSim = new TextBox();
+            label11 = new Label();
+            label70 = new Label();
+            label15 = new Label();
+            textBoxGold_a = new TextBox();
+            textBoxGold_a0 = new TextBox();
+            label16 = new Label();
+            label37 = new Label();
+            label49 = new Label();
+            label23 = new Label();
+            label22 = new Label();
+            label69 = new Label();
+            label36 = new Label();
+            label38 = new Label();
+            groupBoxPlatinum = new GroupBox();
+            textBoxPtA0 = new TextBox();
+            textBoxPtJamieson = new TextBox();
+            textBoxPtHolems = new TextBox();
+            label39 = new Label();
+            label47 = new Label();
+            label61 = new Label();
+            textBoxPtA = new TextBox();
+            label54 = new Label();
+            label48 = new Label();
+            label51 = new Label();
+            label52 = new Label();
+            label60 = new Label();
+            groupBoxNaClB1 = new GroupBox();
+            textBoxNaClB1_a0 = new TextBox();
+            textBoxNaClB1_a = new TextBox();
+            label53 = new Label();
+            label55 = new Label();
+            label56 = new Label();
+            textBoxNaClB1Brown = new TextBox();
+            label62 = new Label();
+            label57 = new Label();
+            label58 = new Label();
+            groupBoxNaClB2 = new GroupBox();
+            textBoxNaClB2_a0 = new TextBox();
+            textBoxNaClB2_a = new TextBox();
+            textBoxNaClB2SataMgO = new TextBox();
+            textBoxNaClB2SataPt = new TextBox();
+            label65 = new Label();
+            label67 = new Label();
+            label59 = new Label();
+            label63 = new Label();
+            label64 = new Label();
+            label66 = new Label();
+            label68 = new Label();
+            label71 = new Label();
+            groupBoxPericlase = new GroupBox();
+            label72 = new Label();
+            label73 = new Label();
+            textBoxMgOAizawa = new TextBox();
+            label74 = new Label();
+            textBoxMgODewaele = new TextBox();
+            textBoxMgOJacson = new TextBox();
+            textBoxMgOA0 = new TextBox();
+            label75 = new Label();
+            label76 = new Label();
+            label77 = new Label();
+            label78 = new Label();
+            textBoxMgOA = new TextBox();
+            label79 = new Label();
+            label80 = new Label();
+            label81 = new Label();
+            groupBoxCorundum = new GroupBox();
+            label82 = new Label();
+            textBoxCorundumDubrovinsky = new TextBox();
+            textBoxColundumV0 = new TextBox();
+            label83 = new Label();
+            label84 = new Label();
+            textBoxCorundumV = new TextBox();
+            label85 = new Label();
+            label86 = new Label();
+            label87 = new Label();
+            groupBoxAr = new GroupBox();
+            textBoxArA0 = new TextBox();
+            textBoxArA = new TextBox();
+            textBoxArJephcoat = new TextBox();
+            label88 = new Label();
+            textBoxArRoss = new TextBox();
+            label89 = new Label();
+            label90 = new Label();
+            label91 = new Label();
+            label92 = new Label();
+            label93 = new Label();
+            label94 = new Label();
+            label95 = new Label();
+            groupBoxRe = new GroupBox();
+            label96 = new Label();
+            textBoxReZha = new TextBox();
+            textBoxReV0 = new TextBox();
+            label97 = new Label();
+            label98 = new Label();
+            textBoxReV = new TextBox();
+            label99 = new Label();
+            label100 = new Label();
+            label101 = new Label();
+            panelEOS = new Panel();
+            panel2 = new Panel();
+            label103 = new Label();
+            textBoxT = new TextBox();
+            label102 = new Label();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            readToolStripMenuItem = new ToolStripMenuItem();
+            exportAsCSVToolStripMenuItem = new ToolStripMenuItem();
+            watchNewFileToolStripMenuItem = new ToolStripMenuItem();
+            timer = new System.Windows.Forms.Timer(components);
+            label25 = new Label();
+            ((ISupportInitialize)numericUpDownDifferentiationRunningAverage).BeginInit();
+            ((ISupportInitialize)numericUpDownOriginalRunningAverage).BeginInit();
+            ((ISupportInitialize)numericUpDownOriginalGaussian).BeginInit();
+            ((ISupportInitialize)numericUpDownDifferentiationGaussian).BeginInit();
+            ((ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            flowLayoutPanel3.SuspendLayout();
+            flowLayoutPanel4.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
+            ((ISupportInitialize)numericUpDownFitRange).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
+            groupBoxMao.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox1.SuspendLayout();
+            groupBoxAkahama2006.SuspendLayout();
+            flowLayoutPanelEOS.SuspendLayout();
+            groupBoxGold.SuspendLayout();
+            groupBoxPlatinum.SuspendLayout();
+            groupBoxNaClB1.SuspendLayout();
+            groupBoxNaClB2.SuspendLayout();
+            groupBoxPericlase.SuspendLayout();
+            groupBoxCorundum.SuspendLayout();
+            groupBoxAr.SuspendLayout();
+            groupBoxRe.SuspendLayout();
+            panelEOS.SuspendLayout();
+            panel2.SuspendLayout();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // numericUpDownDifferentiationRunningAverage
             // 
-            this.numericUpDownDifferentiationRunningAverage.AutoSize = true;
-            this.numericUpDownDifferentiationRunningAverage.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDownDifferentiationRunningAverage.Location = new System.Drawing.Point(256, 3);
-            this.numericUpDownDifferentiationRunningAverage.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownDifferentiationRunningAverage.Name = "numericUpDownDifferentiationRunningAverage";
-            this.numericUpDownDifferentiationRunningAverage.ReadOnly = true;
-            this.numericUpDownDifferentiationRunningAverage.Size = new System.Drawing.Size(47, 22);
-            this.numericUpDownDifferentiationRunningAverage.TabIndex = 2;
-            this.numericUpDownDifferentiationRunningAverage.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDownDifferentiationRunningAverage.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
-            this.numericUpDownDifferentiationRunningAverage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.numericUpDownDifferentiationRunningAverage_MouseDown);
+            numericUpDownDifferentiationRunningAverage.AutoSize = true;
+            numericUpDownDifferentiationRunningAverage.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDownDifferentiationRunningAverage.Location = new Point(256, 3);
+            numericUpDownDifferentiationRunningAverage.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDownDifferentiationRunningAverage.Name = "numericUpDownDifferentiationRunningAverage";
+            numericUpDownDifferentiationRunningAverage.ReadOnly = true;
+            numericUpDownDifferentiationRunningAverage.Size = new Size(47, 22);
+            numericUpDownDifferentiationRunningAverage.TabIndex = 2;
+            numericUpDownDifferentiationRunningAverage.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            numericUpDownDifferentiationRunningAverage.ValueChanged += numericUpDown_ValueChanged;
+            numericUpDownDifferentiationRunningAverage.MouseDown += numericUpDownDifferentiationRunningAverage_MouseDown;
             // 
             // numericUpDownOriginalRunningAverage
             // 
-            this.numericUpDownOriginalRunningAverage.AutoSize = true;
-            this.numericUpDownOriginalRunningAverage.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDownOriginalRunningAverage.Location = new System.Drawing.Point(246, 3);
-            this.numericUpDownOriginalRunningAverage.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownOriginalRunningAverage.Name = "numericUpDownOriginalRunningAverage";
-            this.numericUpDownOriginalRunningAverage.ReadOnly = true;
-            this.numericUpDownOriginalRunningAverage.Size = new System.Drawing.Size(47, 22);
-            this.numericUpDownOriginalRunningAverage.TabIndex = 3;
-            this.numericUpDownOriginalRunningAverage.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDownOriginalRunningAverage.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
-            this.numericUpDownOriginalRunningAverage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.numericUpDownOriginalRunningAverage_MouseDown);
+            numericUpDownOriginalRunningAverage.AutoSize = true;
+            numericUpDownOriginalRunningAverage.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDownOriginalRunningAverage.Location = new Point(246, 3);
+            numericUpDownOriginalRunningAverage.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDownOriginalRunningAverage.Name = "numericUpDownOriginalRunningAverage";
+            numericUpDownOriginalRunningAverage.ReadOnly = true;
+            numericUpDownOriginalRunningAverage.Size = new Size(47, 22);
+            numericUpDownOriginalRunningAverage.TabIndex = 3;
+            numericUpDownOriginalRunningAverage.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            numericUpDownOriginalRunningAverage.ValueChanged += numericUpDown_ValueChanged;
+            numericUpDownOriginalRunningAverage.MouseDown += numericUpDownOriginalRunningAverage_MouseDown;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(126, 6);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 14);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Running Average";
+            label2.AutoSize = true;
+            label2.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(126, 6);
+            label2.Margin = new Padding(3, 6, 3, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(114, 14);
+            label2.TabIndex = 3;
+            label2.Text = "Running Average";
             // 
             // textBoxAkahama2004A
             // 
-            this.textBoxAkahama2004A.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2004A.Location = new System.Drawing.Point(293, 16);
-            this.textBoxAkahama2004A.Name = "textBoxAkahama2004A";
-            this.textBoxAkahama2004A.Size = new System.Drawing.Size(44, 22);
-            this.textBoxAkahama2004A.TabIndex = 0;
-            this.textBoxAkahama2004A.Text = "66.9";
-            this.textBoxAkahama2004A.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
+            textBoxAkahama2004A.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAkahama2004A.Location = new Point(293, 16);
+            textBoxAkahama2004A.Name = "textBoxAkahama2004A";
+            textBoxAkahama2004A.Size = new Size(44, 22);
+            textBoxAkahama2004A.TabIndex = 0;
+            textBoxAkahama2004A.Text = "66.9";
+            textBoxAkahama2004A.TextChanged += textBoxNu_TextChanged;
             // 
             // textBoxAkahama2004B
             // 
-            this.textBoxAkahama2004B.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2004B.Location = new System.Drawing.Point(355, 16);
-            this.textBoxAkahama2004B.Name = "textBoxAkahama2004B";
-            this.textBoxAkahama2004B.Size = new System.Drawing.Size(44, 22);
-            this.textBoxAkahama2004B.TabIndex = 0;
-            this.textBoxAkahama2004B.Text = "-0.5281";
-            this.textBoxAkahama2004B.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
+            textBoxAkahama2004B.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAkahama2004B.Location = new Point(355, 16);
+            textBoxAkahama2004B.Name = "textBoxAkahama2004B";
+            textBoxAkahama2004B.Size = new Size(44, 22);
+            textBoxAkahama2004B.TabIndex = 0;
+            textBoxAkahama2004B.Text = "-0.5281";
+            textBoxAkahama2004B.TextChanged += textBoxNu_TextChanged;
             // 
             // textBoxAkahama2004C
             // 
-            this.textBoxAkahama2004C.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2004C.Location = new System.Drawing.Point(427, 16);
-            this.textBoxAkahama2004C.Name = "textBoxAkahama2004C";
-            this.textBoxAkahama2004C.Size = new System.Drawing.Size(44, 22);
-            this.textBoxAkahama2004C.TabIndex = 0;
-            this.textBoxAkahama2004C.Text = "3.585";
-            this.textBoxAkahama2004C.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
+            textBoxAkahama2004C.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAkahama2004C.Location = new Point(427, 16);
+            textBoxAkahama2004C.Name = "textBoxAkahama2004C";
+            textBoxAkahama2004C.Size = new Size(44, 22);
+            textBoxAkahama2004C.TabIndex = 0;
+            textBoxAkahama2004C.Text = "3.585";
+            textBoxAkahama2004C.TextChanged += textBoxNu_TextChanged;
             // 
             // label5
             // 
-            this.label5.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(264, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 12);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "P =";
+            label5.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(264, 20);
+            label5.Name = "label5";
+            label5.Size = new Size(39, 12);
+            label5.TabIndex = 1;
+            label5.Text = "P =";
             // 
             // label6
             // 
-            this.label6.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(337, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(12, 12);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "+";
+            label6.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(337, 19);
+            label6.Name = "label6";
+            label6.Size = new Size(12, 12);
+            label6.TabIndex = 1;
+            label6.Text = "+";
             // 
             // label7
             // 
-            this.label7.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(399, 19);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(24, 12);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "ν+";
+            label7.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(399, 19);
+            label7.Name = "label7";
+            label7.Size = new Size(24, 12);
+            label7.TabIndex = 1;
+            label7.Text = "ν+";
             // 
             // label8
             // 
-            this.label8.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(475, 19);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 12);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "E-4 ν^2=";
+            label8.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(475, 19);
+            label8.Name = "label8";
+            label8.Size = new Size(60, 12);
+            label8.TabIndex = 1;
+            label8.Text = "E-4 ν^2=";
             // 
             // textBoxDiamondAkahama2004P
             // 
-            this.textBoxDiamondAkahama2004P.BackColor = System.Drawing.Color.Navy;
-            this.textBoxDiamondAkahama2004P.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxDiamondAkahama2004P.ForeColor = System.Drawing.Color.White;
-            this.textBoxDiamondAkahama2004P.Location = new System.Drawing.Point(615, 11);
-            this.textBoxDiamondAkahama2004P.Name = "textBoxDiamondAkahama2004P";
-            this.textBoxDiamondAkahama2004P.ReadOnly = true;
-            this.textBoxDiamondAkahama2004P.Size = new System.Drawing.Size(71, 27);
-            this.textBoxDiamondAkahama2004P.TabIndex = 0;
-            this.textBoxDiamondAkahama2004P.Text = "0";
+            textBoxDiamondAkahama2004P.BackColor = Color.Navy;
+            textBoxDiamondAkahama2004P.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondAkahama2004P.ForeColor = Color.White;
+            textBoxDiamondAkahama2004P.Location = new Point(615, 11);
+            textBoxDiamondAkahama2004P.Name = "textBoxDiamondAkahama2004P";
+            textBoxDiamondAkahama2004P.ReadOnly = true;
+            textBoxDiamondAkahama2004P.Size = new Size(71, 27);
+            textBoxDiamondAkahama2004P.TabIndex = 0;
+            textBoxDiamondAkahama2004P.Text = "0";
             // 
             // label9
             // 
-            this.label9.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(688, 18);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(34, 12);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "GPa";
+            label9.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(688, 18);
+            label9.Name = "label9";
+            label9.Size = new Size(34, 12);
+            label9.TabIndex = 1;
+            label9.Text = "GPa";
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.SystemColors.Control;
-            this.label14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(3, 6);
-            this.label14.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(117, 14);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "Original spectrum";
+            label14.AutoSize = true;
+            label14.BackColor = SystemColors.Control;
+            label14.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label14.Location = new Point(3, 6);
+            label14.Margin = new Padding(3, 6, 3, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(117, 14);
+            label14.TabIndex = 3;
+            label14.Text = "Original spectrum";
             // 
             // numericUpDownOriginalGaussian
             // 
-            this.numericUpDownOriginalGaussian.AutoSize = true;
-            this.numericUpDownOriginalGaussian.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDownOriginalGaussian.Location = new System.Drawing.Point(382, 3);
-            this.numericUpDownOriginalGaussian.Name = "numericUpDownOriginalGaussian";
-            this.numericUpDownOriginalGaussian.Size = new System.Drawing.Size(47, 22);
-            this.numericUpDownOriginalGaussian.TabIndex = 3;
-            this.numericUpDownOriginalGaussian.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.numericUpDownOriginalGaussian.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
-            this.numericUpDownOriginalGaussian.MouseDown += new System.Windows.Forms.MouseEventHandler(this.numericUpDownOriginalGaussian_MouseDown);
+            numericUpDownOriginalGaussian.AutoSize = true;
+            numericUpDownOriginalGaussian.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDownOriginalGaussian.Location = new Point(410, 3);
+            numericUpDownOriginalGaussian.Name = "numericUpDownOriginalGaussian";
+            numericUpDownOriginalGaussian.Size = new Size(47, 22);
+            numericUpDownOriginalGaussian.TabIndex = 3;
+            numericUpDownOriginalGaussian.Value = new decimal(new int[] { 8, 0, 0, 0 });
+            numericUpDownOriginalGaussian.ValueChanged += numericUpDown_ValueChanged;
+            numericUpDownOriginalGaussian.MouseDown += numericUpDownOriginalGaussian_MouseDown;
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(299, 6);
-            this.label12.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 14);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Gaussian σ";
+            label12.AutoSize = true;
+            label12.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.Location = new Point(299, 6);
+            label12.Margin = new Padding(3, 6, 3, 0);
+            label12.Name = "label12";
+            label12.Size = new Size(105, 14);
+            label12.TabIndex = 3;
+            label12.Text = "Gaussian blur σ";
             // 
             // labelBottomTitle
             // 
-            this.labelBottomTitle.AutoSize = true;
-            this.labelBottomTitle.BackColor = System.Drawing.SystemColors.Control;
-            this.labelBottomTitle.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelBottomTitle.Location = new System.Drawing.Point(3, 6);
-            this.labelBottomTitle.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.labelBottomTitle.Name = "labelBottomTitle";
-            this.labelBottomTitle.Size = new System.Drawing.Size(127, 14);
-            this.labelBottomTitle.TabIndex = 3;
-            this.labelBottomTitle.Text = "First Differentiation";
+            labelBottomTitle.AutoSize = true;
+            labelBottomTitle.BackColor = SystemColors.Control;
+            labelBottomTitle.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            labelBottomTitle.Location = new Point(3, 6);
+            labelBottomTitle.Margin = new Padding(3, 6, 3, 0);
+            labelBottomTitle.Name = "labelBottomTitle";
+            labelBottomTitle.Size = new Size(127, 14);
+            labelBottomTitle.TabIndex = 3;
+            labelBottomTitle.Text = "First Differentiation";
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(136, 6);
-            this.label13.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(114, 14);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "Running Average";
+            label13.AutoSize = true;
+            label13.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Location = new Point(136, 6);
+            label13.Margin = new Padding(3, 6, 3, 0);
+            label13.Name = "label13";
+            label13.Size = new Size(114, 14);
+            label13.TabIndex = 3;
+            label13.Text = "Running Average";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(309, 6);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 14);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Gaussian σ";
+            label1.AutoSize = true;
+            label1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(309, 6);
+            label1.Margin = new Padding(3, 6, 3, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(105, 14);
+            label1.TabIndex = 3;
+            label1.Text = "Gaussian blur σ";
             // 
             // numericUpDownDifferentiationGaussian
             // 
-            this.numericUpDownDifferentiationGaussian.AutoSize = true;
-            this.numericUpDownDifferentiationGaussian.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDownDifferentiationGaussian.Location = new System.Drawing.Point(392, 3);
-            this.numericUpDownDifferentiationGaussian.Name = "numericUpDownDifferentiationGaussian";
-            this.numericUpDownDifferentiationGaussian.Size = new System.Drawing.Size(47, 22);
-            this.numericUpDownDifferentiationGaussian.TabIndex = 3;
-            this.numericUpDownDifferentiationGaussian.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.numericUpDownDifferentiationGaussian.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
-            this.numericUpDownDifferentiationGaussian.MouseDown += new System.Windows.Forms.MouseEventHandler(this.numericUpDownwnDifferentiationGaussian_MouseDown);
+            numericUpDownDifferentiationGaussian.AutoSize = true;
+            numericUpDownDifferentiationGaussian.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDownDifferentiationGaussian.Location = new Point(420, 3);
+            numericUpDownDifferentiationGaussian.Name = "numericUpDownDifferentiationGaussian";
+            numericUpDownDifferentiationGaussian.Size = new Size(47, 22);
+            numericUpDownDifferentiationGaussian.TabIndex = 3;
+            numericUpDownDifferentiationGaussian.Value = new decimal(new int[] { 8, 0, 0, 0 });
+            numericUpDownDifferentiationGaussian.ValueChanged += numericUpDown_ValueChanged;
+            numericUpDownDifferentiationGaussian.MouseDown += numericUpDownwnDifferentiationGaussian_MouseDown;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 130);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.IsSplitterFixed = true;
+            splitContainer1.Location = new Point(0, 130);
+            splitContainer1.Margin = new Padding(0);
+            splitContainer1.Name = "splitContainer1";
+            splitContainer1.Orientation = Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.graphControlTop);
-            this.splitContainer1.Panel1.Controls.Add(this.flowLayoutPanel3);
-            this.splitContainer1.Panel1MinSize = 0;
+            splitContainer1.Panel1.Controls.Add(graphControlTop);
+            splitContainer1.Panel1.Controls.Add(flowLayoutPanel3);
+            splitContainer1.Panel1MinSize = 0;
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.graphControlBottom);
-            this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel2);
-            this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(725, 296);
-            this.splitContainer1.SplitterDistance = 136;
-            this.splitContainer1.TabIndex = 6;
+            splitContainer1.Panel2.Controls.Add(graphControlBottom);
+            splitContainer1.Panel2.Controls.Add(flowLayoutPanel4);
+            splitContainer1.Panel2.Controls.Add(flowLayoutPanel2);
+            splitContainer1.Panel2MinSize = 0;
+            splitContainer1.Size = new Size(725, 296);
+            splitContainer1.SplitterDistance = 136;
+            splitContainer1.TabIndex = 6;
             // 
             // graphControlTop
             // 
-            this.graphControlTop.AllowMouseOperation = true;
-            this.graphControlTop.BackgroundColor = System.Drawing.Color.White;
-            this.graphControlTop.BottomMargin = 0D;
-            this.graphControlTop.DivisionLineColor = System.Drawing.Color.Gray;
-            this.graphControlTop.DivisionSubLineColor = System.Drawing.Color.LightGray;
-            this.graphControlTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphControlTop.FixRangeHorizontal = false;
-            this.graphControlTop.FixRangeVertical = false;
-            this.graphControlTop.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.graphControlTop.GraphName = "";
-            this.graphControlTop.HorizontalGradiationTextVisivle = true;
-            this.graphControlTop.Interpolation = false;
-            this.graphControlTop.IsIntegerX = false;
-            this.graphControlTop.IsIntegerY = false;
-            this.graphControlTop.LabelX = "X:";
-            this.graphControlTop.LabelY = "Y:";
-            this.graphControlTop.LeftMargin = 0F;
-            this.graphControlTop.LineColor = System.Drawing.Color.Red;
-            this.graphControlTop.LineWidth = 2F;
-            this.graphControlTop.Location = new System.Drawing.Point(0, 28);
-            this.graphControlTop.LowerX = 0D;
-            this.graphControlTop.LowerY = 0D;
-            this.graphControlTop.MaximalX = 1D;
-            this.graphControlTop.MaximalY = 1D;
-            this.graphControlTop.MinimalX = 0D;
-            this.graphControlTop.MinimalY = 0D;
-            this.graphControlTop.Mode = Crystallography.Controls.GraphControl.DrawingMode.Line;
-            this.graphControlTop.MousePositionVisible = true;
-            this.graphControlTop.Name = "graphControlTop";
-            this.graphControlTop.OriginPosition = new System.Drawing.Point(40, 20);
-            this.graphControlTop.Size = new System.Drawing.Size(725, 108);
-            this.graphControlTop.Smoothing = false;
-            this.graphControlTop.TabIndex = 5;
-            this.graphControlTop.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.graphControlTop.UnitX = "";
-            this.graphControlTop.UnitY = "";
-            this.graphControlTop.UpperText = "";
-            this.graphControlTop.UpperTextVisible = true;
-            this.graphControlTop.UpperX = 1D;
-            this.graphControlTop.UpperY = 1D;
-            this.graphControlTop.UseLineWidth = true;
-            this.graphControlTop.VerticalGradiationTextVisivle = true;
-            this.graphControlTop.XLog = false;
-            this.graphControlTop.XScaleLineVisible = true;
-            this.graphControlTop.YLog = false;
-            this.graphControlTop.YScaleLineVisible = true;
-            this.graphControlTop.DrawingRangeChanged += new Crystallography.Controls.GraphControl.DrawingRangeChangedEventHandler(this.graphControlTop_DrawingRangeChanged);
-            this.graphControlTop.MouseDoubleClick2 += new Crystallography.Controls.GraphControl.MouseEventHandler2(this.graphControlBottom_MouseDoubleClick2);
+            graphControlTop.AllowMouseOperation = true;
+            graphControlTop.AxisLineColor = Color.Gray;
+            graphControlTop.AxisTextColor = Color.Black;
+            graphControlTop.AxisTextFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlTop.AxisXTextVisible = true;
+            graphControlTop.AxisYTextVisible = true;
+            graphControlTop.BackgroundColor = Color.White;
+            graphControlTop.BottomMargin = 0D;
+            graphControlTop.DivisionLineColor = Color.Gray;
+            graphControlTop.DivisionLineXVisible = true;
+            graphControlTop.DivisionLineYVisible = true;
+            graphControlTop.Dock = DockStyle.Fill;
+            graphControlTop.DrawingRange = (RectangleD)resources.GetObject("graphControlTop.DrawingRange");
+            graphControlTop.FixRangeHorizontal = false;
+            graphControlTop.FixRangeVertical = false;
+            graphControlTop.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlTop.GraphTitle = "";
+            graphControlTop.Interpolation = false;
+            graphControlTop.IsIntegerX = false;
+            graphControlTop.IsIntegerY = false;
+            graphControlTop.LabelX = "X:";
+            graphControlTop.LabelY = "Y:";
+            graphControlTop.LeftMargin = 0F;
+            graphControlTop.LineWidth = 2F;
+            graphControlTop.Location = new Point(0, 28);
+            graphControlTop.LowerX = 0D;
+            graphControlTop.LowerY = 0D;
+            graphControlTop.MaximalX = 1D;
+            graphControlTop.MaximalY = 1D;
+            graphControlTop.MinimalX = 0D;
+            graphControlTop.MinimalY = 0D;
+            graphControlTop.Mode = Crystallography.Controls.GraphControl.DrawingMode.Line;
+            graphControlTop.MousePositionVisible = true;
+            graphControlTop.MousePositionXDigit = -1;
+            graphControlTop.MousePositionYDigit = -1;
+            graphControlTop.Name = "graphControlTop";
+            graphControlTop.OriginPosition = new Point(40, 20);
+            graphControlTop.Profile = null;
+            graphControlTop.Size = new Size(725, 108);
+            graphControlTop.Smoothing = false;
+            graphControlTop.TabIndex = 5;
+            graphControlTop.UnitX = "";
+            graphControlTop.UnitY = "";
+            graphControlTop.UpperPanelFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlTop.UpperPanelVisible = true;
+            graphControlTop.UpperX = 1D;
+            graphControlTop.UpperY = 1D;
+            graphControlTop.UseLineWidth = true;
+            graphControlTop.VerticalLineColor = Color.Red;
+            graphControlTop.XLog = false;
+            graphControlTop.YLog = false;
+            graphControlTop.DrawingRangeChanged += graphControlTop_DrawingRangeChanged;
+            graphControlTop.MouseDoubleClick2 += graphControlBottom_MouseDoubleClick2;
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.AutoSize = true;
-            this.flowLayoutPanel3.Controls.Add(this.label14);
-            this.flowLayoutPanel3.Controls.Add(this.label2);
-            this.flowLayoutPanel3.Controls.Add(this.numericUpDownOriginalRunningAverage);
-            this.flowLayoutPanel3.Controls.Add(this.label12);
-            this.flowLayoutPanel3.Controls.Add(this.numericUpDownOriginalGaussian);
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(725, 28);
-            this.flowLayoutPanel3.TabIndex = 4;
+            flowLayoutPanel3.AutoSize = true;
+            flowLayoutPanel3.Controls.Add(label14);
+            flowLayoutPanel3.Controls.Add(label2);
+            flowLayoutPanel3.Controls.Add(numericUpDownOriginalRunningAverage);
+            flowLayoutPanel3.Controls.Add(label12);
+            flowLayoutPanel3.Controls.Add(numericUpDownOriginalGaussian);
+            flowLayoutPanel3.Dock = DockStyle.Top;
+            flowLayoutPanel3.Location = new Point(0, 0);
+            flowLayoutPanel3.Name = "flowLayoutPanel3";
+            flowLayoutPanel3.Size = new Size(725, 28);
+            flowLayoutPanel3.TabIndex = 4;
             // 
             // graphControlBottom
             // 
-            this.graphControlBottom.AllowMouseOperation = true;
-            this.graphControlBottom.BackgroundColor = System.Drawing.Color.White;
-            this.graphControlBottom.BottomMargin = 0D;
-            this.graphControlBottom.DivisionLineColor = System.Drawing.Color.Gray;
-            this.graphControlBottom.DivisionSubLineColor = System.Drawing.Color.LightGray;
-            this.graphControlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphControlBottom.FixRangeHorizontal = false;
-            this.graphControlBottom.FixRangeVertical = false;
-            this.graphControlBottom.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.graphControlBottom.GraphName = "";
-            this.graphControlBottom.HorizontalGradiationTextVisivle = true;
-            this.graphControlBottom.Interpolation = false;
-            this.graphControlBottom.IsIntegerX = false;
-            this.graphControlBottom.IsIntegerY = false;
-            this.graphControlBottom.LabelX = "X:";
-            this.graphControlBottom.LabelY = "Y:";
-            this.graphControlBottom.LeftMargin = 0F;
-            this.graphControlBottom.LineColor = System.Drawing.Color.Red;
-            this.graphControlBottom.LineWidth = 2F;
-            this.graphControlBottom.Location = new System.Drawing.Point(0, 28);
-            this.graphControlBottom.LowerX = 0D;
-            this.graphControlBottom.LowerY = 0D;
-            this.graphControlBottom.MaximalX = 1D;
-            this.graphControlBottom.MaximalY = 1D;
-            this.graphControlBottom.MinimalX = 0D;
-            this.graphControlBottom.MinimalY = 0D;
-            this.graphControlBottom.Mode = Crystallography.Controls.GraphControl.DrawingMode.Line;
-            this.graphControlBottom.MousePositionVisible = true;
-            this.graphControlBottom.Name = "graphControlBottom";
-            this.graphControlBottom.OriginPosition = new System.Drawing.Point(40, 20);
-            this.graphControlBottom.Size = new System.Drawing.Size(725, 128);
-            this.graphControlBottom.Smoothing = false;
-            this.graphControlBottom.TabIndex = 6;
-            this.graphControlBottom.TextFont = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.graphControlBottom.UnitX = "";
-            this.graphControlBottom.UnitY = "";
-            this.graphControlBottom.UpperText = "";
-            this.graphControlBottom.UpperTextVisible = true;
-            this.graphControlBottom.UpperX = 1D;
-            this.graphControlBottom.UpperY = 1D;
-            this.graphControlBottom.UseLineWidth = true;
-            this.graphControlBottom.VerticalGradiationTextVisivle = true;
-            this.graphControlBottom.XLog = false;
-            this.graphControlBottom.XScaleLineVisible = true;
-            this.graphControlBottom.YLog = false;
-            this.graphControlBottom.YScaleLineVisible = true;
-            this.graphControlBottom.DrawingRangeChanged += new Crystallography.Controls.GraphControl.DrawingRangeChangedEventHandler(this.graphControlBottom_DrawingRangeChanged);
-            this.graphControlBottom.MouseDoubleClick2 += new Crystallography.Controls.GraphControl.MouseEventHandler2(this.graphControlBottom_MouseDoubleClick2);
+            graphControlBottom.AllowMouseOperation = true;
+            graphControlBottom.AxisLineColor = Color.Gray;
+            graphControlBottom.AxisTextColor = Color.Black;
+            graphControlBottom.AxisTextFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlBottom.AxisXTextVisible = true;
+            graphControlBottom.AxisYTextVisible = true;
+            graphControlBottom.BackgroundColor = Color.White;
+            graphControlBottom.BottomMargin = 0D;
+            graphControlBottom.DivisionLineColor = Color.Gray;
+            graphControlBottom.DivisionLineXVisible = true;
+            graphControlBottom.DivisionLineYVisible = true;
+            graphControlBottom.Dock = DockStyle.Fill;
+            graphControlBottom.DrawingRange = (RectangleD)resources.GetObject("graphControlBottom.DrawingRange");
+            graphControlBottom.FixRangeHorizontal = false;
+            graphControlBottom.FixRangeVertical = false;
+            graphControlBottom.Font = new Font("Cambria", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlBottom.GraphTitle = "";
+            graphControlBottom.Interpolation = false;
+            graphControlBottom.IsIntegerX = false;
+            graphControlBottom.IsIntegerY = false;
+            graphControlBottom.LabelX = "X:";
+            graphControlBottom.LabelY = "Y:";
+            graphControlBottom.LeftMargin = 0F;
+            graphControlBottom.LineWidth = 2F;
+            graphControlBottom.Location = new Point(0, 60);
+            graphControlBottom.LowerX = 0D;
+            graphControlBottom.LowerY = 0D;
+            graphControlBottom.MaximalX = 1D;
+            graphControlBottom.MaximalY = 1D;
+            graphControlBottom.MinimalX = 0D;
+            graphControlBottom.MinimalY = 0D;
+            graphControlBottom.Mode = Crystallography.Controls.GraphControl.DrawingMode.Line;
+            graphControlBottom.MousePositionVisible = true;
+            graphControlBottom.MousePositionXDigit = -1;
+            graphControlBottom.MousePositionYDigit = -1;
+            graphControlBottom.Name = "graphControlBottom";
+            graphControlBottom.OriginPosition = new Point(40, 20);
+            graphControlBottom.Profile = null;
+            graphControlBottom.Size = new Size(725, 96);
+            graphControlBottom.Smoothing = false;
+            graphControlBottom.TabIndex = 6;
+            graphControlBottom.UnitX = "";
+            graphControlBottom.UnitY = "";
+            graphControlBottom.UpperPanelFont = new Font("Cambria", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlBottom.UpperPanelVisible = true;
+            graphControlBottom.UpperX = 1D;
+            graphControlBottom.UpperY = 1D;
+            graphControlBottom.UseLineWidth = true;
+            graphControlBottom.VerticalLineColor = Color.Red;
+            graphControlBottom.XLog = false;
+            graphControlBottom.YLog = false;
+            graphControlBottom.DrawingRangeChanged += graphControlBottom_DrawingRangeChanged;
+            graphControlBottom.MouseDoubleClick2 += graphControlBottom_MouseDoubleClick2;
+            // 
+            // flowLayoutPanel4
+            // 
+            flowLayoutPanel4.AutoSize = true;
+            flowLayoutPanel4.Controls.Add(label25);
+            flowLayoutPanel4.Controls.Add(textBoxFittingInformation);
+            flowLayoutPanel4.Dock = DockStyle.Top;
+            flowLayoutPanel4.Location = new Point(0, 28);
+            flowLayoutPanel4.Name = "flowLayoutPanel4";
+            flowLayoutPanel4.Size = new Size(725, 32);
+            flowLayoutPanel4.TabIndex = 7;
+            // 
+            // textBoxFittingInformation
+            // 
+            textBoxFittingInformation.BackColor = SystemColors.Control;
+            textBoxFittingInformation.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxFittingInformation.ForeColor = SystemColors.ControlText;
+            textBoxFittingInformation.Location = new Point(132, 3);
+            textBoxFittingInformation.Multiline = true;
+            textBoxFittingInformation.Name = "textBoxFittingInformation";
+            textBoxFittingInformation.ReadOnly = true;
+            textBoxFittingInformation.Size = new Size(585, 26);
+            textBoxFittingInformation.TabIndex = 0;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.AutoSize = true;
-            this.flowLayoutPanel2.Controls.Add(this.labelBottomTitle);
-            this.flowLayoutPanel2.Controls.Add(this.label13);
-            this.flowLayoutPanel2.Controls.Add(this.numericUpDownDifferentiationRunningAverage);
-            this.flowLayoutPanel2.Controls.Add(this.label1);
-            this.flowLayoutPanel2.Controls.Add(this.numericUpDownDifferentiationGaussian);
-            this.flowLayoutPanel2.Controls.Add(this.label10);
-            this.flowLayoutPanel2.Controls.Add(this.numericUpDownFitRange);
-            this.flowLayoutPanel2.Controls.Add(this.labelDimension);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(725, 28);
-            this.flowLayoutPanel2.TabIndex = 4;
+            flowLayoutPanel2.AutoSize = true;
+            flowLayoutPanel2.Controls.Add(labelBottomTitle);
+            flowLayoutPanel2.Controls.Add(label13);
+            flowLayoutPanel2.Controls.Add(numericUpDownDifferentiationRunningAverage);
+            flowLayoutPanel2.Controls.Add(label1);
+            flowLayoutPanel2.Controls.Add(numericUpDownDifferentiationGaussian);
+            flowLayoutPanel2.Controls.Add(label10);
+            flowLayoutPanel2.Controls.Add(numericUpDownFitRange);
+            flowLayoutPanel2.Controls.Add(labelDimension);
+            flowLayoutPanel2.Dock = DockStyle.Top;
+            flowLayoutPanel2.Location = new Point(0, 0);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(725, 28);
+            flowLayoutPanel2.TabIndex = 4;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(445, 6);
-            this.label10.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(90, 14);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Fitting Range";
+            label10.AutoSize = true;
+            label10.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(473, 6);
+            label10.Margin = new Padding(3, 6, 3, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(90, 14);
+            label10.TabIndex = 3;
+            label10.Text = "Fitting Range";
             // 
             // numericUpDownFitRange
             // 
-            this.numericUpDownFitRange.AutoSize = true;
-            this.numericUpDownFitRange.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDownFitRange.Location = new System.Drawing.Point(541, 3);
-            this.numericUpDownFitRange.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownFitRange.Name = "numericUpDownFitRange";
-            this.numericUpDownFitRange.Size = new System.Drawing.Size(47, 22);
-            this.numericUpDownFitRange.TabIndex = 2;
-            this.numericUpDownFitRange.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.numericUpDownFitRange.ValueChanged += new System.EventHandler(this.numericUpDownFitRange_ValueChanged);
+            numericUpDownFitRange.AutoSize = true;
+            numericUpDownFitRange.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDownFitRange.Location = new Point(569, 3);
+            numericUpDownFitRange.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDownFitRange.Name = "numericUpDownFitRange";
+            numericUpDownFitRange.Size = new Size(47, 22);
+            numericUpDownFitRange.TabIndex = 2;
+            numericUpDownFitRange.Value = new decimal(new int[] { 4, 0, 0, 0 });
+            numericUpDownFitRange.ValueChanged += numericUpDownFitRange_ValueChanged;
             // 
             // labelDimension
             // 
-            this.labelDimension.AutoSize = true;
-            this.labelDimension.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelDimension.Location = new System.Drawing.Point(594, 6);
-            this.labelDimension.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            this.labelDimension.Name = "labelDimension";
-            this.labelDimension.Size = new System.Drawing.Size(37, 14);
-            this.labelDimension.TabIndex = 3;
-            this.labelDimension.Text = "cm-1";
+            labelDimension.AutoSize = true;
+            labelDimension.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDimension.Location = new Point(622, 6);
+            labelDimension.Margin = new Padding(3, 6, 3, 0);
+            labelDimension.Name = "labelDimension";
+            labelDimension.Size = new Size(37, 14);
+            labelDimension.TabIndex = 3;
+            labelDimension.Text = "cm-1";
             // 
             // radioButtonDiamondRaman
             // 
-            this.radioButtonDiamondRaman.AutoSize = true;
-            this.radioButtonDiamondRaman.Checked = true;
-            this.radioButtonDiamondRaman.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButtonDiamondRaman.Location = new System.Drawing.Point(3, 3);
-            this.radioButtonDiamondRaman.Name = "radioButtonDiamondRaman";
-            this.radioButtonDiamondRaman.Size = new System.Drawing.Size(127, 18);
-            this.radioButtonDiamondRaman.TabIndex = 7;
-            this.radioButtonDiamondRaman.TabStop = true;
-            this.radioButtonDiamondRaman.Text = "Diamond Raman";
-            this.radioButtonDiamondRaman.UseVisualStyleBackColor = true;
-            this.radioButtonDiamondRaman.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
+            radioButtonDiamondRaman.AutoSize = true;
+            radioButtonDiamondRaman.Checked = true;
+            radioButtonDiamondRaman.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            radioButtonDiamondRaman.Location = new Point(3, 3);
+            radioButtonDiamondRaman.Name = "radioButtonDiamondRaman";
+            radioButtonDiamondRaman.Size = new Size(127, 18);
+            radioButtonDiamondRaman.TabIndex = 7;
+            radioButtonDiamondRaman.TabStop = true;
+            radioButtonDiamondRaman.Text = "Diamond Raman";
+            radioButtonDiamondRaman.UseVisualStyleBackColor = true;
+            radioButtonDiamondRaman.CheckedChanged += radioButtonMode_CheckedChanged;
             // 
             // radioButtonRubyFluorescence
             // 
-            this.radioButtonRubyFluorescence.AutoSize = true;
-            this.radioButtonRubyFluorescence.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButtonRubyFluorescence.Location = new System.Drawing.Point(136, 3);
-            this.radioButtonRubyFluorescence.Name = "radioButtonRubyFluorescence";
-            this.radioButtonRubyFluorescence.Size = new System.Drawing.Size(142, 18);
-            this.radioButtonRubyFluorescence.TabIndex = 7;
-            this.radioButtonRubyFluorescence.Text = "Ruby Fluorescence";
-            this.radioButtonRubyFluorescence.UseVisualStyleBackColor = true;
-            this.radioButtonRubyFluorescence.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
+            radioButtonRubyFluorescence.AutoSize = true;
+            radioButtonRubyFluorescence.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            radioButtonRubyFluorescence.Location = new Point(136, 3);
+            radioButtonRubyFluorescence.Name = "radioButtonRubyFluorescence";
+            radioButtonRubyFluorescence.Size = new Size(142, 18);
+            radioButtonRubyFluorescence.TabIndex = 7;
+            radioButtonRubyFluorescence.Text = "Ruby Fluorescence";
+            radioButtonRubyFluorescence.UseVisualStyleBackColor = true;
+            radioButtonRubyFluorescence.CheckedChanged += radioButtonMode_CheckedChanged;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Controls.Add(this.radioButtonDiamondRaman);
-            this.flowLayoutPanel1.Controls.Add(this.radioButtonRubyFluorescence);
-            this.flowLayoutPanel1.Controls.Add(this.radioButtonEOS);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(725, 24);
-            this.flowLayoutPanel1.TabIndex = 9;
+            flowLayoutPanel1.AutoSize = true;
+            flowLayoutPanel1.Controls.Add(radioButtonDiamondRaman);
+            flowLayoutPanel1.Controls.Add(radioButtonRubyFluorescence);
+            flowLayoutPanel1.Controls.Add(radioButtonEOS);
+            flowLayoutPanel1.Dock = DockStyle.Top;
+            flowLayoutPanel1.Location = new Point(0, 24);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(725, 24);
+            flowLayoutPanel1.TabIndex = 9;
             // 
             // radioButtonEOS
             // 
-            this.radioButtonEOS.AutoSize = true;
-            this.radioButtonEOS.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButtonEOS.Location = new System.Drawing.Point(284, 3);
-            this.radioButtonEOS.Name = "radioButtonEOS";
-            this.radioButtonEOS.Size = new System.Drawing.Size(51, 18);
-            this.radioButtonEOS.TabIndex = 7;
-            this.radioButtonEOS.Text = "EOS";
-            this.radioButtonEOS.UseVisualStyleBackColor = true;
-            this.radioButtonEOS.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
+            radioButtonEOS.AutoSize = true;
+            radioButtonEOS.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            radioButtonEOS.Location = new Point(284, 3);
+            radioButtonEOS.Name = "radioButtonEOS";
+            radioButtonEOS.Size = new Size(51, 18);
+            radioButtonEOS.TabIndex = 7;
+            radioButtonEOS.Text = "EOS";
+            radioButtonEOS.UseVisualStyleBackColor = true;
+            radioButtonEOS.CheckedChanged += radioButtonMode_CheckedChanged;
             // 
             // textBoxMaoHydroP
             // 
-            this.textBoxMaoHydroP.BackColor = System.Drawing.Color.Navy;
-            this.textBoxMaoHydroP.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxMaoHydroP.ForeColor = System.Drawing.Color.White;
-            this.textBoxMaoHydroP.Location = new System.Drawing.Point(620, 20);
-            this.textBoxMaoHydroP.Name = "textBoxMaoHydroP";
-            this.textBoxMaoHydroP.ReadOnly = true;
-            this.textBoxMaoHydroP.Size = new System.Drawing.Size(64, 27);
-            this.textBoxMaoHydroP.TabIndex = 0;
-            this.textBoxMaoHydroP.Text = "0";
+            textBoxMaoHydroP.BackColor = Color.Navy;
+            textBoxMaoHydroP.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxMaoHydroP.ForeColor = Color.White;
+            textBoxMaoHydroP.Location = new Point(620, 20);
+            textBoxMaoHydroP.Name = "textBoxMaoHydroP";
+            textBoxMaoHydroP.ReadOnly = true;
+            textBoxMaoHydroP.Size = new Size(64, 27);
+            textBoxMaoHydroP.TabIndex = 0;
+            textBoxMaoHydroP.Text = "0";
             // 
             // label28
             // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label28.Location = new System.Drawing.Point(683, 23);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(31, 17);
-            this.label28.TabIndex = 1;
-            this.label28.Text = "GPa";
+            label28.AutoSize = true;
+            label28.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label28.Location = new Point(683, 23);
+            label28.Name = "label28";
+            label28.Size = new Size(31, 17);
+            label28.TabIndex = 1;
+            label28.Text = "GPa";
             // 
             // groupBoxMao
             // 
-            this.groupBoxMao.Controls.Add(this.radioButtonTempUnitK);
-            this.groupBoxMao.Controls.Add(this.radioButtonTempUnitC);
-            this.groupBoxMao.Controls.Add(this.groupBox4);
-            this.groupBoxMao.Controls.Add(this.groupBox2);
-            this.groupBoxMao.Controls.Add(this.groupBox3);
-            this.groupBoxMao.Controls.Add(this.groupBox1);
-            this.groupBoxMao.Controls.Add(this.numericBoxRubyR1);
-            this.groupBoxMao.Controls.Add(this.label17);
-            this.groupBoxMao.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBoxMao.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxMao.Location = new System.Drawing.Point(0, 550);
-            this.groupBoxMao.Name = "groupBoxMao";
-            this.groupBoxMao.Size = new System.Drawing.Size(725, 244);
-            this.groupBoxMao.TabIndex = 12;
-            this.groupBoxMao.TabStop = false;
-            this.groupBoxMao.Text = "Pressure calculation from the ruby fluorescence";
+            groupBoxMao.Controls.Add(radioButtonTempUnitK);
+            groupBoxMao.Controls.Add(radioButtonTempUnitC);
+            groupBoxMao.Controls.Add(groupBox4);
+            groupBoxMao.Controls.Add(groupBox2);
+            groupBoxMao.Controls.Add(groupBox3);
+            groupBoxMao.Controls.Add(groupBox1);
+            groupBoxMao.Controls.Add(numericBoxRubyR1);
+            groupBoxMao.Controls.Add(label17);
+            groupBoxMao.Dock = DockStyle.Bottom;
+            groupBoxMao.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxMao.Location = new Point(0, 550);
+            groupBoxMao.Name = "groupBoxMao";
+            groupBoxMao.Size = new Size(725, 244);
+            groupBoxMao.TabIndex = 12;
+            groupBoxMao.TabStop = false;
+            groupBoxMao.Text = "Pressure calculation from the ruby fluorescence";
             // 
             // radioButtonTempUnitK
             // 
-            this.radioButtonTempUnitK.AutoSize = true;
-            this.radioButtonTempUnitK.Checked = true;
-            this.radioButtonTempUnitK.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButtonTempUnitK.Location = new System.Drawing.Point(53, 88);
-            this.radioButtonTempUnitK.Name = "radioButtonTempUnitK";
-            this.radioButtonTempUnitK.Size = new System.Drawing.Size(32, 19);
-            this.radioButtonTempUnitK.TabIndex = 7;
-            this.radioButtonTempUnitK.TabStop = true;
-            this.radioButtonTempUnitK.Text = "K";
-            this.radioButtonTempUnitK.UseVisualStyleBackColor = true;
-            this.radioButtonTempUnitK.CheckedChanged += new System.EventHandler(this.radioButtonTempUnit_CheckedChanged);
+            radioButtonTempUnitK.AutoSize = true;
+            radioButtonTempUnitK.Checked = true;
+            radioButtonTempUnitK.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            radioButtonTempUnitK.Location = new Point(53, 88);
+            radioButtonTempUnitK.Name = "radioButtonTempUnitK";
+            radioButtonTempUnitK.Size = new Size(32, 19);
+            radioButtonTempUnitK.TabIndex = 7;
+            radioButtonTempUnitK.TabStop = true;
+            radioButtonTempUnitK.Text = "K";
+            radioButtonTempUnitK.UseVisualStyleBackColor = true;
+            radioButtonTempUnitK.CheckedChanged += radioButtonTempUnit_CheckedChanged;
             // 
             // radioButtonTempUnitC
             // 
-            this.radioButtonTempUnitC.AutoSize = true;
-            this.radioButtonTempUnitC.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButtonTempUnitC.Location = new System.Drawing.Point(93, 88);
-            this.radioButtonTempUnitC.Name = "radioButtonTempUnitC";
-            this.radioButtonTempUnitC.Size = new System.Drawing.Size(37, 19);
-            this.radioButtonTempUnitC.TabIndex = 7;
-            this.radioButtonTempUnitC.Text = "℃";
-            this.radioButtonTempUnitC.UseVisualStyleBackColor = true;
-            this.radioButtonTempUnitC.CheckedChanged += new System.EventHandler(this.radioButtonTempUnit_CheckedChanged);
+            radioButtonTempUnitC.AutoSize = true;
+            radioButtonTempUnitC.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            radioButtonTempUnitC.Location = new Point(93, 88);
+            radioButtonTempUnitC.Name = "radioButtonTempUnitC";
+            radioButtonTempUnitC.Size = new Size(37, 19);
+            radioButtonTempUnitC.TabIndex = 7;
+            radioButtonTempUnitC.Text = "℃";
+            radioButtonTempUnitC.UseVisualStyleBackColor = true;
+            radioButtonTempUnitC.CheckedChanged += radioButtonTempUnit_CheckedChanged;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.textBoxMaoP);
-            this.groupBox4.Controls.Add(this.numericBoxMaoA);
-            this.groupBox4.Controls.Add(this.numericBoxMaoQuasiA);
-            this.groupBox4.Controls.Add(this.numericBoxShenA);
-            this.groupBox4.Controls.Add(this.numericBoxMaoHydroA);
-            this.groupBox4.Controls.Add(this.label42);
-            this.groupBox4.Controls.Add(this.label18);
-            this.groupBox4.Controls.Add(this.textBoxMaoQuasiP);
-            this.groupBox4.Controls.Add(this.label107);
-            this.groupBox4.Controls.Add(this.label46);
-            this.groupBox4.Controls.Add(this.label45);
-            this.groupBox4.Controls.Add(this.label34);
-            this.groupBox4.Controls.Add(this.textBoxMaoHydroP);
-            this.groupBox4.Controls.Add(this.textBoxShenP);
-            this.groupBox4.Controls.Add(this.label28);
-            this.groupBox4.Controls.Add(this.label104);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox4.Location = new System.Drawing.Point(3, 164);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(719, 77);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Pressure calculation, where x = R1/R1₀ ,  f(x, y) = (x^y-1)/y ,  Δ=R1-R1₀";
+            groupBox4.Controls.Add(textBoxMaoP);
+            groupBox4.Controls.Add(numericBoxMaoA);
+            groupBox4.Controls.Add(numericBoxMaoQuasiA);
+            groupBox4.Controls.Add(numericBoxShenA);
+            groupBox4.Controls.Add(numericBoxMaoHydroA);
+            groupBox4.Controls.Add(label42);
+            groupBox4.Controls.Add(label18);
+            groupBox4.Controls.Add(textBoxMaoQuasiP);
+            groupBox4.Controls.Add(label107);
+            groupBox4.Controls.Add(label46);
+            groupBox4.Controls.Add(label45);
+            groupBox4.Controls.Add(label34);
+            groupBox4.Controls.Add(textBoxMaoHydroP);
+            groupBox4.Controls.Add(textBoxShenP);
+            groupBox4.Controls.Add(label28);
+            groupBox4.Controls.Add(label104);
+            groupBox4.Dock = DockStyle.Bottom;
+            groupBox4.Location = new Point(3, 164);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(719, 77);
+            groupBox4.TabIndex = 6;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Pressure calculation, where x = R1/R1₀ ,  f(x, y) = (x^y-1)/y ,  Δ=R1-R1₀";
             // 
             // textBoxMaoP
             // 
-            this.textBoxMaoP.BackColor = System.Drawing.Color.Navy;
-            this.textBoxMaoP.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxMaoP.ForeColor = System.Drawing.Color.White;
-            this.textBoxMaoP.Location = new System.Drawing.Point(241, 20);
-            this.textBoxMaoP.Name = "textBoxMaoP";
-            this.textBoxMaoP.ReadOnly = true;
-            this.textBoxMaoP.Size = new System.Drawing.Size(64, 27);
-            this.textBoxMaoP.TabIndex = 0;
-            this.textBoxMaoP.Text = "0";
+            textBoxMaoP.BackColor = Color.Navy;
+            textBoxMaoP.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxMaoP.ForeColor = Color.White;
+            textBoxMaoP.Location = new Point(241, 20);
+            textBoxMaoP.Name = "textBoxMaoP";
+            textBoxMaoP.ReadOnly = true;
+            textBoxMaoP.Size = new Size(64, 27);
+            textBoxMaoP.TabIndex = 0;
+            textBoxMaoP.Text = "0";
             // 
             // numericBoxMaoA
             // 
-            this.numericBoxMaoA.BackColor = System.Drawing.Color.Transparent;
-            this.numericBoxMaoA.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoA.FooterFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoA.FooterText = "f(x, 5)=";
-            this.numericBoxMaoA.HeaderFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoA.HeaderText = "P=";
-            this.numericBoxMaoA.Location = new System.Drawing.Point(118, 22);
-            this.numericBoxMaoA.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxMaoA.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.numericBoxMaoA.MinimumSize = new System.Drawing.Size(1, 23);
-            this.numericBoxMaoA.Name = "numericBoxMaoA";
-            this.numericBoxMaoA.RadianValue = 33.231068957972035D;
-            this.numericBoxMaoA.RoundErrorAccuracy = -1;
-            this.numericBoxMaoA.Size = new System.Drawing.Size(103, 25);
-            this.numericBoxMaoA.TabIndex = 3;
-            this.numericBoxMaoA.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoA.Value = 1904D;
+            numericBoxMaoA.BackColor = Color.Transparent;
+            numericBoxMaoA.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoA.FooterFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoA.FooterText = "f(x, 5)=";
+            numericBoxMaoA.HeaderFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoA.HeaderText = "P=";
+            numericBoxMaoA.Location = new Point(118, 22);
+            numericBoxMaoA.Margin = new Padding(0);
+            numericBoxMaoA.MaximumSize = new Size(1000, 28);
+            numericBoxMaoA.MinimumSize = new Size(1, 18);
+            numericBoxMaoA.Name = "numericBoxMaoA";
+            numericBoxMaoA.RadianValue = 33.231068957972035D;
+            numericBoxMaoA.RoundErrorAccuracy = -1;
+            numericBoxMaoA.Size = new Size(103, 25);
+            numericBoxMaoA.TabIndex = 3;
+            numericBoxMaoA.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoA.Value = 1904D;
             // 
             // numericBoxMaoQuasiA
             // 
-            this.numericBoxMaoQuasiA.BackColor = System.Drawing.Color.Transparent;
-            this.numericBoxMaoQuasiA.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoQuasiA.FooterFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoQuasiA.FooterText = "f(x, 7.665)=";
-            this.numericBoxMaoQuasiA.HeaderFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoQuasiA.HeaderText = "P=";
-            this.numericBoxMaoQuasiA.Location = new System.Drawing.Point(117, 49);
-            this.numericBoxMaoQuasiA.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxMaoQuasiA.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.numericBoxMaoQuasiA.MinimumSize = new System.Drawing.Size(1, 23);
-            this.numericBoxMaoQuasiA.Name = "numericBoxMaoQuasiA";
-            this.numericBoxMaoQuasiA.RadianValue = 33.231068957972035D;
-            this.numericBoxMaoQuasiA.RoundErrorAccuracy = -1;
-            this.numericBoxMaoQuasiA.Size = new System.Drawing.Size(123, 25);
-            this.numericBoxMaoQuasiA.TabIndex = 3;
-            this.numericBoxMaoQuasiA.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoQuasiA.Value = 1904D;
+            numericBoxMaoQuasiA.BackColor = Color.Transparent;
+            numericBoxMaoQuasiA.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoQuasiA.FooterFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoQuasiA.FooterText = "f(x, 7.665)=";
+            numericBoxMaoQuasiA.HeaderFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoQuasiA.HeaderText = "P=";
+            numericBoxMaoQuasiA.Location = new Point(117, 49);
+            numericBoxMaoQuasiA.Margin = new Padding(0);
+            numericBoxMaoQuasiA.MaximumSize = new Size(1000, 28);
+            numericBoxMaoQuasiA.MinimumSize = new Size(1, 18);
+            numericBoxMaoQuasiA.Name = "numericBoxMaoQuasiA";
+            numericBoxMaoQuasiA.RadianValue = 33.231068957972035D;
+            numericBoxMaoQuasiA.RoundErrorAccuracy = -1;
+            numericBoxMaoQuasiA.Size = new Size(123, 25);
+            numericBoxMaoQuasiA.TabIndex = 3;
+            numericBoxMaoQuasiA.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoQuasiA.Value = 1904D;
             // 
             // numericBoxShenA
             // 
-            this.numericBoxShenA.BackColor = System.Drawing.Color.Transparent;
-            this.numericBoxShenA.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxShenA.FooterFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxShenA.FooterText = "(Δ+5.63 Δ²)=";
-            this.numericBoxShenA.HeaderFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxShenA.HeaderText = "P=";
-            this.numericBoxShenA.Location = new System.Drawing.Point(485, 49);
-            this.numericBoxShenA.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxShenA.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.numericBoxShenA.MinimumSize = new System.Drawing.Size(1, 23);
-            this.numericBoxShenA.Name = "numericBoxShenA";
-            this.numericBoxShenA.RadianValue = 32.637657012293964D;
-            this.numericBoxShenA.RoundErrorAccuracy = -1;
-            this.numericBoxShenA.Size = new System.Drawing.Size(131, 25);
-            this.numericBoxShenA.TabIndex = 3;
-            this.numericBoxShenA.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxShenA.Value = 1870D;
+            numericBoxShenA.BackColor = Color.Transparent;
+            numericBoxShenA.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxShenA.FooterFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxShenA.FooterText = "(Δ+5.63 Δ²)=";
+            numericBoxShenA.HeaderFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxShenA.HeaderText = "P=";
+            numericBoxShenA.Location = new Point(485, 49);
+            numericBoxShenA.Margin = new Padding(0);
+            numericBoxShenA.MaximumSize = new Size(1000, 28);
+            numericBoxShenA.MinimumSize = new Size(1, 18);
+            numericBoxShenA.Name = "numericBoxShenA";
+            numericBoxShenA.RadianValue = 32.637657012293964D;
+            numericBoxShenA.RoundErrorAccuracy = -1;
+            numericBoxShenA.Size = new Size(131, 25);
+            numericBoxShenA.TabIndex = 3;
+            numericBoxShenA.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxShenA.Value = 1870D;
             // 
             // numericBoxMaoHydroA
             // 
-            this.numericBoxMaoHydroA.BackColor = System.Drawing.Color.Transparent;
-            this.numericBoxMaoHydroA.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoHydroA.FooterFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoHydroA.FooterText = "f(x, 7.715)=";
-            this.numericBoxMaoHydroA.HeaderFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoHydroA.HeaderText = "P=";
-            this.numericBoxMaoHydroA.Location = new System.Drawing.Point(485, 22);
-            this.numericBoxMaoHydroA.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxMaoHydroA.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.numericBoxMaoHydroA.MinimumSize = new System.Drawing.Size(1, 23);
-            this.numericBoxMaoHydroA.Name = "numericBoxMaoHydroA";
-            this.numericBoxMaoHydroA.RadianValue = 33.231068957972035D;
-            this.numericBoxMaoHydroA.RoundErrorAccuracy = -1;
-            this.numericBoxMaoHydroA.Size = new System.Drawing.Size(123, 25);
-            this.numericBoxMaoHydroA.TabIndex = 3;
-            this.numericBoxMaoHydroA.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxMaoHydroA.Value = 1904D;
+            numericBoxMaoHydroA.BackColor = Color.Transparent;
+            numericBoxMaoHydroA.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoHydroA.FooterFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoHydroA.FooterText = "f(x, 7.715)=";
+            numericBoxMaoHydroA.HeaderFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoHydroA.HeaderText = "P=";
+            numericBoxMaoHydroA.Location = new Point(485, 22);
+            numericBoxMaoHydroA.Margin = new Padding(0);
+            numericBoxMaoHydroA.MaximumSize = new Size(1000, 28);
+            numericBoxMaoHydroA.MinimumSize = new Size(1, 18);
+            numericBoxMaoHydroA.Name = "numericBoxMaoHydroA";
+            numericBoxMaoHydroA.RadianValue = 33.231068957972035D;
+            numericBoxMaoHydroA.RoundErrorAccuracy = -1;
+            numericBoxMaoHydroA.Size = new Size(123, 25);
+            numericBoxMaoHydroA.TabIndex = 3;
+            numericBoxMaoHydroA.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoHydroA.Value = 1904D;
             // 
             // label42
             // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label42.Location = new System.Drawing.Point(305, 50);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(31, 17);
-            this.label42.TabIndex = 1;
-            this.label42.Text = "GPa";
+            label42.AutoSize = true;
+            label42.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label42.Location = new Point(305, 50);
+            label42.Name = "label42";
+            label42.Size = new Size(31, 17);
+            label42.TabIndex = 1;
+            label42.Text = "GPa";
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label18.Location = new System.Drawing.Point(305, 23);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(31, 17);
-            this.label18.TabIndex = 1;
-            this.label18.Text = "GPa";
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label18.Location = new Point(305, 23);
+            label18.Name = "label18";
+            label18.Size = new Size(31, 17);
+            label18.TabIndex = 1;
+            label18.Text = "GPa";
             // 
             // textBoxMaoQuasiP
             // 
-            this.textBoxMaoQuasiP.BackColor = System.Drawing.Color.Navy;
-            this.textBoxMaoQuasiP.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxMaoQuasiP.ForeColor = System.Drawing.Color.White;
-            this.textBoxMaoQuasiP.Location = new System.Drawing.Point(241, 47);
-            this.textBoxMaoQuasiP.Name = "textBoxMaoQuasiP";
-            this.textBoxMaoQuasiP.ReadOnly = true;
-            this.textBoxMaoQuasiP.Size = new System.Drawing.Size(64, 27);
-            this.textBoxMaoQuasiP.TabIndex = 0;
-            this.textBoxMaoQuasiP.Text = "0";
+            textBoxMaoQuasiP.BackColor = Color.Navy;
+            textBoxMaoQuasiP.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxMaoQuasiP.ForeColor = Color.White;
+            textBoxMaoQuasiP.Location = new Point(241, 47);
+            textBoxMaoQuasiP.Name = "textBoxMaoQuasiP";
+            textBoxMaoQuasiP.ReadOnly = true;
+            textBoxMaoQuasiP.Size = new Size(64, 27);
+            textBoxMaoQuasiP.TabIndex = 0;
+            textBoxMaoQuasiP.Text = "0";
             // 
             // label107
             // 
-            this.label107.AutoSize = true;
-            this.label107.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label107.Location = new System.Drawing.Point(367, 50);
-            this.label107.Name = "label107";
-            this.label107.Size = new System.Drawing.Size(108, 17);
-            this.label107.TabIndex = 1;
-            this.label107.Text = "Shen et al. (2020)";
+            label107.AutoSize = true;
+            label107.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label107.Location = new Point(367, 50);
+            label107.Name = "label107";
+            label107.Size = new Size(108, 17);
+            label107.TabIndex = 1;
+            label107.Text = "Shen et al. (2020)";
             // 
             // label46
             // 
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label46.Location = new System.Drawing.Point(367, 23);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(114, 17);
-            this.label46.TabIndex = 1;
-            this.label46.Text = "Mao-hydro (2000)";
+            label46.AutoSize = true;
+            label46.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label46.Location = new Point(367, 23);
+            label46.Name = "label46";
+            label46.Size = new Size(114, 17);
+            label46.TabIndex = 1;
+            label46.Text = "Mao-hydro (2000)";
             // 
             // label45
             // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label45.Location = new System.Drawing.Point(6, 50);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(111, 17);
-            this.label45.TabIndex = 1;
-            this.label45.Text = "Mao-quasi (1986)";
+            label45.AutoSize = true;
+            label45.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label45.Location = new Point(6, 50);
+            label45.Name = "label45";
+            label45.Size = new Size(111, 17);
+            label45.TabIndex = 1;
+            label45.Text = "Mao-quasi (1986)";
             // 
             // label34
             // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label34.Location = new System.Drawing.Point(6, 23);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(75, 17);
-            this.label34.TabIndex = 1;
-            this.label34.Text = "Mao (1978)";
+            label34.AutoSize = true;
+            label34.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label34.Location = new Point(6, 23);
+            label34.Name = "label34";
+            label34.Size = new Size(75, 17);
+            label34.TabIndex = 1;
+            label34.Text = "Mao (1978)";
             // 
             // textBoxShenP
             // 
-            this.textBoxShenP.BackColor = System.Drawing.Color.Navy;
-            this.textBoxShenP.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxShenP.ForeColor = System.Drawing.Color.White;
-            this.textBoxShenP.Location = new System.Drawing.Point(620, 47);
-            this.textBoxShenP.Name = "textBoxShenP";
-            this.textBoxShenP.ReadOnly = true;
-            this.textBoxShenP.Size = new System.Drawing.Size(64, 27);
-            this.textBoxShenP.TabIndex = 0;
-            this.textBoxShenP.Text = "0";
+            textBoxShenP.BackColor = Color.Navy;
+            textBoxShenP.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxShenP.ForeColor = Color.White;
+            textBoxShenP.Location = new Point(620, 47);
+            textBoxShenP.Name = "textBoxShenP";
+            textBoxShenP.ReadOnly = true;
+            textBoxShenP.Size = new Size(64, 27);
+            textBoxShenP.TabIndex = 0;
+            textBoxShenP.Text = "0";
             // 
             // label104
             // 
-            this.label104.AutoSize = true;
-            this.label104.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label104.Location = new System.Drawing.Point(683, 50);
-            this.label104.Name = "label104";
-            this.label104.Size = new System.Drawing.Size(31, 17);
-            this.label104.TabIndex = 1;
-            this.label104.Text = "GPa";
+            label104.AutoSize = true;
+            label104.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label104.Location = new Point(683, 50);
+            label104.Name = "label104";
+            label104.Size = new Size(31, 17);
+            label104.TabIndex = 1;
+            label104.Text = "GPa";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.numericBoxRubyRagan);
-            this.groupBox2.Location = new System.Drawing.Point(136, 113);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(583, 48);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Temperature dependency (Ragan et al., 1992) (Applicable in the range of 50-600K)";
+            groupBox2.Controls.Add(numericBoxRubyRagan);
+            groupBox2.Location = new Point(136, 113);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(583, 48);
+            groupBox2.TabIndex = 5;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Temperature dependency (Ragan et al., 1992) (Applicable in the range of 50-600K)";
             // 
             // numericBoxRubyRagan
             // 
-            this.numericBoxRubyRagan.BackColor = System.Drawing.Color.Transparent;
-            this.numericBoxRubyRagan.DecimalPlaces = 3;
-            this.numericBoxRubyRagan.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyRagan.FooterText = "+ 4.49×10⁻²×T - 4.81×10⁻⁴×T² + 3.71×10⁻⁷×T³ )⁻¹ ×10⁷    [nm]";
-            this.numericBoxRubyRagan.HeaderText = "R1(T, P=0) = (";
-            this.numericBoxRubyRagan.Location = new System.Drawing.Point(9, 18);
-            this.numericBoxRubyRagan.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxRubyRagan.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.numericBoxRubyRagan.MinimumSize = new System.Drawing.Size(1, 23);
-            this.numericBoxRubyRagan.Name = "numericBoxRubyRagan";
-            this.numericBoxRubyRagan.RadianValue = 251.72883801514215D;
-            this.numericBoxRubyRagan.RoundErrorAccuracy = -1;
-            this.numericBoxRubyRagan.Size = new System.Drawing.Size(542, 25);
-            this.numericBoxRubyRagan.TabIndex = 3;
-            this.numericBoxRubyRagan.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyRagan.Value = 14423D;
-            this.numericBoxRubyRagan.ValueChanged += new Crystallography.Controls.NumericBox.MyEventHandler(this.numericBoxRubyRagan_ValueChanged);
+            numericBoxRubyRagan.BackColor = Color.Transparent;
+            numericBoxRubyRagan.DecimalPlaces = 3;
+            numericBoxRubyRagan.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRagan.FooterText = "+ 4.49×10⁻²×T - 4.81×10⁻⁴×T² + 3.71×10⁻⁷×T³ )⁻¹ ×10⁷    [nm]";
+            numericBoxRubyRagan.HeaderText = "R1(T, P=0) = (";
+            numericBoxRubyRagan.Location = new Point(9, 18);
+            numericBoxRubyRagan.Margin = new Padding(0);
+            numericBoxRubyRagan.MaximumSize = new Size(1000, 28);
+            numericBoxRubyRagan.MinimumSize = new Size(1, 18);
+            numericBoxRubyRagan.Name = "numericBoxRubyRagan";
+            numericBoxRubyRagan.RadianValue = 251.72883801514214D;
+            numericBoxRubyRagan.RoundErrorAccuracy = -1;
+            numericBoxRubyRagan.Size = new Size(542, 25);
+            numericBoxRubyRagan.TabIndex = 3;
+            numericBoxRubyRagan.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRagan.Value = 14423D;
+            numericBoxRubyRagan.ValueChanged += numericBoxRubyRagan_ValueChanged;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.checkBoxRubyR1_0CalculatedFromRagan);
-            this.groupBox3.Controls.Add(this.numericBoxRubyT);
-            this.groupBox3.Controls.Add(this.checkBoxRubyTemeratureSameAsRef);
-            this.groupBox3.Controls.Add(this.numericBoxRubyR1_0);
-            this.groupBox3.Location = new System.Drawing.Point(138, 19);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(319, 88);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Measument condition";
+            groupBox3.Controls.Add(checkBoxRubyR1_0CalculatedFromRagan);
+            groupBox3.Controls.Add(numericBoxRubyT);
+            groupBox3.Controls.Add(checkBoxRubyTemeratureSameAsRef);
+            groupBox3.Controls.Add(numericBoxRubyR1_0);
+            groupBox3.Location = new Point(138, 19);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(319, 88);
+            groupBox3.TabIndex = 5;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Measument condition";
             // 
             // checkBoxRubyR1_0CalculatedFromRagan
             // 
-            this.checkBoxRubyR1_0CalculatedFromRagan.AutoSize = true;
-            this.checkBoxRubyR1_0CalculatedFromRagan.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBoxRubyR1_0CalculatedFromRagan.Location = new System.Drawing.Point(185, 43);
-            this.checkBoxRubyR1_0CalculatedFromRagan.Name = "checkBoxRubyR1_0CalculatedFromRagan";
-            this.checkBoxRubyR1_0CalculatedFromRagan.Size = new System.Drawing.Size(132, 38);
-            this.checkBoxRubyR1_0CalculatedFromRagan.TabIndex = 7;
-            this.checkBoxRubyR1_0CalculatedFromRagan.Text = "Caluculate from\r\n Ragan\'s equation";
-            this.checkBoxRubyR1_0CalculatedFromRagan.UseVisualStyleBackColor = true;
-            this.checkBoxRubyR1_0CalculatedFromRagan.CheckedChanged += new System.EventHandler(this.checkBoxRubyR1CalculatedFromRagan_CheckedChanged);
+            checkBoxRubyR1_0CalculatedFromRagan.AutoSize = true;
+            checkBoxRubyR1_0CalculatedFromRagan.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxRubyR1_0CalculatedFromRagan.Location = new Point(185, 43);
+            checkBoxRubyR1_0CalculatedFromRagan.Name = "checkBoxRubyR1_0CalculatedFromRagan";
+            checkBoxRubyR1_0CalculatedFromRagan.Size = new Size(132, 38);
+            checkBoxRubyR1_0CalculatedFromRagan.TabIndex = 7;
+            checkBoxRubyR1_0CalculatedFromRagan.Text = "Caluculate from\r\n Ragan's equation";
+            checkBoxRubyR1_0CalculatedFromRagan.UseVisualStyleBackColor = true;
+            checkBoxRubyR1_0CalculatedFromRagan.CheckedChanged += checkBoxRubyR1CalculatedFromRagan_CheckedChanged;
             // 
             // numericBoxRubyT
             // 
-            this.numericBoxRubyT.BackColor = System.Drawing.Color.Transparent;
-            this.numericBoxRubyT.DecimalPlaces = 2;
-            this.numericBoxRubyT.Enabled = false;
-            this.numericBoxRubyT.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyT.FooterText = "K";
-            this.numericBoxRubyT.HeaderText = "T =";
-            this.numericBoxRubyT.Location = new System.Drawing.Point(11, 18);
-            this.numericBoxRubyT.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxRubyT.MaximumSize = new System.Drawing.Size(1000, 23);
-            this.numericBoxRubyT.MinimumSize = new System.Drawing.Size(1, 23);
-            this.numericBoxRubyT.Name = "numericBoxRubyT";
-            this.numericBoxRubyT.RadianValue = 5.18624587230115D;
-            this.numericBoxRubyT.RoundErrorAccuracy = -1;
-            this.numericBoxRubyT.Size = new System.Drawing.Size(116, 23);
-            this.numericBoxRubyT.TabIndex = 3;
-            this.numericBoxRubyT.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyT.Value = 297.15D;
-            this.numericBoxRubyT.ValueChanged += new Crystallography.Controls.NumericBox.MyEventHandler(this.numericBoxRubyT_ValueChanged);
+            numericBoxRubyT.BackColor = Color.Transparent;
+            numericBoxRubyT.DecimalPlaces = 2;
+            numericBoxRubyT.Enabled = false;
+            numericBoxRubyT.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyT.FooterText = "K";
+            numericBoxRubyT.HeaderText = "T =";
+            numericBoxRubyT.Location = new Point(11, 18);
+            numericBoxRubyT.Margin = new Padding(0);
+            numericBoxRubyT.MaximumSize = new Size(1000, 28);
+            numericBoxRubyT.MinimumSize = new Size(1, 18);
+            numericBoxRubyT.Name = "numericBoxRubyT";
+            numericBoxRubyT.RadianValue = 5.18624587230115D;
+            numericBoxRubyT.RoundErrorAccuracy = -1;
+            numericBoxRubyT.Size = new Size(116, 23);
+            numericBoxRubyT.TabIndex = 3;
+            numericBoxRubyT.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyT.Value = 297.15D;
+            numericBoxRubyT.ValueChanged += numericBoxRubyT_ValueChanged;
             // 
             // checkBoxRubyTemeratureSameAsRef
             // 
-            this.checkBoxRubyTemeratureSameAsRef.AutoSize = true;
-            this.checkBoxRubyTemeratureSameAsRef.Checked = true;
-            this.checkBoxRubyTemeratureSameAsRef.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxRubyTemeratureSameAsRef.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBoxRubyTemeratureSameAsRef.Location = new System.Drawing.Point(135, 20);
-            this.checkBoxRubyTemeratureSameAsRef.Name = "checkBoxRubyTemeratureSameAsRef";
-            this.checkBoxRubyTemeratureSameAsRef.Size = new System.Drawing.Size(135, 21);
-            this.checkBoxRubyTemeratureSameAsRef.TabIndex = 7;
-            this.checkBoxRubyTemeratureSameAsRef.Text = "Same as reference";
-            this.checkBoxRubyTemeratureSameAsRef.UseVisualStyleBackColor = true;
-            this.checkBoxRubyTemeratureSameAsRef.CheckedChanged += new System.EventHandler(this.checkBoxRubyTemeratureSameAsRef_CheckedChanged);
+            checkBoxRubyTemeratureSameAsRef.AutoSize = true;
+            checkBoxRubyTemeratureSameAsRef.Checked = true;
+            checkBoxRubyTemeratureSameAsRef.CheckState = CheckState.Checked;
+            checkBoxRubyTemeratureSameAsRef.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxRubyTemeratureSameAsRef.Location = new Point(135, 20);
+            checkBoxRubyTemeratureSameAsRef.Name = "checkBoxRubyTemeratureSameAsRef";
+            checkBoxRubyTemeratureSameAsRef.Size = new Size(135, 21);
+            checkBoxRubyTemeratureSameAsRef.TabIndex = 7;
+            checkBoxRubyTemeratureSameAsRef.Text = "Same as reference";
+            checkBoxRubyTemeratureSameAsRef.UseVisualStyleBackColor = true;
+            checkBoxRubyTemeratureSameAsRef.CheckedChanged += checkBoxRubyTemeratureSameAsRef_CheckedChanged;
             // 
             // numericBoxRubyR1_0
             // 
-            this.numericBoxRubyR1_0.BackColor = System.Drawing.Color.Transparent;
-            this.numericBoxRubyR1_0.DecimalPlaces = 3;
-            this.numericBoxRubyR1_0.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyR1_0.FooterText = "nm";
-            this.numericBoxRubyR1_0.HeaderText = "R1₀=R1(T,P=0)";
-            this.numericBoxRubyR1_0.Location = new System.Drawing.Point(11, 52);
-            this.numericBoxRubyR1_0.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxRubyR1_0.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.numericBoxRubyR1_0.MinimumSize = new System.Drawing.Size(1, 23);
-            this.numericBoxRubyR1_0.Name = "numericBoxRubyR1_0";
-            this.numericBoxRubyR1_0.RadianValue = 12.12392964897861D;
-            this.numericBoxRubyR1_0.RoundErrorAccuracy = -1;
-            this.numericBoxRubyR1_0.Size = new System.Drawing.Size(171, 25);
-            this.numericBoxRubyR1_0.TabIndex = 3;
-            this.numericBoxRubyR1_0.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyR1_0.Value = 694.65D;
-            this.numericBoxRubyR1_0.ValueChanged += new Crystallography.Controls.NumericBox.MyEventHandler(this.numericBoxR1_0_ValueChanged);
+            numericBoxRubyR1_0.BackColor = Color.Transparent;
+            numericBoxRubyR1_0.DecimalPlaces = 3;
+            numericBoxRubyR1_0.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyR1_0.FooterText = "nm";
+            numericBoxRubyR1_0.HeaderText = "R1₀=R1(T,P=0)";
+            numericBoxRubyR1_0.Location = new Point(11, 52);
+            numericBoxRubyR1_0.Margin = new Padding(0);
+            numericBoxRubyR1_0.MaximumSize = new Size(1000, 28);
+            numericBoxRubyR1_0.MinimumSize = new Size(1, 18);
+            numericBoxRubyR1_0.Name = "numericBoxRubyR1_0";
+            numericBoxRubyR1_0.RadianValue = 12.12392964897861D;
+            numericBoxRubyR1_0.RoundErrorAccuracy = -1;
+            numericBoxRubyR1_0.Size = new Size(171, 25);
+            numericBoxRubyR1_0.TabIndex = 3;
+            numericBoxRubyR1_0.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyR1_0.Value = 694.65D;
+            numericBoxRubyR1_0.ValueChanged += numericBoxR1_0_ValueChanged;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.buttonRubyRefR1Set);
-            this.groupBox1.Controls.Add(this.numericBoxRubyRefT);
-            this.groupBox1.Controls.Add(this.numericBoxRubyRefR1);
-            this.groupBox1.Location = new System.Drawing.Point(463, 19);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(256, 88);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Reference condition";
+            groupBox1.Controls.Add(buttonRubyRefR1Set);
+            groupBox1.Controls.Add(numericBoxRubyRefT);
+            groupBox1.Controls.Add(numericBoxRubyRefR1);
+            groupBox1.Location = new Point(463, 19);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(256, 88);
+            groupBox1.TabIndex = 5;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Reference condition";
             // 
             // buttonRubyRefR1Set
             // 
-            this.buttonRubyRefR1Set.AutoSize = true;
-            this.buttonRubyRefR1Set.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonRubyRefR1Set.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonRubyRefR1Set.Location = new System.Drawing.Point(128, 49);
-            this.buttonRubyRefR1Set.Name = "buttonRubyRefR1Set";
-            this.buttonRubyRefR1Set.Size = new System.Drawing.Size(122, 27);
-            this.buttonRubyRefR1Set.TabIndex = 4;
-            this.buttonRubyRefR1Set.Text = "Set the current R1";
-            this.buttonRubyRefR1Set.UseVisualStyleBackColor = true;
-            this.buttonRubyRefR1Set.Click += new System.EventHandler(this.buttonRubyRefR1Set_Click);
+            buttonRubyRefR1Set.AutoSize = true;
+            buttonRubyRefR1Set.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonRubyRefR1Set.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonRubyRefR1Set.Location = new Point(128, 49);
+            buttonRubyRefR1Set.Name = "buttonRubyRefR1Set";
+            buttonRubyRefR1Set.Size = new Size(122, 27);
+            buttonRubyRefR1Set.TabIndex = 4;
+            buttonRubyRefR1Set.Text = "Set the current R1";
+            buttonRubyRefR1Set.UseVisualStyleBackColor = true;
+            buttonRubyRefR1Set.Click += buttonRubyRefR1Set_Click;
             // 
             // numericBoxRubyRefT
             // 
-            this.numericBoxRubyRefT.BackColor = System.Drawing.Color.Transparent;
-            this.numericBoxRubyRefT.DecimalPlaces = 2;
-            this.numericBoxRubyRefT.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyRefT.FooterText = "K";
-            this.numericBoxRubyRefT.Location = new System.Drawing.Point(46, 21);
-            this.numericBoxRubyRefT.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxRubyRefT.MaximumSize = new System.Drawing.Size(1000, 23);
-            this.numericBoxRubyRefT.MinimumSize = new System.Drawing.Size(1, 23);
-            this.numericBoxRubyRefT.Name = "numericBoxRubyRefT";
-            this.numericBoxRubyRefT.RadianValue = 5.18624587230115D;
-            this.numericBoxRubyRefT.RoundErrorAccuracy = -1;
-            this.numericBoxRubyRefT.Size = new System.Drawing.Size(67, 23);
-            this.numericBoxRubyRefT.TabIndex = 3;
-            this.numericBoxRubyRefT.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyRefT.Value = 297.15D;
-            this.numericBoxRubyRefT.ValueChanged += new Crystallography.Controls.NumericBox.MyEventHandler(this.numericBoxRubyRefT_ValueChanged);
+            numericBoxRubyRefT.BackColor = Color.Transparent;
+            numericBoxRubyRefT.DecimalPlaces = 2;
+            numericBoxRubyRefT.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRefT.FooterText = "K";
+            numericBoxRubyRefT.Location = new Point(46, 21);
+            numericBoxRubyRefT.Margin = new Padding(0);
+            numericBoxRubyRefT.MaximumSize = new Size(1000, 28);
+            numericBoxRubyRefT.MinimumSize = new Size(1, 18);
+            numericBoxRubyRefT.Name = "numericBoxRubyRefT";
+            numericBoxRubyRefT.RadianValue = 5.18624587230115D;
+            numericBoxRubyRefT.RoundErrorAccuracy = -1;
+            numericBoxRubyRefT.Size = new Size(67, 23);
+            numericBoxRubyRefT.TabIndex = 3;
+            numericBoxRubyRefT.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRefT.Value = 297.15D;
+            numericBoxRubyRefT.ValueChanged += numericBoxRubyRefT_ValueChanged;
             // 
             // numericBoxRubyRefR1
             // 
-            this.numericBoxRubyRefR1.BackColor = System.Drawing.Color.Transparent;
-            this.numericBoxRubyRefR1.DecimalPlaces = 3;
-            this.numericBoxRubyRefR1.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyRefR1.FooterText = "nm";
-            this.numericBoxRubyRefR1.HeaderText = "R1(T=                , P=0) = ";
-            this.numericBoxRubyRefR1.Location = new System.Drawing.Point(7, 21);
-            this.numericBoxRubyRefR1.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxRubyRefR1.MaximumSize = new System.Drawing.Size(1000, 25);
-            this.numericBoxRubyRefR1.MinimumSize = new System.Drawing.Size(1, 23);
-            this.numericBoxRubyRefR1.Name = "numericBoxRubyRefR1";
-            this.numericBoxRubyRefR1.RadianValue = 12.116948331970631D;
-            this.numericBoxRubyRefR1.RoundErrorAccuracy = -1;
-            this.numericBoxRubyRefR1.Size = new System.Drawing.Size(243, 25);
-            this.numericBoxRubyRefR1.TabIndex = 3;
-            this.numericBoxRubyRefR1.TextFont = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyRefR1.Value = 694.25D;
-            this.numericBoxRubyRefR1.ValueChanged += new Crystallography.Controls.NumericBox.MyEventHandler(this.numericBoxRubyRefR1_ValueChanged);
+            numericBoxRubyRefR1.BackColor = Color.Transparent;
+            numericBoxRubyRefR1.DecimalPlaces = 3;
+            numericBoxRubyRefR1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRefR1.FooterText = "nm";
+            numericBoxRubyRefR1.HeaderText = "R1(T=                , P=0) = ";
+            numericBoxRubyRefR1.Location = new Point(7, 21);
+            numericBoxRubyRefR1.Margin = new Padding(0);
+            numericBoxRubyRefR1.MaximumSize = new Size(1000, 28);
+            numericBoxRubyRefR1.MinimumSize = new Size(1, 18);
+            numericBoxRubyRefR1.Name = "numericBoxRubyRefR1";
+            numericBoxRubyRefR1.RadianValue = 12.116948331970631D;
+            numericBoxRubyRefR1.RoundErrorAccuracy = -1;
+            numericBoxRubyRefR1.Size = new Size(243, 25);
+            numericBoxRubyRefR1.TabIndex = 3;
+            numericBoxRubyRefR1.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRefR1.Value = 694.25D;
+            numericBoxRubyRefR1.ValueChanged += numericBoxRubyRefR1_ValueChanged;
             // 
             // numericBoxRubyR1
             // 
-            this.numericBoxRubyR1.BackColor = System.Drawing.Color.Transparent;
-            this.numericBoxRubyR1.DecimalPlaces = 3;
-            this.numericBoxRubyR1.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyR1.FooterText = "nm";
-            this.numericBoxRubyR1.HeaderText = "R1";
-            this.numericBoxRubyR1.Location = new System.Drawing.Point(8, 28);
-            this.numericBoxRubyR1.Margin = new System.Windows.Forms.Padding(0);
-            this.numericBoxRubyR1.MaximumSize = new System.Drawing.Size(1000, 29);
-            this.numericBoxRubyR1.MinimumSize = new System.Drawing.Size(1, 27);
-            this.numericBoxRubyR1.Name = "numericBoxRubyR1";
-            this.numericBoxRubyR1.RadianValue = 12.12392964897861D;
-            this.numericBoxRubyR1.RoundErrorAccuracy = -1;
-            this.numericBoxRubyR1.Size = new System.Drawing.Size(125, 29);
-            this.numericBoxRubyR1.TabIndex = 3;
-            this.numericBoxRubyR1.TextFont = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericBoxRubyR1.Value = 694.65D;
-            this.numericBoxRubyR1.ValueChanged += new Crystallography.Controls.NumericBox.MyEventHandler(this.numericBoxRubyR1_ValueChanged);
+            numericBoxRubyR1.BackColor = Color.Transparent;
+            numericBoxRubyR1.DecimalPlaces = 3;
+            numericBoxRubyR1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyR1.FooterText = "nm";
+            numericBoxRubyR1.HeaderText = "R1";
+            numericBoxRubyR1.Location = new Point(8, 28);
+            numericBoxRubyR1.Margin = new Padding(0);
+            numericBoxRubyR1.MaximumSize = new Size(1000, 32);
+            numericBoxRubyR1.MinimumSize = new Size(1, 22);
+            numericBoxRubyR1.Name = "numericBoxRubyR1";
+            numericBoxRubyR1.RadianValue = 12.12392964897861D;
+            numericBoxRubyR1.RoundErrorAccuracy = -1;
+            numericBoxRubyR1.Size = new Size(125, 29);
+            numericBoxRubyR1.TabIndex = 3;
+            numericBoxRubyR1.TextFont = new Font("Segoe UI Symbol", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyR1.Value = 694.65D;
+            numericBoxRubyR1.ValueChanged += numericBoxRubyR1_ValueChanged;
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI Symbol", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(6, 68);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(108, 17);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "Temperature unit";
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label17.Location = new Point(6, 68);
+            label17.Name = "label17";
+            label17.Size = new Size(108, 17);
+            label17.TabIndex = 1;
+            label17.Text = "Temperature unit";
             // 
             // groupBoxAkahama2006
             // 
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondFratandunoHigh);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondAkahama2006P);
-            this.groupBoxAkahama2006.Controls.Add(this.label44);
-            this.groupBoxAkahama2006.Controls.Add(this.label29);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2004A);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2004B);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondRamanNu0);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2004C);
-            this.groupBoxAkahama2006.Controls.Add(this.label43);
-            this.groupBoxAkahama2006.Controls.Add(this.label5);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondRamanNu);
-            this.groupBoxAkahama2006.Controls.Add(this.label6);
-            this.groupBoxAkahama2006.Controls.Add(this.label30);
-            this.groupBoxAkahama2006.Controls.Add(this.label7);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2006K0);
-            this.groupBoxAkahama2006.Controls.Add(this.label8);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxAkahama2006K0Prime);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondFratandunoLow);
-            this.groupBoxAkahama2006.Controls.Add(this.textBoxDiamondAkahama2004P);
-            this.groupBoxAkahama2006.Controls.Add(this.label4);
-            this.groupBoxAkahama2006.Controls.Add(this.label20);
-            this.groupBoxAkahama2006.Controls.Add(this.label19);
-            this.groupBoxAkahama2006.Controls.Add(this.label3);
-            this.groupBoxAkahama2006.Controls.Add(this.label24);
-            this.groupBoxAkahama2006.Controls.Add(this.label31);
-            this.groupBoxAkahama2006.Controls.Add(this.label9);
-            this.groupBoxAkahama2006.Controls.Add(this.label33);
-            this.groupBoxAkahama2006.Controls.Add(this.label21);
-            this.groupBoxAkahama2006.Controls.Add(this.label32);
-            this.groupBoxAkahama2006.Controls.Add(this.label35);
-            this.groupBoxAkahama2006.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBoxAkahama2006.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxAkahama2006.Location = new System.Drawing.Point(0, 426);
-            this.groupBoxAkahama2006.Name = "groupBoxAkahama2006";
-            this.groupBoxAkahama2006.Size = new System.Drawing.Size(725, 124);
-            this.groupBoxAkahama2006.TabIndex = 13;
-            this.groupBoxAkahama2006.TabStop = false;
-            this.groupBoxAkahama2006.Text = "Pressure calculation from the Raman edge";
+            groupBoxAkahama2006.Controls.Add(textBoxDiamondFratandunoHigh);
+            groupBoxAkahama2006.Controls.Add(textBoxDiamondAkahama2006P);
+            groupBoxAkahama2006.Controls.Add(label44);
+            groupBoxAkahama2006.Controls.Add(label29);
+            groupBoxAkahama2006.Controls.Add(textBoxAkahama2004A);
+            groupBoxAkahama2006.Controls.Add(textBoxAkahama2004B);
+            groupBoxAkahama2006.Controls.Add(textBoxDiamondRamanNu0);
+            groupBoxAkahama2006.Controls.Add(textBoxAkahama2004C);
+            groupBoxAkahama2006.Controls.Add(label43);
+            groupBoxAkahama2006.Controls.Add(label5);
+            groupBoxAkahama2006.Controls.Add(textBoxDiamondRamanNu);
+            groupBoxAkahama2006.Controls.Add(label6);
+            groupBoxAkahama2006.Controls.Add(label30);
+            groupBoxAkahama2006.Controls.Add(label7);
+            groupBoxAkahama2006.Controls.Add(textBoxAkahama2006K0);
+            groupBoxAkahama2006.Controls.Add(label8);
+            groupBoxAkahama2006.Controls.Add(textBoxAkahama2006K0Prime);
+            groupBoxAkahama2006.Controls.Add(textBoxDiamondFratandunoLow);
+            groupBoxAkahama2006.Controls.Add(textBoxDiamondAkahama2004P);
+            groupBoxAkahama2006.Controls.Add(label4);
+            groupBoxAkahama2006.Controls.Add(label20);
+            groupBoxAkahama2006.Controls.Add(label19);
+            groupBoxAkahama2006.Controls.Add(label3);
+            groupBoxAkahama2006.Controls.Add(label24);
+            groupBoxAkahama2006.Controls.Add(label31);
+            groupBoxAkahama2006.Controls.Add(label9);
+            groupBoxAkahama2006.Controls.Add(label33);
+            groupBoxAkahama2006.Controls.Add(label21);
+            groupBoxAkahama2006.Controls.Add(label32);
+            groupBoxAkahama2006.Controls.Add(label35);
+            groupBoxAkahama2006.Dock = DockStyle.Bottom;
+            groupBoxAkahama2006.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxAkahama2006.Location = new Point(0, 426);
+            groupBoxAkahama2006.Name = "groupBoxAkahama2006";
+            groupBoxAkahama2006.Size = new Size(725, 124);
+            groupBoxAkahama2006.TabIndex = 13;
+            groupBoxAkahama2006.TabStop = false;
+            groupBoxAkahama2006.Text = "Pressure calculation from the Raman edge";
             // 
             // textBoxDiamondFratandunoHigh
             // 
-            this.textBoxDiamondFratandunoHigh.BackColor = System.Drawing.Color.Navy;
-            this.textBoxDiamondFratandunoHigh.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxDiamondFratandunoHigh.ForeColor = System.Drawing.Color.White;
-            this.textBoxDiamondFratandunoHigh.Location = new System.Drawing.Point(615, 92);
-            this.textBoxDiamondFratandunoHigh.Name = "textBoxDiamondFratandunoHigh";
-            this.textBoxDiamondFratandunoHigh.ReadOnly = true;
-            this.textBoxDiamondFratandunoHigh.Size = new System.Drawing.Size(71, 27);
-            this.textBoxDiamondFratandunoHigh.TabIndex = 0;
-            this.textBoxDiamondFratandunoHigh.Text = "0";
+            textBoxDiamondFratandunoHigh.BackColor = Color.Navy;
+            textBoxDiamondFratandunoHigh.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondFratandunoHigh.ForeColor = Color.White;
+            textBoxDiamondFratandunoHigh.Location = new Point(615, 92);
+            textBoxDiamondFratandunoHigh.Name = "textBoxDiamondFratandunoHigh";
+            textBoxDiamondFratandunoHigh.ReadOnly = true;
+            textBoxDiamondFratandunoHigh.Size = new Size(71, 27);
+            textBoxDiamondFratandunoHigh.TabIndex = 0;
+            textBoxDiamondFratandunoHigh.Text = "0";
             // 
             // textBoxDiamondAkahama2006P
             // 
-            this.textBoxDiamondAkahama2006P.BackColor = System.Drawing.Color.Navy;
-            this.textBoxDiamondAkahama2006P.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxDiamondAkahama2006P.ForeColor = System.Drawing.Color.White;
-            this.textBoxDiamondAkahama2006P.Location = new System.Drawing.Point(615, 38);
-            this.textBoxDiamondAkahama2006P.Name = "textBoxDiamondAkahama2006P";
-            this.textBoxDiamondAkahama2006P.ReadOnly = true;
-            this.textBoxDiamondAkahama2006P.Size = new System.Drawing.Size(71, 27);
-            this.textBoxDiamondAkahama2006P.TabIndex = 0;
-            this.textBoxDiamondAkahama2006P.Text = "0";
+            textBoxDiamondAkahama2006P.BackColor = Color.Navy;
+            textBoxDiamondAkahama2006P.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondAkahama2006P.ForeColor = Color.White;
+            textBoxDiamondAkahama2006P.Location = new Point(615, 38);
+            textBoxDiamondAkahama2006P.Name = "textBoxDiamondAkahama2006P";
+            textBoxDiamondAkahama2006P.ReadOnly = true;
+            textBoxDiamondAkahama2006P.Size = new Size(71, 27);
+            textBoxDiamondAkahama2006P.TabIndex = 0;
+            textBoxDiamondAkahama2006P.Text = "0";
             // 
             // label44
             // 
-            this.label44.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label44.Location = new System.Drawing.Point(6, 43);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(24, 12);
-            this.label44.TabIndex = 1;
-            this.label44.Text = "ν0";
+            label44.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label44.Location = new Point(6, 43);
+            label44.Name = "label44";
+            label44.Size = new Size(24, 12);
+            label44.TabIndex = 1;
+            label44.Text = "ν0";
             // 
             // label29
             // 
-            this.label29.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label29.Location = new System.Drawing.Point(4, 20);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(16, 12);
-            this.label29.TabIndex = 1;
-            this.label29.Text = "ν";
+            label29.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label29.Location = new Point(4, 20);
+            label29.Name = "label29";
+            label29.Size = new Size(16, 12);
+            label29.TabIndex = 1;
+            label29.Text = "ν";
             // 
             // textBoxDiamondRamanNu0
             // 
-            this.textBoxDiamondRamanNu0.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxDiamondRamanNu0.Location = new System.Drawing.Point(36, 39);
-            this.textBoxDiamondRamanNu0.Name = "textBoxDiamondRamanNu0";
-            this.textBoxDiamondRamanNu0.Size = new System.Drawing.Size(63, 22);
-            this.textBoxDiamondRamanNu0.TabIndex = 0;
-            this.textBoxDiamondRamanNu0.Text = "1334";
-            this.textBoxDiamondRamanNu0.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
+            textBoxDiamondRamanNu0.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondRamanNu0.Location = new Point(36, 39);
+            textBoxDiamondRamanNu0.Name = "textBoxDiamondRamanNu0";
+            textBoxDiamondRamanNu0.Size = new Size(63, 22);
+            textBoxDiamondRamanNu0.TabIndex = 0;
+            textBoxDiamondRamanNu0.Text = "1334";
+            textBoxDiamondRamanNu0.TextChanged += textBoxNu_TextChanged;
             // 
             // label43
             // 
-            this.label43.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label43.Location = new System.Drawing.Point(105, 46);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(52, 12);
-            this.label43.TabIndex = 1;
-            this.label43.Text = "cm^-1";
+            label43.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label43.Location = new Point(105, 46);
+            label43.Name = "label43";
+            label43.Size = new Size(52, 12);
+            label43.TabIndex = 1;
+            label43.Text = "cm^-1";
             // 
             // textBoxDiamondRamanNu
             // 
-            this.textBoxDiamondRamanNu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxDiamondRamanNu.Location = new System.Drawing.Point(35, 16);
-            this.textBoxDiamondRamanNu.Name = "textBoxDiamondRamanNu";
-            this.textBoxDiamondRamanNu.Size = new System.Drawing.Size(64, 22);
-            this.textBoxDiamondRamanNu.TabIndex = 0;
-            this.textBoxDiamondRamanNu.Text = "0";
-            this.textBoxDiamondRamanNu.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
+            textBoxDiamondRamanNu.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondRamanNu.Location = new Point(35, 16);
+            textBoxDiamondRamanNu.Name = "textBoxDiamondRamanNu";
+            textBoxDiamondRamanNu.Size = new Size(64, 22);
+            textBoxDiamondRamanNu.TabIndex = 0;
+            textBoxDiamondRamanNu.Text = "0";
+            textBoxDiamondRamanNu.TextChanged += textBoxNu_TextChanged;
             // 
             // label30
             // 
-            this.label30.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label30.Location = new System.Drawing.Point(105, 20);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(52, 12);
-            this.label30.TabIndex = 1;
-            this.label30.Text = "cm^-1";
+            label30.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label30.Location = new Point(105, 20);
+            label30.Name = "label30";
+            label30.Size = new Size(52, 12);
+            label30.TabIndex = 1;
+            label30.Text = "cm^-1";
             // 
             // textBoxAkahama2006K0
             // 
-            this.textBoxAkahama2006K0.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2006K0.Location = new System.Drawing.Point(309, 43);
-            this.textBoxAkahama2006K0.Name = "textBoxAkahama2006K0";
-            this.textBoxAkahama2006K0.Size = new System.Drawing.Size(44, 22);
-            this.textBoxAkahama2006K0.TabIndex = 0;
-            this.textBoxAkahama2006K0.Text = "547";
-            this.textBoxAkahama2006K0.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
+            textBoxAkahama2006K0.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAkahama2006K0.Location = new Point(309, 43);
+            textBoxAkahama2006K0.Name = "textBoxAkahama2006K0";
+            textBoxAkahama2006K0.Size = new Size(44, 22);
+            textBoxAkahama2006K0.TabIndex = 0;
+            textBoxAkahama2006K0.Text = "547";
+            textBoxAkahama2006K0.TextChanged += textBoxNu_TextChanged;
             // 
             // textBoxAkahama2006K0Prime
             // 
-            this.textBoxAkahama2006K0Prime.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxAkahama2006K0Prime.Location = new System.Drawing.Point(474, 43);
-            this.textBoxAkahama2006K0Prime.Name = "textBoxAkahama2006K0Prime";
-            this.textBoxAkahama2006K0Prime.Size = new System.Drawing.Size(44, 22);
-            this.textBoxAkahama2006K0Prime.TabIndex = 0;
-            this.textBoxAkahama2006K0Prime.Text = "3.75";
-            this.textBoxAkahama2006K0Prime.TextChanged += new System.EventHandler(this.textBoxNu_TextChanged);
+            textBoxAkahama2006K0Prime.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAkahama2006K0Prime.Location = new Point(474, 43);
+            textBoxAkahama2006K0Prime.Name = "textBoxAkahama2006K0Prime";
+            textBoxAkahama2006K0Prime.Size = new Size(44, 22);
+            textBoxAkahama2006K0Prime.TabIndex = 0;
+            textBoxAkahama2006K0Prime.Text = "3.75";
+            textBoxAkahama2006K0Prime.TextChanged += textBoxNu_TextChanged;
             // 
             // textBoxDiamondFratandunoLow
             // 
-            this.textBoxDiamondFratandunoLow.BackColor = System.Drawing.Color.Navy;
-            this.textBoxDiamondFratandunoLow.Font = new System.Drawing.Font("Segoe UI Symbol", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxDiamondFratandunoLow.ForeColor = System.Drawing.Color.White;
-            this.textBoxDiamondFratandunoLow.Location = new System.Drawing.Point(615, 65);
-            this.textBoxDiamondFratandunoLow.Name = "textBoxDiamondFratandunoLow";
-            this.textBoxDiamondFratandunoLow.ReadOnly = true;
-            this.textBoxDiamondFratandunoLow.Size = new System.Drawing.Size(71, 27);
-            this.textBoxDiamondFratandunoLow.TabIndex = 0;
-            this.textBoxDiamondFratandunoLow.Text = "0";
+            textBoxDiamondFratandunoLow.BackColor = Color.Navy;
+            textBoxDiamondFratandunoLow.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondFratandunoLow.ForeColor = Color.White;
+            textBoxDiamondFratandunoLow.Location = new Point(615, 65);
+            textBoxDiamondFratandunoLow.Name = "textBoxDiamondFratandunoLow";
+            textBoxDiamondFratandunoLow.ReadOnly = true;
+            textBoxDiamondFratandunoLow.Size = new Size(71, 27);
+            textBoxDiamondFratandunoLow.TabIndex = 0;
+            textBoxDiamondFratandunoLow.Text = "0";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(160, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Akahama (2004):";
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(160, 19);
+            label4.Name = "label4";
+            label4.Size = new Size(90, 13);
+            label4.TabIndex = 1;
+            label4.Text = "Akahama (2004):";
             // 
             // label20
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label20.Location = new System.Drawing.Point(160, 100);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(430, 13);
-            this.label20.TabIndex = 1;
-            this.label20.Text = "Fratanduono+ (2021, >200GPa):  P = 199.49 - 852.78 × Δν/ν0 + 3103.8 × (Δν/ν0)² = " +
-    "";
+            label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label20.Location = new Point(160, 100);
+            label20.Name = "label20";
+            label20.Size = new Size(430, 13);
+            label20.TabIndex = 1;
+            label20.Text = "Fratanduono+ (2021, >200GPa):  P = 199.49 - 852.78 × Δν/ν0 + 3103.8 × (Δν/ν0)² = ";
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(160, 73);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(387, 13);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Fratanduono+ (2021, <300GPa):  P = 503.77 × Δν/ν0 + 753.83 × (Δν/ν0)² = ";
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label19.Location = new Point(160, 73);
+            label19.Name = "label19";
+            label19.Size = new Size(387, 13);
+            label19.TabIndex = 1;
+            label19.Text = "Fratanduono+ (2021, <300GPa):  P = 503.77 × Δν/ν0 + 753.83 × (Δν/ν0)² = ";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(160, 46);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Akahama (2006):";
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(160, 46);
+            label3.Name = "label3";
+            label3.Size = new Size(90, 13);
+            label3.TabIndex = 1;
+            label3.Text = "Akahama (2006):";
             // 
             // label24
             // 
-            this.label24.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label24.Location = new System.Drawing.Point(688, 72);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(34, 12);
-            this.label24.TabIndex = 1;
-            this.label24.Text = "GPa";
+            label24.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label24.Location = new Point(688, 72);
+            label24.Name = "label24";
+            label24.Size = new Size(34, 12);
+            label24.TabIndex = 1;
+            label24.Text = "GPa";
             // 
             // label31
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label31.Location = new System.Drawing.Point(264, 46);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(39, 13);
-            this.label31.TabIndex = 1;
-            this.label31.Text = "P = K0";
+            label31.AutoSize = true;
+            label31.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label31.Location = new Point(264, 46);
+            label31.Name = "label31";
+            label31.Size = new Size(39, 13);
+            label31.TabIndex = 1;
+            label31.Text = "P = K0";
             // 
             // label33
             // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label33.Location = new System.Drawing.Point(520, 46);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(65, 13);
-            this.label33.TabIndex = 1;
-            this.label33.Text = "-1)*Δν/ν0]=";
+            label33.AutoSize = true;
+            label33.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label33.Location = new Point(520, 46);
+            label33.Name = "label33";
+            label33.Size = new Size(65, 13);
+            label33.TabIndex = 1;
+            label33.Text = "-1)*Δν/ν0]=";
             // 
             // label21
             // 
-            this.label21.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label21.Location = new System.Drawing.Point(691, 99);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(34, 12);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "GPa";
+            label21.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label21.Location = new Point(691, 99);
+            label21.Name = "label21";
+            label21.Size = new Size(34, 12);
+            label21.TabIndex = 1;
+            label21.Text = "GPa";
             // 
             // label32
             // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Segoe UI Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label32.Location = new System.Drawing.Point(357, 46);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(115, 13);
-            this.label32.TabIndex = 1;
-            this.label32.Text = "× Δν/ν0 × [1+1/2 (K0\'";
+            label32.AutoSize = true;
+            label32.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label32.Location = new Point(357, 46);
+            label32.Name = "label32";
+            label32.Size = new Size(115, 13);
+            label32.TabIndex = 1;
+            label32.Text = "× Δν/ν0 × [1+1/2 (K0'";
             // 
             // label35
             // 
-            this.label35.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label35.Location = new System.Drawing.Point(691, 45);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(34, 12);
-            this.label35.TabIndex = 1;
-            this.label35.Text = "GPa";
+            label35.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label35.Location = new Point(691, 45);
+            label35.Name = "label35";
+            label35.Size = new Size(34, 12);
+            label35.TabIndex = 1;
+            label35.Text = "GPa";
             // 
             // flowLayoutPanelEOS
             // 
-            this.flowLayoutPanelEOS.AutoScroll = true;
-            this.flowLayoutPanelEOS.Controls.Add(this.groupBoxGold);
-            this.flowLayoutPanelEOS.Controls.Add(this.groupBoxPlatinum);
-            this.flowLayoutPanelEOS.Controls.Add(this.groupBoxNaClB1);
-            this.flowLayoutPanelEOS.Controls.Add(this.groupBoxNaClB2);
-            this.flowLayoutPanelEOS.Controls.Add(this.groupBoxPericlase);
-            this.flowLayoutPanelEOS.Controls.Add(this.groupBoxCorundum);
-            this.flowLayoutPanelEOS.Controls.Add(this.groupBoxAr);
-            this.flowLayoutPanelEOS.Controls.Add(this.groupBoxRe);
-            this.flowLayoutPanelEOS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelEOS.Location = new System.Drawing.Point(0, 26);
-            this.flowLayoutPanelEOS.Name = "flowLayoutPanelEOS";
-            this.flowLayoutPanelEOS.Size = new System.Drawing.Size(725, 56);
-            this.flowLayoutPanelEOS.TabIndex = 14;
+            flowLayoutPanelEOS.AutoScroll = true;
+            flowLayoutPanelEOS.Controls.Add(groupBoxGold);
+            flowLayoutPanelEOS.Controls.Add(groupBoxPlatinum);
+            flowLayoutPanelEOS.Controls.Add(groupBoxNaClB1);
+            flowLayoutPanelEOS.Controls.Add(groupBoxNaClB2);
+            flowLayoutPanelEOS.Controls.Add(groupBoxPericlase);
+            flowLayoutPanelEOS.Controls.Add(groupBoxCorundum);
+            flowLayoutPanelEOS.Controls.Add(groupBoxAr);
+            flowLayoutPanelEOS.Controls.Add(groupBoxRe);
+            flowLayoutPanelEOS.Dock = DockStyle.Fill;
+            flowLayoutPanelEOS.Location = new Point(0, 26);
+            flowLayoutPanelEOS.Name = "flowLayoutPanelEOS";
+            flowLayoutPanelEOS.Size = new Size(725, 56);
+            flowLayoutPanelEOS.TabIndex = 14;
             // 
             // groupBoxGold
             // 
-            this.groupBoxGold.Controls.Add(this.textBoxGoldJamieson);
-            this.groupBoxGold.Controls.Add(this.textBoxGoldAnderson);
-            this.groupBoxGold.Controls.Add(this.textBoxGoldTsuchiya);
-            this.groupBoxGold.Controls.Add(this.label50);
-            this.groupBoxGold.Controls.Add(this.textBoxGoldSim);
-            this.groupBoxGold.Controls.Add(this.label11);
-            this.groupBoxGold.Controls.Add(this.label70);
-            this.groupBoxGold.Controls.Add(this.label15);
-            this.groupBoxGold.Controls.Add(this.textBoxGold_a);
-            this.groupBoxGold.Controls.Add(this.textBoxGold_a0);
-            this.groupBoxGold.Controls.Add(this.label16);
-            this.groupBoxGold.Controls.Add(this.label37);
-            this.groupBoxGold.Controls.Add(this.label49);
-            this.groupBoxGold.Controls.Add(this.label23);
-            this.groupBoxGold.Controls.Add(this.label22);
-            this.groupBoxGold.Controls.Add(this.label69);
-            this.groupBoxGold.Controls.Add(this.label36);
-            this.groupBoxGold.Controls.Add(this.label38);
-            this.groupBoxGold.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxGold.Location = new System.Drawing.Point(3, 3);
-            this.groupBoxGold.Name = "groupBoxGold";
-            this.groupBoxGold.Size = new System.Drawing.Size(100, 214);
-            this.groupBoxGold.TabIndex = 14;
-            this.groupBoxGold.TabStop = false;
-            this.groupBoxGold.Text = "Gold";
+            groupBoxGold.Controls.Add(textBoxGoldJamieson);
+            groupBoxGold.Controls.Add(textBoxGoldAnderson);
+            groupBoxGold.Controls.Add(textBoxGoldTsuchiya);
+            groupBoxGold.Controls.Add(label50);
+            groupBoxGold.Controls.Add(textBoxGoldSim);
+            groupBoxGold.Controls.Add(label11);
+            groupBoxGold.Controls.Add(label70);
+            groupBoxGold.Controls.Add(label15);
+            groupBoxGold.Controls.Add(textBoxGold_a);
+            groupBoxGold.Controls.Add(textBoxGold_a0);
+            groupBoxGold.Controls.Add(label16);
+            groupBoxGold.Controls.Add(label37);
+            groupBoxGold.Controls.Add(label49);
+            groupBoxGold.Controls.Add(label23);
+            groupBoxGold.Controls.Add(label22);
+            groupBoxGold.Controls.Add(label69);
+            groupBoxGold.Controls.Add(label36);
+            groupBoxGold.Controls.Add(label38);
+            groupBoxGold.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxGold.Location = new Point(3, 3);
+            groupBoxGold.Name = "groupBoxGold";
+            groupBoxGold.Size = new Size(100, 214);
+            groupBoxGold.TabIndex = 14;
+            groupBoxGold.TabStop = false;
+            groupBoxGold.Text = "Gold";
             // 
             // textBoxGoldJamieson
             // 
-            this.textBoxGoldJamieson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxGoldJamieson.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxGoldJamieson.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxGoldJamieson.Location = new System.Drawing.Point(12, 74);
-            this.textBoxGoldJamieson.Name = "textBoxGoldJamieson";
-            this.textBoxGoldJamieson.ReadOnly = true;
-            this.textBoxGoldJamieson.Size = new System.Drawing.Size(48, 22);
-            this.textBoxGoldJamieson.TabIndex = 5;
-            this.textBoxGoldJamieson.Text = "0";
+            textBoxGoldJamieson.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxGoldJamieson.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxGoldJamieson.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxGoldJamieson.Location = new Point(12, 74);
+            textBoxGoldJamieson.Name = "textBoxGoldJamieson";
+            textBoxGoldJamieson.ReadOnly = true;
+            textBoxGoldJamieson.Size = new Size(48, 22);
+            textBoxGoldJamieson.TabIndex = 5;
+            textBoxGoldJamieson.Text = "0";
             // 
             // textBoxGoldAnderson
             // 
-            this.textBoxGoldAnderson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxGoldAnderson.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxGoldAnderson.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxGoldAnderson.Location = new System.Drawing.Point(12, 111);
-            this.textBoxGoldAnderson.Name = "textBoxGoldAnderson";
-            this.textBoxGoldAnderson.ReadOnly = true;
-            this.textBoxGoldAnderson.Size = new System.Drawing.Size(48, 22);
-            this.textBoxGoldAnderson.TabIndex = 5;
-            this.textBoxGoldAnderson.Text = "0";
+            textBoxGoldAnderson.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxGoldAnderson.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxGoldAnderson.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxGoldAnderson.Location = new Point(12, 111);
+            textBoxGoldAnderson.Name = "textBoxGoldAnderson";
+            textBoxGoldAnderson.ReadOnly = true;
+            textBoxGoldAnderson.Size = new Size(48, 22);
+            textBoxGoldAnderson.TabIndex = 5;
+            textBoxGoldAnderson.Text = "0";
             // 
             // textBoxGoldTsuchiya
             // 
-            this.textBoxGoldTsuchiya.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxGoldTsuchiya.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxGoldTsuchiya.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxGoldTsuchiya.Location = new System.Drawing.Point(12, 183);
-            this.textBoxGoldTsuchiya.Name = "textBoxGoldTsuchiya";
-            this.textBoxGoldTsuchiya.ReadOnly = true;
-            this.textBoxGoldTsuchiya.Size = new System.Drawing.Size(48, 22);
-            this.textBoxGoldTsuchiya.TabIndex = 5;
-            this.textBoxGoldTsuchiya.Text = "0";
+            textBoxGoldTsuchiya.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxGoldTsuchiya.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxGoldTsuchiya.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxGoldTsuchiya.Location = new Point(12, 183);
+            textBoxGoldTsuchiya.Name = "textBoxGoldTsuchiya";
+            textBoxGoldTsuchiya.ReadOnly = true;
+            textBoxGoldTsuchiya.Size = new Size(48, 22);
+            textBoxGoldTsuchiya.TabIndex = 5;
+            textBoxGoldTsuchiya.Text = "0";
             // 
             // label50
             // 
-            this.label50.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label50.Location = new System.Drawing.Point(60, 78);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(38, 16);
-            this.label50.TabIndex = 7;
-            this.label50.Text = "GPa";
+            label50.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label50.Location = new Point(60, 78);
+            label50.Name = "label50";
+            label50.Size = new Size(38, 16);
+            label50.TabIndex = 7;
+            label50.Text = "GPa";
             // 
             // textBoxGoldSim
             // 
-            this.textBoxGoldSim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxGoldSim.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxGoldSim.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxGoldSim.Location = new System.Drawing.Point(12, 147);
-            this.textBoxGoldSim.Name = "textBoxGoldSim";
-            this.textBoxGoldSim.ReadOnly = true;
-            this.textBoxGoldSim.Size = new System.Drawing.Size(48, 22);
-            this.textBoxGoldSim.TabIndex = 5;
-            this.textBoxGoldSim.Text = "0";
+            textBoxGoldSim.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxGoldSim.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxGoldSim.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxGoldSim.Location = new Point(12, 147);
+            textBoxGoldSim.Name = "textBoxGoldSim";
+            textBoxGoldSim.ReadOnly = true;
+            textBoxGoldSim.Size = new Size(48, 22);
+            textBoxGoldSim.TabIndex = 5;
+            textBoxGoldSim.Text = "0";
             // 
             // label11
             // 
-            this.label11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(60, 115);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(38, 16);
-            this.label11.TabIndex = 7;
-            this.label11.Text = "GPa";
+            label11.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.Location = new Point(60, 115);
+            label11.Name = "label11";
+            label11.Size = new Size(38, 16);
+            label11.TabIndex = 7;
+            label11.Text = "GPa";
             // 
             // label70
             // 
-            this.label70.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label70.Location = new System.Drawing.Point(60, 187);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(38, 16);
-            this.label70.TabIndex = 7;
-            this.label70.Text = "GPa";
+            label70.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label70.Location = new Point(60, 187);
+            label70.Name = "label70";
+            label70.Size = new Size(38, 16);
+            label70.TabIndex = 7;
+            label70.Text = "GPa";
             // 
             // label15
             // 
-            this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label15.Location = new System.Drawing.Point(60, 151);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(38, 16);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "GPa";
+            label15.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label15.Location = new Point(60, 151);
+            label15.Name = "label15";
+            label15.Size = new Size(38, 16);
+            label15.TabIndex = 7;
+            label15.Text = "GPa";
             // 
             // textBoxGold_a
             // 
-            this.textBoxGold_a.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxGold_a.Location = new System.Drawing.Point(20, 36);
-            this.textBoxGold_a.Name = "textBoxGold_a";
-            this.textBoxGold_a.Size = new System.Drawing.Size(48, 21);
-            this.textBoxGold_a.TabIndex = 5;
-            this.textBoxGold_a.Text = "4.0786";
-            this.textBoxGold_a.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxGold_a.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxGold_a.Location = new Point(20, 36);
+            textBoxGold_a.Name = "textBoxGold_a";
+            textBoxGold_a.Size = new Size(48, 21);
+            textBoxGold_a.TabIndex = 5;
+            textBoxGold_a.Text = "4.0786";
+            textBoxGold_a.TextChanged += textBox_TextChanged;
             // 
             // textBoxGold_a0
             // 
-            this.textBoxGold_a0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxGold_a0.Location = new System.Drawing.Point(20, 16);
-            this.textBoxGold_a0.Name = "textBoxGold_a0";
-            this.textBoxGold_a0.Size = new System.Drawing.Size(48, 21);
-            this.textBoxGold_a0.TabIndex = 5;
-            this.textBoxGold_a0.Text = "4.0786";
-            this.textBoxGold_a0.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxGold_a0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxGold_a0.Location = new Point(20, 16);
+            textBoxGold_a0.Name = "textBoxGold_a0";
+            textBoxGold_a0.Size = new Size(48, 21);
+            textBoxGold_a0.TabIndex = 5;
+            textBoxGold_a0.Text = "4.0786";
+            textBoxGold_a0.TextChanged += textBox_TextChanged;
             // 
             // label16
             // 
-            this.label16.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(4, 20);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(20, 12);
-            this.label16.TabIndex = 7;
-            this.label16.Text = "a0";
+            label16.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label16.Location = new Point(4, 20);
+            label16.Name = "label16";
+            label16.Size = new Size(20, 12);
+            label16.TabIndex = 7;
+            label16.Text = "a0";
             // 
             // label37
             // 
-            this.label37.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label37.Location = new System.Drawing.Point(68, 20);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(12, 16);
-            this.label37.TabIndex = 7;
-            this.label37.Text = "Å";
+            label37.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label37.Location = new Point(68, 20);
+            label37.Name = "label37";
+            label37.Size = new Size(12, 16);
+            label37.TabIndex = 7;
+            label37.Text = "Å";
             // 
             // label49
             // 
-            this.label49.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label49.Location = new System.Drawing.Point(12, 59);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(88, 19);
-            this.label49.TabIndex = 7;
-            this.label49.Text = "Jamieson (82)";
+            label49.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label49.Location = new Point(12, 59);
+            label49.Name = "label49";
+            label49.Size = new Size(88, 19);
+            label49.TabIndex = 7;
+            label49.Text = "Jamieson (82)";
             // 
             // label23
             // 
-            this.label23.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label23.Location = new System.Drawing.Point(68, 40);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(12, 16);
-            this.label23.TabIndex = 7;
-            this.label23.Text = "Å";
+            label23.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label23.Location = new Point(68, 40);
+            label23.Name = "label23";
+            label23.Size = new Size(12, 16);
+            label23.TabIndex = 7;
+            label23.Text = "Å";
             // 
             // label22
             // 
-            this.label22.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label22.Location = new System.Drawing.Point(12, 96);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(88, 19);
-            this.label22.TabIndex = 7;
-            this.label22.Text = "Anderson (89)";
+            label22.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label22.Location = new Point(12, 96);
+            label22.Name = "label22";
+            label22.Size = new Size(88, 19);
+            label22.TabIndex = 7;
+            label22.Text = "Anderson (89)";
             // 
             // label69
             // 
-            this.label69.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label69.Location = new System.Drawing.Point(12, 171);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(86, 16);
-            this.label69.TabIndex = 7;
-            this.label69.Text = "Tsuchiya (03)";
+            label69.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label69.Location = new Point(12, 171);
+            label69.Name = "label69";
+            label69.Size = new Size(86, 16);
+            label69.TabIndex = 7;
+            label69.Text = "Tsuchiya (03)";
             // 
             // label36
             // 
-            this.label36.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label36.Location = new System.Drawing.Point(12, 135);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(86, 16);
-            this.label36.TabIndex = 7;
-            this.label36.Text = "Sim (02)";
+            label36.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label36.Location = new Point(12, 135);
+            label36.Name = "label36";
+            label36.Size = new Size(86, 16);
+            label36.TabIndex = 7;
+            label36.Text = "Sim (02)";
             // 
             // label38
             // 
-            this.label38.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label38.Location = new System.Drawing.Point(12, 40);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(16, 12);
-            this.label38.TabIndex = 7;
-            this.label38.Text = "a";
+            label38.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label38.Location = new Point(12, 40);
+            label38.Name = "label38";
+            label38.Size = new Size(16, 12);
+            label38.TabIndex = 7;
+            label38.Text = "a";
             // 
             // groupBoxPlatinum
             // 
-            this.groupBoxPlatinum.Controls.Add(this.textBoxPtA0);
-            this.groupBoxPlatinum.Controls.Add(this.textBoxPtJamieson);
-            this.groupBoxPlatinum.Controls.Add(this.textBoxPtHolems);
-            this.groupBoxPlatinum.Controls.Add(this.label39);
-            this.groupBoxPlatinum.Controls.Add(this.label47);
-            this.groupBoxPlatinum.Controls.Add(this.label61);
-            this.groupBoxPlatinum.Controls.Add(this.textBoxPtA);
-            this.groupBoxPlatinum.Controls.Add(this.label54);
-            this.groupBoxPlatinum.Controls.Add(this.label48);
-            this.groupBoxPlatinum.Controls.Add(this.label51);
-            this.groupBoxPlatinum.Controls.Add(this.label52);
-            this.groupBoxPlatinum.Controls.Add(this.label60);
-            this.groupBoxPlatinum.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxPlatinum.Location = new System.Drawing.Point(109, 3);
-            this.groupBoxPlatinum.Name = "groupBoxPlatinum";
-            this.groupBoxPlatinum.Size = new System.Drawing.Size(98, 136);
-            this.groupBoxPlatinum.TabIndex = 13;
-            this.groupBoxPlatinum.TabStop = false;
-            this.groupBoxPlatinum.Text = "Platinum";
+            groupBoxPlatinum.Controls.Add(textBoxPtA0);
+            groupBoxPlatinum.Controls.Add(textBoxPtJamieson);
+            groupBoxPlatinum.Controls.Add(textBoxPtHolems);
+            groupBoxPlatinum.Controls.Add(label39);
+            groupBoxPlatinum.Controls.Add(label47);
+            groupBoxPlatinum.Controls.Add(label61);
+            groupBoxPlatinum.Controls.Add(textBoxPtA);
+            groupBoxPlatinum.Controls.Add(label54);
+            groupBoxPlatinum.Controls.Add(label48);
+            groupBoxPlatinum.Controls.Add(label51);
+            groupBoxPlatinum.Controls.Add(label52);
+            groupBoxPlatinum.Controls.Add(label60);
+            groupBoxPlatinum.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxPlatinum.Location = new Point(109, 3);
+            groupBoxPlatinum.Name = "groupBoxPlatinum";
+            groupBoxPlatinum.Size = new Size(98, 136);
+            groupBoxPlatinum.TabIndex = 13;
+            groupBoxPlatinum.TabStop = false;
+            groupBoxPlatinum.Text = "Platinum";
             // 
             // textBoxPtA0
             // 
-            this.textBoxPtA0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxPtA0.Location = new System.Drawing.Point(20, 16);
-            this.textBoxPtA0.Name = "textBoxPtA0";
-            this.textBoxPtA0.Size = new System.Drawing.Size(48, 21);
-            this.textBoxPtA0.TabIndex = 5;
-            this.textBoxPtA0.Text = "3.9231";
-            this.textBoxPtA0.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxPtA0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxPtA0.Location = new Point(20, 16);
+            textBoxPtA0.Name = "textBoxPtA0";
+            textBoxPtA0.Size = new Size(48, 21);
+            textBoxPtA0.TabIndex = 5;
+            textBoxPtA0.Text = "3.9231";
+            textBoxPtA0.TextChanged += textBox_TextChanged;
             // 
             // textBoxPtJamieson
             // 
-            this.textBoxPtJamieson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxPtJamieson.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxPtJamieson.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxPtJamieson.Location = new System.Drawing.Point(12, 76);
-            this.textBoxPtJamieson.Name = "textBoxPtJamieson";
-            this.textBoxPtJamieson.ReadOnly = true;
-            this.textBoxPtJamieson.Size = new System.Drawing.Size(48, 22);
-            this.textBoxPtJamieson.TabIndex = 5;
-            this.textBoxPtJamieson.Text = "0";
+            textBoxPtJamieson.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxPtJamieson.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxPtJamieson.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxPtJamieson.Location = new Point(12, 76);
+            textBoxPtJamieson.Name = "textBoxPtJamieson";
+            textBoxPtJamieson.ReadOnly = true;
+            textBoxPtJamieson.Size = new Size(48, 22);
+            textBoxPtJamieson.TabIndex = 5;
+            textBoxPtJamieson.Text = "0";
             // 
             // textBoxPtHolems
             // 
-            this.textBoxPtHolems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxPtHolems.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxPtHolems.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxPtHolems.Location = new System.Drawing.Point(12, 112);
-            this.textBoxPtHolems.Name = "textBoxPtHolems";
-            this.textBoxPtHolems.ReadOnly = true;
-            this.textBoxPtHolems.Size = new System.Drawing.Size(48, 22);
-            this.textBoxPtHolems.TabIndex = 5;
-            this.textBoxPtHolems.Text = "0";
+            textBoxPtHolems.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxPtHolems.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxPtHolems.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxPtHolems.Location = new Point(12, 112);
+            textBoxPtHolems.Name = "textBoxPtHolems";
+            textBoxPtHolems.ReadOnly = true;
+            textBoxPtHolems.Size = new Size(48, 22);
+            textBoxPtHolems.TabIndex = 5;
+            textBoxPtHolems.Text = "0";
             // 
             // label39
             // 
-            this.label39.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label39.Location = new System.Drawing.Point(60, 80);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(24, 16);
-            this.label39.TabIndex = 7;
-            this.label39.Text = "GPa";
+            label39.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label39.Location = new Point(60, 80);
+            label39.Name = "label39";
+            label39.Size = new Size(24, 16);
+            label39.TabIndex = 7;
+            label39.Text = "GPa";
             // 
             // label47
             // 
-            this.label47.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label47.Location = new System.Drawing.Point(4, 20);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(24, 12);
-            this.label47.TabIndex = 7;
-            this.label47.Text = "a0";
+            label47.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label47.Location = new Point(4, 20);
+            label47.Name = "label47";
+            label47.Size = new Size(24, 12);
+            label47.TabIndex = 7;
+            label47.Text = "a0";
             // 
             // label61
             // 
-            this.label61.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label61.Location = new System.Drawing.Point(60, 116);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(24, 16);
-            this.label61.TabIndex = 7;
-            this.label61.Text = "GPa";
+            label61.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label61.Location = new Point(60, 116);
+            label61.Name = "label61";
+            label61.Size = new Size(24, 16);
+            label61.TabIndex = 7;
+            label61.Text = "GPa";
             // 
             // textBoxPtA
             // 
-            this.textBoxPtA.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxPtA.Location = new System.Drawing.Point(20, 40);
-            this.textBoxPtA.Name = "textBoxPtA";
-            this.textBoxPtA.Size = new System.Drawing.Size(48, 21);
-            this.textBoxPtA.TabIndex = 5;
-            this.textBoxPtA.Text = "3.9231";
-            this.textBoxPtA.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxPtA.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxPtA.Location = new Point(20, 40);
+            textBoxPtA.Name = "textBoxPtA";
+            textBoxPtA.Size = new Size(48, 21);
+            textBoxPtA.TabIndex = 5;
+            textBoxPtA.Text = "3.9231";
+            textBoxPtA.TextChanged += textBox_TextChanged;
             // 
             // label54
             // 
-            this.label54.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label54.Location = new System.Drawing.Point(68, 20);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(12, 16);
-            this.label54.TabIndex = 7;
-            this.label54.Text = "Å";
+            label54.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label54.Location = new Point(68, 20);
+            label54.Name = "label54";
+            label54.Size = new Size(12, 16);
+            label54.TabIndex = 7;
+            label54.Text = "Å";
             // 
             // label48
             // 
-            this.label48.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label48.Location = new System.Drawing.Point(68, 44);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(12, 16);
-            this.label48.TabIndex = 7;
-            this.label48.Text = "Å";
+            label48.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label48.Location = new Point(68, 44);
+            label48.Name = "label48";
+            label48.Size = new Size(12, 16);
+            label48.TabIndex = 7;
+            label48.Text = "Å";
             // 
             // label51
             // 
-            this.label51.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label51.Location = new System.Drawing.Point(4, 64);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(96, 14);
-            this.label51.TabIndex = 7;
-            this.label51.Text = "Jamieson (82)";
+            label51.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label51.Location = new Point(4, 64);
+            label51.Name = "label51";
+            label51.Size = new Size(96, 14);
+            label51.TabIndex = 7;
+            label51.Text = "Jamieson (82)";
             // 
             // label52
             // 
-            this.label52.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label52.Location = new System.Drawing.Point(12, 44);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(36, 12);
-            this.label52.TabIndex = 7;
-            this.label52.Text = "a";
+            label52.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label52.Location = new Point(12, 44);
+            label52.Name = "label52";
+            label52.Size = new Size(36, 12);
+            label52.TabIndex = 7;
+            label52.Text = "a";
             // 
             // label60
             // 
-            this.label60.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label60.Location = new System.Drawing.Point(8, 101);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(92, 15);
-            this.label60.TabIndex = 7;
-            this.label60.Text = "Holmes (89)";
+            label60.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label60.Location = new Point(8, 101);
+            label60.Name = "label60";
+            label60.Size = new Size(92, 15);
+            label60.TabIndex = 7;
+            label60.Text = "Holmes (89)";
             // 
             // groupBoxNaClB1
             // 
-            this.groupBoxNaClB1.Controls.Add(this.textBoxNaClB1_a0);
-            this.groupBoxNaClB1.Controls.Add(this.textBoxNaClB1_a);
-            this.groupBoxNaClB1.Controls.Add(this.label53);
-            this.groupBoxNaClB1.Controls.Add(this.label55);
-            this.groupBoxNaClB1.Controls.Add(this.label56);
-            this.groupBoxNaClB1.Controls.Add(this.textBoxNaClB1Brown);
-            this.groupBoxNaClB1.Controls.Add(this.label62);
-            this.groupBoxNaClB1.Controls.Add(this.label57);
-            this.groupBoxNaClB1.Controls.Add(this.label58);
-            this.groupBoxNaClB1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxNaClB1.Location = new System.Drawing.Point(213, 3);
-            this.groupBoxNaClB1.Name = "groupBoxNaClB1";
-            this.groupBoxNaClB1.Size = new System.Drawing.Size(98, 100);
-            this.groupBoxNaClB1.TabIndex = 16;
-            this.groupBoxNaClB1.TabStop = false;
-            this.groupBoxNaClB1.Text = "NaCl B1";
+            groupBoxNaClB1.Controls.Add(textBoxNaClB1_a0);
+            groupBoxNaClB1.Controls.Add(textBoxNaClB1_a);
+            groupBoxNaClB1.Controls.Add(label53);
+            groupBoxNaClB1.Controls.Add(label55);
+            groupBoxNaClB1.Controls.Add(label56);
+            groupBoxNaClB1.Controls.Add(textBoxNaClB1Brown);
+            groupBoxNaClB1.Controls.Add(label62);
+            groupBoxNaClB1.Controls.Add(label57);
+            groupBoxNaClB1.Controls.Add(label58);
+            groupBoxNaClB1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxNaClB1.Location = new Point(213, 3);
+            groupBoxNaClB1.Name = "groupBoxNaClB1";
+            groupBoxNaClB1.Size = new Size(98, 100);
+            groupBoxNaClB1.TabIndex = 16;
+            groupBoxNaClB1.TabStop = false;
+            groupBoxNaClB1.Text = "NaCl B1";
             // 
             // textBoxNaClB1_a0
             // 
-            this.textBoxNaClB1_a0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxNaClB1_a0.Location = new System.Drawing.Point(20, 16);
-            this.textBoxNaClB1_a0.Name = "textBoxNaClB1_a0";
-            this.textBoxNaClB1_a0.Size = new System.Drawing.Size(48, 21);
-            this.textBoxNaClB1_a0.TabIndex = 5;
-            this.textBoxNaClB1_a0.Text = "5.63900";
-            this.textBoxNaClB1_a0.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxNaClB1_a0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxNaClB1_a0.Location = new Point(20, 16);
+            textBoxNaClB1_a0.Name = "textBoxNaClB1_a0";
+            textBoxNaClB1_a0.Size = new Size(48, 21);
+            textBoxNaClB1_a0.TabIndex = 5;
+            textBoxNaClB1_a0.Text = "5.63900";
+            textBoxNaClB1_a0.TextChanged += textBox_TextChanged;
             // 
             // textBoxNaClB1_a
             // 
-            this.textBoxNaClB1_a.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxNaClB1_a.Location = new System.Drawing.Point(20, 36);
-            this.textBoxNaClB1_a.Name = "textBoxNaClB1_a";
-            this.textBoxNaClB1_a.Size = new System.Drawing.Size(48, 21);
-            this.textBoxNaClB1_a.TabIndex = 5;
-            this.textBoxNaClB1_a.Text = "4.0786";
-            this.textBoxNaClB1_a.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxNaClB1_a.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxNaClB1_a.Location = new Point(20, 36);
+            textBoxNaClB1_a.Name = "textBoxNaClB1_a";
+            textBoxNaClB1_a.Size = new Size(48, 21);
+            textBoxNaClB1_a.TabIndex = 5;
+            textBoxNaClB1_a.Text = "4.0786";
+            textBoxNaClB1_a.TextChanged += textBox_TextChanged;
             // 
             // label53
             // 
-            this.label53.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label53.Location = new System.Drawing.Point(4, 20);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(20, 12);
-            this.label53.TabIndex = 7;
-            this.label53.Text = "a0";
+            label53.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label53.Location = new Point(4, 20);
+            label53.Name = "label53";
+            label53.Size = new Size(20, 12);
+            label53.TabIndex = 7;
+            label53.Text = "a0";
             // 
             // label55
             // 
-            this.label55.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label55.Location = new System.Drawing.Point(12, 40);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(16, 12);
-            this.label55.TabIndex = 7;
-            this.label55.Text = "a";
+            label55.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label55.Location = new Point(12, 40);
+            label55.Name = "label55";
+            label55.Size = new Size(16, 12);
+            label55.TabIndex = 7;
+            label55.Text = "a";
             // 
             // label56
             // 
-            this.label56.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label56.Location = new System.Drawing.Point(60, 76);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(32, 16);
-            this.label56.TabIndex = 7;
-            this.label56.Text = "GPa";
+            label56.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label56.Location = new Point(60, 76);
+            label56.Name = "label56";
+            label56.Size = new Size(32, 16);
+            label56.TabIndex = 7;
+            label56.Text = "GPa";
             // 
             // textBoxNaClB1Brown
             // 
-            this.textBoxNaClB1Brown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxNaClB1Brown.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxNaClB1Brown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxNaClB1Brown.Location = new System.Drawing.Point(12, 72);
-            this.textBoxNaClB1Brown.Name = "textBoxNaClB1Brown";
-            this.textBoxNaClB1Brown.ReadOnly = true;
-            this.textBoxNaClB1Brown.Size = new System.Drawing.Size(48, 22);
-            this.textBoxNaClB1Brown.TabIndex = 5;
-            this.textBoxNaClB1Brown.Text = "0";
+            textBoxNaClB1Brown.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxNaClB1Brown.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxNaClB1Brown.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxNaClB1Brown.Location = new Point(12, 72);
+            textBoxNaClB1Brown.Name = "textBoxNaClB1Brown";
+            textBoxNaClB1Brown.ReadOnly = true;
+            textBoxNaClB1Brown.Size = new Size(48, 22);
+            textBoxNaClB1Brown.TabIndex = 5;
+            textBoxNaClB1Brown.Text = "0";
             // 
             // label62
             // 
-            this.label62.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label62.Location = new System.Drawing.Point(68, 20);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(12, 16);
-            this.label62.TabIndex = 7;
-            this.label62.Text = "Å";
+            label62.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label62.Location = new Point(68, 20);
+            label62.Name = "label62";
+            label62.Size = new Size(12, 16);
+            label62.TabIndex = 7;
+            label62.Text = "Å";
             // 
             // label57
             // 
-            this.label57.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label57.Location = new System.Drawing.Point(68, 40);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(12, 16);
-            this.label57.TabIndex = 7;
-            this.label57.Text = "Å";
+            label57.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label57.Location = new Point(68, 40);
+            label57.Name = "label57";
+            label57.Size = new Size(12, 16);
+            label57.TabIndex = 7;
+            label57.Text = "Å";
             // 
             // label58
             // 
-            this.label58.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label58.Location = new System.Drawing.Point(8, 60);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(76, 16);
-            this.label58.TabIndex = 7;
-            this.label58.Text = "Brown (99)";
+            label58.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label58.Location = new Point(8, 60);
+            label58.Name = "label58";
+            label58.Size = new Size(76, 16);
+            label58.TabIndex = 7;
+            label58.Text = "Brown (99)";
             // 
             // groupBoxNaClB2
             // 
-            this.groupBoxNaClB2.Controls.Add(this.textBoxNaClB2_a0);
-            this.groupBoxNaClB2.Controls.Add(this.textBoxNaClB2_a);
-            this.groupBoxNaClB2.Controls.Add(this.textBoxNaClB2SataMgO);
-            this.groupBoxNaClB2.Controls.Add(this.textBoxNaClB2SataPt);
-            this.groupBoxNaClB2.Controls.Add(this.label65);
-            this.groupBoxNaClB2.Controls.Add(this.label67);
-            this.groupBoxNaClB2.Controls.Add(this.label59);
-            this.groupBoxNaClB2.Controls.Add(this.label63);
-            this.groupBoxNaClB2.Controls.Add(this.label64);
-            this.groupBoxNaClB2.Controls.Add(this.label66);
-            this.groupBoxNaClB2.Controls.Add(this.label68);
-            this.groupBoxNaClB2.Controls.Add(this.label71);
-            this.groupBoxNaClB2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxNaClB2.Location = new System.Drawing.Point(317, 3);
-            this.groupBoxNaClB2.Name = "groupBoxNaClB2";
-            this.groupBoxNaClB2.Size = new System.Drawing.Size(100, 128);
-            this.groupBoxNaClB2.TabIndex = 15;
-            this.groupBoxNaClB2.TabStop = false;
-            this.groupBoxNaClB2.Text = "NaCl B2";
+            groupBoxNaClB2.Controls.Add(textBoxNaClB2_a0);
+            groupBoxNaClB2.Controls.Add(textBoxNaClB2_a);
+            groupBoxNaClB2.Controls.Add(textBoxNaClB2SataMgO);
+            groupBoxNaClB2.Controls.Add(textBoxNaClB2SataPt);
+            groupBoxNaClB2.Controls.Add(label65);
+            groupBoxNaClB2.Controls.Add(label67);
+            groupBoxNaClB2.Controls.Add(label59);
+            groupBoxNaClB2.Controls.Add(label63);
+            groupBoxNaClB2.Controls.Add(label64);
+            groupBoxNaClB2.Controls.Add(label66);
+            groupBoxNaClB2.Controls.Add(label68);
+            groupBoxNaClB2.Controls.Add(label71);
+            groupBoxNaClB2.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxNaClB2.Location = new Point(317, 3);
+            groupBoxNaClB2.Name = "groupBoxNaClB2";
+            groupBoxNaClB2.Size = new Size(100, 128);
+            groupBoxNaClB2.TabIndex = 15;
+            groupBoxNaClB2.TabStop = false;
+            groupBoxNaClB2.Text = "NaCl B2";
             // 
             // textBoxNaClB2_a0
             // 
-            this.textBoxNaClB2_a0.Enabled = false;
-            this.textBoxNaClB2_a0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxNaClB2_a0.Location = new System.Drawing.Point(20, 16);
-            this.textBoxNaClB2_a0.Name = "textBoxNaClB2_a0";
-            this.textBoxNaClB2_a0.Size = new System.Drawing.Size(48, 21);
-            this.textBoxNaClB2_a0.TabIndex = 5;
-            this.textBoxNaClB2_a0.Text = "0";
-            this.textBoxNaClB2_a0.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxNaClB2_a0.Enabled = false;
+            textBoxNaClB2_a0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxNaClB2_a0.Location = new Point(20, 16);
+            textBoxNaClB2_a0.Name = "textBoxNaClB2_a0";
+            textBoxNaClB2_a0.Size = new Size(48, 21);
+            textBoxNaClB2_a0.TabIndex = 5;
+            textBoxNaClB2_a0.Text = "0";
+            textBoxNaClB2_a0.TextChanged += textBox_TextChanged;
             // 
             // textBoxNaClB2_a
             // 
-            this.textBoxNaClB2_a.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxNaClB2_a.Location = new System.Drawing.Point(20, 36);
-            this.textBoxNaClB2_a.Name = "textBoxNaClB2_a";
-            this.textBoxNaClB2_a.Size = new System.Drawing.Size(48, 21);
-            this.textBoxNaClB2_a.TabIndex = 5;
-            this.textBoxNaClB2_a.Text = "4.0786";
-            this.textBoxNaClB2_a.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxNaClB2_a.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxNaClB2_a.Location = new Point(20, 36);
+            textBoxNaClB2_a.Name = "textBoxNaClB2_a";
+            textBoxNaClB2_a.Size = new Size(48, 21);
+            textBoxNaClB2_a.TabIndex = 5;
+            textBoxNaClB2_a.Text = "4.0786";
+            textBoxNaClB2_a.TextChanged += textBox_TextChanged;
             // 
             // textBoxNaClB2SataMgO
             // 
-            this.textBoxNaClB2SataMgO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxNaClB2SataMgO.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxNaClB2SataMgO.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxNaClB2SataMgO.Location = new System.Drawing.Point(12, 104);
-            this.textBoxNaClB2SataMgO.Name = "textBoxNaClB2SataMgO";
-            this.textBoxNaClB2SataMgO.ReadOnly = true;
-            this.textBoxNaClB2SataMgO.Size = new System.Drawing.Size(48, 22);
-            this.textBoxNaClB2SataMgO.TabIndex = 5;
-            this.textBoxNaClB2SataMgO.Text = "0";
+            textBoxNaClB2SataMgO.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxNaClB2SataMgO.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxNaClB2SataMgO.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxNaClB2SataMgO.Location = new Point(12, 104);
+            textBoxNaClB2SataMgO.Name = "textBoxNaClB2SataMgO";
+            textBoxNaClB2SataMgO.ReadOnly = true;
+            textBoxNaClB2SataMgO.Size = new Size(48, 22);
+            textBoxNaClB2SataMgO.TabIndex = 5;
+            textBoxNaClB2SataMgO.Text = "0";
             // 
             // textBoxNaClB2SataPt
             // 
-            this.textBoxNaClB2SataPt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxNaClB2SataPt.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxNaClB2SataPt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxNaClB2SataPt.Location = new System.Drawing.Point(12, 68);
-            this.textBoxNaClB2SataPt.Name = "textBoxNaClB2SataPt";
-            this.textBoxNaClB2SataPt.ReadOnly = true;
-            this.textBoxNaClB2SataPt.Size = new System.Drawing.Size(48, 22);
-            this.textBoxNaClB2SataPt.TabIndex = 5;
-            this.textBoxNaClB2SataPt.Text = "0";
+            textBoxNaClB2SataPt.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxNaClB2SataPt.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxNaClB2SataPt.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxNaClB2SataPt.Location = new Point(12, 68);
+            textBoxNaClB2SataPt.Name = "textBoxNaClB2SataPt";
+            textBoxNaClB2SataPt.ReadOnly = true;
+            textBoxNaClB2SataPt.Size = new Size(48, 22);
+            textBoxNaClB2SataPt.TabIndex = 5;
+            textBoxNaClB2SataPt.Text = "0";
             // 
             // label65
             // 
-            this.label65.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label65.Location = new System.Drawing.Point(4, 20);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(32, 12);
-            this.label65.TabIndex = 7;
-            this.label65.Text = "a0";
+            label65.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label65.Location = new Point(4, 20);
+            label65.Name = "label65";
+            label65.Size = new Size(32, 12);
+            label65.TabIndex = 7;
+            label65.Text = "a0";
             // 
             // label67
             // 
-            this.label67.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label67.Location = new System.Drawing.Point(60, 108);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(40, 16);
-            this.label67.TabIndex = 7;
-            this.label67.Text = "GPa";
+            label67.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label67.Location = new Point(60, 108);
+            label67.Name = "label67";
+            label67.Size = new Size(40, 16);
+            label67.TabIndex = 7;
+            label67.Text = "GPa";
             // 
             // label59
             // 
-            this.label59.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label59.Location = new System.Drawing.Point(60, 72);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(40, 16);
-            this.label59.TabIndex = 7;
-            this.label59.Text = "GPa";
+            label59.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label59.Location = new Point(60, 72);
+            label59.Name = "label59";
+            label59.Size = new Size(40, 16);
+            label59.TabIndex = 7;
+            label59.Text = "GPa";
             // 
             // label63
             // 
-            this.label63.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label63.Location = new System.Drawing.Point(12, 40);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(32, 12);
-            this.label63.TabIndex = 7;
-            this.label63.Text = "a";
+            label63.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label63.Location = new Point(12, 40);
+            label63.Name = "label63";
+            label63.Size = new Size(32, 12);
+            label63.TabIndex = 7;
+            label63.Text = "a";
             // 
             // label64
             // 
-            this.label64.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label64.Location = new System.Drawing.Point(68, 20);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(12, 16);
-            this.label64.TabIndex = 7;
-            this.label64.Text = "Å";
+            label64.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label64.Location = new Point(68, 20);
+            label64.Name = "label64";
+            label64.Size = new Size(12, 16);
+            label64.TabIndex = 7;
+            label64.Text = "Å";
             // 
             // label66
             // 
-            this.label66.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label66.Location = new System.Drawing.Point(68, 40);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(12, 16);
-            this.label66.TabIndex = 7;
-            this.label66.Text = "Å";
+            label66.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label66.Location = new Point(68, 40);
+            label66.Name = "label66";
+            label66.Size = new Size(12, 16);
+            label66.TabIndex = 7;
+            label66.Text = "Å";
             // 
             // label68
             // 
-            this.label68.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label68.Location = new System.Drawing.Point(4, 92);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(76, 16);
-            this.label68.TabIndex = 7;
-            this.label68.Text = "Sata (02) (MgO)";
+            label68.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label68.Location = new Point(4, 92);
+            label68.Name = "label68";
+            label68.Size = new Size(76, 16);
+            label68.TabIndex = 7;
+            label68.Text = "Sata (02) (MgO)";
             // 
             // label71
             // 
-            this.label71.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label71.Location = new System.Drawing.Point(4, 56);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(76, 12);
-            this.label71.TabIndex = 7;
-            this.label71.Text = "Sata (02) (Pt)";
+            label71.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label71.Location = new Point(4, 56);
+            label71.Name = "label71";
+            label71.Size = new Size(76, 12);
+            label71.TabIndex = 7;
+            label71.Text = "Sata (02) (Pt)";
             // 
             // groupBoxPericlase
             // 
-            this.groupBoxPericlase.Controls.Add(this.label72);
-            this.groupBoxPericlase.Controls.Add(this.label73);
-            this.groupBoxPericlase.Controls.Add(this.textBoxMgOAizawa);
-            this.groupBoxPericlase.Controls.Add(this.label74);
-            this.groupBoxPericlase.Controls.Add(this.textBoxMgODewaele);
-            this.groupBoxPericlase.Controls.Add(this.textBoxMgOJacson);
-            this.groupBoxPericlase.Controls.Add(this.textBoxMgOA0);
-            this.groupBoxPericlase.Controls.Add(this.label75);
-            this.groupBoxPericlase.Controls.Add(this.label76);
-            this.groupBoxPericlase.Controls.Add(this.label77);
-            this.groupBoxPericlase.Controls.Add(this.label78);
-            this.groupBoxPericlase.Controls.Add(this.textBoxMgOA);
-            this.groupBoxPericlase.Controls.Add(this.label79);
-            this.groupBoxPericlase.Controls.Add(this.label80);
-            this.groupBoxPericlase.Controls.Add(this.label81);
-            this.groupBoxPericlase.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxPericlase.Location = new System.Drawing.Point(423, 3);
-            this.groupBoxPericlase.Name = "groupBoxPericlase";
-            this.groupBoxPericlase.Size = new System.Drawing.Size(100, 172);
-            this.groupBoxPericlase.TabIndex = 10;
-            this.groupBoxPericlase.TabStop = false;
-            this.groupBoxPericlase.Text = "Periclase";
+            groupBoxPericlase.Controls.Add(label72);
+            groupBoxPericlase.Controls.Add(label73);
+            groupBoxPericlase.Controls.Add(textBoxMgOAizawa);
+            groupBoxPericlase.Controls.Add(label74);
+            groupBoxPericlase.Controls.Add(textBoxMgODewaele);
+            groupBoxPericlase.Controls.Add(textBoxMgOJacson);
+            groupBoxPericlase.Controls.Add(textBoxMgOA0);
+            groupBoxPericlase.Controls.Add(label75);
+            groupBoxPericlase.Controls.Add(label76);
+            groupBoxPericlase.Controls.Add(label77);
+            groupBoxPericlase.Controls.Add(label78);
+            groupBoxPericlase.Controls.Add(textBoxMgOA);
+            groupBoxPericlase.Controls.Add(label79);
+            groupBoxPericlase.Controls.Add(label80);
+            groupBoxPericlase.Controls.Add(label81);
+            groupBoxPericlase.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxPericlase.Location = new Point(423, 3);
+            groupBoxPericlase.Name = "groupBoxPericlase";
+            groupBoxPericlase.Size = new Size(100, 172);
+            groupBoxPericlase.TabIndex = 10;
+            groupBoxPericlase.TabStop = false;
+            groupBoxPericlase.Text = "Periclase";
             // 
             // label72
             // 
-            this.label72.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label72.Location = new System.Drawing.Point(60, 148);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(40, 16);
-            this.label72.TabIndex = 7;
-            this.label72.Text = "GPa";
+            label72.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label72.Location = new Point(60, 148);
+            label72.Name = "label72";
+            label72.Size = new Size(40, 16);
+            label72.TabIndex = 7;
+            label72.Text = "GPa";
             // 
             // label73
             // 
-            this.label73.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label73.Location = new System.Drawing.Point(60, 112);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(40, 16);
-            this.label73.TabIndex = 7;
-            this.label73.Text = "GPa";
+            label73.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label73.Location = new Point(60, 112);
+            label73.Name = "label73";
+            label73.Size = new Size(40, 16);
+            label73.TabIndex = 7;
+            label73.Text = "GPa";
             // 
             // textBoxMgOAizawa
             // 
-            this.textBoxMgOAizawa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxMgOAizawa.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxMgOAizawa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxMgOAizawa.Location = new System.Drawing.Point(12, 144);
-            this.textBoxMgOAizawa.Name = "textBoxMgOAizawa";
-            this.textBoxMgOAizawa.ReadOnly = true;
-            this.textBoxMgOAizawa.Size = new System.Drawing.Size(48, 22);
-            this.textBoxMgOAizawa.TabIndex = 5;
-            this.textBoxMgOAizawa.Text = "0";
+            textBoxMgOAizawa.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxMgOAizawa.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxMgOAizawa.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxMgOAizawa.Location = new Point(12, 144);
+            textBoxMgOAizawa.Name = "textBoxMgOAizawa";
+            textBoxMgOAizawa.ReadOnly = true;
+            textBoxMgOAizawa.Size = new Size(48, 22);
+            textBoxMgOAizawa.TabIndex = 5;
+            textBoxMgOAizawa.Text = "0";
             // 
             // label74
             // 
-            this.label74.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label74.Location = new System.Drawing.Point(60, 76);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(40, 16);
-            this.label74.TabIndex = 7;
-            this.label74.Text = "GPa";
+            label74.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label74.Location = new Point(60, 76);
+            label74.Name = "label74";
+            label74.Size = new Size(40, 16);
+            label74.TabIndex = 7;
+            label74.Text = "GPa";
             // 
             // textBoxMgODewaele
             // 
-            this.textBoxMgODewaele.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxMgODewaele.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxMgODewaele.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxMgODewaele.Location = new System.Drawing.Point(12, 108);
-            this.textBoxMgODewaele.Name = "textBoxMgODewaele";
-            this.textBoxMgODewaele.ReadOnly = true;
-            this.textBoxMgODewaele.Size = new System.Drawing.Size(48, 22);
-            this.textBoxMgODewaele.TabIndex = 5;
-            this.textBoxMgODewaele.Text = "0";
+            textBoxMgODewaele.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxMgODewaele.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxMgODewaele.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxMgODewaele.Location = new Point(12, 108);
+            textBoxMgODewaele.Name = "textBoxMgODewaele";
+            textBoxMgODewaele.ReadOnly = true;
+            textBoxMgODewaele.Size = new Size(48, 22);
+            textBoxMgODewaele.TabIndex = 5;
+            textBoxMgODewaele.Text = "0";
             // 
             // textBoxMgOJacson
             // 
-            this.textBoxMgOJacson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxMgOJacson.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxMgOJacson.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxMgOJacson.Location = new System.Drawing.Point(12, 72);
-            this.textBoxMgOJacson.Name = "textBoxMgOJacson";
-            this.textBoxMgOJacson.ReadOnly = true;
-            this.textBoxMgOJacson.Size = new System.Drawing.Size(48, 22);
-            this.textBoxMgOJacson.TabIndex = 5;
-            this.textBoxMgOJacson.Text = "0";
+            textBoxMgOJacson.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxMgOJacson.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxMgOJacson.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxMgOJacson.Location = new Point(12, 72);
+            textBoxMgOJacson.Name = "textBoxMgOJacson";
+            textBoxMgOJacson.ReadOnly = true;
+            textBoxMgOJacson.Size = new Size(48, 22);
+            textBoxMgOJacson.TabIndex = 5;
+            textBoxMgOJacson.Text = "0";
             // 
             // textBoxMgOA0
             // 
-            this.textBoxMgOA0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxMgOA0.Location = new System.Drawing.Point(20, 16);
-            this.textBoxMgOA0.Name = "textBoxMgOA0";
-            this.textBoxMgOA0.Size = new System.Drawing.Size(48, 21);
-            this.textBoxMgOA0.TabIndex = 5;
-            this.textBoxMgOA0.Text = "4.2112";
-            this.textBoxMgOA0.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxMgOA0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxMgOA0.Location = new Point(20, 16);
+            textBoxMgOA0.Name = "textBoxMgOA0";
+            textBoxMgOA0.Size = new Size(48, 21);
+            textBoxMgOA0.TabIndex = 5;
+            textBoxMgOA0.Text = "4.2112";
+            textBoxMgOA0.TextChanged += textBox_TextChanged;
             // 
             // label75
             // 
-            this.label75.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label75.Location = new System.Drawing.Point(8, 132);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(84, 12);
-            this.label75.TabIndex = 7;
-            this.label75.Text = "Aizawa (06)";
+            label75.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label75.Location = new Point(8, 132);
+            label75.Name = "label75";
+            label75.Size = new Size(84, 12);
+            label75.TabIndex = 7;
+            label75.Text = "Aizawa (06)";
             // 
             // label76
             // 
-            this.label76.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label76.Location = new System.Drawing.Point(4, 96);
-            this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(88, 12);
-            this.label76.TabIndex = 7;
-            this.label76.Text = "Dewaele (00)";
+            label76.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label76.Location = new Point(4, 96);
+            label76.Name = "label76";
+            label76.Size = new Size(88, 12);
+            label76.TabIndex = 7;
+            label76.Text = "Dewaele (00)";
             // 
             // label77
             // 
-            this.label77.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label77.Location = new System.Drawing.Point(4, 60);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(92, 16);
-            this.label77.TabIndex = 7;
-            this.label77.Text = "Jackson (98)";
+            label77.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label77.Location = new Point(4, 60);
+            label77.Name = "label77";
+            label77.Size = new Size(92, 16);
+            label77.TabIndex = 7;
+            label77.Text = "Jackson (98)";
             // 
             // label78
             // 
-            this.label78.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label78.Location = new System.Drawing.Point(4, 20);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(20, 12);
-            this.label78.TabIndex = 7;
-            this.label78.Text = "a0";
+            label78.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label78.Location = new Point(4, 20);
+            label78.Name = "label78";
+            label78.Size = new Size(20, 12);
+            label78.TabIndex = 7;
+            label78.Text = "a0";
             // 
             // textBoxMgOA
             // 
-            this.textBoxMgOA.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxMgOA.Location = new System.Drawing.Point(20, 36);
-            this.textBoxMgOA.Name = "textBoxMgOA";
-            this.textBoxMgOA.Size = new System.Drawing.Size(48, 21);
-            this.textBoxMgOA.TabIndex = 5;
-            this.textBoxMgOA.Text = "4.2112";
-            this.textBoxMgOA.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxMgOA.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxMgOA.Location = new Point(20, 36);
+            textBoxMgOA.Name = "textBoxMgOA";
+            textBoxMgOA.Size = new Size(48, 21);
+            textBoxMgOA.TabIndex = 5;
+            textBoxMgOA.Text = "4.2112";
+            textBoxMgOA.TextChanged += textBox_TextChanged;
             // 
             // label79
             // 
-            this.label79.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label79.Location = new System.Drawing.Point(68, 20);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(12, 16);
-            this.label79.TabIndex = 7;
-            this.label79.Text = "Å";
+            label79.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label79.Location = new Point(68, 20);
+            label79.Name = "label79";
+            label79.Size = new Size(12, 16);
+            label79.TabIndex = 7;
+            label79.Text = "Å";
             // 
             // label80
             // 
-            this.label80.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label80.Location = new System.Drawing.Point(4, 40);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(16, 12);
-            this.label80.TabIndex = 7;
-            this.label80.Text = "a";
+            label80.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label80.Location = new Point(4, 40);
+            label80.Name = "label80";
+            label80.Size = new Size(16, 12);
+            label80.TabIndex = 7;
+            label80.Text = "a";
             // 
             // label81
             // 
-            this.label81.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label81.Location = new System.Drawing.Point(68, 40);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(12, 16);
-            this.label81.TabIndex = 7;
-            this.label81.Text = "Å";
+            label81.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label81.Location = new Point(68, 40);
+            label81.Name = "label81";
+            label81.Size = new Size(12, 16);
+            label81.TabIndex = 7;
+            label81.Text = "Å";
             // 
             // groupBoxCorundum
             // 
-            this.groupBoxCorundum.Controls.Add(this.label82);
-            this.groupBoxCorundum.Controls.Add(this.textBoxCorundumDubrovinsky);
-            this.groupBoxCorundum.Controls.Add(this.textBoxColundumV0);
-            this.groupBoxCorundum.Controls.Add(this.label83);
-            this.groupBoxCorundum.Controls.Add(this.label84);
-            this.groupBoxCorundum.Controls.Add(this.textBoxCorundumV);
-            this.groupBoxCorundum.Controls.Add(this.label85);
-            this.groupBoxCorundum.Controls.Add(this.label86);
-            this.groupBoxCorundum.Controls.Add(this.label87);
-            this.groupBoxCorundum.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxCorundum.Location = new System.Drawing.Point(529, 3);
-            this.groupBoxCorundum.Name = "groupBoxCorundum";
-            this.groupBoxCorundum.Size = new System.Drawing.Size(100, 101);
-            this.groupBoxCorundum.TabIndex = 9;
-            this.groupBoxCorundum.TabStop = false;
-            this.groupBoxCorundum.Text = "Corundum";
+            groupBoxCorundum.Controls.Add(label82);
+            groupBoxCorundum.Controls.Add(textBoxCorundumDubrovinsky);
+            groupBoxCorundum.Controls.Add(textBoxColundumV0);
+            groupBoxCorundum.Controls.Add(label83);
+            groupBoxCorundum.Controls.Add(label84);
+            groupBoxCorundum.Controls.Add(textBoxCorundumV);
+            groupBoxCorundum.Controls.Add(label85);
+            groupBoxCorundum.Controls.Add(label86);
+            groupBoxCorundum.Controls.Add(label87);
+            groupBoxCorundum.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxCorundum.Location = new Point(529, 3);
+            groupBoxCorundum.Name = "groupBoxCorundum";
+            groupBoxCorundum.Size = new Size(100, 101);
+            groupBoxCorundum.TabIndex = 9;
+            groupBoxCorundum.TabStop = false;
+            groupBoxCorundum.Text = "Corundum";
             // 
             // label82
             // 
-            this.label82.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label82.Location = new System.Drawing.Point(56, 76);
-            this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(40, 16);
-            this.label82.TabIndex = 7;
-            this.label82.Text = "GPa";
+            label82.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label82.Location = new Point(56, 76);
+            label82.Name = "label82";
+            label82.Size = new Size(40, 16);
+            label82.TabIndex = 7;
+            label82.Text = "GPa";
             // 
             // textBoxCorundumDubrovinsky
             // 
-            this.textBoxCorundumDubrovinsky.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxCorundumDubrovinsky.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxCorundumDubrovinsky.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxCorundumDubrovinsky.Location = new System.Drawing.Point(8, 72);
-            this.textBoxCorundumDubrovinsky.Name = "textBoxCorundumDubrovinsky";
-            this.textBoxCorundumDubrovinsky.ReadOnly = true;
-            this.textBoxCorundumDubrovinsky.Size = new System.Drawing.Size(48, 22);
-            this.textBoxCorundumDubrovinsky.TabIndex = 5;
-            this.textBoxCorundumDubrovinsky.Text = "0";
+            textBoxCorundumDubrovinsky.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxCorundumDubrovinsky.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxCorundumDubrovinsky.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxCorundumDubrovinsky.Location = new Point(8, 72);
+            textBoxCorundumDubrovinsky.Name = "textBoxCorundumDubrovinsky";
+            textBoxCorundumDubrovinsky.ReadOnly = true;
+            textBoxCorundumDubrovinsky.Size = new Size(48, 22);
+            textBoxCorundumDubrovinsky.TabIndex = 5;
+            textBoxCorundumDubrovinsky.Text = "0";
             // 
             // textBoxColundumV0
             // 
-            this.textBoxColundumV0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxColundumV0.Location = new System.Drawing.Point(20, 16);
-            this.textBoxColundumV0.Name = "textBoxColundumV0";
-            this.textBoxColundumV0.Size = new System.Drawing.Size(36, 21);
-            this.textBoxColundumV0.TabIndex = 5;
-            this.textBoxColundumV0.Text = "254.6959";
-            this.textBoxColundumV0.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxColundumV0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxColundumV0.Location = new Point(20, 16);
+            textBoxColundumV0.Name = "textBoxColundumV0";
+            textBoxColundumV0.Size = new Size(36, 21);
+            textBoxColundumV0.TabIndex = 5;
+            textBoxColundumV0.Text = "254.6959";
+            textBoxColundumV0.TextChanged += textBox_TextChanged;
             // 
             // label83
             // 
-            this.label83.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label83.Location = new System.Drawing.Point(4, 56);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(105, 20);
-            this.label83.TabIndex = 7;
-            this.label83.Text = "Dubrovinsky (98)";
+            label83.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label83.Location = new Point(4, 56);
+            label83.Name = "label83";
+            label83.Size = new Size(105, 20);
+            label83.TabIndex = 7;
+            label83.Text = "Dubrovinsky (98)";
             // 
             // label84
             // 
-            this.label84.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label84.Location = new System.Drawing.Point(4, 20);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(20, 12);
-            this.label84.TabIndex = 7;
-            this.label84.Text = "V0";
+            label84.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label84.Location = new Point(4, 20);
+            label84.Name = "label84";
+            label84.Size = new Size(20, 12);
+            label84.TabIndex = 7;
+            label84.Text = "V0";
             // 
             // textBoxCorundumV
             // 
-            this.textBoxCorundumV.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxCorundumV.Location = new System.Drawing.Point(20, 36);
-            this.textBoxCorundumV.Name = "textBoxCorundumV";
-            this.textBoxCorundumV.Size = new System.Drawing.Size(36, 21);
-            this.textBoxCorundumV.TabIndex = 5;
-            this.textBoxCorundumV.Text = "254.6959";
-            this.textBoxCorundumV.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxCorundumV.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxCorundumV.Location = new Point(20, 36);
+            textBoxCorundumV.Name = "textBoxCorundumV";
+            textBoxCorundumV.Size = new Size(36, 21);
+            textBoxCorundumV.TabIndex = 5;
+            textBoxCorundumV.Text = "254.6959";
+            textBoxCorundumV.TextChanged += textBox_TextChanged;
             // 
             // label85
             // 
-            this.label85.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label85.Location = new System.Drawing.Point(56, 20);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(38, 16);
-            this.label85.TabIndex = 7;
-            this.label85.Text = "Å^3";
+            label85.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label85.Location = new Point(56, 20);
+            label85.Name = "label85";
+            label85.Size = new Size(38, 16);
+            label85.TabIndex = 7;
+            label85.Text = "Å^3";
             // 
             // label86
             // 
-            this.label86.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label86.Location = new System.Drawing.Point(4, 40);
-            this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(16, 12);
-            this.label86.TabIndex = 7;
-            this.label86.Text = "V";
+            label86.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label86.Location = new Point(4, 40);
+            label86.Name = "label86";
+            label86.Size = new Size(16, 12);
+            label86.TabIndex = 7;
+            label86.Text = "V";
             // 
             // label87
             // 
-            this.label87.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label87.Location = new System.Drawing.Point(56, 40);
-            this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(40, 16);
-            this.label87.TabIndex = 7;
-            this.label87.Text = "Å^3";
+            label87.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label87.Location = new Point(56, 40);
+            label87.Name = "label87";
+            label87.Size = new Size(40, 16);
+            label87.TabIndex = 7;
+            label87.Text = "Å^3";
             // 
             // groupBoxAr
             // 
-            this.groupBoxAr.Controls.Add(this.textBoxArA0);
-            this.groupBoxAr.Controls.Add(this.textBoxArA);
-            this.groupBoxAr.Controls.Add(this.textBoxArJephcoat);
-            this.groupBoxAr.Controls.Add(this.label88);
-            this.groupBoxAr.Controls.Add(this.textBoxArRoss);
-            this.groupBoxAr.Controls.Add(this.label89);
-            this.groupBoxAr.Controls.Add(this.label90);
-            this.groupBoxAr.Controls.Add(this.label91);
-            this.groupBoxAr.Controls.Add(this.label92);
-            this.groupBoxAr.Controls.Add(this.label93);
-            this.groupBoxAr.Controls.Add(this.label94);
-            this.groupBoxAr.Controls.Add(this.label95);
-            this.groupBoxAr.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxAr.Location = new System.Drawing.Point(3, 223);
-            this.groupBoxAr.Name = "groupBoxAr";
-            this.groupBoxAr.Size = new System.Drawing.Size(104, 132);
-            this.groupBoxAr.TabIndex = 12;
-            this.groupBoxAr.TabStop = false;
-            this.groupBoxAr.Text = "Ar";
+            groupBoxAr.Controls.Add(textBoxArA0);
+            groupBoxAr.Controls.Add(textBoxArA);
+            groupBoxAr.Controls.Add(textBoxArJephcoat);
+            groupBoxAr.Controls.Add(label88);
+            groupBoxAr.Controls.Add(textBoxArRoss);
+            groupBoxAr.Controls.Add(label89);
+            groupBoxAr.Controls.Add(label90);
+            groupBoxAr.Controls.Add(label91);
+            groupBoxAr.Controls.Add(label92);
+            groupBoxAr.Controls.Add(label93);
+            groupBoxAr.Controls.Add(label94);
+            groupBoxAr.Controls.Add(label95);
+            groupBoxAr.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxAr.Location = new Point(3, 223);
+            groupBoxAr.Name = "groupBoxAr";
+            groupBoxAr.Size = new Size(104, 132);
+            groupBoxAr.TabIndex = 12;
+            groupBoxAr.TabStop = false;
+            groupBoxAr.Text = "Ar";
             // 
             // textBoxArA0
             // 
-            this.textBoxArA0.Enabled = false;
-            this.textBoxArA0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxArA0.Location = new System.Drawing.Point(20, 15);
-            this.textBoxArA0.Name = "textBoxArA0";
-            this.textBoxArA0.Size = new System.Drawing.Size(48, 21);
-            this.textBoxArA0.TabIndex = 5;
-            this.textBoxArA0.Text = "0";
-            this.textBoxArA0.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxArA0.Enabled = false;
+            textBoxArA0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxArA0.Location = new Point(20, 15);
+            textBoxArA0.Name = "textBoxArA0";
+            textBoxArA0.Size = new Size(48, 21);
+            textBoxArA0.TabIndex = 5;
+            textBoxArA0.Text = "0";
+            textBoxArA0.TextChanged += textBox_TextChanged;
             // 
             // textBoxArA
             // 
-            this.textBoxArA.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxArA.Location = new System.Drawing.Point(20, 36);
-            this.textBoxArA.Name = "textBoxArA";
-            this.textBoxArA.Size = new System.Drawing.Size(48, 21);
-            this.textBoxArA.TabIndex = 5;
-            this.textBoxArA.Text = "4.0786";
-            this.textBoxArA.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxArA.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxArA.Location = new Point(20, 36);
+            textBoxArA.Name = "textBoxArA";
+            textBoxArA.Size = new Size(48, 21);
+            textBoxArA.TabIndex = 5;
+            textBoxArA.Text = "4.0786";
+            textBoxArA.TextChanged += textBox_TextChanged;
             // 
             // textBoxArJephcoat
             // 
-            this.textBoxArJephcoat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxArJephcoat.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxArJephcoat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxArJephcoat.Location = new System.Drawing.Point(12, 106);
-            this.textBoxArJephcoat.Name = "textBoxArJephcoat";
-            this.textBoxArJephcoat.ReadOnly = true;
-            this.textBoxArJephcoat.Size = new System.Drawing.Size(48, 22);
-            this.textBoxArJephcoat.TabIndex = 5;
-            this.textBoxArJephcoat.Text = "0";
+            textBoxArJephcoat.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxArJephcoat.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxArJephcoat.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxArJephcoat.Location = new Point(12, 106);
+            textBoxArJephcoat.Name = "textBoxArJephcoat";
+            textBoxArJephcoat.ReadOnly = true;
+            textBoxArJephcoat.Size = new Size(48, 22);
+            textBoxArJephcoat.TabIndex = 5;
+            textBoxArJephcoat.Text = "0";
             // 
             // label88
             // 
-            this.label88.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label88.Location = new System.Drawing.Point(60, 110);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(38, 16);
-            this.label88.TabIndex = 7;
-            this.label88.Text = "GPa";
+            label88.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label88.Location = new Point(60, 110);
+            label88.Name = "label88";
+            label88.Size = new Size(38, 16);
+            label88.TabIndex = 7;
+            label88.Text = "GPa";
             // 
             // textBoxArRoss
             // 
-            this.textBoxArRoss.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxArRoss.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxArRoss.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxArRoss.Location = new System.Drawing.Point(12, 70);
-            this.textBoxArRoss.Name = "textBoxArRoss";
-            this.textBoxArRoss.ReadOnly = true;
-            this.textBoxArRoss.Size = new System.Drawing.Size(48, 22);
-            this.textBoxArRoss.TabIndex = 5;
-            this.textBoxArRoss.Text = "0";
+            textBoxArRoss.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxArRoss.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxArRoss.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxArRoss.Location = new Point(12, 70);
+            textBoxArRoss.Name = "textBoxArRoss";
+            textBoxArRoss.ReadOnly = true;
+            textBoxArRoss.Size = new Size(48, 22);
+            textBoxArRoss.TabIndex = 5;
+            textBoxArRoss.Text = "0";
             // 
             // label89
             // 
-            this.label89.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label89.Location = new System.Drawing.Point(60, 74);
-            this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(38, 16);
-            this.label89.TabIndex = 7;
-            this.label89.Text = "GPa";
+            label89.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label89.Location = new Point(60, 74);
+            label89.Name = "label89";
+            label89.Size = new Size(38, 16);
+            label89.TabIndex = 7;
+            label89.Text = "GPa";
             // 
             // label90
             // 
-            this.label90.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label90.Location = new System.Drawing.Point(4, 19);
-            this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(32, 12);
-            this.label90.TabIndex = 7;
-            this.label90.Text = "a0";
+            label90.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label90.Location = new Point(4, 19);
+            label90.Name = "label90";
+            label90.Size = new Size(32, 12);
+            label90.TabIndex = 7;
+            label90.Text = "a0";
             // 
             // label91
             // 
-            this.label91.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label91.Location = new System.Drawing.Point(12, 40);
-            this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(32, 12);
-            this.label91.TabIndex = 7;
-            this.label91.Text = "a";
+            label91.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label91.Location = new Point(12, 40);
+            label91.Name = "label91";
+            label91.Size = new Size(32, 12);
+            label91.TabIndex = 7;
+            label91.Text = "a";
             // 
             // label92
             // 
-            this.label92.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label92.Location = new System.Drawing.Point(4, 94);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(94, 12);
-            this.label92.TabIndex = 7;
-            this.label92.Text = "Jephcoat (98)";
+            label92.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label92.Location = new Point(4, 94);
+            label92.Name = "label92";
+            label92.Size = new Size(94, 12);
+            label92.TabIndex = 7;
+            label92.Text = "Jephcoat (98)";
             // 
             // label93
             // 
-            this.label93.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label93.Location = new System.Drawing.Point(68, 40);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(12, 16);
-            this.label93.TabIndex = 7;
-            this.label93.Text = "Å";
+            label93.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label93.Location = new Point(68, 40);
+            label93.Name = "label93";
+            label93.Size = new Size(12, 16);
+            label93.TabIndex = 7;
+            label93.Text = "Å";
             // 
             // label94
             // 
-            this.label94.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label94.Location = new System.Drawing.Point(4, 58);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(94, 12);
-            this.label94.TabIndex = 7;
-            this.label94.Text = "Ross et al. (86)";
+            label94.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label94.Location = new Point(4, 58);
+            label94.Name = "label94";
+            label94.Size = new Size(94, 12);
+            label94.TabIndex = 7;
+            label94.Text = "Ross et al. (86)";
             // 
             // label95
             // 
-            this.label95.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label95.Location = new System.Drawing.Point(68, 19);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(12, 16);
-            this.label95.TabIndex = 7;
-            this.label95.Text = "Å";
+            label95.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label95.Location = new Point(68, 19);
+            label95.Name = "label95";
+            label95.Size = new Size(12, 16);
+            label95.TabIndex = 7;
+            label95.Text = "Å";
             // 
             // groupBoxRe
             // 
-            this.groupBoxRe.Controls.Add(this.label96);
-            this.groupBoxRe.Controls.Add(this.textBoxReZha);
-            this.groupBoxRe.Controls.Add(this.textBoxReV0);
-            this.groupBoxRe.Controls.Add(this.label97);
-            this.groupBoxRe.Controls.Add(this.label98);
-            this.groupBoxRe.Controls.Add(this.textBoxReV);
-            this.groupBoxRe.Controls.Add(this.label99);
-            this.groupBoxRe.Controls.Add(this.label100);
-            this.groupBoxRe.Controls.Add(this.label101);
-            this.groupBoxRe.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxRe.Location = new System.Drawing.Point(113, 223);
-            this.groupBoxRe.Name = "groupBoxRe";
-            this.groupBoxRe.Size = new System.Drawing.Size(104, 101);
-            this.groupBoxRe.TabIndex = 11;
-            this.groupBoxRe.TabStop = false;
-            this.groupBoxRe.Text = "Re";
+            groupBoxRe.Controls.Add(label96);
+            groupBoxRe.Controls.Add(textBoxReZha);
+            groupBoxRe.Controls.Add(textBoxReV0);
+            groupBoxRe.Controls.Add(label97);
+            groupBoxRe.Controls.Add(label98);
+            groupBoxRe.Controls.Add(textBoxReV);
+            groupBoxRe.Controls.Add(label99);
+            groupBoxRe.Controls.Add(label100);
+            groupBoxRe.Controls.Add(label101);
+            groupBoxRe.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxRe.Location = new Point(113, 223);
+            groupBoxRe.Name = "groupBoxRe";
+            groupBoxRe.Size = new Size(104, 101);
+            groupBoxRe.TabIndex = 11;
+            groupBoxRe.TabStop = false;
+            groupBoxRe.Text = "Re";
             // 
             // label96
             // 
-            this.label96.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label96.Location = new System.Drawing.Point(56, 76);
-            this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(24, 16);
-            this.label96.TabIndex = 7;
-            this.label96.Text = "GPa";
+            label96.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label96.Location = new Point(56, 76);
+            label96.Name = "label96";
+            label96.Size = new Size(24, 16);
+            label96.TabIndex = 7;
+            label96.Text = "GPa";
             // 
             // textBoxReZha
             // 
-            this.textBoxReZha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxReZha.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBoxReZha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.textBoxReZha.Location = new System.Drawing.Point(8, 72);
-            this.textBoxReZha.Name = "textBoxReZha";
-            this.textBoxReZha.ReadOnly = true;
-            this.textBoxReZha.Size = new System.Drawing.Size(48, 22);
-            this.textBoxReZha.TabIndex = 5;
-            this.textBoxReZha.Text = "0";
+            textBoxReZha.BackColor = Color.FromArgb(64, 64, 64);
+            textBoxReZha.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxReZha.ForeColor = Color.FromArgb(192, 192, 255);
+            textBoxReZha.Location = new Point(8, 72);
+            textBoxReZha.Name = "textBoxReZha";
+            textBoxReZha.ReadOnly = true;
+            textBoxReZha.Size = new Size(48, 22);
+            textBoxReZha.TabIndex = 5;
+            textBoxReZha.Text = "0";
             // 
             // textBoxReV0
             // 
-            this.textBoxReV0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxReV0.Location = new System.Drawing.Point(20, 16);
-            this.textBoxReV0.Name = "textBoxReV0";
-            this.textBoxReV0.Size = new System.Drawing.Size(36, 21);
-            this.textBoxReV0.TabIndex = 5;
-            this.textBoxReV0.Text = "29.42795";
-            this.textBoxReV0.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxReV0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxReV0.Location = new Point(20, 16);
+            textBoxReV0.Name = "textBoxReV0";
+            textBoxReV0.Size = new Size(36, 21);
+            textBoxReV0.TabIndex = 5;
+            textBoxReV0.Text = "29.42795";
+            textBoxReV0.TextChanged += textBox_TextChanged;
             // 
             // label97
             // 
-            this.label97.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label97.Location = new System.Drawing.Point(4, 56);
-            this.label97.Name = "label97";
-            this.label97.Size = new System.Drawing.Size(100, 20);
-            this.label97.TabIndex = 7;
-            this.label97.Text = "Zha et al. (04)";
+            label97.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label97.Location = new Point(4, 56);
+            label97.Name = "label97";
+            label97.Size = new Size(100, 20);
+            label97.TabIndex = 7;
+            label97.Text = "Zha et al. (04)";
             // 
             // label98
             // 
-            this.label98.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label98.Location = new System.Drawing.Point(4, 20);
-            this.label98.Name = "label98";
-            this.label98.Size = new System.Drawing.Size(20, 12);
-            this.label98.TabIndex = 7;
-            this.label98.Text = "V0";
+            label98.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label98.Location = new Point(4, 20);
+            label98.Name = "label98";
+            label98.Size = new Size(20, 12);
+            label98.TabIndex = 7;
+            label98.Text = "V0";
             // 
             // textBoxReV
             // 
-            this.textBoxReV.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxReV.Location = new System.Drawing.Point(20, 36);
-            this.textBoxReV.Name = "textBoxReV";
-            this.textBoxReV.Size = new System.Drawing.Size(36, 21);
-            this.textBoxReV.TabIndex = 5;
-            this.textBoxReV.Text = "254.6959";
-            this.textBoxReV.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxReV.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxReV.Location = new Point(20, 36);
+            textBoxReV.Name = "textBoxReV";
+            textBoxReV.Size = new Size(36, 21);
+            textBoxReV.TabIndex = 5;
+            textBoxReV.Text = "254.6959";
+            textBoxReV.TextChanged += textBox_TextChanged;
             // 
             // label99
             // 
-            this.label99.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label99.Location = new System.Drawing.Point(56, 20);
-            this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(42, 16);
-            this.label99.TabIndex = 7;
-            this.label99.Text = "Å^3";
+            label99.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label99.Location = new Point(56, 20);
+            label99.Name = "label99";
+            label99.Size = new Size(42, 16);
+            label99.TabIndex = 7;
+            label99.Text = "Å^3";
             // 
             // label100
             // 
-            this.label100.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label100.Location = new System.Drawing.Point(4, 40);
-            this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(16, 12);
-            this.label100.TabIndex = 7;
-            this.label100.Text = "V";
+            label100.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label100.Location = new Point(4, 40);
+            label100.Name = "label100";
+            label100.Size = new Size(16, 12);
+            label100.TabIndex = 7;
+            label100.Text = "V";
             // 
             // label101
             // 
-            this.label101.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label101.Location = new System.Drawing.Point(56, 40);
-            this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(42, 16);
-            this.label101.TabIndex = 7;
-            this.label101.Text = "Å^3";
+            label101.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label101.Location = new Point(56, 40);
+            label101.Name = "label101";
+            label101.Size = new Size(42, 16);
+            label101.TabIndex = 7;
+            label101.Text = "Å^3";
             // 
             // panelEOS
             // 
-            this.panelEOS.Controls.Add(this.flowLayoutPanelEOS);
-            this.panelEOS.Controls.Add(this.panel2);
-            this.panelEOS.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelEOS.Location = new System.Drawing.Point(0, 48);
-            this.panelEOS.Name = "panelEOS";
-            this.panelEOS.Size = new System.Drawing.Size(725, 82);
-            this.panelEOS.TabIndex = 15;
+            panelEOS.Controls.Add(flowLayoutPanelEOS);
+            panelEOS.Controls.Add(panel2);
+            panelEOS.Dock = DockStyle.Top;
+            panelEOS.Location = new Point(0, 48);
+            panelEOS.Name = "panelEOS";
+            panelEOS.Size = new Size(725, 82);
+            panelEOS.TabIndex = 15;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label103);
-            this.panel2.Controls.Add(this.textBoxT);
-            this.panel2.Controls.Add(this.label102);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(725, 26);
-            this.panel2.TabIndex = 19;
+            panel2.Controls.Add(label103);
+            panel2.Controls.Add(textBoxT);
+            panel2.Controls.Add(label102);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(725, 26);
+            panel2.TabIndex = 19;
             // 
             // label103
             // 
-            this.label103.AutoSize = true;
-            this.label103.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label103.Location = new System.Drawing.Point(7, 5);
-            this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(87, 14);
-            this.label103.TabIndex = 18;
-            this.label103.Text = "Temperature";
+            label103.AutoSize = true;
+            label103.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label103.Location = new Point(7, 5);
+            label103.Name = "label103";
+            label103.Size = new Size(87, 14);
+            label103.TabIndex = 18;
+            label103.Text = "Temperature";
             // 
             // textBoxT
             // 
-            this.textBoxT.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxT.Location = new System.Drawing.Point(94, 2);
-            this.textBoxT.Name = "textBoxT";
-            this.textBoxT.Size = new System.Drawing.Size(83, 22);
-            this.textBoxT.TabIndex = 17;
-            this.textBoxT.Text = "300";
-            this.textBoxT.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            textBoxT.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxT.Location = new Point(94, 2);
+            textBoxT.Name = "textBoxT";
+            textBoxT.Size = new Size(83, 22);
+            textBoxT.TabIndex = 17;
+            textBoxT.Text = "300";
+            textBoxT.TextChanged += textBox_TextChanged;
             // 
             // label102
             // 
-            this.label102.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label102.Location = new System.Drawing.Point(183, 5);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(16, 16);
-            this.label102.TabIndex = 18;
-            this.label102.Text = "K";
+            label102.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label102.Location = new Point(183, 5);
+            label102.Name = "label102";
+            label102.Size = new Size(16, 16);
+            label102.TabIndex = 18;
+            label102.Text = "K";
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(725, 24);
-            this.menuStrip1.TabIndex = 16;
-            this.menuStrip1.Text = "menuStrip1";
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(725, 24);
+            menuStrip1.TabIndex = 16;
+            menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.readToolStripMenuItem,
-            this.exportAsCSVToolStripMenuItem,
-            this.watchNewFileToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { readToolStripMenuItem, exportAsCSVToolStripMenuItem, watchNewFileToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Text = "File";
             // 
             // readToolStripMenuItem
             // 
-            this.readToolStripMenuItem.Name = "readToolStripMenuItem";
-            this.readToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.readToolStripMenuItem.Text = "Load";
-            this.readToolStripMenuItem.Click += new System.EventHandler(this.menuItemFileRead_Click);
+            readToolStripMenuItem.Name = "readToolStripMenuItem";
+            readToolStripMenuItem.Size = new Size(226, 22);
+            readToolStripMenuItem.Text = "Load";
+            readToolStripMenuItem.Click += menuItemFileRead_Click;
             // 
             // exportAsCSVToolStripMenuItem
             // 
-            this.exportAsCSVToolStripMenuItem.Name = "exportAsCSVToolStripMenuItem";
-            this.exportAsCSVToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.exportAsCSVToolStripMenuItem.Text = "Export as CSV";
-            this.exportAsCSVToolStripMenuItem.Click += new System.EventHandler(this.menuItemExport_Click);
+            exportAsCSVToolStripMenuItem.Name = "exportAsCSVToolStripMenuItem";
+            exportAsCSVToolStripMenuItem.Size = new Size(226, 22);
+            exportAsCSVToolStripMenuItem.Text = "Export as CSV";
+            exportAsCSVToolStripMenuItem.Click += menuItemExport_Click;
             // 
             // watchNewFileToolStripMenuItem
             // 
-            this.watchNewFileToolStripMenuItem.Checked = true;
-            this.watchNewFileToolStripMenuItem.CheckOnClick = true;
-            this.watchNewFileToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.watchNewFileToolStripMenuItem.Name = "watchNewFileToolStripMenuItem";
-            this.watchNewFileToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.watchNewFileToolStripMenuItem.Text = "Reload the file if it is updated";
-            this.watchNewFileToolStripMenuItem.CheckedChanged += new System.EventHandler(this.menuItemWatchFile_Click);
+            watchNewFileToolStripMenuItem.Checked = true;
+            watchNewFileToolStripMenuItem.CheckOnClick = true;
+            watchNewFileToolStripMenuItem.CheckState = CheckState.Checked;
+            watchNewFileToolStripMenuItem.Name = "watchNewFileToolStripMenuItem";
+            watchNewFileToolStripMenuItem.Size = new Size(226, 22);
+            watchNewFileToolStripMenuItem.Text = "Reload the file if it is updated";
+            watchNewFileToolStripMenuItem.CheckedChanged += menuItemWatchFile_Click;
             // 
             // timer
             // 
-            this.timer.Enabled = true;
-            this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            timer.Enabled = true;
+            timer.Interval = 1000;
+            timer.Tick += timer_Tick;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.BackColor = SystemColors.Control;
+            label25.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label25.Location = new Point(3, 6);
+            label25.Margin = new Padding(3, 6, 3, 0);
+            label25.Name = "label25";
+            label25.Size = new Size(123, 14);
+            label25.TabIndex = 3;
+            label25.Text = "Fitting Information";
             // 
             // FormMain
             // 
-            this.AllowDrop = true;
-            this.AutoScaleBaseSize = new System.Drawing.Size(7, 15);
-            this.ClientSize = new System.Drawing.Size(725, 794);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.groupBoxAkahama2006);
-            this.Controls.Add(this.groupBoxMao);
-            this.Controls.Add(this.panelEOS);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "FormMain";
-            this.Text = "Pressure Calculator";
-            this.Closed += new System.EventHandler(this.FormDiamondRaman_Closed);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
-            this.Load += new System.EventHandler(this.FormMain_Load);
-            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormMain_DragDrop);
-            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormMain_DragEnter);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDifferentiationRunningAverage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOriginalRunningAverage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOriginalGaussian)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDifferentiationGaussian)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel3.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFitRange)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.groupBoxMao.ResumeLayout(false);
-            this.groupBoxMao.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBoxAkahama2006.ResumeLayout(false);
-            this.groupBoxAkahama2006.PerformLayout();
-            this.flowLayoutPanelEOS.ResumeLayout(false);
-            this.groupBoxGold.ResumeLayout(false);
-            this.groupBoxGold.PerformLayout();
-            this.groupBoxPlatinum.ResumeLayout(false);
-            this.groupBoxPlatinum.PerformLayout();
-            this.groupBoxNaClB1.ResumeLayout(false);
-            this.groupBoxNaClB1.PerformLayout();
-            this.groupBoxNaClB2.ResumeLayout(false);
-            this.groupBoxNaClB2.PerformLayout();
-            this.groupBoxPericlase.ResumeLayout(false);
-            this.groupBoxPericlase.PerformLayout();
-            this.groupBoxCorundum.ResumeLayout(false);
-            this.groupBoxCorundum.PerformLayout();
-            this.groupBoxAr.ResumeLayout(false);
-            this.groupBoxAr.PerformLayout();
-            this.groupBoxRe.ResumeLayout(false);
-            this.groupBoxRe.PerformLayout();
-            this.panelEOS.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
-		}
+            AllowDrop = true;
+            AutoScaleBaseSize = new Size(7, 15);
+            ClientSize = new Size(725, 794);
+            Controls.Add(splitContainer1);
+            Controls.Add(groupBoxAkahama2006);
+            Controls.Add(groupBoxMao);
+            Controls.Add(panelEOS);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(menuStrip1);
+            Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            MainMenuStrip = menuStrip1;
+            Name = "FormMain";
+            Text = "Pressure Calculator";
+            Closed += FormDiamondRaman_Closed;
+            FormClosing += FormMain_FormClosing;
+            Load += FormMain_Load;
+            DragDrop += FormMain_DragDrop;
+            DragEnter += FormMain_DragEnter;
+            ((ISupportInitialize)numericUpDownDifferentiationRunningAverage).EndInit();
+            ((ISupportInitialize)numericUpDownOriginalRunningAverage).EndInit();
+            ((ISupportInitialize)numericUpDownOriginalGaussian).EndInit();
+            ((ISupportInitialize)numericUpDownDifferentiationGaussian).EndInit();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
+            splitContainer1.Panel2.ResumeLayout(false);
+            splitContainer1.Panel2.PerformLayout();
+            ((ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            flowLayoutPanel3.ResumeLayout(false);
+            flowLayoutPanel3.PerformLayout();
+            flowLayoutPanel4.ResumeLayout(false);
+            flowLayoutPanel4.PerformLayout();
+            flowLayoutPanel2.ResumeLayout(false);
+            flowLayoutPanel2.PerformLayout();
+            ((ISupportInitialize)numericUpDownFitRange).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
+            groupBoxMao.ResumeLayout(false);
+            groupBoxMao.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBoxAkahama2006.ResumeLayout(false);
+            groupBoxAkahama2006.PerformLayout();
+            flowLayoutPanelEOS.ResumeLayout(false);
+            groupBoxGold.ResumeLayout(false);
+            groupBoxGold.PerformLayout();
+            groupBoxPlatinum.ResumeLayout(false);
+            groupBoxPlatinum.PerformLayout();
+            groupBoxNaClB1.ResumeLayout(false);
+            groupBoxNaClB1.PerformLayout();
+            groupBoxNaClB2.ResumeLayout(false);
+            groupBoxNaClB2.PerformLayout();
+            groupBoxPericlase.ResumeLayout(false);
+            groupBoxPericlase.PerformLayout();
+            groupBoxCorundum.ResumeLayout(false);
+            groupBoxCorundum.PerformLayout();
+            groupBoxAr.ResumeLayout(false);
+            groupBoxAr.PerformLayout();
+            groupBoxRe.ResumeLayout(false);
+            groupBoxRe.PerformLayout();
+            panelEOS.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
+        }
 
 
 
@@ -3007,8 +3024,11 @@ namespace PressureCalculator{
         private Label label19;
         private Label label24;
         private Label label21;
+        private FlowLayoutPanel flowLayoutPanel4;
+        private TextBox textBoxFittingInformation;
+        private Label label25;
     }
-	
-    
+
+
 
 }

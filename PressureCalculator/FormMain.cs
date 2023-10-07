@@ -10,22 +10,23 @@ using Crystallography;
 using Microsoft.Win32;
 using System.Linq;
 
-namespace PressureCalculator{
-	
-	
+namespace PressureCalculator
+{
 
 
 
-	/// <summary>
-	/// Form1 の概要の説明です。
-	/// </summary>
-	public partial class FormMain : Form
+
+
+    /// <summary>
+    /// Form1 の概要の説明です。
+    /// </summary>
+    public partial class FormMain : Form
     {
 
         private DateTime lastWriteTime;
         public string currentFileName = "";
 
-        private double fittingRangeDiamond=6;
+        private double fittingRangeDiamond = 6;
         private double fittingRangeRuby = 3;
 
         #region ロード、クローズ
@@ -134,7 +135,7 @@ namespace PressureCalculator{
             var contents = new List<string>();
             string str;
             while ((str = reader.ReadLine()) != null)
-                if(str!="")
+                if (str != "")
                     contents.Add(str);
             reader.DiscardBufferedData();
             reader.Close();
@@ -278,15 +279,15 @@ namespace PressureCalculator{
             if (yRow == -1) return null;
 
             //最後に値を代入
-            Profile profile  = new Profile();
+            Profile profile = new Profile();
             for (int i = 0; i < doubleList.Count; i++)
-              profile.Pt.Add(new PointD(doubleList[i][xRow], doubleList[i][yRow]));
+                profile.Pt.Add(new PointD(doubleList[i][xRow], doubleList[i][yRow]));
 
             return profile;
         }
 
 
-		//移動平均と微分プロファイルを計算
+        //移動平均と微分プロファイルを計算
         private void CalcSmoothingAndDifferentiation()
         {
             if (Original == null) return;
@@ -337,7 +338,7 @@ namespace PressureCalculator{
             BottomProfileSmooth = new Profile();
 
             if (radioButtonDiamondRaman.Checked)//DiamondRamanモードのとき
-                    BottomProfile=OriginalSmooth.Differential(1);
+                BottomProfile = OriginalSmooth.Differential(1);
             else
                 for (int i = 0; i < Original.Pt.Count; i++)
                     BottomProfile.Pt.Add(Original.Pt[i]);
@@ -346,7 +347,7 @@ namespace PressureCalculator{
             if (numericUpDownDifferentiationRunningAverage.ReadOnly == false)
             {//移動平均
                 n = (int)numericUpDownDifferentiationRunningAverage.Value;
-                for (int i = 0; i < BottomProfile.Pt.Count- n + 1; i++)
+                for (int i = 0; i < BottomProfile.Pt.Count - n + 1; i++)
                 {
                     kayser = count = 0;
                     for (int j = 0; j < n; j++)
@@ -361,7 +362,7 @@ namespace PressureCalculator{
             {//ガウシアン
                 n = (int)numericUpDownDifferentiationGaussian.Value;
                 if (n == 0)
-                    for (int i = 0; i < BottomProfile.Pt.Count;i++ )
+                    for (int i = 0; i < BottomProfile.Pt.Count; i++)
                         BottomProfileSmooth.Pt.Add(BottomProfile.Pt[i]);
                 else
                     for (int i = 0; i < BottomProfile.Pt.Count; i++)
@@ -383,7 +384,7 @@ namespace PressureCalculator{
 
         //プロファイルからバンドエッジを探す
         private void SearchBandEdge()
-            
+
         {
             if (skipFitting)
                 return;
@@ -416,7 +417,9 @@ namespace PressureCalculator{
                 double range = (double)numericUpDownFitRange.Value;
                 var pf = new PeakFunction[] { new PeakFunction(centerX, range, range, PeakFunctionForm.PseudoVoigt) };
 
-                FittingPeak.FitMultiPeaksThread(pt.ToArray(), true, 0, ref pf);
+                FittingPeak.FitMultiPeaksThread(pt, true, 0, ref pf);
+
+                textBoxFittingInformation.Text = $"Edge:\t  X = {pf[0].X:f3}\tFWHM = {pf[0].Hk:f3}\r\n";
 
                 var p = new Profile();
                 for (double x = pf[0].X - range * 0.9; x < pf[0].X + range * 0.9; x += range / 200)
@@ -451,7 +454,10 @@ namespace PressureCalculator{
                 pf[0] = new PeakFunction(centerX, range / 2, range, PeakFunctionForm.PseudoVoigt);
                 pf[1] = new PeakFunction(centerX - 1.5, range / 2, range, PeakFunctionForm.PseudoVoigt);
 
-                FittingPeak.FitMultiPeaksThread(pt.ToArray(), true, 0, ref pf);
+                FittingPeak.FitMultiPeaksThread(pt, true, 0, ref pf);
+
+                textBoxFittingInformation.Text = $"R1:\t  X = {pf[0].X:f3}\tFWHM = {pf[0].Hk:f3}\r\n";
+                textBoxFittingInformation.Text += $"R2:\t  X = {pf[1].X:f3}\tFWHM = {pf[1].Hk:f3}";
 
                 Profile p1 = new Profile();
                 for (double x = pf[0].X - range * 0.9; x < pf[0].X + range * 0.9; x += range / 200)
@@ -500,13 +506,13 @@ namespace PressureCalculator{
             if (pt1.Count < 4) return false;
             I *= pt1[1].X - pt1[0].X;
 
-            
+
             { startI = I * 0.5; endI = I * 5; stepI = (endI - startI) / 20; }
             if (I < 0)
             { double t = startI; startI = endI; endI = t; stepI = -stepI; }
 
-            startHk = FitRange*0.01; endHk =FitRange*20; stepHk = (endHk - startHk) /20;
-            startEdge = edge - FitRange; endEdge = edge + FitRange; stepEdge = (endEdge - startEdge) /20;
+            startHk = FitRange * 0.01; endHk = FitRange * 20; stepHk = (endHk - startHk) / 20;
+            startEdge = edge - FitRange; endEdge = edge + FitRange; stepEdge = (endEdge - startEdge) / 20;
 
             residualBest = double.PositiveInfinity;
             double temp;
@@ -518,10 +524,10 @@ namespace PressureCalculator{
                         {
                             residual = 0;
                             for (int i = 0; i < pt1.Count; i++)
-                                {
-                                    temp = pt1[i].Y - I * 2/Hk/Math.PI* (1 / (1 +4*   (edge - pt1[i].X)/Hk * (edge - pt1[i].X)/Hk ));
-                                    residual += temp * temp;
-                                }
+                            {
+                                temp = pt1[i].Y - I * 2 / Hk / Math.PI * (1 / (1 + 4 * (edge - pt1[i].X) / Hk * (edge - pt1[i].X) / Hk));
+                                residual += temp * temp;
+                            }
 
                             if (residual < residualBest)
                             {
@@ -536,9 +542,9 @@ namespace PressureCalculator{
                 startEdge = bestEdge - 1.5 * stepEdge; endEdge = bestEdge + 1.5 * stepEdge; stepEdge *= 0.66;
             }
 
-                Profile p = new Profile();
-                for (double x = bestEdge - FitRange * 0.9; x < bestEdge + FitRange * 0.9; x += FitRange / 200)
-                    p.Pt.Add(new PointD(x, bestI*2/bestHk/Math.PI * (1 / (1 + 4* (bestEdge - x)/bestHk * (bestEdge - x)/bestHk))));
+            Profile p = new Profile();
+            for (double x = bestEdge - FitRange * 0.9; x < bestEdge + FitRange * 0.9; x += FitRange / 200)
+                p.Pt.Add(new PointD(x, bestI * 2 / bestHk / Math.PI * (1 / (1 + 4 * (bestEdge - x) / bestHk * (bestEdge - x) / bestHk))));
 
             if (radioButtonDiamondRaman.Checked)
             {
@@ -561,77 +567,77 @@ namespace PressureCalculator{
                 numericBoxRubyR1.Value = bestEdge;
             }
             return false;
-            
+
 
         }
 
 
 
-     
+
 
         #region 平滑化コントロール関連
 
-        private void numericUpDown_ValueChanged(object sender, System.EventArgs e) 
-		{
-			CalcSmoothingAndDifferentiation();
+        private void numericUpDown_ValueChanged(object sender, System.EventArgs e)
+        {
+            CalcSmoothingAndDifferentiation();
             graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = true;
             graphControlTop.Profile = OriginalSmooth;
             graphControlBottom.Profile = BottomProfileSmooth;
             graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = false;
-		}
+        }
 
-		
-		private void numericUpDownOriginalRunningAverage_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-			if(numericUpDownOriginalRunningAverage.ReadOnly==true)
-			{
-				numericUpDownOriginalRunningAverage.ReadOnly=false;
-				numericUpDownOriginalGaussian.ReadOnly=true;
-			}
-			CalcSmoothingAndDifferentiation();
-            graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = true;
-            graphControlTop.Profile = OriginalSmooth;
-            graphControlBottom.Profile = BottomProfileSmooth;
-            graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = false;	
-		}
 
-		private void numericUpDownOriginalGaussian_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-			if(numericUpDownOriginalGaussian.ReadOnly==true)
-			{
-				numericUpDownOriginalRunningAverage.ReadOnly=true;
-				numericUpDownOriginalGaussian.ReadOnly=false;
-			}
-			CalcSmoothingAndDifferentiation();
-            graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = true;
-            graphControlTop.Profile = OriginalSmooth;
-            graphControlBottom.Profile = BottomProfileSmooth;
-            graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal =false;
-
-		}
-
-		private void numericUpDownDifferentiationRunningAverage_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-			if(numericUpDownDifferentiationRunningAverage.ReadOnly==true)
-			{
-				numericUpDownDifferentiationRunningAverage.ReadOnly=false;
-				numericUpDownDifferentiationGaussian.ReadOnly=true;
-			}
-			CalcSmoothingAndDifferentiation();
+        private void numericUpDownOriginalRunningAverage_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (numericUpDownOriginalRunningAverage.ReadOnly == true)
+            {
+                numericUpDownOriginalRunningAverage.ReadOnly = false;
+                numericUpDownOriginalGaussian.ReadOnly = true;
+            }
+            CalcSmoothingAndDifferentiation();
             graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = true;
             graphControlTop.Profile = OriginalSmooth;
             graphControlBottom.Profile = BottomProfileSmooth;
             graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = false;
-		}
+        }
 
-		private void numericUpDownwnDifferentiationGaussian_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-			if(numericUpDownDifferentiationGaussian.ReadOnly==true)
-			{
-				numericUpDownDifferentiationRunningAverage.ReadOnly=true;
-				numericUpDownDifferentiationGaussian.ReadOnly=false;
-			}
-			CalcSmoothingAndDifferentiation();
+        private void numericUpDownOriginalGaussian_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (numericUpDownOriginalGaussian.ReadOnly == true)
+            {
+                numericUpDownOriginalRunningAverage.ReadOnly = true;
+                numericUpDownOriginalGaussian.ReadOnly = false;
+            }
+            CalcSmoothingAndDifferentiation();
+            graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = true;
+            graphControlTop.Profile = OriginalSmooth;
+            graphControlBottom.Profile = BottomProfileSmooth;
+            graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = false;
+
+        }
+
+        private void numericUpDownDifferentiationRunningAverage_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (numericUpDownDifferentiationRunningAverage.ReadOnly == true)
+            {
+                numericUpDownDifferentiationRunningAverage.ReadOnly = false;
+                numericUpDownDifferentiationGaussian.ReadOnly = true;
+            }
+            CalcSmoothingAndDifferentiation();
+            graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = true;
+            graphControlTop.Profile = OriginalSmooth;
+            graphControlBottom.Profile = BottomProfileSmooth;
+            graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = false;
+        }
+
+        private void numericUpDownwnDifferentiationGaussian_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (numericUpDownDifferentiationGaussian.ReadOnly == true)
+            {
+                numericUpDownDifferentiationRunningAverage.ReadOnly = true;
+                numericUpDownDifferentiationGaussian.ReadOnly = false;
+            }
+            CalcSmoothingAndDifferentiation();
             graphControlBottom.FixRangeHorizontal = graphControlTop.FixRangeHorizontal = true;
             graphControlTop.Profile = OriginalSmooth;
             graphControlBottom.Profile = BottomProfileSmooth;
@@ -639,7 +645,7 @@ namespace PressureCalculator{
         }
         #endregion
 
-      
+
 
         private void textBoxNu_TextChanged(object sender, System.EventArgs e)
         {
@@ -649,10 +655,10 @@ namespace PressureCalculator{
                 var nuPerNu0 = (nu - Convert.ToDouble(textBoxDiamondRamanNu0.Text)) / Convert.ToDouble(textBoxDiamondRamanNu0.Text);
 
                 //Akahama2004
-                textBoxDiamondAkahama2004P.Text = 
+                textBoxDiamondAkahama2004P.Text =
                     (Convert.ToDouble(textBoxAkahama2004A.Text) + Convert.ToDouble(textBoxAkahama2004B.Text) * nu + Convert.ToDouble(textBoxAkahama2004C.Text) * 0.0001 * nu * nu).ToString("f2");
                 //Akahama2006
-                textBoxDiamondAkahama2006P.Text = 
+                textBoxDiamondAkahama2006P.Text =
                     (Convert.ToDouble(textBoxAkahama2006K0.Text) * nuPerNu0 * (1 + 0.5 * (Convert.ToDouble(textBoxAkahama2006K0Prime.Text) - 1) * nuPerNu0)).ToString("f2");
                 //Fratanduno 2021 Low
                 textBoxDiamondFratandunoLow.Text = (530.77 * nuPerNu0 + 753.83 * nuPerNu0 * nuPerNu0).ToString("f2");
@@ -676,9 +682,12 @@ namespace PressureCalculator{
 
                 splitContainer1.SplitterDistance = splitContainer1.Height / 2;
                 labelBottomTitle.Text = "First Differentiation";
-                 groupBoxAkahama2006.Visible = true;
+                groupBoxAkahama2006.Visible = true;
                 groupBoxMao.Visible = false;
                 labelDimension.Text = "cm^-1";
+
+                textBoxFittingInformation.Height = 24;
+
             }
 
             else if (radioButtonRubyFluorescence.Checked)
@@ -694,6 +703,8 @@ namespace PressureCalculator{
                 groupBoxMao.Visible = true;
                 labelDimension.Text = "nm";
 
+                textBoxFittingInformation.Height = 36;
+
             }
 
             else
@@ -707,7 +718,7 @@ namespace PressureCalculator{
 
             CalcSmoothingAndDifferentiation();
             graphControlTop.Profile = OriginalSmooth;
-            graphControlBottom.Profile = BottomProfileSmooth;	
+            graphControlBottom.Profile = BottomProfileSmooth;
 
         }
 
@@ -756,14 +767,14 @@ namespace PressureCalculator{
         /// <summary>
         /// Referenceのデータから、Raganのパラメータを計算する
         /// </summary>
-        private void calcRaganParameter() 
+        private void calcRaganParameter()
         {
             var r = numericBoxRubyRefR1.Value;
             var t = radioButtonTempUnitK.Checked ? numericBoxRubyRefT.Value : numericBoxRubyRefT.Value + 273.15;
             numericBoxRubyRagan.Value = 1E7 / r - 4.49E-2 * t + 4.81E-4 * t * t - 3.71E-7 * t * t * t;
         }
 
-       
+
         private void checkBoxRubyTemeratureSameAsRef_CheckedChanged(object sender, EventArgs e)
         {
             numericBoxRubyT.Enabled = !checkBoxRubyTemeratureSameAsRef.Checked;
@@ -790,7 +801,7 @@ namespace PressureCalculator{
         /// <param name="e"></param>
         private void numericBoxRubyRagan_ValueChanged(object sender, EventArgs e)
         {
-            if(checkBoxRubyR1_0CalculatedFromRagan.Checked)
+            if (checkBoxRubyR1_0CalculatedFromRagan.Checked)
                 calcR1_0();
         }
 
@@ -814,7 +825,7 @@ namespace PressureCalculator{
             var prm = numericBoxRubyRagan.Value;
             numericBoxRubyR1_0.Enabled = true;
 
-            numericBoxRubyR1_0.Value = 1E7 /(prm + 4.49E-2 * t - 4.81E-4 * t * t + 3.71E-7 * t * t * t);
+            numericBoxRubyR1_0.Value = 1E7 / (prm + 4.49E-2 * t - 4.81E-4 * t * t + 3.71E-7 * t * t * t);
             numericBoxRubyR1_0.Enabled = false;
 
 
@@ -860,14 +871,14 @@ namespace PressureCalculator{
 
         private void radioButtonTempUnit_CheckedChanged(object sender, EventArgs e)
         {
-            if(radioButtonTempUnitC.Checked)
+            if (radioButtonTempUnitC.Checked)
             {
-                numericBoxRubyRefT.FooterText = numericBoxRubyT.FooterText =  "℃" ;
-                numericBoxRubyRefT.Minimum = numericBoxRubyT.Minimum =  -273.15;
+                numericBoxRubyRefT.FooterText = numericBoxRubyT.FooterText = "℃";
+                numericBoxRubyRefT.Minimum = numericBoxRubyT.Minimum = -273.15;
             }
-            else 
+            else
             {
-                numericBoxRubyRefT.FooterText = numericBoxRubyT.FooterText =  "K";
+                numericBoxRubyRefT.FooterText = numericBoxRubyT.FooterText = "K";
                 numericBoxRubyRefT.Minimum = numericBoxRubyT.Minimum = 0;
 
             }
@@ -932,7 +943,7 @@ namespace PressureCalculator{
             textBoxArRoss.Text = P.ToString("f3");
         }
 
-    
+
 
         private void MgO_Aizawa()
         {
@@ -1009,11 +1020,11 @@ namespace PressureCalculator{
             catch { }
         }
 
-  
 
-      
 
-   
+
+
+
         private void Gold_Tsuchiya()
         {
             double P = 0;
@@ -1186,7 +1197,7 @@ namespace PressureCalculator{
             {
                 try
                 {
-                    if (!File.Exists(Dlg.FileName))  return;  // ファイルの有無をチェック
+                    if (!File.Exists(Dlg.FileName)) return;  // ファイルの有無をチェック
                     Original = readFile(Dlg.FileName);
                     CalcSmoothingAndDifferentiation();
                     graphControlTop.Profile = OriginalSmooth;
