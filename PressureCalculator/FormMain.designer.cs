@@ -269,6 +269,7 @@ namespace PressureCalculator
             flowLayoutPanel3 = new FlowLayoutPanel();
             graphControlBottom = new Crystallography.Controls.GraphControl();
             flowLayoutPanel4 = new FlowLayoutPanel();
+            label25 = new Label();
             textBoxFittingInformation = new TextBox();
             flowLayoutPanel2 = new FlowLayoutPanel();
             label10 = new Label();
@@ -449,7 +450,6 @@ namespace PressureCalculator
             exportAsCSVToolStripMenuItem = new ToolStripMenuItem();
             watchNewFileToolStripMenuItem = new ToolStripMenuItem();
             timer = new System.Windows.Forms.Timer(components);
-            label25 = new Label();
             ((ISupportInitialize)numericUpDownDifferentiationRunningAverage).BeginInit();
             ((ISupportInitialize)numericUpDownOriginalRunningAverage).BeginInit();
             ((ISupportInitialize)numericUpDownOriginalGaussian).BeginInit();
@@ -852,10 +852,23 @@ namespace PressureCalculator
             flowLayoutPanel4.Size = new Size(725, 32);
             flowLayoutPanel4.TabIndex = 7;
             // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.BackColor = SystemColors.Control;
+            label25.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label25.Location = new Point(3, 6);
+            label25.Margin = new Padding(3, 6, 3, 0);
+            label25.Name = "label25";
+            label25.Size = new Size(123, 14);
+            label25.TabIndex = 3;
+            label25.Text = "Fitting Information";
+            // 
             // textBoxFittingInformation
             // 
+            textBoxFittingInformation.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxFittingInformation.BackColor = SystemColors.Control;
-            textBoxFittingInformation.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxFittingInformation.Font = new Font("Segoe UI Symbol", 8F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxFittingInformation.ForeColor = SystemColors.ControlText;
             textBoxFittingInformation.Location = new Point(132, 3);
             textBoxFittingInformation.Multiline = true;
@@ -2916,18 +2929,6 @@ namespace PressureCalculator
             timer.Enabled = true;
             timer.Interval = 1000;
             timer.Tick += timer_Tick;
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.BackColor = SystemColors.Control;
-            label25.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label25.Location = new Point(3, 6);
-            label25.Margin = new Padding(3, 6, 3, 0);
-            label25.Name = "label25";
-            label25.Size = new Size(123, 14);
-            label25.TabIndex = 3;
-            label25.Text = "Fitting Information";
             // 
             // FormMain
             // 

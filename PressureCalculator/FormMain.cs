@@ -421,7 +421,7 @@ namespace PressureCalculator
 
                 FittingPeak.FitMultiPeaksThread(pt, true, 0, ref PF);
 
-                textBoxFittingInformation.Text = $"Edge:\t  X = {PF[0].X:f4}\tFWHM = {PF[0].Hk:f4}\tBackground Y = {PF[0].B1 - PF[0].B2 * PF[0].X:g8} + {PF[0].B2:g8} * X\r\n";
+                textBoxFittingInformation.Text = $"Edge:\t  X = {PF[0].X:f4}\tFWHM = {PF[0].Hk:f4}\tη = {PF[0].eta:f4}\tBackground Y = {PF[0].B1 - PF[0].B2 * PF[0].X:g8} + {PF[0].B2:g8} * X\r\n";
 
                 var p = new Profile();
                 for (double x = PF[0].X - range * 0.9; x < PF[0].X + range * 0.9; x += range / 200)
@@ -458,8 +458,8 @@ namespace PressureCalculator
 
                 FittingPeak.FitMultiPeaksThread(pt, true, 0, ref PF);
 
-                textBoxFittingInformation.Text = $"R1:\t  X = {PF[0].X:f4}\tFWHM = {PF[0].Hk:f4}\tBackground Y = {PF[0].B1 - PF[0].B2 * PF[0].X:g8} + {PF[0].B2:g8} * X\r\n";
-                textBoxFittingInformation.Text += $"R2:\t  X = {PF[1].X:f4}\tFWHM = {PF[1].Hk:f4}\tBackground Y = {PF[1].B1 - PF[1].B2 * PF[1].X:g8} + {PF[1].B2:g8} * X";
+                textBoxFittingInformation.Text = $"R1:\t  X = {PF[0].X:f4}\tFWHM = {PF[0].Hk:f4}\tη = {PF[0].eta:f4}\tBackground Y = {PF[0].B1 - PF[0].B2 * PF[0].X:g8} + {PF[0].B2:g8} * X\r\n";
+                textBoxFittingInformation.Text += $"R2:\t  X = {PF[1].X:f4}\tFWHM = {PF[1].Hk:f4}\tη = {PF[1].eta:f4}\tBackground Y = {PF[1].B1 - PF[1].B2 * PF[1].X:g8} + {PF[1].B2:g8} * X";
 
                 Profile p1 = new Profile();
                 for (double x = PF[0].X - range * 0.9; x < PF[0].X + range * 0.9; x += range / 200)
