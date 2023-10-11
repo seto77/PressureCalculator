@@ -1200,6 +1200,7 @@ public class BetheMethod
                             NativeWrapper.GenerateTC1(bLen, thickness, _kg_z, _eVal, _eVec, _tc_k + kIndex * bLen);
                     });
                     #endregion
+              
                     tcP.ForAll(kIndex =>
                     {
                         Complex[] sumTmp = Shared.Rent(list[kIndex].Count * dLen), tc_kq = Shared.Rent(bLen);

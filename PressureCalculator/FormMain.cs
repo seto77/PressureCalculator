@@ -29,6 +29,8 @@ namespace PressureCalculator
         private double fittingRangeDiamond = 6;
         private double fittingRangeRuby = 3;
 
+        PeakFunction[] PF;
+
         #region ロード、クローズ
         public FormMain()
         {
@@ -415,22 +417,22 @@ namespace PressureCalculator
                     }
                 //double range = (BottomProfileSmooth.Pt[1].X - BottomProfileSmooth.Pt[0].X) * (int)numericUpDownFitRange.Value;
                 double range = (double)numericUpDownFitRange.Value;
-                var pf = new PeakFunction[] { new PeakFunction(centerX, range, range, PeakFunctionForm.PseudoVoigt) };
+                PF = new PeakFunction[] { new PeakFunction(centerX, range, range, PeakFunctionForm.PseudoVoigt) };
 
-                FittingPeak.FitMultiPeaksThread(pt, true, 0, ref pf);
+                FittingPeak.FitMultiPeaksThread(pt, true, 0, ref PF);
 
-                textBoxFittingInformation.Text = $"Edge:\t  X = {pf[0].X:f3}\tFWHM = {pf[0].Hk:f3}\r\n";
+                textBoxFittingInformation.Text = $"Edge:\t  X = {PF[0].X:f4}\tFWHM = {PF[0].Hk:f4}\tBackground Y = {PF[0].B1 - PF[0].B2 * PF[0].X:g8} + {PF[0].B2:g8} * X\r\n";
 
                 var p = new Profile();
-                for (double x = pf[0].X - range * 0.9; x < pf[0].X + range * 0.9; x += range / 200)
-                    p.Pt.Add(new PointD(x, -pf[0].GetValue(x, false) - pf[0].B1 - pf[0].B2 * (x - pf[0].X)));
+                for (double x = PF[0].X - range * 0.9; x < PF[0].X + range * 0.9; x += range / 200)
+                    p.Pt.Add(new PointD(x, -PF[0].GetValue(x, false) - PF[0].B1 - PF[0].B2 * (x - PF[0].X)));
                 p.Color = Color.Red;
 
                 graphControlBottom.ReplaceProfile(1, p);
                 graphControlBottom.ReplaceProfile(2, null);
                 graphControlBottom.ReplaceProfile(3, null);
 
-                textBoxDiamondRamanNu.Text = pf[0].X.ToString();
+                textBoxDiamondRamanNu.Text = PF[0].X.ToString();
             }
             else if (radioButtonRubyFluorescence.Checked)//Ruby 蛍光のとき
             {
@@ -450,28 +452,28 @@ namespace PressureCalculator
                     }
                 // double range = (BottomProfileSmooth.Pt[1].X - BottomProfileSmooth.Pt[0].X) * (int)numericUpDownFitRange.Value;
                 double range = (int)numericUpDownFitRange.Value;
-                PeakFunction[] pf = new PeakFunction[2];
-                pf[0] = new PeakFunction(centerX, range / 2, range, PeakFunctionForm.PseudoVoigt);
-                pf[1] = new PeakFunction(centerX - 1.5, range / 2, range, PeakFunctionForm.PseudoVoigt);
+                PF = new PeakFunction[2];
+                PF[0] = new PeakFunction(centerX, range / 2, range, PeakFunctionForm.PseudoVoigt);
+                PF[1] = new PeakFunction(centerX - 1.5, range / 2, range, PeakFunctionForm.PseudoVoigt);
 
-                FittingPeak.FitMultiPeaksThread(pt, true, 0, ref pf);
+                FittingPeak.FitMultiPeaksThread(pt, true, 0, ref PF);
 
-                textBoxFittingInformation.Text = $"R1:\t  X = {pf[0].X:f3}\tFWHM = {pf[0].Hk:f3}\r\n";
-                textBoxFittingInformation.Text += $"R2:\t  X = {pf[1].X:f3}\tFWHM = {pf[1].Hk:f3}";
+                textBoxFittingInformation.Text = $"R1:\t  X = {PF[0].X:f4}\tFWHM = {PF[0].Hk:f4}\tBackground Y = {PF[0].B1 - PF[0].B2 * PF[0].X:g8} + {PF[0].B2:g8} * X\r\n";
+                textBoxFittingInformation.Text += $"R2:\t  X = {PF[1].X:f4}\tFWHM = {PF[1].Hk:f4}\tBackground Y = {PF[1].B1 - PF[1].B2 * PF[1].X:g8} + {PF[1].B2:g8} * X";
 
                 Profile p1 = new Profile();
-                for (double x = pf[0].X - range * 0.9; x < pf[0].X + range * 0.9; x += range / 200)
-                    p1.Pt.Add(new PointD(x, pf[0].GetValue(x, false) + pf[0].B1 + pf[0].B2 * (x - pf[0].X)));
+                for (double x = PF[0].X - range * 0.9; x < PF[0].X + range * 0.9; x += range / 200)
+                    p1.Pt.Add(new PointD(x, PF[0].GetValue(x, false) + PF[0].B1 + PF[0].B2 * (x - PF[0].X)));
                 p1.Color = Color.LightGreen;
 
                 Profile p2 = new Profile();
-                for (double x = pf[1].X - range * 0.9; x < pf[1].X + range * 0.9; x += range / 200)
-                    p2.Pt.Add(new PointD(x, pf[1].GetValue(x, false) + pf[1].B1 + pf[1].B2 * (x - pf[1].X)));
+                for (double x = PF[1].X - range * 0.9; x < PF[1].X + range * 0.9; x += range / 200)
+                    p2.Pt.Add(new PointD(x, PF[1].GetValue(x, false) + PF[1].B1 + PF[1].B2 * (x - PF[1].X)));
                 p2.Color = Color.LightCyan;
 
                 Profile p3 = new Profile();
-                for (double x = pf[1].X - range * 0.9; x < pf[0].X + range * 0.9; x += range / 200)
-                    p3.Pt.Add(new PointD(x, pf[1].GetValue(x, false) + pf[0].GetValue(x, false) + pf[1].B1 + pf[1].B2 * (x - pf[1].X)));
+                for (double x = PF[1].X - range * 0.9; x < PF[0].X + range * 0.9; x += range / 200)
+                    p3.Pt.Add(new PointD(x, PF[1].GetValue(x, false) + PF[0].GetValue(x, false) + PF[1].B1 + PF[1].B2 * (x - PF[1].X)));
                 p3.Color = Color.LightPink;
 
 
@@ -479,7 +481,7 @@ namespace PressureCalculator
                 graphControlBottom.ReplaceProfile(2, p2);
                 graphControlBottom.ReplaceProfile(3, p3);
 
-                numericBoxRubyR1.Value = pf[0].X;
+                numericBoxRubyR1.Value = PF[0].X;
             }
         }
 
@@ -1183,9 +1185,9 @@ namespace PressureCalculator
                 var textList = new List<string>();
 
                 if (radioButtonRubyFluorescence.Checked)
-                    textList.Add("X, Y (original), Y (smoothed),,X (R1),Y (R1),,X (R2),Y(R2)");
+                    textList.Add("X, Y (original), Y (smoothed),,X(R1),Y(R1),Y(R1_Bg),,X (R2),Y(R2), Y(R2_Bg)");
                 else
-                    textList.Add("X, Y (original), Y (smoothed),, X (Edge),Y (Edge)");
+                    textList.Add("X, Y (original), Y (smoothed),, X(Edge),Y(Edge)");
 
                 var dlg = new SaveFileDialog { Filter = "*.csv|*.csv" };
                 if (dlg.ShowDialog() == DialogResult.OK)
@@ -1196,8 +1198,8 @@ namespace PressureCalculator
                     if (radioButtonRubyFluorescence.Checked && r1Pt != null && r2Pt != null)
                         for (int i = 0; i < textList.Count && (i < r1Pt.Length || i < r2Pt.Length); i++)
                         {
-                            textList[i + 1] += i < r1Pt.Length ? $",,{r1Pt[i].X},{r1Pt[i].Y}" : ",,,";
-                            textList[i + 1] += i < r2Pt.Length ? $",,{r2Pt[i].X},{r2Pt[i].Y}" : ",,,";
+                            textList[i + 1] += i < r1Pt.Length ? $",,{r1Pt[i].X},{r1Pt[i].Y},{PF[0].B1 + PF[0].B2 * (r1Pt[i].X - PF[0].X)}" : ",,,,";
+                            textList[i + 1] += i < r2Pt.Length ? $",,{r2Pt[i].X},{r2Pt[i].Y},{PF[1].B1 + PF[1].B2 * (r2Pt[i].X - PF[1].X)}" : ",,,,";
                         }
                     else if (radioButtonDiamondRaman.Checked && r1Pt != null)
                         for (int i = 0; i < textList.Count && i < r1Pt.Length; i++)

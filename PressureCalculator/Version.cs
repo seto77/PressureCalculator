@@ -10,6 +10,7 @@
 
         static public string History =
            "History" +
+           "\r\n ver1.006(2023/10/11) Improved the export functions." +
            "\r\n ver1.005(2023/10/11) Improved the export functions." +
            "\r\n ver1.004(2023/10/07) Fitting information is now displayed. Target framework has been changed to .Net Desktop Runtime 7.0." +
            "\r\n ver1.003(2021/09/01) Fixed a bug in Celsius degree mode. The lower limit of temperature was set." +
