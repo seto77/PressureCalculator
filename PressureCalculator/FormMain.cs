@@ -1173,18 +1173,43 @@ namespace PressureCalculator
         private void menuItemExport_Click(object sender, EventArgs e)
         {
 
-            if (graphControlTop.Profile != null && graphControlTop.Profile.Pt != null && graphControlTop.Profile.Pt.Count != 0)
+            if (graphControlBottom.Profile != null && graphControlBottom.Profile.Pt != null && graphControlBottom.Profile.Pt.Count != 0)
             {
-                var pt = graphControlTop.Profile.Pt.ToArray();
-                //クリップボードにcsvデータを保存
+                var originalPt = Original.Pt.ToArray();
+                var smoothPt = OriginalSmooth.Pt.ToArray();
+                PointD[] r1Pt = graphControlBottom.ProfileList.Count() > 1 ? graphControlBottom.ProfileList[1].Pt.ToArray() : null;
+                PointD[] r2Pt = graphControlBottom.ProfileList.Count() > 2 ? graphControlBottom.ProfileList[2].Pt.ToArray() : null;
+
+                var textList = new List<string>();
+
+                if (radioButtonRubyFluorescence.Checked)
+                    textList.Add("X, Y (original), Y (smoothed),,X (R1),Y (R1),,X (R2),Y(R2)");
+                else
+                    textList.Add("X, Y (original), Y (smoothed),, X (Edge),Y (Edge)");
+
                 var dlg = new SaveFileDialog { Filter = "*.csv|*.csv" };
                 if (dlg.ShowDialog() == DialogResult.OK)
-                    using (var sw = new StreamWriter(dlg.FileName))
-                    {
-                        for (int i = 0; i < pt.Length; i++)
-                            sw.WriteLine(pt[i].X.ToString() + "," + pt[i].Y.ToString());
-                        sw.Close();
-                    }
+                {
+                    for (int i = 0; i < smoothPt.Length; i++)
+                        textList.Add($"{smoothPt[i].X},{originalPt[i].Y},{smoothPt[i].Y}");
+
+                    if (radioButtonRubyFluorescence.Checked && r1Pt != null && r2Pt != null)
+                        for (int i = 0; i < textList.Count && (i < r1Pt.Length || i < r2Pt.Length); i++)
+                        {
+                            textList[i + 1] += i < r1Pt.Length ? $",,{r1Pt[i].X},{r1Pt[i].Y}" : ",,,";
+                            textList[i + 1] += i < r2Pt.Length ? $",,{r2Pt[i].X},{r2Pt[i].Y}" : ",,,";
+                        }
+                    else if (radioButtonDiamondRaman.Checked && r1Pt != null)
+                        for (int i = 0; i < textList.Count && i < r1Pt.Length; i++)
+                            textList[i + 1] += i < r1Pt.Length ? $",,{r1Pt[i].X},{r1Pt[i].Y}" : ",,,";
+
+
+                    using StreamWriter sw = new(dlg.FileName);
+                    for (int i = 0; i < textList.Count; i++)
+                        sw.WriteLine(textList[i]);
+
+                    sw.Close();
+                }
             }
         }
 
