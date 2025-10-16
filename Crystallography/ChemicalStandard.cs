@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Crystallography
 {
@@ -679,7 +680,7 @@ namespace Crystallography
             return c * elements[index].MolarWeight * zAve * EcA * mu_rhoAAe / mu_rhoUnkAe * gammaMinusOnePerGamma * Math.Log(1 + g * U0A) / g / U0A;
         }
 
-        private static object lockObJforBetaArray = new object();
+        private static Lock lockObJforBetaArray = new Lock();
 
         /// <summary>
         /// betaの値を保管する一時変数.
@@ -732,8 +733,8 @@ namespace Crystallography
 
                     //"Kab": beta = 1.1;  "Kb": beta = 0.1; "Lab": beta = 1.4;  "Lb": beta = 0.4;　計算効率を上げるため、一度計算したbetaは再利用する.
                     var beta = Array.Empty<double>();
-                    if (betaArray[zB] != null && betaArray[zB].ContainsKey(EcA))
-                        beta = betaArray[zB][EcA];
+                    if (betaArray[zB] != null && betaArray[zB].TryGetValue(EcA, out double[] value))
+                        beta = value;
                     else
                     {
                         if (EcA < AtomStatic.CharacteristicXrayEnergy(zB, XrayLine.La1)) beta = new[] { 1.1, 1.4 };

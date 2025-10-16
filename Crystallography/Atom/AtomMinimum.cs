@@ -6,7 +6,7 @@ namespace Crystallography;
 /// <summary>
 /// Atoms2クラス
 /// </summary>
-[Serializable()]
+//[Serializable()]
 [MemoryPackable]
 public partial class Atoms2
 {
@@ -18,15 +18,15 @@ public partial class Atoms2
 
     [MemoryPackInclude]
     private byte[] occBytes;//Occ 
-    
+
     public byte SubXray;
-    
+
     public byte SubElectron;
-    
+
     public byte AtomNo;//原子番号 ただし、255は重水素D
-    
+
     public bool IsU;
-    
+
     public bool IsIso;
 
     [MemoryPackInclude]

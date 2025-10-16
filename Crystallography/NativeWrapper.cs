@@ -34,6 +34,7 @@ public static partial class NativeWrapper
 
     [LibraryImport("Crystallography.Native.dll")]
     private static unsafe partial void _PointwiseMultiply(int dim, double* mat1, double* mat2, double* result);
+
     [LibraryImport("Crystallography.Native.dll")]
     private static unsafe partial void _AdjointAndMultiply(int dim, double* mat1, double* mat2, double* result);
     [LibraryImport("Crystallography.Native.dll")]
@@ -71,8 +72,8 @@ public static partial class NativeWrapper
     [LibraryImport("Crystallography.Native.dll")]
     private static unsafe partial void _Inverse_Real(int dim, double* mat, double* matInv);
 
-    [LibraryImport("Crystallography.Native.dll")]
-    private static unsafe partial void _EigenSolver(int dim, double[] mat, double[] eigenValues, double[] eigenVectors);
+    //[LibraryImport("Crystallography.Native.dll")]
+    //private static unsafe partial void _EigenSolver(int dim, in double[] mat, in double[] eigenValues, double[] eigenVectors);
 
     [LibraryImport("Crystallography.Native.dll")]
     private static unsafe partial void _EigenSolver(int dim, double* mat, double* eigenValues, double* eigenVectors);
@@ -179,7 +180,7 @@ public static partial class NativeWrapper
             Enabled = false;
         try
         {
-            var result = Inverse(2, new[] { new Complex(1, 0), new Complex(0, 0), new Complex(0, 0), new Complex(1, 0) });
+            var result = Inverse(2, [new Complex(1, 0), new Complex(0, 0), new Complex(0, 0), new Complex(1, 0)]);
             Enabled = result[0].Real + result[3].Real > 1;
         }
         catch { Enabled = false; }
@@ -567,7 +568,7 @@ public static partial class NativeWrapper
     #endregion 固有値
 
     #region 行列指数関数
-    static public DenseMatrix MatrixExponential(DenseMatrix mat) 
+    static public DenseMatrix MatrixExponential(DenseMatrix mat)
         => new(mat.ColumnCount, mat.ColumnCount, MatrixExponential(mat.ColumnCount, mat.Values));
 
     static unsafe public Complex[] MatrixExponential(in int dim, Complex[] mat)
@@ -595,7 +596,7 @@ public static partial class NativeWrapper
     unsafe static public void BlendAdjointMul_Mul_Mul(in int dim, in Complex[] c0, in Complex[] c1, in Complex[] c2, in Complex[] c3, double r0, double r1, double r2, double r3,
         in Complex[] mat2, in Complex[] mat3, ref Complex[] result)
     {
-        fixed (Complex* p0 = c0, p1 = c1, p2 = c2, p3 = c3, _mat2 = mat2,_mat3 = mat3, res = result)
+        fixed (Complex* p0 = c0, p1 = c1, p2 = c2, p3 = c3, _mat2 = mat2, _mat3 = mat3, res = result)
             _BlendAdJointMul_Mul_Mul(dim, (double*)p0, (double*)p1, (double*)p2, (double*)p3, r0, r1, r2, r3, (double*)_mat2, (double*)_mat3, (double*)res);
     }
 
@@ -704,7 +705,7 @@ public static partial class NativeWrapper
     unsafe static private Complex[] CBEDSolver(Complex[] potential, Complex[] psi0, double[] thickness, in bool eigen)
     {
         var dim = psi0.Length;
-        var result = GC.AllocateUninitializedArray<Complex>(dim * thickness.Length);// new Complex[dim * thickness.Length];
+        var result =  new Complex[dim * thickness.Length];//GC.AllocateUninitializedArray<Complex>(dim * thickness.Length);
         fixed (Complex* _potential = potential, _psi0 = psi0, _result = result)
         {
             if (eigen)
@@ -719,7 +720,7 @@ public static partial class NativeWrapper
     }
 
     /// <summary>
-    /// 
+    /// STEM用ソルバー
     /// </summary>
     /// <param name="potential"></param>
     /// <param name="psi0"></param>
@@ -804,7 +805,7 @@ public static partial class NativeWrapper
         return (profile, pixels);
     }
 
-  
+
 
 
     #endregion

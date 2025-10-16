@@ -6,7 +6,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Numerics;
+using System.Threading;
 using System.Xml.Serialization;
+using OpenTK.Mathematics;
 
 namespace Crystallography;
 
@@ -122,21 +124,24 @@ public class Matrix3D : ICloneable
 
     #endregion
 
-    public double[] ToArrayRight() => new[] { E11, E12, E13, E21, E22, E23, E31, E32, E33 };
+    public double[] ToArrayRight() => [E11, E12, E13, E21, E22, E23, E31, E32, E33];
 
     /// <summary>
     /// E11, E12, E13, E21, E22, E23, E31, E32, E33
     /// </summary>
     /// <returns></returns>
-    public double[] ToArrayRowMajorOrder() => new[] { E11, E12, E13, E21, E22, E23, E31, E32, E33 };
+    public double[] ToArrayRowMajorOrder() => [E11, E12, E13, E21, E22, E23, E31, E32, E33];
 
     /// <summary>
     /// E11, E21, E31, E12, E22, E32, E13, E23, E33
     /// </summary>
     /// <returns></returns>
-    public double[] ToArrayColumnMajorOrder() => new[] { E11, E21, E31, E12, E22, E32, E13, E23, E33 };
+    public double[] ToArrayColumnMajorOrder() => [E11, E21, E31, E12, E22, E32, E13, E23, E33];
 
-    public Matrix3d ToMatrix() => new(E11, E12, E13, E21, E22, E23, E31, E32, E33);
+    public Matrix3d ToMatrix() => new(E11, E12, E13, E21, E22, E23, m20: E31, E32, E33);
+
+    public (double E11, double E12, double E13, double E21, double E22, double E23, double E31, double E32, double E33) Tuple
+        =>(E11, E12, E13, E21, E22, E23, E31, E32, E33);
 
     public Vector3DBase Column1 => new(E11, E21, E31);
     public Vector3DBase Column2 => new(E12, E22, E32);
@@ -229,6 +234,7 @@ public class Matrix3D : ICloneable
     public static Vector3DBase operator *(Matrix3D m, Vector3DBase v)
         => new(m.E11 * v.X + m.E12 * v.Y + m.E13 * v.Z, m.E21 * v.X + m.E22 * v.Y + m.E23 * v.Z, m.E31 * v.X + m.E32 * v.Y + m.E33 * v.Z);
 
+
     /// <summary>
     /// Matrix3Dとタプル(x,y,z)の乗算. (x,y,z)を縦方向のベクトルとして計算する。
     /// </summary>
@@ -294,13 +300,22 @@ public class Matrix3D : ICloneable
 
     public static Matrix3D ExchangeZ_X_Y(Matrix3D m) => new(-m.E31, m.E11, -m.E21, -m.E32, m.E12, -m.E22, -m.E33, m.E13, -m.E23);
 
+
     /// <summary>
     /// ベクトルvの方向の周りに,thetaだけ回転させる行列を生成する
     /// </summary>
     /// <param name="v">回転軸</param>
     /// <param name="theta">回転角度</param>
     /// <returns></returns>
-    public static Matrix3D Rot(Vector3DBase v, in double theta)
+    public static Matrix3D Rot(Vector3DBase v, in double theta) => Rot((v.X, v.Y, v.Z), theta);
+
+    /// <summary>
+    /// ベクトルvの方向の周りに,thetaだけ回転させる行列を生成する
+    /// </summary>
+    /// <param name="v">回転軸</param>
+    /// <param name="theta">回転角度</param>
+    /// <returns></returns>
+    public static Matrix3D Rot((double X, double Y, double Z) v, in double theta)
     {
         //Vx*Vx*(1-cos) + cos  	    Vx*Vy*(1-cos) - Vz*sin  	Vz*Vx*(1-cos) + Vy*sin
         //Vx*Vy*(1-cos) + Vz*sin 	Vy*Vy*(1-cos) + cos 	    Vy*Vz*(1-cos) - Vx*sin
@@ -373,7 +388,7 @@ public class Matrix3D : ICloneable
     /// <returns></returns>
     public static Matrix3D RotX(double theta)
     {
-        double cos = Math.Cos(theta),sin = Math.Sin(theta);
+        double cos = Math.Cos(theta), sin = Math.Sin(theta);
         return new Matrix3D()
         {
             E22 = cos,
@@ -390,7 +405,7 @@ public class Matrix3D : ICloneable
     /// <returns></returns>
     public static Matrix3D RotY(double theta)
     {
-        double cos = Math.Cos(theta),sin = Math.Sin(theta);
+        double cos = Math.Cos(theta), sin = Math.Sin(theta);
         return new Matrix3D()
         {
             E11 = cos,
@@ -423,11 +438,11 @@ public class Matrix3D : ICloneable
 
     public static Matrix3D GenerateRamdomRotationMatrix(int seed) => GenerateRamdomRotationMatrix(new Random(seed));
 
-    private static readonly object o = new();
+    private static readonly Lock lockObj = new();
     public static Matrix3D GenerateRamdomRotationMatrix(Random rn)
     {
         double rn1, rn2, rn3;
-        lock (o)
+        lock (lockObj)
         {
             rn1 = rn.NextDouble();
             rn2 = rn.NextDouble();
@@ -436,7 +451,7 @@ public class Matrix3D : ICloneable
         return GenerateRamdomRotationMatrix(rn1, rn2, rn3);
     }
 
-    public static Matrix3D GenerateRamdomRotationMatrix(in double rn1,in  double rn2, in double rn3)
+    public static Matrix3D GenerateRamdomRotationMatrix(in double rn1, in double rn2, in double rn3)
     {
         double phi = rn1 * 2 * Math.PI;
         double cosPhi = Math.Cos(phi), sinPhi = Math.Sin(phi);
@@ -467,7 +482,7 @@ public class Matrix3D : ICloneable
     /// <param name="theta"></param>
     /// <param name="ksi"></param>
     /// <returns></returns>
-    public static Matrix3D GenerateEquiareaMatrix(in double phi,in double theta, in double ksi)
+    public static Matrix3D GenerateEquiareaMatrix(in double phi, in double theta, in double ksi)
     {
         double cosPhi = Math.Cos(phi * 2 * Math.PI), sinPhi = Math.Sin(phi * 2 * Math.PI);
         double cosTheta = theta * 2 - 1, sinTheta = Math.Sqrt(1 - cosTheta * cosTheta);
@@ -553,7 +568,6 @@ public class Vector3DBase : ICloneable
     public double X { get; set; }
     public double Y { get; set; }
     public double Z { get; set; }
-    //public object Tag { get; set; }
 
     public object Clone()
     {
@@ -569,6 +583,11 @@ public class Vector3DBase : ICloneable
     public Vector3DBase(double x, double y, double z)
     {
         X = x; Y = y; Z = z;
+    }
+
+    public Vector3DBase((double X, double Y, double Z) v)
+    {
+        X = v.X; Y = v.Y; Z = v.Z;
     }
 
     public Vector3DBase(double[] v)
@@ -600,9 +619,9 @@ public class Vector3DBase : ICloneable
         X = v.X; Y = v.Y; Z = v.Z;
     }
 
-    public double[] ToDoublearray() => new double[] { X, Y, Z };
+    public double[] ToDoubleArray() => [X, Y, Z];
 
-    public float[] ToSingleArray() => new float[] { (float)X, (float)Y, (float)Z };
+    public float[] ToSingleArray() => [(float)X, (float)Y, (float)Z];
 
     /// <summary>
     /// X,Y座標をPointDクラスに映す (Zは破棄)
@@ -695,6 +714,12 @@ public class Vector3DBase : ICloneable
         return l > 0 ? new Vector3DBase(v.X / l, v.Y / l, v.Z / l) : v;
     }
 
+    internal static (double X, double Y, double Z) Normarize((double X, double Y, double Z) v)
+    {
+        double l = Math.Sqrt(v.X * v.X + v.Y * v.Y + v.Z * v.Z);
+        return l > 0 ? (v.X / l, v.Y / l, v.Z / l) : (v);
+    }
+
     public Vector3DBase Normarize() => Normarize(this);
 
     public void NormarizeThis()
@@ -707,6 +732,8 @@ public class Vector3DBase : ICloneable
             Z /= l;
         }
     }
+
+    public Vector3D ToVector3D() => new(X, Y, Z);
 
 
     /// <summary>
@@ -740,7 +767,8 @@ public class Vector3DBase : ICloneable
         var aCos = Normarize(v1) * Normarize(v2);
         if (aCos > 1)
             return 0;
-        else return aCos < -1 ? Math.PI / 2 : Math.Acos(aCos);
+        else
+            return aCos < -1 ? Math.PI / 2 : Math.Acos(aCos);
     }
 
     /// <summary>
@@ -768,7 +796,7 @@ public class Vector3DBase : ICloneable
 /// 3次元ベクトルと静的関数を提供
 /// </summary>
 [Serializable()]
-public class Vector3D : Vector3DBase, System.IComparable<Vector3D>, ICloneable
+public class Vector3D : Vector3DBase, IComparable<Vector3D>, ICloneable
 {
     public new object Clone() => (Vector3D)this.MemberwiseClone();
 
@@ -776,12 +804,12 @@ public class Vector3D : Vector3DBase, System.IComparable<Vector3D>, ICloneable
     public string Text { get; set; }
 
     /// <summary>
-    /// 初期値はfalse
+    /// 初期値は false
     /// </summary>
     public bool Flag1 { get; set; } = false;
 
     /// <summary>
-    /// 初期値はfalse
+    /// 初期値は false
     /// </summary>
     public bool Flag2 { get; set; } = false;
 
@@ -804,15 +832,18 @@ public class Vector3D : Vector3DBase, System.IComparable<Vector3D>, ICloneable
     [XmlIgnore]
     public SymmetryOperation Operation { get; set; }
 
+    [XmlIgnore]
+    public Vector3DBase Coordinates { get => new(X, Y, Z); set { X = value.X; Y = value.Y; Z = value.Z; } }
+
     public int CompareTo(Vector3D v)
     {
         if (d != v.d)
             return -d.CompareTo(v.d);
         else if (X != v.X)
-            return -X.CompareTo(((Vector3D)v).X);
+            return -X.CompareTo(v.X);
         else if (Y != v.Y)
             return -Y.CompareTo(v.Y);
-        else if (Z != ((Vector3D)v).Z)
+        else if (Z != v.Z)
             return -Z.CompareTo(v.Z);
         else
             return 0;
@@ -830,14 +861,18 @@ public class Vector3D : Vector3DBase, System.IComparable<Vector3D>, ICloneable
         d = Math.Sqrt(X * X + Y * Y + Z * Z);
     }
 
-    public Vector3D(in double x, in double y, in double z, in bool IsCalcD)
+    public Vector3D(in double x, in double y, in double z, in bool IsCalcD = true)
     {
         X = x; Y = y; Z = z;
         if (IsCalcD)
-        {
-            //d2 = X * X + Y * Y + Z * Z;
             d = Math.Sqrt(X * X + Y * Y + Z * Z);
-        }
+    }
+
+    public Vector3D(Vector3DBase v, in bool IsCalcD = true)
+    {
+        X = v.X; Y = v.Y; Z = v.Z;
+        if (IsCalcD)
+            d = Math.Sqrt(X * X + Y * Y + Z * Z);
     }
 
     public Vector3D(double[] v)
@@ -898,7 +933,7 @@ public class Vector3D : Vector3DBase, System.IComparable<Vector3D>, ICloneable
 
     public new void NormarizeThis()
     {
-        Vector3D v = Vector3D.Normarize(this);
+        Vector3D v = Normarize(this);
         X = v.X;
         Y = v.Y;
         Z = v.Z;
@@ -923,7 +958,7 @@ public class Vector3D : Vector3DBase, System.IComparable<Vector3D>, ICloneable
     /// <returns></returns>
     public static double LengthSquareBetVectors(Vector3D v1, Vector3D v2)
     {
-        return Math.Sqrt((v1.X - v2.X) * (v1.X - v2.X) + (v1.Y - v2.Y) * (v1.Y - v2.Y) + (v1.Z - v2.Z) * (v1.Z - v2.Z));
+        return (v1.X - v2.X) * (v1.X - v2.X) + (v1.Y - v2.Y) * (v1.Y - v2.Y) + (v1.Z - v2.Z) * (v1.Z - v2.Z);
     }
 
     /// <summary>
@@ -992,9 +1027,7 @@ public class Vector3D : Vector3DBase, System.IComparable<Vector3D>, ICloneable
 
     //2つのベクトルの外積を返す
     public static Vector3D VectorProduct(Vector3D v1, Vector3D v2)
-    {
-        return new Vector3D(v1.Y * v2.Z - v1.Z * v2.Y, v1.Z * v2.X - v1.X * v2.Z, v1.X * v2.Y - v1.Y * v2.X);
-    }
+        => new(v1.Y * v2.Z - v1.Z * v2.Y, v1.Z * v2.X - v1.X * v2.Z, v1.X * v2.Y - v1.Y * v2.X);
 
     /// <summary>
     /// 座標一ずつを加減算し、0から1の範囲内に収める
@@ -1071,12 +1104,12 @@ public class Quaternion
     {
         // 回転行列→クォータニオン変換
 
-        double[] elem = new double[]{ // 0:x, 1:y, 2:z, 3:w
+        double[] elem = [ // 0:x, 1:y, 2:z, 3:w
                 r.E11 - r.E22 - r.E33 + 1.0,
                -r.E11 + r.E22 - r.E33 + 1.0,
                -r.E11 - r.E22 + r.E33 + 1.0,
                 r.E11 + r.E22 + r.E33 + 1.0
-            };
+            ];
 
         // 最大成分を検索
         int biggestIndex = 0;
@@ -1286,7 +1319,7 @@ public class Quaternion
     /// <returns></returns>
     public static Vector3DBase ToLogQuaternion(Quaternion q)
     {
-        Vector3DBase v = new Vector3DBase(q.X, q.Y, q.Z);
+        Vector3DBase v = new(q.X, q.Y, q.Z);
         double theta = Math.Acos(q.W);
         if (q.W >= 1)
             return v;

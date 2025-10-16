@@ -53,8 +53,8 @@ namespace Crystallography.Controls
 
                     dataGridView.Rows.Add(temp);
                 }
-                exRichTextBox.AutoCompleteItems = autoCompleteItems.ToArray();
-                exRichTextBox.ToolTipItems = toolTipItems.ToArray();
+                exRichTextBox.AutoCompleteItems = [.. autoCompleteItems];
+                exRichTextBox.ToolTipItems = [.. toolTipItems];
             }
         }
 
@@ -156,7 +156,7 @@ namespace Crystallography.Controls
                                         value += n + ", ";
                                 }
                             }
-                            dataGridViewDebug.Rows.Add(new[] { key, value });
+                            dataGridViewDebug.Rows.Add([key, value]);
                         }
                     }
                     catch { }
@@ -239,7 +239,7 @@ namespace Crystallography.Controls
                 }
 
                 _cancelSource = new CancellationTokenSource();
-                task = new Task(()=> Engine.CreateScriptSourceFromString(srcCode).Execute(Scope), _cancelSource.Token);
+                task = new Task(() => Engine.CreateScriptSourceFromString(srcCode).Execute(Scope), _cancelSource.Token);
                 task.RunSynchronously();
             }
             catch (Microsoft.Scripting.ArgumentTypeException ex) { MessageBox.Show(ex.Message); }
@@ -487,16 +487,10 @@ namespace Crystallography.Controls
             }
         }
 
-        private struct macro
+        private struct macro(string name, string body)
         {
-            public string Name;
-            public string Body;
-
-            public macro(string name, string body)
-            {
-                Name = name;
-                Body = body;
-            }
+            public string Name = name;
+            public string Body = body;
 
             public override string ToString() => Name;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Crystallography.Controls;
@@ -7,6 +8,7 @@ public partial class ChemicalFormulaInputControl : UserControl
 {
     private bool standardMode = true;
 
+    [DefaultValue(true)]
     public bool StandardMode
     {
         set
@@ -18,6 +20,7 @@ public partial class ChemicalFormulaInputControl : UserControl
     }
 
     private bool weightMode = true;
+    [DefaultValue(true)]
 
     public bool WeightMode
     {
@@ -106,7 +109,7 @@ public partial class ChemicalFormulaInputControl : UserControl
 
         if (comboBoxCompound.SelectedIndex != comboBoxCompound.Items.Count - 1)
         {
-            string[] s = comboBoxCompound.Text.Split(new char[] { ' ' });
+            string[] s = comboBoxCompound.Text.Split([' ']);
             accesoryFormula = s[0];
             accesoryValence = Convert.ToDouble(string.Concat(s[1].AsSpan(s[1].Length - 1, 1), s[1].AsSpan()[0..^1]));
         }

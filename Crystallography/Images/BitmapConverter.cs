@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Crystallography;
@@ -169,7 +170,7 @@ public static class BitmapConverter
     public static byte[] ToByteGray(Bitmap Bmp)
     {
         var bmpData = Bmp.LockBits(new Rectangle(0, 0, Bmp.Width, Bmp.Height), ImageLockMode.ReadOnly, Bmp.PixelFormat);
-        byte[] rgbValues =GC.AllocateUninitializedArray<byte>(bmpData.Stride * Bmp.Height);
+        byte[] rgbValues = GC.AllocateUninitializedArray<byte>(bmpData.Stride * Bmp.Height);
         Marshal.Copy(bmpData.Scan0, rgbValues, 0, bmpData.Stride * Bmp.Height);
         Bmp.UnlockBits(bmpData);
 
@@ -324,7 +325,7 @@ public static class BitmapConverter
         }
     }*/
 
-    private static readonly object lockObject = new();
+    private static readonly Lock lockObject = new();
 
     public static double detectSkewAngle(Bitmap bmp)
     {

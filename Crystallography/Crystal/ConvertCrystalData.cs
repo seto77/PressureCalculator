@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,15 +9,49 @@ using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 using System.Threading;
-using V3 = OpenTK.Vector3d;
+using System.Windows.Forms;
+using ZLinq;
+using V3 = OpenTK.Mathematics.Vector3d;
 
 namespace Crystallography;
 
 public class ConvertCrystalData
 {
-    static readonly System.StringComparison Ord = System.StringComparison.Ordinal;
+    private static readonly StringComparison Ord = StringComparison.Ordinal;
+
+    #region 文字列操作の高速化を狙った関数群
+    static void Replace(ref string str, string oldValue, string newValue)
+    {
+        if (str.Contains(oldValue))
+            str = str.Replace(oldValue, newValue);
+    }
+
+    static void TrimStartEnd(ref string str)
+    {
+        if (str.StartsWith(' '))
+            str = str.TrimStart(' ');
+        if (str.EndsWith(' '))
+            str = str.TrimEnd(' ');
+    }
+    public static void EscapeString(ref string s)
+    {
+        Replace(ref s, "&amp;", "&");
+        Replace(ref s, "&lt;", "<");
+        Replace(ref s, "&gt;", ">");
+        Replace(ref s, "&quot;", "\"");
+        Replace(ref s, "&nbsp;", " ");
+        Replace(ref s, "&#39;", "'");
+    }
+
+    static void RemoveAt(ref string[] str, int index) => str = [..str[..index] , ..str[(index + 1)..]];
+    static void RemoveRange(ref string[] str, int start, int count) => str = [..str[..start] ,.. str[(start + count)..]];
+
+    static void Insert(ref string[] str, int index, string value) => str = [.. str[..index], value, .. str[index..]];
+
+    #endregion
 
     #region CrystalList(xml形式)の読み込み/書き込み
     public static bool SaveCrystalListXml(Crystal[] crystals, string filename)
@@ -95,7 +130,7 @@ public class ConvertCrystalData
                     Thread.Sleep(1);
                 }
 
-                foreach(var c in cry.Where(e=>e.FlexiblePlane!=null && e.FlexiblePlane.Count>0))
+                foreach (var c in cry.Where(e => e.FlexiblePlane != null && e.FlexiblePlane.Count > 0))
                     c.Plane = c.FlexiblePlane;
             }
             catch { }
@@ -108,7 +143,7 @@ public class ConvertCrystalData
             while ((strTemp = reader.ReadLine()) != null)
                 stringList.Add(strTemp);
             reader.Close();
-            cry = ConvertFromSMAP(stringList.ToArray());
+            cry = ConvertFromSMAP([.. stringList]);
         }
 
         for (int i = 0; i < cry.Length; i++)
@@ -182,8 +217,10 @@ public class ConvertCrystalData
                 if (str[line].StartsWith("No =", Ord))
                 {
                     var tempCrystal = new Crystal((a, b, c, alpha, beta, gamma), null, spaceGroupSeriesNum,
-                        ChemicalFormula.Split('=', true)[1].Trim() + "-" + (n++).ToString(), Color.Blue);
-                    tempCrystal.Note = wavelength + "  " + ChemicalFormula + "\r\n" + str[line];
+                        ChemicalFormula.Split('=', true)[1].Trim() + "-" + (n++).ToString(), Color.Blue)
+                    {
+                        Note = $"{wavelength}  {ChemicalFormula}\r\n{str[line]}"
+                    };
                     line++;
                     for (; line < str.Length; line++)
                     {
@@ -217,7 +254,7 @@ public class ConvertCrystalData
                     cry.Add(tempCrystal);
                 }
         }
-        return cry.ToArray();
+        return [.. cry];
     }
 
     /// <summary>
@@ -285,7 +322,7 @@ public class ConvertCrystalData
         }
         catch (Exception e)
         {
-            if (Crystallography.AssemblyState.IsDebug)
+            if (AssemblyState.IsDebug)
                 System.Windows.Forms.MessageBox.Show(e.Message);
             return null;
         }
@@ -303,7 +340,7 @@ public class ConvertCrystalData
         while ((strTemp = reader.ReadLine()) != null)
             if (strTemp != "")
                 stringList.Add(strTemp);
-        return ConvertFromAmc(stringList.ToArray());
+        return ConvertFromAmc([.. stringList]);
     }
 
 
@@ -312,7 +349,7 @@ public class ConvertCrystalData
     /// </summary>
     /// <param name="str"></param>
     /// <returns></returns>
-    private static Crystal2 ConvertFromAmc(string[] str)
+    public static Crystal2 ConvertFromAmc(string[] str)
     {
         var n = 0;
         if (str[n].Length == 0)
@@ -324,7 +361,8 @@ public class ConvertCrystalData
 
         var AuthorName = str[n];//著者の名前
         n++; if (str.Length <= n) return null;
-        while ((str[n][^1] < '.' || str[n][^1] > '9') && !str[n].Contains("doi.org") && !str[n].Contains("DOI: "))//行の最後の文字が数字ではないとき　(ただし、"doi.org"の文字列が存在するときは除外) 
+        while ((str[n][^1] < '.' || str[n][^1] > '9') && !str[n].Contains("doi.org") && !str[n].Contains("DOI: ")
+            && !str[n].Contains("Mineralogy") )//行の最後の文字が数字ではないとき　(ただし、"doi.org"の文字列が存在するときは除外) 
         {
             AuthorName += ", " + str[n];
             n++; if (str.Length <= n) return null;
@@ -338,7 +376,8 @@ public class ConvertCrystalData
 
         //ここで格子定数、対称性とタイトル
         Crystal2 crystal;
-        while ((crystal = CellParamForAmc(str[n])) == null)
+        string extra;
+        while (((crystal,extra) = CellParamForAmc(str[n])) == (null,null))
         {
             if (str[n].Length > 0 && char.IsLower(str[n][0]))
                 Title += " " + str[n];
@@ -348,12 +387,10 @@ public class ConvertCrystalData
             if (str.Length <= n) return null;
         }
 
-
-
         if (Title.Contains("_cod_database_code"))
-            Title = Title.Replace("_cod_database_code", "\r\n_cod_database_code");
+            Title = Title.Replace("_cod_database_code", "\r\nCOD:");
         else if (Title.Contains("_database_code_amcsd"))
-            Title = Title.Replace("_database_code_amcsd", "\r\n_database_code_amcsd");
+            Title = Title.Replace("_database_code_amcsd", "\r\nAMCSD:");
 
         n++; if (str.Length <= n) return null;
 
@@ -442,9 +479,9 @@ public class ConvertCrystalData
 
             if (xShift != 0 || yShift != 0 || zShift != 0)
             {
-                x = (x.ToDouble() + xShift).ToString("f8").TrimEnd(new[] { '0' });
-                y = (y.ToDouble() + yShift).ToString("f8").TrimEnd(new[] { '0' });
-                z = (z.ToDouble() + zShift).ToString("f8").TrimEnd(new[] { '0' });
+                x = (x.ToDouble() + xShift).ToString("f8").TrimEnd(['0']);
+                y = (y.ToDouble() + yShift).ToString("f8").TrimEnd(['0']);
+                z = (z.ToDouble() + zShift).ToString("f8").TrimEnd(['0']);
             }
 
             var occ = "1";
@@ -491,18 +528,18 @@ public class ConvertCrystalData
 
             if (atomicNumber > 0)
             {
-                atoms.Add(new Atoms2(label, (byte)atomicNumber, 0, 0, new[] { x, y, z }, occ, IsIso, IsUtypeUsed, iso, aniso));
+                atoms.Add(new Atoms2(label, (byte)atomicNumber, 0, 0, [x, y, z], occ, IsIso, IsUtypeUsed, iso, aniso));
             }
             else if (atomicNumber == -1)//"OH"のときの対処
             {
-                atoms.Add(new Atoms2(label, 1, 0, 0, new[] { x, y, z }, occ, IsIso, IsUtypeUsed, iso, aniso));
-                atoms.Add(new Atoms2(label, 8, 0, 0, new[] { x, y, z }, occ, IsIso, IsUtypeUsed, iso, aniso));
+                atoms.Add(new Atoms2(label, 1, 0, 0, [x, y, z], occ, IsIso, IsUtypeUsed, iso, aniso));
+                atoms.Add(new Atoms2(label, 8, 0, 0, [x, y, z], occ, IsIso, IsUtypeUsed, iso, aniso));
             }
             else if (atomicNumber == -2)//"Wat"水のときの対処
             {
-                atoms.Add(new Atoms2(label, 1, 0, 0, new[] { x, y, z }, occ, IsIso, IsUtypeUsed, iso, aniso));
-                atoms.Add(new Atoms2(label, 1, 0, 0, new[] { x, y, z }, occ, IsIso, IsUtypeUsed, iso, aniso));
-                atoms.Add(new Atoms2(label, 8, 0, 0, new[] { x, y, z }, occ, IsIso, IsUtypeUsed, iso, aniso));
+                atoms.Add(new Atoms2(label, 1, 0, 0, [x, y, z], occ, IsIso, IsUtypeUsed, iso, aniso));
+                atoms.Add(new Atoms2(label, 1, 0, 0, [x, y, z], occ, IsIso, IsUtypeUsed, iso, aniso));
+                atoms.Add(new Atoms2(label, 8, 0, 0, [x, y, z], occ, IsIso, IsUtypeUsed, iso, aniso));
             }
         }
         crystal.name = Name;
@@ -510,38 +547,75 @@ public class ConvertCrystalData
         crystal.auth = AuthorName;
         crystal.jour = Reference;
         crystal.atoms = atoms;
+
+        //最後に,extra (ファイル中の空間格子と、ソフト内の空間格子の記号が違う場合のみ)を処理
+        if (extra != null)
+        {
+            var c = crystal.ToCrystal();
+            (double X, double Y, double Z)[] translation = extra switch
+            {
+                "A" => [(0, 0, 0), (0.0, 0.5, 0.5)],
+                "B" => [(0, 0, 0), (0.5, 0.0, 0.5)],
+                "C" => [(0, 0, 0), (0.5, 0.5, 0)],
+                "I" => [(0, 0, 0), (0.5, 0.5, 0.5)],
+                "F" => [(0, 0, 0), (0.0, 0.5, 0.5), (0.5, 0.0, 0.5), (0.5, 0.5, 0)],
+                _ => [(0, 0, 0)],
+            };
+
+            var atomsEx = new List<Atoms>();
+            foreach (var a in c.Atoms)
+            {
+                foreach (var (X, Y, Z) in translation) 
+                    atomsEx.Add(new Atoms(a.Label,a.AtomicNumber,a.SubNumberXray,a.SubNumberElectron,a.Isotope,a.SymmetrySeriesNumber,
+                        new Vector3DBase( a.X+X,a.Y+Y,a.Z+Z ), a.PositionError,a.Occ,a.Occ_err,a.Dsf,a.Material,a.Radius,true,false));
+            }
+            c.Atoms = [.. atomsEx];
+            crystal = c.ToCrystal2();
+        }
+
+
+
         return crystal;
     }
 
-    private static Crystal2 CellParamForAmc(string str)
+    private static (Crystal2, string) CellParamForAmc(string str)
     {
-        double A, B, C, Alfa, Beta, Gamma;
+        string extra = null;
+
+        double A, B, C, Alpha, Beta, Gamma;
         int symmetrySeriesNumber = -1;
         var s = str.Split(" ", true);
         if (s.Length != 7)
-            return null;
+            return (null,null);
         try
         {
             for (int i = 0; i < 6; i++) if (s[i].EndsWith(',')) s[i] = s[i].TrimEnd(','); //最後に','が入っているときは削除
 
 
-            if (Miscellaneous.IsDecimalPointComma)
-                for (int i = 0; i < 6; i++) s[i] = s[i].Replace('.', ',');
-            else
-                for (int i = 0; i < 6; i++) s[i] = s[i].Replace(',', '.');
-            A = Convert.ToDouble(s[0]);
-            B = Convert.ToDouble(s[1]);
-            C = Convert.ToDouble(s[2]);
-            Alfa = Convert.ToDouble(s[3]);
-            Beta = Convert.ToDouble(s[4]);
-            Gamma = Convert.ToDouble(s[5]);
+            //if (Miscellaneous.IsDecimalPointComma)
+            //    for (int i = 0; i < 6; i++) s[i] = s[i].Replace('.', ',');
+            //else
+            //    for (int i = 0; i < 6; i++) s[i] = s[i].Replace(',', '.');
+            A = s[0].ToDouble();
+            B = s[1].ToDouble();
+            C = s[2].ToDouble();
+            Alpha = s[3].ToDouble();
+            Beta = s[4].ToDouble();
+            Gamma = s[5].ToDouble();
+            if (double.IsNaN(A) || double.IsNaN(B) || double.IsNaN(C) || double.IsNaN(Alpha) || double.IsNaN(Beta) || double.IsNaN(Gamma))
+                return (null, null);
         }
-        catch { return null; }
+        catch { return (null, null); }
         string SgName = s[6];
 
         SgName = SgName.Replace("_", "sub");
         bool isAsterisk = SgName.Contains('*');
         SgName = SgName.Replace("*", "");
+
+        if (SgName.Contains(":2"))
+            isAsterisk = true;
+        SgName = SgName.Replace(":1", "");
+        SgName = SgName.Replace(":2", "");
 
         #region 空間群の場合分け
 
@@ -563,116 +637,141 @@ public class ConvertCrystalData
         else if (SgName == "Fd3c") SgName = "Fd-3c";
         else if (SgName == "Im3m") SgName = "Im-3m";
         else if (SgName == "Ia3d") SgName = "Ia-3d";
+        else if (SgName == "P4/m-32/m") SgName = "Pm-3m";
 
         else if (SgName == "I2sub1/a-3") SgName = "Ia-3";
 
         else if (SgName == "R-32/c") SgName = "R-3c";
 
-        else if (SgName == "P2" && Alfa == 90.0 && Gamma == 90.0) SgName = "P121";
-        else if (SgName == "P2" && Alfa == 90.0 && Beta == 90.0) SgName = "P112";
+        else if (SgName == "P2" && Alpha == 90.0 && Gamma == 90.0) SgName = "P121";
+        else if (SgName == "P2" && Alpha == 90.0 && Beta == 90.0) SgName = "P112";
         else if (SgName == "P2" && Beta == 90.0 && Gamma == 90.0) SgName = "P211";
-        else if (SgName == "P2sub1" && Alfa == 90.0 && Gamma == 90.0) SgName = "P12sub11";
-        else if (SgName == "P2sub1" && Alfa == 90.0 && Beta == 90.0) SgName = "P112sub1";
+        else if (SgName == "P2sub1" && Alpha == 90.0 && Gamma == 90.0) SgName = "P12sub11";
+        else if (SgName == "P2sub1" && Alpha == 90.0 && Beta == 90.0) SgName = "P112sub1";
         else if (SgName == "P2sub1" && Beta == 90.0 && Gamma == 90.0) SgName = "P2sub111";
-        else if (SgName == "C2" && Alfa == 90.0 && Gamma == 90.0) SgName = "C121";
-        else if (SgName == "A2" && Alfa == 90.0 && Gamma == 90.0) SgName = "A121";
-        else if (SgName == "I2" && Alfa == 90.0 && Gamma == 90.0) SgName = "I121";
-        else if (SgName == "A2" && Alfa == 90.0 && Beta == 90.0) SgName = "A112";
-        else if (SgName == "B2" && Alfa == 90.0 && Beta == 90.0) SgName = "B112";
-        else if (SgName == "I2" && Alfa == 90.0 && Beta == 90.0) SgName = "I112";
+        else if (SgName == "C2" && Alpha == 90.0 && Gamma == 90.0) SgName = "C121";
+        else if (SgName == "A2" && Alpha == 90.0 && Gamma == 90.0) SgName = "A121";
+        else if (SgName == "I2" && Alpha == 90.0 && Gamma == 90.0) SgName = "I121";
+        else if (SgName == "A2" && Alpha == 90.0 && Beta == 90.0) SgName = "A112";
+        else if (SgName == "B2" && Alpha == 90.0 && Beta == 90.0) SgName = "B112";
+        else if (SgName == "I2" && Alpha == 90.0 && Beta == 90.0) SgName = "I112";
         else if (SgName == "B2" && Beta == 90.0 && Gamma == 90.0) SgName = "B211";
         else if (SgName == "C2" && Beta == 90.0 && Gamma == 90.0) SgName = "C211";
         else if (SgName == "I2" && Beta == 90.0 && Gamma == 90.0) SgName = "I211";
-        else if (SgName == "Pm" && Alfa == 90.0 && Gamma == 90.0) SgName = "P1m1";
-        else if (SgName == "Pm" && Alfa == 90.0 && Beta == 90.0) SgName = "P11m";
+        else if (SgName == "Pm" && Alpha == 90.0 && Gamma == 90.0) SgName = "P1m1";
+        else if (SgName == "Pm" && Alpha == 90.0 && Beta == 90.0) SgName = "P11m";
         else if (SgName == "Pm" && Beta == 90.0 && Gamma == 90.0) SgName = "Pm11";
-        else if (SgName == "Pc" && Alfa == 90.0 && Gamma == 90.0) SgName = "P1c1";
-        else if (SgName == "Pn" && Alfa == 90.0 && Gamma == 90.0) SgName = "P1n1";
-        else if (SgName == "Pa" && Alfa == 90.0 && Gamma == 90.0) SgName = "P1a1";
-        else if (SgName == "Pa" && Alfa == 90.0 && Beta == 90.0) SgName = "P11a";
-        else if (SgName == "Pn" && Alfa == 90.0 && Beta == 90.0) SgName = "P11n";
-        else if (SgName == "Pb" && Alfa == 90.0 && Beta == 90.0) SgName = "P11b";
+        else if (SgName == "Pc" && Alpha == 90.0 && Gamma == 90.0) SgName = "P1c1";
+        else if (SgName == "Pn" && Alpha == 90.0 && Gamma == 90.0) SgName = "P1n1";
+        else if (SgName == "Pa" && Alpha == 90.0 && Gamma == 90.0) SgName = "P1a1";
+        else if (SgName == "Pa" && Alpha == 90.0 && Beta == 90.0) SgName = "P11a";
+        else if (SgName == "Pn" && Alpha == 90.0 && Beta == 90.0) SgName = "P11n";
+        else if (SgName == "Pb" && Alpha == 90.0 && Beta == 90.0) SgName = "P11b";
         else if (SgName == "Pb" && Beta == 90.0 && Gamma == 90.0) SgName = "Pb11";
         else if (SgName == "Pn" && Beta == 90.0 && Gamma == 90.0) SgName = "Pn11";
         else if (SgName == "Pc" && Beta == 90.0 && Gamma == 90.0) SgName = "Pc11";
-        else if (SgName == "Cm" && Alfa == 90.0 && Gamma == 90.0) SgName = "C1m1";
-        else if (SgName == "Am" && Alfa == 90.0 && Gamma == 90.0) SgName = "A1m1";
-        else if (SgName == "Im" && Alfa == 90.0 && Gamma == 90.0) SgName = "I1m1";
-        else if (SgName == "Am" && Alfa == 90.0 && Beta == 90.0) SgName = "A11m";
-        else if (SgName == "Bm" && Alfa == 90.0 && Beta == 90.0) SgName = "B11m";
-        else if (SgName == "Im" && Alfa == 90.0 && Beta == 90.0) SgName = "I11m";
+        else if (SgName == "Cm" && Alpha == 90.0 && Gamma == 90.0) SgName = "C1m1";
+        else if (SgName == "Am" && Alpha == 90.0 && Gamma == 90.0) SgName = "A1m1";
+        else if (SgName == "Im" && Alpha == 90.0 && Gamma == 90.0) SgName = "I1m1";
+        else if (SgName == "Am" && Alpha == 90.0 && Beta == 90.0) SgName = "A11m";
+        else if (SgName == "Bm" && Alpha == 90.0 && Beta == 90.0) SgName = "B11m";
+        else if (SgName == "Im" && Alpha == 90.0 && Beta == 90.0) SgName = "I11m";
         else if (SgName == "Bm" && Beta == 90.0 && Gamma == 90.0) SgName = "Bm11";
         else if (SgName == "Cm" && Beta == 90.0 && Gamma == 90.0) SgName = "Cm11";
         else if (SgName == "Im" && Beta == 90.0 && Gamma == 90.0) SgName = "Im11";
-        else if (SgName == "Cc" && Alfa == 90.0 && Gamma == 90.0) SgName = "C1c1";
-        else if (SgName == "An" && Alfa == 90.0 && Gamma == 90.0) SgName = "A1n1";
-        else if (SgName == "Ia" && Alfa == 90.0 && Gamma == 90.0) SgName = "I1a1";
-        else if (SgName == "Aa" && Alfa == 90.0 && Gamma == 90.0) SgName = "A1a1";
-        else if (SgName == "Cn" && Alfa == 90.0 && Gamma == 90.0) SgName = "C1n1";
-        else if (SgName == "Ic" && Alfa == 90.0 && Gamma == 90.0) SgName = "I1c1";
-        else if (SgName == "Aa" && Alfa == 90.0 && Beta == 90.0) SgName = "A11a";
-        else if (SgName == "Bn" && Alfa == 90.0 && Beta == 90.0) SgName = "B11n";
-        else if (SgName == "Ib" && Alfa == 90.0 && Beta == 90.0) SgName = "I11b";
-        else if (SgName == "Bb" && Alfa == 90.0 && Beta == 90.0) SgName = "B11b";
-        else if (SgName == "An" && Alfa == 90.0 && Beta == 90.0) SgName = "A11n";
-        else if (SgName == "Ia" && Alfa == 90.0 && Beta == 90.0) SgName = "I11a";
+        else if (SgName == "Cc" && Alpha == 90.0 && Gamma == 90.0) SgName = "C1c1";
+        else if (SgName == "An" && Alpha == 90.0 && Gamma == 90.0) SgName = "A1n1";
+        else if (SgName == "Ia" && Alpha == 90.0 && Gamma == 90.0) SgName = "I1a1";
+        else if (SgName == "Aa" && Alpha == 90.0 && Gamma == 90.0) SgName = "A1a1";
+        else if (SgName == "Cn" && Alpha == 90.0 && Gamma == 90.0) SgName = "C1n1";
+        else if (SgName == "Ic" && Alpha == 90.0 && Gamma == 90.0) SgName = "I1c1";
+        else if (SgName == "Aa" && Alpha == 90.0 && Beta == 90.0) SgName = "A11a";
+        else if (SgName == "Bn" && Alpha == 90.0 && Beta == 90.0) SgName = "B11n";
+        else if (SgName == "Ib" && Alpha == 90.0 && Beta == 90.0) SgName = "I11b";
+        else if (SgName == "Bb" && Alpha == 90.0 && Beta == 90.0) SgName = "B11b";
+        else if (SgName == "An" && Alpha == 90.0 && Beta == 90.0) SgName = "A11n";
+        else if (SgName == "Ia" && Alpha == 90.0 && Beta == 90.0) SgName = "I11a";
         else if (SgName == "Bb" && Beta == 90.0 && Gamma == 90.0) SgName = "Bb11";
         else if (SgName == "Cn" && Beta == 90.0 && Gamma == 90.0) SgName = "Cn11";
         else if (SgName == "Ic" && Beta == 90.0 && Gamma == 90.0) SgName = "Ic11";
         else if (SgName == "Cc" && Beta == 90.0 && Gamma == 90.0) SgName = "Cc11";
         else if (SgName == "Bn" && Beta == 90.0 && Gamma == 90.0) SgName = "Bn11";
         else if (SgName == "Ib" && Beta == 90.0 && Gamma == 90.0) SgName = "Ib11";
-        else if (SgName == "P2/m" && Alfa == 90.0 && Gamma == 90.0) SgName = "P12/m1";
-        else if (SgName == "P2/m" && Alfa == 90.0 && Beta == 90.0) SgName = "P112/m";
+        else if (SgName == "P2/m" && Alpha == 90.0 && Gamma == 90.0) SgName = "P12/m1";
+        else if (SgName == "P2/m" && Alpha == 90.0 && Beta == 90.0) SgName = "P112/m";
         else if (SgName == "P2/m" && Beta == 90.0 && Gamma == 90.0) SgName = "P2/m11";
-        else if (SgName == "P2sub/m" && Alfa == 90.0 && Gamma == 90.0) SgName = "P12sub1/m1";
-        else if (SgName == "P2sub/m" && Alfa == 90.0 && Beta == 90.0) SgName = "P112sub1/m";
+        else if (SgName == "P2sub/m" && Alpha == 90.0 && Gamma == 90.0) SgName = "P12sub1/m1";
+        else if (SgName == "P2sub/m" && Alpha == 90.0 && Beta == 90.0) SgName = "P112sub1/m";
         else if (SgName == "P2sub/m" && Beta == 90.0 && Gamma == 90.0) SgName = "P2sub1/m11";
-        else if (SgName == "C2/m" && Alfa == 90.0 && Gamma == 90.0) SgName = "C12/m1";
-        else if (SgName == "A2/m" && Alfa == 90.0 && Gamma == 90.0) SgName = "A12/m1";
-        else if (SgName == "I2/m" && Alfa == 90.0 && Gamma == 90.0) SgName = "I12/m1";
-        else if (SgName == "A2/m" && Alfa == 90.0 && Beta == 90.0) SgName = "A112/m";
-        else if (SgName == "B2/m" && Alfa == 90.0 && Beta == 90.0) SgName = "B112/m";
-        else if (SgName == "I2/m" && Alfa == 90.0 && Beta == 90.0) SgName = "I112/m";
+        else if (SgName == "C2/m" && Alpha == 90.0 && Gamma == 90.0) SgName = "C12/m1";
+        else if (SgName == "A2/m" && Alpha == 90.0 && Gamma == 90.0) SgName = "A12/m1";
+        else if (SgName == "I2/m" && Alpha == 90.0 && Gamma == 90.0) SgName = "I12/m1";
+        else if (SgName == "A2/m" && Alpha == 90.0 && Beta == 90.0) SgName = "A112/m";
+        else if (SgName == "B2/m" && Alpha == 90.0 && Beta == 90.0) SgName = "B112/m";
+        else if (SgName == "I2/m" && Alpha == 90.0 && Beta == 90.0) SgName = "I112/m";
         else if (SgName == "B2/m" && Beta == 90.0 && Gamma == 90.0) SgName = "B2/m11";
         else if (SgName == "C2/m" && Beta == 90.0 && Gamma == 90.0) SgName = "C2/m11";
         else if (SgName == "I2/m" && Beta == 90.0 && Gamma == 90.0) SgName = "I2/m11";
-        else if (SgName == "P2/c" && Alfa == 90.0 && Gamma == 90.0) SgName = "P12/c1";
-        else if (SgName == "P2/n" && Alfa == 90.0 && Gamma == 90.0) SgName = "P12/n1";
-        else if (SgName == "P2/a" && Alfa == 90.0 && Gamma == 90.0) SgName = "P12/a1";
-        else if (SgName == "P2/a" && Alfa == 90.0 && Beta == 90.0) SgName = "P112/a";
-        else if (SgName == "P2/n" && Alfa == 90.0 && Beta == 90.0) SgName = "P112/n";
-        else if (SgName == "P2/b" && Alfa == 90.0 && Beta == 90.0) SgName = "P112/b";
+        else if (SgName == "P2/c" && Alpha == 90.0 && Gamma == 90.0) SgName = "P12/c1";
+        else if (SgName == "P2/n" && Alpha == 90.0 && Gamma == 90.0) SgName = "P12/n1";
+        else if (SgName == "P2/a" && Alpha == 90.0 && Gamma == 90.0) SgName = "P12/a1";
+        else if (SgName == "P2/a" && Alpha == 90.0 && Beta == 90.0) SgName = "P112/a";
+        else if (SgName == "P2/n" && Alpha == 90.0 && Beta == 90.0) SgName = "P112/n";
+        else if (SgName == "P2/b" && Alpha == 90.0 && Beta == 90.0) SgName = "P112/b";
         else if (SgName == "P2/b" && Beta == 90.0 && Gamma == 90.0) SgName = "P2/b11";
         else if (SgName == "P2/n" && Beta == 90.0 && Gamma == 90.0) SgName = "P2/n11";
         else if (SgName == "P2/c" && Beta == 90.0 && Gamma == 90.0) SgName = "P2/c11";
-        else if (SgName == "P2sub1/c" && Alfa == 90.0 && Gamma == 90.0) SgName = "P12sub1/c1";
-        else if (SgName == "P2sub1/n" && Alfa == 90.0 && Gamma == 90.0) SgName = "P12sub1/n1";
-        else if (SgName == "P2sub1/a" && Alfa == 90.0 && Gamma == 90.0) SgName = "P12sub1/a1";
-        else if (SgName == "P2sub1/a" && Alfa == 90.0 && Beta == 90.0) SgName = "P112sub1/a";
-        else if (SgName == "P2sub1/n" && Alfa == 90.0 && Beta == 90.0) SgName = "P112sub1/n";
-        else if (SgName == "P2sub1/b" && Alfa == 90.0 && Beta == 90.0) SgName = "P112sub1/b";
+        else if (SgName == "P2sub1/c" && Alpha == 90.0 && Gamma == 90.0) SgName = "P12sub1/c1";
+        else if (SgName == "P2sub1/n" && Alpha == 90.0 && Gamma == 90.0) SgName = "P12sub1/n1";
+        else if (SgName == "P2sub1/a" && Alpha == 90.0 && Gamma == 90.0) SgName = "P12sub1/a1";
+        else if (SgName == "P2sub1/a" && Alpha == 90.0 && Beta == 90.0) SgName = "P112sub1/a";
+        else if (SgName == "P2sub1/n" && Alpha == 90.0 && Beta == 90.0) SgName = "P112sub1/n";
+        else if (SgName == "P2sub1/b" && Alpha == 90.0 && Beta == 90.0) SgName = "P112sub1/b";
         else if (SgName == "P2sub1/b" && Beta == 90.0 && Gamma == 90.0) SgName = "P2sub1/b11";
         else if (SgName == "P2sub1/n" && Beta == 90.0 && Gamma == 90.0) SgName = "P2sub1/n11";
         else if (SgName == "P2sub1/c" && Beta == 90.0 && Gamma == 90.0) SgName = "P2sub1/c11";
-        else if (SgName == "C2/c" && Alfa == 90.0 && Gamma == 90.0) SgName = "C12/c1";
-        else if (SgName == "A2/n" && Alfa == 90.0 && Gamma == 90.0) SgName = "A12/n1";
-        else if (SgName == "I2/a" && Alfa == 90.0 && Gamma == 90.0) SgName = "I12/a1";
-        else if (SgName == "A2/a" && Alfa == 90.0 && Gamma == 90.0) SgName = "A12/a1";
-        else if (SgName == "C2/n" && Alfa == 90.0 && Gamma == 90.0) SgName = "C12/n1";
-        else if (SgName == "I2/c" && Alfa == 90.0 && Gamma == 90.0) SgName = "I12/c1";
-        else if (SgName == "A2/a" && Alfa == 90.0 && Beta == 90.0) SgName = "A112/a";
-        else if (SgName == "B2/n" && Alfa == 90.0 && Beta == 90.0) SgName = "B112/n";
-        else if (SgName == "I2/b" && Alfa == 90.0 && Beta == 90.0) SgName = "I112/b";
-        else if (SgName == "B2/b" && Alfa == 90.0 && Beta == 90.0) SgName = "B112/b";
-        else if (SgName == "A2/n" && Alfa == 90.0 && Beta == 90.0) SgName = "A112/n";
-        else if (SgName == "I2/a" && Alfa == 90.0 && Beta == 90.0) SgName = "I112/a";
+        else if (SgName == "C2/c" && Alpha == 90.0 && Gamma == 90.0) SgName = "C12/c1";
+        else if (SgName == "A2/n" && Alpha == 90.0 && Gamma == 90.0) SgName = "A12/n1";
+        else if (SgName == "I2/a" && Alpha == 90.0 && Gamma == 90.0) SgName = "I12/a1";
+        else if (SgName == "A2/a" && Alpha == 90.0 && Gamma == 90.0) SgName = "A12/a1";
+        else if (SgName == "C2/n" && Alpha == 90.0 && Gamma == 90.0) SgName = "C12/n1";
+        else if (SgName == "I2/c" && Alpha == 90.0 && Gamma == 90.0) SgName = "I12/c1";
+        else if (SgName == "A2/a" && Alpha == 90.0 && Beta == 90.0) SgName = "A112/a";
+        else if (SgName == "B2/n" && Alpha == 90.0 && Beta == 90.0) SgName = "B112/n";
+        else if (SgName == "I2/b" && Alpha == 90.0 && Beta == 90.0) SgName = "I112/b";
+        else if (SgName == "B2/b" && Alpha == 90.0 && Beta == 90.0) SgName = "B112/b";
+        else if (SgName == "A2/n" && Alpha == 90.0 && Beta == 90.0) SgName = "A112/n";
+        else if (SgName == "I2/a" && Alpha == 90.0 && Beta == 90.0) SgName = "I112/a";
         else if (SgName == "B2/b" && Beta == 90.0 && Gamma == 90.0) SgName = "B2/b11";
         else if (SgName == "C2/n" && Beta == 90.0 && Gamma == 90.0) SgName = "C2/n11";
         else if (SgName == "I2/c" && Beta == 90.0 && Gamma == 90.0) SgName = "I2/c11";
         else if (SgName == "C2/c" && Beta == 90.0 && Gamma == 90.0) SgName = "C2/c11";
         else if (SgName == "B2/n" && Beta == 90.0 && Gamma == 90.0) SgName = "B2/n11";
         else if (SgName == "I2/b" && Beta == 90.0 && Gamma == 90.0) SgName = "I2/b11";
+
+        else if (SgName == "C2sub1" && Alpha == 90.0 && Gamma == 90.0) { SgName = "P12sub11"; extra = "C"; }
+        else if (SgName == "C2sub1" && Alpha == 90.0 && Beta == 90.0) { SgName = "P112sub1"; extra = "C"; }
+        else if (SgName == "C2sub1" && Beta == 90.0 && Gamma == 90.0) { SgName = "P2sub111"; extra = "C"; }
+        else if (SgName == "C2/a" && Alpha == 90.0 && Gamma == 90.0) { SgName = "P12/a1"; extra = "C"; }
+        else if (SgName == "C2/a" && Alpha == 90.0 && Beta == 90.0) { SgName = "P112/a"; extra = "C"; }
+        else if (SgName == "C2sub1/a" && Alpha == 90.0 && Gamma == 90.0) { SgName = "P12sub1/a1"; extra = "C"; }
+        else if (SgName == "C2sub1/a" && Alpha == 90.0 && Beta == 90.0) { SgName = "P112sub1/a"; extra = "C"; }
+
+        else if (SgName == "F2/m" && Alpha == 90.0 && Gamma == 90.0) { SgName = "P12/m1"; extra = "F"; }
+        else if (SgName == "F2/m" && Beta == 90.0 && Gamma == 90.0) { SgName = "P2/m11"; extra = "F"; }
+        else if (SgName == "F2/m" && Alpha == 90.0 && Beta == 90.0) { SgName = "P112/m"; extra = "F"; }
+
+        else if (SgName == "B2sub1" && Alpha == 90.0 && Gamma == 90.0) { SgName = "P12sub11"; extra = "B"; }
+        else if (SgName == "B2sub1" && Alpha == 90.0 && Beta == 90.0) { SgName = "P112sub1"; extra = "B"; }
+        else if (SgName == "B2sub1" && Beta == 90.0 && Gamma == 90.0) { SgName = "P2sub111"; extra = "B"; }
+        else if (SgName == "B2sub1/m" && Alpha == 90.0 && Gamma == 90.0) { SgName = "P12sub1/m1"; extra = "B"; }
+        else if (SgName == "B2sub1/m" && Alpha == 90.0 && Beta == 90.0) { SgName = "P112sub1/m"; extra = "B"; }
+        else if (SgName == "B2sub1/m" && Beta == 90.0 && Gamma == 90.0) { SgName = "P2sub1/m11"; extra = "B"; }
+        
+        else if (SgName == "Imab" && Beta == 90.0 && Gamma == 90.0) { SgName = "Pmab"; extra = "I"; }
+
+        else if (SgName == "F4/mmm") { SgName = "P4/mmm"; extra = "F"; }
+
         #endregion amcファイルの読み込み
 
         //文字列を含んでいて、かつ、文字数が少ない空間群を選択する (C1とC121などを見分けるため)
@@ -683,7 +782,7 @@ public class ConvertCrystalData
         {
             if (sg[i].Length < length)
             {
-                var sg_list = new List<string>(new[] { sg[i] });
+                var sg_list = new List<string>([sg[i]]);
 
                 if (sg[i].Contains('e'))
                 {
@@ -700,9 +799,9 @@ public class ConvertCrystalData
             }
         }
         if (symmetrySeriesNumber == -1)
-            return null;
+            return (null, null);
         //Rhombohedoralのときの処置
-        if (A == B && B == C && Alfa == Beta && Beta == Gamma && SymmetryStatic.Symmetries[symmetrySeriesNumber].SpaceGroupHMStr.Contains("Hex", StringComparison.CurrentCulture))
+        if (A == B && B == C && Alpha == Beta && Beta == Gamma && SymmetryStatic.Symmetries[symmetrySeriesNumber].SpaceGroupHMStr.Contains("Hex", StringComparison.CurrentCulture))
             symmetrySeriesNumber++;
 
         //Asteriskの時(2nd setting)の処理
@@ -713,16 +812,16 @@ public class ConvertCrystalData
         if (symmetrySeriesNumber >= 0)
         {
             var r = new Random();
-            return new Crystal2
+            return (new Crystal2
             {
 
-                CellTexts = new[] { s[0], s[1], s[2], s[3], s[4], s[5] },
+                CellTexts = [s[0], s[1], s[2], s[3], s[4], s[5]],
                 sym = (short)symmetrySeriesNumber,
                 argb = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255)).ToArgb()
-            };
+            },extra);
         }
         else
-            return null;
+            return (null, null);
     }
 
     private static double ConvertToDouble(string str) => ConvertToDouble(str, false);
@@ -782,108 +881,135 @@ public class ConvertCrystalData
     #endregion
 
     #region CIFファイルの読み込み
-    static readonly Random r = new Random();
+    static readonly Random rnd = Random.Shared;
 
-    static readonly string[] ignoreWords1 = new[] { "_shelx_hkl_", "_shelx_fab_", "_shelx_res_" };
-    static readonly string[] ignoreWords2 = new[] { "_refln", "_geom", "_platon" };
+    static readonly FrozenSet<string> ignoreWords1 = ["_shelx_hkl_file", "_shelxl_hkl_file", "_shelx_fab_file", "_shelx_res_file", "_shelxl_res_file", "_iucr_refine_reflections_details"];//語尾に何もつかない
+
+    static readonly FrozenSet<string> ignoreWords2 = ["_shelx_hkl_", "_shelx_fab_", "_shelx_res_"];//語尾に fileかchecksumがつく
+
+    static readonly FrozenSet<string> ignoreWords3 = ["_refln", "_geom", "_platon", "_diffrn_refln"];
     private static Crystal2 ConvertFromCIF(string fileName)
     {
-        var sb = new StringBuilder();
-
-        var stringList = new List<string>();
+        string[] str;
         using (var reader = new StreamReader(fileName))
         {
             var strTemp = reader.ReadToEnd();
-            if (strTemp.Contains("\r\n"))
-                strTemp = strTemp.Replace("\r\n", "\n");
-            if (strTemp.Contains('\r'))
-                strTemp = strTemp.Replace("\r", "\n");
+            Replace(ref strTemp, "\r\n", "\n");
+            Replace(ref strTemp, "\r", "\n");
 
-            stringList = strTemp.Split('\n', true).ToList();
+            EscapeString(ref strTemp);
+
+            foreach (var word in ignoreWords1 )
+            {
+                if (strTemp.Contains(word + "\n;"))
+                {
+                    int start = strTemp.IndexOf(word + "\n;");
+                    int end = strTemp.IndexOf("\n;", start + word.Length + 3);
+                    if (end > start && end + 3 < strTemp.Length)
+                        strTemp = string.Concat(strTemp[..start], strTemp[(end + 3)..]);
+                }
+            }
+
+            str = strTemp.Split('\n', true);
         }
 
-        foreach (var word in ignoreWords1)
-        {
-            int start = -1, end = -1;
-            while ((start = stringList.IndexOf(word + "file")) > -1 &&
-                (end = stringList.FindIndex(s => s.StartsWith(word + "checksum", Ord))) > -1)
-                stringList.RemoveRange(Math.Min(start, end), Math.Abs(start - end) + 1);
-        }
         foreach (var word in ignoreWords2)
         {
+            int start = -1, end = -1;
+            while ((start = Array.IndexOf( str, word + "file")) > -1 &&
+                (end =Array.FindIndex(str, s => s.StartsWith(word + "checksum", Ord))) > -1)
+                RemoveRange(ref str, Math.Min(start, end), Math.Abs(start - end) + 1);
+        }
+     
+
+        foreach (var word in ignoreWords3)
+        {
             int start = -1;
-            while ((start = stringList.FindIndex(s => s.StartsWith(word, Ord)) - 1) > -1)
+            while ((start = Array.FindIndex(str, s => s.Trim().StartsWith(word, Ord)) - 1) > -1)
             {
-                if (stringList[start] == "loop_")
+                if (str[start] == "loop_")
                 {
                     var end = start + 1;
-                    while (stringList[end].StartsWith(word, Ord))
+                    while (str[end].StartsWith(word, Ord))
                         end++;
 
-                    for (; end < stringList.Count; end++)
-                        if (stringList[end] == "loop_" || stringList[end].StartsWith("_", Ord) || stringList[end].StartsWith("#", Ord))
+                    for (; end < str.Length; end++)
+                        if (str[end] == "loop_" || str[end].StartsWith("_", Ord) || str[end].StartsWith("#", Ord))
                             break;
-                    stringList.RemoveRange(start, end - start);
+                    RemoveRange(ref str, start, end - start);
                 }
                 else
-                    stringList.RemoveAt(start + 1);
+                    RemoveAt(ref str, start + 1);
             }
         }
-        return ConvertFromCIF(stringList);
-    }
 
+        return ConvertFromCIF(str);
+    }
 
     /// <summary>
     /// CIFファイルを読み込む
     /// </summary>
     /// <param name="str"></param>
     /// <returns></returns>
-    private static Crystal2 ConvertFromCIF(List<string> str)
+    private static Crystal2 ConvertFromCIF(string[] str)
     {
         //まず ;と; で囲まれている複数にわたる行を一行にする
         //var str = new List<string>();
         var note = "";
         if (str[0].StartsWith("data", Ord))
             note = str[0];
-        for (int n = 0; n < str.Count; n++)
+        for (int n = 0; n < str.Length; n++)
         {
-            while ((str[n].StartsWith("#", Ord) || str[n].Trim().Length == 0) && n < str.Count - 1)
-                str.RemoveAt(n);
-            //全ての先頭行の空白あるいはタブを削除する
-            str[n] = str[n].Replace("\t", " ");
-            str[n] = str[n].TrimEnd(' ').TrimStart(' ');
-
-            if (str[n].Trim().StartsWith(";", Ord))//;で始まる行を見つけたら
+            //全てのコメントを削除
+            while (str[n].StartsWith("#", Ord) && n < str.Length - 1)
+                RemoveAt(ref str, n);
+        }
+        for (int n = 0; n < str.Length; n++)
+        {
+            if (str[n].StartsWith(";", Ord))//;で始まる行を見つけたら
             {
+                //次の;の位置を見つけて mに格納
                 int m = n + 1;
-
-                var temp = new StringBuilder();
-                //次に;が出てくるところまですすめてまとめて一行にする
-                //但し、次の行が「loop_」の場合や「_」で始まる場合は、;を一文字だけ消して終了
-                if (str[m].StartsWith("loop_", Ord) || str[m].StartsWith("_", Ord))
+                for (; m < str.Length; m++)
+                    if (str[m].StartsWith(';'))
+                        break;
+                //直後の行が「loop_」の場合や「_」で始まる場合は、;を一文字だけ消す
+                if (n + 1 < str.Length && (str[n + 1].StartsWith("loop_", Ord) || str[n + 1].StartsWith("_", Ord)))
+                    str[n] = "";
+                //次の;が見つからない場合も、;を一文字だけ消す
+                else if (m == str.Length)
                     str[n] = "";
                 else
                 {
-                    while (m >= str.Count || !str[m].StartsWith(";", Ord))
-                        temp.Append(str[m++] + " ");
-                    str[n] = "'" + temp.ToString().Trim().TrimEnd() + "'";
-                    str.RemoveRange(n + 1, m - n);
+                    var temp = new StringBuilder();
+                    //次に;が出てくるところまですすめてまとめて一行にする
+                    for (int i = n + 1; i < m; i++)
+                        temp.Append(str[i] + " ");
+                    str[n] = $"'{temp.ToString().Trim().TrimEnd()}'";
+                    RemoveRange(ref str, n + 1, m - n);
                 }
             }
         }
 
-        if (str[^1].StartsWith("#"))
+        if (str[^1]=="")
             str[^1] = "#End of data";
 
+        for (int n = 0; n <str.Length; n++)
+        {
+            Replace(ref str[n], "\t", " ");
+            TrimStartEnd(ref str[n]);
+            if (str[n] == "")
+                RemoveAt(ref str, n--);
+        }
 
         //次に'あるいは"で囲まれている文字列中の空白を偶然出てこないような文字列に変換する
-        for (int n = 0; n < str.Count; n++)
+        for (int n = 0; n < str.Length; n++)
         {
             if (str[n].Contains("''"))//''という文字列が含まれていたら
             {
-                var temp = str[n].Remove(0, str[n].IndexOf("'"));
-                temp = temp.Replace("''", "薔");
-                str[n] = str[n].Remove(str[n].IndexOf("'")) + temp;
+                var temp = str[n][str[n].IndexOf("'")..];
+                Replace(ref temp, "''", "薔");
+                str[n] = $"{str[n][..str[n].IndexOf("'")]}{temp}";
             }
 
             if (str[n].Contains('\''))//'が含まれていたら
@@ -895,8 +1021,8 @@ public class ConvertCrystalData
                     if (next == -1)
                         break;
                     var substring = str[n].Substring(firstIndex, next - firstIndex + 1);
-                    substring = substring.Replace(" ", "薔");
-                    substring = substring.Replace("'", "");
+                    Replace(ref substring, " ", "薔");
+                    Replace(ref substring, "'", "");
 
                     str[n] = $"{str[n][..firstIndex]}{substring}{str[n][(next + 1)..]}";
                 }
@@ -911,26 +1037,26 @@ public class ConvertCrystalData
                     if (next == -1)
                         break;
                     var substring = str[n].Substring(firstIndex, next - firstIndex + 1);
-                    substring = substring.Replace(" ", "薔");
-                    substring = substring.Replace("\"", "");
+                    Replace(ref substring, " ", "薔");
+                    Replace(ref substring, "\"", "");
                     str[n] = $"{str[n][..firstIndex]}{substring}{str[n][(next + 1)..]}";
                 }
             }
         }
 
         //次にloop_に続く行が　"label  data"だった時に対応
-        for (int n = 0; n < str.Count - 1; n++)
+        for (int n = 0; n < str.Length - 1; n++)
         {
             if (str[n].StartsWith("loop_", Ord) && str[n + 1].Contains(' '))
             {
                 var temp = str[n + 1].Split(' ', true);
                 str[n + 1] = temp[0];
-                str.Insert(n + 2, temp[1]);
+                Insert(ref str, n + 2, temp[1]);
             }
         }
 
         var CIF = new List<List<(string Label, string Data)>>();
-        for (int n = 0; n < str.Count; n++)
+        for (int n = 0; n < str.Length; n++)
         {
             if (str[n].Trim().StartsWith("_", Ord))
             {//単体アイテムのとき
@@ -945,7 +1071,7 @@ public class ConvertCrystalData
                 }
                 else
                     tempData = "";
-                CIF.Add(new List<(string Label, string Data)>(new[] { (tempLabel, tempData.Replace("薔", " ")) }));
+                CIF.Add(new List<(string Label, string Data)>([(tempLabel, tempData.Replace("薔", " "))]));
             }
             else if (str[n].Trim().StartsWith("loop_", Ord))
             {//ループのとき
@@ -953,11 +1079,11 @@ public class ConvertCrystalData
                 var tempLoopDatas = new List<string>();
                 n++;
                 //"_"で始まるラベルを数える
-                while (n < str.Count && str[n].Trim().StartsWith("_", Ord))
+                while (n < str.Length && str[n].Trim().StartsWith("_", Ord))
                     tempLoopLabels.Add(str[n++].Trim());
 
                 //次に"_"か"loop_"か"#End of"で始まる行が出てくるまでループ
-                while (n < str.Count && !str[n].Trim().StartsWith("_", Ord) && !str[n].Trim().StartsWith("loop_", Ord) && !str[n].Trim().StartsWith("#End of", Ord))
+                while (n < str.Length && !str[n].Trim().StartsWith("_", Ord) && !str[n].Trim().StartsWith("loop_", Ord) && !str[n].Trim().StartsWith("#End of", Ord))
                 {
                     var temp = str[n].Split(' ', true);
                     for (int i = 0; i < temp.Length; i++)
@@ -980,12 +1106,12 @@ public class ConvertCrystalData
         //ここまででCIF_Groupクラスのリストが完成
 
         //格子定数は、CIFファイル中に何回も記載されている場合があるため、リストにする。
-        List<(int index, string value)> aList = new(), bList = new(), cList = new(), alphaList = new(), betaList = new(), gammaList = new();
+        List<(int index, string value)> aList = [], bList = [], cList = [], alphaList = [], betaList = [], gammaList = [];
 
         string name = "", sectionTitle = "", journalNameFull = "", journalCodenASTM = "";
         string volume = "", year = "", pageFirst = "", pageLast = "", issue = "";
         var journal = new StringBuilder();
-        List<string> spaceGroupNameHM = new(), spaceGroupNameHall = new();
+        List<string> spaceGroupNameHM = [], spaceGroupNameHall = [];
         string chemical_formula_sum = "", chemical_formula_structural = "";
         var symmetry_Int_Tables_number = -1;
         var author = new List<string>();
@@ -1000,11 +1126,11 @@ public class ConvertCrystalData
                 if (label.StartsWith("_chemical_name", Ord)) name += data + " ";
 
                 //ここから格子定数
-                if (label == "_cell_length_a") aList.Add((i,data));
+                if (label == "_cell_length_a") aList.Add((i, data));
                 else if (label == "_cell_length_b") bList.Add((i, data));
                 else if (label == "_cell_length_c") cList.Add((i, data));
                 else if (label == "_cell_angle_alpha") alphaList.Add((i, data));
-                else if (label == "_cell_angle_beta" ) betaList.Add((i, data));
+                else if (label == "_cell_angle_beta") betaList.Add((i, data));
                 else if (label == "_cell_angle_gamma") gammaList.Add((i, data));
 
                 //ここからジャーナル情報
@@ -1020,14 +1146,14 @@ public class ConvertCrystalData
                 //ここから対称性
                 else if (label.Contains("_space_group_name_H-M")) spaceGroupNameHM.Add(data);
                 else if (label.Contains("_space_group_name_Hall")) spaceGroupNameHall.Add(data);
-                else if (label == "_Int_Tables_number") int.TryParse(data, out symmetry_Int_Tables_number);
+                else if (label.Contains("_Int_Tables_number")) int.TryParse(data, out symmetry_Int_Tables_number);
                 else if (label == "_chemical_formula_sum") chemical_formula_sum = data;
                 else if (label == "_chemical_formula_structural") chemical_formula_structural = data;
                 else if (label == "_space_group_symop_operation_xyz") operations.Add(data);
                 else if (label == "_symmetry_equiv_pos_as_xyz") operations.Add(data);
             }
 
-        if (aList.Count == 0 || bList.Count ==0 || cList.Count ==0 || alphaList.Count ==0 || betaList.Count == 0 || gammaList.Count == 0) return null;
+        if (aList.Count == 0 || bList.Count == 0 || cList.Count == 0 || alphaList.Count == 0 || betaList.Count == 0 || gammaList.Count == 0) return null;
 
         if (name.Length == 0 || name == "?" || name == "? ?" || name.Trim().Length == 0)
             name = chemical_formula_sum;
@@ -1045,7 +1171,7 @@ public class ConvertCrystalData
                     atomCIF.Add(CIF[i]);
                     flag = true;
                 }
-                else if(atomCIF.Count != 0)
+                else if (atomCIF.Count != 0)
                 {
                     flag = false;
                     a = aList.Count == 1 ? aList[0].value : aList.Last(e => e.index < i).value;
@@ -1098,7 +1224,7 @@ public class ConvertCrystalData
             {
                 try
                 {
-                    sExpr = sExpr.Replace(" ", "").Replace(",+", ",").TrimStart(new[] { '+' });
+                    sExpr = sExpr.Replace(" ", "").Replace(",+", ",").TrimStart(['+']);
                     sExpr = "new [] {" + sExpr.Replace("/", ".0/").Replace(".0.0", ".0") + "}";//分子に小数点を加える
 
                     var f = DynamicExpressionParser.ParseLambda(prms, typeof(double[]), sExpr).Compile() as Func<double, double, double, double[]>;
@@ -1152,7 +1278,6 @@ public class ConvertCrystalData
             string bIso = "", b11 = "", b22 = "", b33 = "", b12 = "", b13 = "", b23 = "";
 
             //まず基本的な原子位置や占有率などの情報を探す
-            occ = "1";
             for (int j = 0; j < cif.Count; j++)
             {
                 var label = cif[j].Label;
@@ -1171,11 +1296,6 @@ public class ConvertCrystalData
                 }
             }
 
-            if (x == "0021|" || y == "0021|" || z == "0021|")
-            {
-
-            }
-
             if (shift.X != 0 || shift.Y != 0 || shift.Z != 0)
             {
                 var _x = Crystal2.Decompose(x, sgnum);
@@ -1187,7 +1307,6 @@ public class ConvertCrystalData
             }
 
             //次に異方性の温度散乱因子をさがす (等方性の温度因子は既に上のループで読み込まれている)
-
             for (int k = 0; k < CIF.Count; k++)
             {
                 if (CIF[k].Exists(item => item.Label == "_atom_site_aniso_label" && item.Data == atomLabel))
@@ -1252,16 +1371,16 @@ public class ConvertCrystalData
             if (iso.Length == 0)
                 iso = "0";
 
-            var aniso = isU ? //11, 22, 33, 12, 23, 31の順番
-                new[] { u11, u22, u33, u12, u23, u13 } :
-                new[] { b11, b22, b33, b12, b23, b13 };
+            string[] aniso = isU ? //11, 22, 33, 12, 23, 31の順番
+                [u11, u22, u33, u12, u23, u13] :
+                [b11, b22, b33, b12, b23, b13];
 
             if (atomicNumber > 0)
-                atoms.Add(new Atoms2(atomLabel, atomicNumber, 0, 0, new[] { x, y, z }, occ, isIso, isU, iso, aniso));
+                atoms.Add(new Atoms2(atomLabel, atomicNumber, 0, 0, [x, y, z], occ, isIso, isU, iso, aniso));
             else if (atomicNumber == -1)//"OH"のときの対処
             {
-                atoms.Add(new Atoms2(atomLabel, 1, 0, 0, new[] { x, y, z }, occ, isIso, isU, iso, aniso));
-                atoms.Add(new Atoms2(atomLabel, 8, 0, 0, new[] { x, y, z }, occ, isIso, isU, iso, aniso));
+                atoms.Add(new Atoms2(atomLabel, 1, 0, 0, [x, y, z], occ, isIso, isU, iso, aniso));
+                atoms.Add(new Atoms2(atomLabel, 8, 0, 0, [x, y, z], occ, isIso, isU, iso, aniso));
             }
         }
 
@@ -1272,22 +1391,27 @@ public class ConvertCrystalData
         if (pageFirst != "") journal.Append(", ").Append(pageFirst);
         if (pageLast != "") journal.Append('-').Append(pageLast);
 
-        var authours = new StringBuilder();
-        foreach (string s in author)
-            authours.Append(s).Append("; ");
+        var authors = new StringBuilder();
+        for(int i = 0; i< author.Count; i++)
+            if(i== author.Count -1)
+                authors.Append(author[i].Replace(",", ""));
+            else
+                authors.Append(author[i].Replace(",", "") + ", \r\n");
 
         return new Crystal2
         {
-            CellTexts = new[] { a, b, c, alpha, beta, gamma },
+            CellTexts = [a, b, c, alpha, beta, gamma],
             sym = (short)sgnum,
             name = name,
             atoms = atoms,
-            auth = authours.ToString(),
+            auth = authors.ToString().TrimEnd([' ', ',']).Replace(".", ""),
             jour = journal.ToString(),
             sect = sectionTitle,
-            argb = Color.FromArgb(r.Next(255), r.Next(255), r.Next(255)).ToArgb()
+            argb = Color.FromArgb(rnd.Next(255), rnd.Next(255), rnd.Next(255)).ToArgb()
         };
     }
+
+ 
 
     private static V3 norm(V3 v)
     {
@@ -1317,7 +1441,7 @@ public class ConvertCrystalData
             if (symmetrySeriesNumber != -1)
                 return symmetrySeriesNumber;
         }
-        
+
         SgNameHM = SgNameHM.TrimStart(' ').TrimEnd(' ');
 
 
@@ -1330,21 +1454,21 @@ public class ConvertCrystalData
                     i += 3;
                 }
 
-        SgNameHM = SgNameHM.Replace("_", " ");
+        Replace(ref SgNameHM, "_", " ");
 
-        SgNameHM = SgNameHM.Replace("{hexagonalal axes}", " ");
-        SgNameHM = SgNameHM.Replace("{rhombohedral axes}", " ");
+        Replace(ref SgNameHM, "{hexagonal axes}", " ");
+        Replace(ref SgNameHM, "{rhombohedral axes}", " ");
 
         SgNameHM = SgNameHM.TrimStart(' ').TrimEnd(' ');
 
         if (SgNameHM.EndsWith("RS", Ord) || SgNameHM.EndsWith("HR", Ord))
-            SgNameHM = SgNameHM.Remove(SgNameHM.Length - 2, 2).TrimEnd(' ');
+            SgNameHM = SgNameHM[..^2].TrimEnd(' ');
 
         if (SgNameHM.EndsWith("H", Ord) || SgNameHM.EndsWith("h", Ord) || SgNameHM.EndsWith("R", Ord) || SgNameHM.EndsWith("r", Ord))
-            SgNameHM = SgNameHM.Remove(SgNameHM.Length - 1, 1).TrimEnd(' ');
+            SgNameHM = SgNameHM[..^1].TrimEnd(' ');
 
         if (SgNameHM.EndsWith(":", Ord))
-            SgNameHM = SgNameHM.Remove(SgNameHM.Length - 1, 1).TrimEnd(' ');
+            SgNameHM = SgNameHM[..^1].TrimEnd(' ');
 
         bool IsOrigineChoice2 = false;
         if (SgNameHM.EndsWith("Z", Ord))//最後にZがついていたらOriginChoice2
@@ -1390,63 +1514,65 @@ public class ConvertCrystalData
             IsOrigineChoice2 = true;
         }
 
-        SgNameHM = SgNameHM.Replace("~", "");
+     
+
+        Replace(ref SgNameHM, "~", "");
 
         //一文字目以降の英字は全て小文字に
-        SgNameHM = SgNameHM[0] + SgNameHM.Remove(0, 1).ToLower();
+        SgNameHM = SgNameHM[0] + SgNameHM[1..].ToLower();
 
-        SgNameHM = SgNameHM.Replace("P(-1)", "P-1");
+        Replace(ref SgNameHM,"P(-1)", "P-1");
 
-        SgNameHM = SgNameHM.Replace("R 32", "R32");
+        Replace(ref SgNameHM,"R 32", "R32");
 
-        SgNameHM = SgNameHM.Replace("P3(1)21", "P 3sub1 2 1");
-        SgNameHM = SgNameHM.Replace("P3(2)21", "P 3sub2 2 1");
-        SgNameHM = SgNameHM.Replace("P3121", "P 3sub1 2 1");
-        SgNameHM = SgNameHM.Replace("P3221", "P 3sub2 2 1");
-        SgNameHM = SgNameHM.Replace("P 31 21", "P 3sub1 2 1");
-        SgNameHM = SgNameHM.Replace("P 32 21", "P 3sub2 2 1");
-        SgNameHM = SgNameHM.Replace("P321", "P 3 2 1");
+        Replace(ref SgNameHM,"P3(1)21", "P 3sub1 2 1");
+        Replace(ref SgNameHM,"P3(2)21", "P 3sub2 2 1");
+        Replace(ref SgNameHM,"P3121", "P 3sub1 2 1");
+        Replace(ref SgNameHM,"P3221", "P 3sub2 2 1");
+        Replace(ref SgNameHM,"P 31 21", "P 3sub1 2 1");
+        Replace(ref SgNameHM,"P 32 21", "P 3sub2 2 1");
+        Replace(ref SgNameHM,"P321", "P 3 2 1");
 
-        SgNameHM = SgNameHM.Replace("P61", "P 6sub1");
-        SgNameHM = SgNameHM.Replace("P62", "P 6sub2");
-        SgNameHM = SgNameHM.Replace("P63", "P 6sub3");
-        SgNameHM = SgNameHM.Replace("P64", "P 6sub4");
-        SgNameHM = SgNameHM.Replace("P65", "P 6sub5");
+        Replace(ref SgNameHM,"P61", "P 6sub1");
+        Replace(ref SgNameHM,"P62", "P 6sub2");
+        Replace(ref SgNameHM,"P63", "P 6sub3");
+        Replace(ref SgNameHM,"P64", "P 6sub4");
+        Replace(ref SgNameHM,"P65", "P 6sub5");
 
-        SgNameHM = SgNameHM.Replace("I41", "I 4sub1");
-        SgNameHM = SgNameHM.Replace("P42", "P 4sub2");
+        Replace(ref SgNameHM,"I41", "I 4sub1");
+        Replace(ref SgNameHM,"P42", "P 4sub2");
 
-        SgNameHM = SgNameHM.Replace("P42/m b c", "P 4sub2/m b c");
+        Replace(ref SgNameHM,"P42/m b c", "P 4sub2/m b c");
 
-        SgNameHM = SgNameHM.Replace("P4322", "P 4sub3 2 2");
+        Replace(ref SgNameHM,"P4322", "P 4sub3 2 2");
 
-        SgNameHM = SgNameHM.Replace(" 61", " 6sub1");
-        SgNameHM = SgNameHM.Replace(" 62", " 6sub2");
-        SgNameHM = SgNameHM.Replace(" 63", " 6sub3");
-        SgNameHM = SgNameHM.Replace(" 64", " 6sub4");
-        SgNameHM = SgNameHM.Replace(" 65", " 6sub5");
-        SgNameHM = SgNameHM.Replace(" 41", " 4sub1");
-        SgNameHM = SgNameHM.Replace(" 42", " 4sub2");
-        SgNameHM = SgNameHM.Replace(" 43", " 4sub3");
-        SgNameHM = SgNameHM.Replace(" 31", " 3sub1");
-        SgNameHM = SgNameHM.Replace(" 32", " 3sub2");
-        SgNameHM = SgNameHM.Replace(" 21", " 2sub1");
+        Replace(ref SgNameHM," 61", " 6sub1");
+        Replace(ref SgNameHM," 62", " 6sub2");
+        Replace(ref SgNameHM," 63", " 6sub3");
+        Replace(ref SgNameHM," 64", " 6sub4");
+        Replace(ref SgNameHM," 65", " 6sub5");
+        Replace(ref SgNameHM," 41", " 4sub1");
+        Replace(ref SgNameHM," 42", " 4sub2");
+        Replace(ref SgNameHM," 43", " 4sub3");
+        Replace(ref SgNameHM," 31", " 3sub1");
+        Replace(ref SgNameHM," 32", " 3sub2");
+        Replace(ref SgNameHM," 21", " 2sub1");
 
-        SgNameHM = SgNameHM.Replace("2(1)", " 2sub1");
-        SgNameHM = SgNameHM.Replace("3(1)", " 3sub1");
-        SgNameHM = SgNameHM.Replace("3(2)", " 3sub2");
-        SgNameHM = SgNameHM.Replace("4(1)", " 4sub1");
-        SgNameHM = SgNameHM.Replace("4(2)", " 4sub2");
-        SgNameHM = SgNameHM.Replace("4(3)", " 4sub3");
-        SgNameHM = SgNameHM.Replace("6(1)", " 6sub1");
-        SgNameHM = SgNameHM.Replace("6(2)", " 6sub2");
-        SgNameHM = SgNameHM.Replace("6(3)", " 6sub3");
-        SgNameHM = SgNameHM.Replace("6(4)", " 6sub4");
-        SgNameHM = SgNameHM.Replace("6(5)", " 6sub5");
+        Replace(ref SgNameHM,"2(1)", " 2sub1");
+        Replace(ref SgNameHM,"3(1)", " 3sub1");
+        Replace(ref SgNameHM,"3(2)", " 3sub2");
+        Replace(ref SgNameHM,"4(1)", " 4sub1");
+        Replace(ref SgNameHM,"4(2)", " 4sub2");
+        Replace(ref SgNameHM,"4(3)", " 4sub3");
+        Replace(ref SgNameHM,"6(1)", " 6sub1");
+        Replace(ref SgNameHM,"6(2)", " 6sub2");
+        Replace(ref SgNameHM,"6(3)", " 6sub3");
+        Replace(ref SgNameHM,"6(4)", " 6sub4");
+        Replace(ref SgNameHM,"6(5)", " 6sub5");
 
-        SgNameHM = SgNameHM.Replace("21", " 2sub1");
+        Replace(ref SgNameHM,"21", " 2sub1");
 
-        SgNameHM = SgNameHM.Replace("  ", " ");
+        Replace(ref SgNameHM,"  ", " ");
 
         string temp = SgNameHM.Replace(" ", "");
         #region
@@ -1584,12 +1710,12 @@ public class ConvertCrystalData
 
         int length = int.MaxValue;
         var sg = SymmetryStatic.SpaceGroupListWithoutSpace;
-        SgNameHM = SgNameHM.Replace(" ", "");
+        Replace(ref SgNameHM, " ", "");
         for (int i = 0; i < SymmetryStatic.TotalSpaceGroupNumber; i++)
         {
             if (sg[i].Length < length)
             {
-                var sg_list = new List<string>(new[] { sg[i] });
+                var sg_list = new List<string>([sg[i]]);
 
                 if (sg[i].Contains('e'))
                 {
@@ -1640,29 +1766,36 @@ public class ConvertCrystalData
         sb.AppendLine("data_global");
         sb.AppendLine("_chemical_name '" + crystal.Name + "'");
 
-        sb.AppendLine("loop_");
-        sb.AppendLine("_publ_author_name");
-        foreach (string str in crystal.PublAuthorName.Split(',', true))
-            sb.AppendLine("'" + str.Trim() + "'");
+        if (crystal.PublAuthorName != string.Empty)
+        {
+            sb.AppendLine("loop_");
+            sb.AppendLine("_publ_author_name");
+            foreach (string str in crystal.PublAuthorName.Split(',', true))
+                sb.AppendLine("'" + str.Trim() + "'");
+        }
 
-        sb.AppendLine("_journal_name '" + crystal.Journal + "'");
+        if(crystal.Journal != string.Empty)
+            sb.AppendLine("_journal_name '" + crystal.Journal + "'");
 
         #region 論文タイトル
-        sb.AppendLine("_publ_section_title");
-        sb.AppendLine(";");
-        string title = "";
-        foreach (string t in crystal.PublSectionTitle.Split(' ', true))
+        if (crystal.PublSectionTitle != "")
         {
-            if ((title + " " + t).Length > 80)
+            sb.AppendLine("_publ_section_title");
+            sb.AppendLine(";");
+            string title = "";
+            foreach (string t in crystal.PublSectionTitle.Split(' ', true))
             {
-                sb.AppendLine(title);
-                title = "";
+                if ((title + " " + t).Length > 80)
+                {
+                    sb.AppendLine(title);
+                    title = "";
+                }
+                title += " " + t;
             }
-            title += " " + t;
+            if (title != "")
+                sb.AppendLine(title);
+            sb.AppendLine(";");
         }
-        if (title != "")
-            sb.AppendLine(title);
-        sb.AppendLine(";");
         #endregion
 
         #region 格子定数、対称性
@@ -1678,6 +1811,7 @@ public class ConvertCrystalData
 
         var sym = crystal.Symmetry;
         sb.AppendLine("_space_group_IT_number " + sym.SpaceGroupNumber);
+        sb.AppendLine("_symmetry_Int_Tables_number " + sym.SpaceGroupNumber);
         sb.AppendLine("_symmetry_cell_setting '" + sym.CrystalSystemStr + "'");
         var hm = sym.SpaceGroupHMStr;
         hm = hm.Replace("Hex", "");
@@ -1689,13 +1823,13 @@ public class ConvertCrystalData
         #region 原子の等価位置
         sb.AppendLine("loop_");
         sb.AppendLine("_symmetry_equiv_pos_as_xyz");
-        bool[][] flag = Array.Empty<bool[]>();
-        if (sym.LatticeTypeStr == "P") flag = new[] { new[] { false, false, false } };
-        else if (sym.LatticeTypeStr == "A") flag = new[] { new[] { false, false, false }, new[] { false, true, true } };
-        else if (sym.LatticeTypeStr == "B") flag = new[] { new[] { false, false, false }, new[] { true, false, true } };
-        else if (sym.LatticeTypeStr == "C") flag = new[] { new[] { false, false, false }, new[] { true, true, false } };
-        else if (sym.LatticeTypeStr == "I") flag = new[] { new[] { false, false, false }, new[] { true, true, true } };
-        else if (sym.LatticeTypeStr == "F") flag = new[] { new[] { false, false, false }, new[] { false, true, true }, new[] { true, false, true }, new[] { true, true, false } };
+        bool[][] flag = [];
+        if (sym.LatticeTypeStr == "P") flag = [[false, false, false]];
+        else if (sym.LatticeTypeStr == "A") flag = [[false, false, false], [false, true, true]];
+        else if (sym.LatticeTypeStr == "B") flag = [[false, false, false], [true, false, true]];
+        else if (sym.LatticeTypeStr == "C") flag = [[false, false, false], [true, true, false]];
+        else if (sym.LatticeTypeStr == "I") flag = [[false, false, false], [true, true, true]];
+        else if (sym.LatticeTypeStr == "F") flag = [[false, false, false], [false, true, true], [true, false, true], [true, true, false]];
 
         foreach (string wp in SymmetryStatic.WyckoffPositions[crystal.SymmetrySeriesNumber][0].PositionStr)
         {
@@ -1717,7 +1851,7 @@ public class ConvertCrystalData
                     sb.AppendLine($"  '{xyz[0]},{xyz[1]},{xyz[2]}'");
                 }
             }
-            else//R格子のHexaセッティングのとき
+            else//R格子のHexセッティングのとき
             {
                 sb.AppendLine("  '" + wp + "'");//(0,0,0)
                                                 //(1/3,2/3,2/3)
@@ -1751,7 +1885,7 @@ public class ConvertCrystalData
         foreach (var a in crystal.Atoms)
         {
             var u = double.IsNaN(a.Dsf.Uiso) ? 0 : a.Dsf.Uiso * 100;
-            sb.AppendLine($"{a.Label} {AtomStatic.AtomicName(a.AtomicNumber)} {a.X:f6} {a.Y:f6} {a.Z:f6} {a.Occ:f6} {u:f6}");
+            sb.AppendLine($" {a.Label} {AtomStatic.AtomicName(a.AtomicNumber)} {a.X:f6} {a.Y:f6} {a.Z:f6} {a.Occ:f6} {u:f6}");
         }
 
 
@@ -1773,9 +1907,9 @@ public class ConvertCrystalData
                 var u23 = double.IsNaN(a.Dsf.U23) ? 0 : a.Dsf.U23 * 100;
                 var u31 = double.IsNaN(a.Dsf.U31) ? 0 : a.Dsf.U31 * 100;
                 var u12 = double.IsNaN(a.Dsf.U12) ? 0 : a.Dsf.U12 * 100;
-                sb.AppendLine($"{a.Label} {u11:f6} {u22:f6} {u33:f6} {u23:f6} {u31:f6} {u12:f6}");
+                sb.AppendLine($" {a.Label} {u11:f6} {u22:f6} {u33:f6} {u23:f6} {u31:f6} {u12:f6}");
             }
-        } 
+        }
         #endregion
 
         return sb.ToString();

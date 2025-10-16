@@ -1,17 +1,18 @@
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
+using OpenTK.Mathematics;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-
+using V3d = OpenTK.Mathematics.Vector3d;
+using OpenTK.Graphics;
+using ZLinq;
 namespace Crystallography;
 
-public static class Geometriy
+public static class Geometry
 {
-    static Geometriy()
+    static Geometry()
     {
         MathNet.Numerics.Control.TryUseNativeMKL();
     }
@@ -87,7 +88,7 @@ public static class Geometriy
         double d = C[3];
         double e = C[4];
 
-        return new double[] { a, b, c, d, e };
+        return [a, b, c, d, e];
     }
 
     /// <summary>
@@ -167,8 +168,8 @@ public static class Geometriy
       ref double tau, ref double tauDev, ref double phi, ref double phiDev)
     {
         //任意の二点を選んでoffset, tau, phiを計算する
-        List<double> offsetXList = new(), offsetYList = new();
-        List<double> tauList = new(), phiList = new();
+        List<double> offsetXList = [], offsetYList = [];
+        List<double> tauList = [], phiList = [];
 
         for (int i = 0; i < EllipseCenter.Length; i++)
             for (int j = i + 1; j < EllipseCenter.Length; j++)
@@ -186,15 +187,15 @@ public static class Geometriy
                 tauList.Add(tauTemp);
                 phiList.Add(phiTemp);
             }
-        offsetDev = new PointD(Statistics.Deviation(offsetXList.ToArray()), Statistics.Deviation(offsetYList.ToArray()));
-        tauDev = Statistics.Deviation(tauList.ToArray());
+        offsetDev = new PointD(Statistics.Deviation([.. offsetXList]), Statistics.Deviation([.. offsetYList]));
+        tauDev = Statistics.Deviation([.. tauList]);
 
         double phiDev1, phiDev2;
 
-        phiDev1 = Statistics.Deviation(phiList.ToArray());
+        phiDev1 = Statistics.Deviation([.. phiList]);
         for (int i = 0; i < phiList.Count; i++)
             if (phiList[i] < 0) phiList[i] += Math.PI;
-        phiDev2 = Statistics.Deviation(phiList.ToArray());
+        phiDev2 = Statistics.Deviation([.. phiList]);
 
         phiDev = Math.Min(phiDev1, phiDev2);
 
@@ -458,13 +459,13 @@ public static class Geometriy
         }
 
         PixX = tempPixX.Average();
-        PixXDev = Statistics.Deviation(tempPixX.ToArray());
+        PixXDev = Statistics.Deviation([.. tempPixX]);
         PixY = tempPixY.Average();
-        PixYDev = Statistics.Deviation(tempPixY.ToArray());
+        PixYDev = Statistics.Deviation([.. tempPixY]);
         if (distortion)
         {
             Ksi = tempKsi.Average();
-            KsiDev = Statistics.Deviation(tempKsi.ToArray());
+            KsiDev = Statistics.Deviation([.. tempKsi]);
         }
     }
 
@@ -556,7 +557,7 @@ public static class Geometriy
     public static PointD[] GetPolygonDividedByLine(PointD[] pt, double a, double b, double c)
     {
         var results = GetPolygonDividedByLine(pt.Select(p => (p.X, p.Y)).ToArray(), a, b, c);
-        return results.Select(r => new PointD(r.X, r.Y)).ToArray();
+        return [.. results.Select(r => new PointD(r.X, r.Y))];
     }
 
     /// <summary>
@@ -596,7 +597,7 @@ public static class Geometriy
 
         //すべてが範囲外ならnullを返す
         if (flag2)
-            return Array.Empty<(double X, double Y)>();
+            return [];
 
         for (int i = 0; i < ptAlpha.Count; i++)
         {
@@ -615,11 +616,11 @@ public static class Geometriy
             if (ptAlpha[i].Flag)
                 ptBeta.Add((ptAlpha[i].X, ptAlpha[i].Y));
 
-        return ptBeta.ToArray();
+        return [.. ptBeta];
     }
 
     /// <summary>
-    /// 平面において、直線 a x + b y = c　が 点pt1とpt2を結ぶ直線と交わる交点を返す
+    /// 2次元において、直線 a x + b y = c　が 点pt1とpt2を結ぶ直線と交わる交点を返す
     /// </summary>
     /// <param name="p1"></param>
     /// <param name="p2"></param>
@@ -643,7 +644,7 @@ public static class Geometriy
     }
 
     /// <summary>
-    /// 3次元において、平面 a x + b y + c z = d (法線ベクトル(a,b,c))と、点pt1とpt2を結ぶ直線と交わる交点を返す
+    /// 3次元平面 a x + b y + c z = d (法線ベクトル(a,b,c))が、点pt1とpt2を結ぶ直線と交わる交点を返す. 平面方程式がa x + b y + c z + d = 0 ではないことに注意
     /// </summary>
     /// <param name="a"></param>
     /// <param name="b"></param>
@@ -652,11 +653,11 @@ public static class Geometriy
     /// <param name="p1"></param>
     /// <param name="p2"></param>
     /// <returns></returns>
-    public static Vector3D GetCrossPoint(in double a, in double b, in double c, in double d, Vector3D p1, Vector3D p2) 
+    public static Vector3DBase GetCrossPoint(in double a, in double b, in double c, in double d, Vector3D p1, Vector3D p2)
         => GetCrossPoint(a, b, c, d, new Vector3D(p1.X, p1.Y, p1.Z), new Vector3DBase(p2.X, p2.Y, p2.Z));
 
     /// <summary>
-    /// 3次元において、平面 a x + b y + c z = d (法線ベクトル(a,b,c))と、点pt1とpt2を結ぶ直線と交わる交点を返す
+    /// 3次元平面 a x + b y + c z = d (法線ベクトル(a,b,c))が、点pt1とpt2を結ぶ直線と交わる交点を返す. 平面方程式がa x + b y + c z + d = 0 ではないことに注意
     /// </summary>
     /// <param name="a"></param>
     /// <param name="b"></param>
@@ -665,7 +666,20 @@ public static class Geometriy
     /// <param name="p1"></param>
     /// <param name="p2"></param>
     /// <returns></returns>
-    public static Vector3D GetCrossPoint(in double a, in double b, in double c, in double d, Vector3DBase p1, Vector3DBase p2)
+    public static Vector3DBase GetCrossPoint(in double a, in double b, in double c, in double d, Vector3DBase p1, Vector3DBase p2) 
+        => GetCrossPoint(a, b, c, d, p1.ToOpenTK(), p2.ToOpenTK()).ToVector3DBase();
+
+    /// <summary>
+    /// 3次元平面 a x + b y + c z = d (法線ベクトル(a,b,c))が、点pt1とpt2を結ぶ直線と交わる交点を返す. 平面方程式がa x + b y + c z + d = 0 ではないことに注意
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <param name="c"></param>
+    /// <param name="d"></param>
+    /// <param name="p1"></param>
+    /// <param name="p2"></param>
+    /// <returns></returns>
+    public static V3d GetCrossPoint(in double a, in double b, in double c, in double d, in V3d p1, in V3d p2)
     {
         //次の3つの方程式を満たすx, y, z を求めればよい (2020/02/04修正)
         // a x + b y + c z = d
@@ -676,7 +690,7 @@ public static class Geometriy
         //double x = (d * (p1.X - p2.X) - b * (p1.X * p2.Y - p1.Y * p2.X) - c * (p1.X * p2.Z - p1.Z * p2.X)) / denom;
         //double y = (d * (p1.Y - p2.Y) - c * (p1.Y * p2.Z - p1.Z * p2.Y) - a * (p1.Y * p2.X - p1.X * p2.Y)) / denom;
         //double z = (d * (p1.Z - p2.Z) - a * (p1.Z * p2.X - p1.X * p2.Z) - b * (p1.Z * p2.Y - p1.Y * p2.Z)) / denom;
-
+        
         double dx = p1.X - p2.X, dy = p1.Y - p2.Y, dz = p1.Z - p2.Z;
 
         var uz = p1.X * p2.Y - p1.Y * p2.X;
@@ -688,12 +702,12 @@ public static class Geometriy
         var y = (d * dy - c * ux + a * uz) / denom;
         var z = (d * dz - a * uy + b * ux) / denom;
 
-        return new Vector3D(x, y, z);
+        return new V3d(x, y, z);
     }
 
 
     // <summary>
-    /// 3次元において、平面 a x + b y + c z = d (法線ベクトル(a,b,c))と、点(0,0,0)とptを結ぶ直線と交わる交点を返す
+    /// 3次元において、平面 a x + b y + c z = d (法線ベクトル(a,b,c))が、点(0,0,0)とptを結ぶ直線と交わる交点を返す.  平面方程式がa x + b y + c z + d = 0 ではないことに注意
     /// </summary>
     /// <param name="a"></param>
     /// <param name="b"></param>
@@ -735,14 +749,14 @@ public static class Geometriy
             pt.RemoveRange(last, pt.Count - last);
 
         if (pt.Max(p => p.Y) <= area.UpperY && pt.Min(pt => pt.Y) >= area.Y)
-            return new[] { pt.ToArray() };
+            return [[.. pt]];
         else if (pt.Max(p => p.Y) <= area.Y || pt.Min(pt => pt.Y) >= area.UpperY)
-            return new[] { Array.Empty<PointD>() };
+            return [[]];
         else
         {
             for (int i = 0; i < pt.Count - 1; i++)
             {
-                if (!area.IsInsde(pt[i]) || !area.IsInsde(pt[i + 1])) //どちらかが範囲外の時
+                if (!area.IsInside(pt[i]) || !area.IsInside(pt[i + 1])) //どちらかが範囲外の時
                 {
                     var pts = getCrossPoint(pt[i], pt[i + 1], area);
                     if (pts != null)
@@ -756,18 +770,18 @@ public static class Geometriy
             var results = new List<List<PointD>>();
             for (int i = 0; i < pt.Count - 1; i++)
             {
-                if (!area.IsInsde(pt[i]))
+                if (!area.IsInside(pt[i]))
                     pt.RemoveAt(i--);
                 else
                 {
                     var pts = new List<PointD>();
-                    for (; i < pt.Count && area.IsInsde(pt[i]); i++)
+                    for (; i < pt.Count && area.IsInside(pt[i]); i++)
                         pts.Add(new PointD(pt[i]));
                     i--;
                     results.Add(pts);
                 }
             }
-            return results.Select(r => r.ToArray()).ToArray();
+            return [.. results.Select(r => r.ToArray())];
         }
     }
 
@@ -784,9 +798,9 @@ public static class Geometriy
         var a = (p2.Y - p1.Y) / (p2.X - p1.X);
         var b = p2.Y - a * p2.X;
 
-        if (rect.IsInsde(p1))//p1が範囲内にあるとき
+        if (rect.IsInside(p1))//p1が範囲内にあるとき
         {
-            if (rect.IsInsde(p2))//p1もp2が範囲内にあるとき
+            if (rect.IsInside(p2))//p1もp2が範囲内にあるとき
             {
                 return null;
             }
@@ -795,42 +809,42 @@ public static class Geometriy
                 if (double.IsInfinity(a))
                 {
                     if (p2.Y > rect.UpperY)
-                        return new[] { new PointD(p1.X, rect.UpperY) };
+                        return [new PointD(p1.X, rect.UpperY)];
                     else
-                        return new[] { new PointD(p1.X, rect.Y) };
+                        return [new PointD(p1.X, rect.Y)];
                 }
                 //x=maxXとの交点は
                 double c = a * rect.UpperX + b;
 
                 if (c < rect.Y)
-                    return new[] { new PointD((rect.Y - b) / a, rect.Y) };
+                    return [new PointD((rect.Y - b) / a, rect.Y)];
                 else if (c > rect.UpperY)
-                    return new[] { new PointD((rect.UpperY - b) / a, rect.UpperY) };
+                    return [new PointD((rect.UpperY - b) / a, rect.UpperY)];
                 else
-                    return new[] { new PointD(rect.UpperX, c) };
+                    return [new PointD(rect.UpperX, c)];
             }
         }
         else//p1が範囲外にあるとき
         {
-            if (rect.IsInsde(p2))//p1が範囲外でp2が範囲内のとき
+            if (rect.IsInside(p2))//p1が範囲外でp2が範囲内のとき
             {
                 //方程式は y= a x + b
                 if (double.IsInfinity(a))
                 {
                     if (p1.Y > rect.UpperY)
-                        return new[] { new PointD(p1.X, rect.UpperY) };
+                        return [new PointD(p1.X, rect.UpperY)];
                     else
-                        return new[] { new PointD(p1.X, rect.Y) };
+                        return [new PointD(p1.X, rect.Y)];
                 }
                 //x=minXとの交点は
                 double c = a * rect.X + b;
 
                 if (c < rect.Y)
-                    return new[] { new PointD((rect.Y - b) / a, rect.Y) };
+                    return [new PointD((rect.Y - b) / a, rect.Y)];
                 else if (c > rect.UpperY)
-                    return new[] { new PointD((rect.UpperY - b) / a, rect.UpperY) };
+                    return [new PointD((rect.UpperY - b) / a, rect.UpperY)];
                 else
-                    return new[] { new PointD(rect.X, c) };
+                    return [new PointD(rect.X, c)];
             }
             else//p1もp2が範囲外のとき
             {
@@ -839,9 +853,9 @@ public static class Geometriy
                     if (p1.X >= rect.X && p1.X <= rect.UpperX)//両者のXは範囲内だが、Yがそれぞれ上限と下限を超えている場合
                     {
                         if (p1.Y < rect.Y && rect.UpperY < p2.Y)
-                            return new[] { new PointD(p1.X, rect.Y), new PointD(p1.X, rect.UpperY) };
+                            return [new PointD(p1.X, rect.Y), new PointD(p1.X, rect.UpperY)];
                         else if (p2.Y < rect.Y && rect.UpperY < p1.Y)
-                            return new[] { new PointD(p1.X, rect.UpperY), new PointD(p1.X, rect.Y) };
+                            return [new PointD(p1.X, rect.UpperY), new PointD(p1.X, rect.Y)];
                     }
                     else
                         return null;
@@ -849,13 +863,13 @@ public static class Geometriy
 
                 //4つの交点を求める
 
-                var temp = new List<PointD>(new[] {
+                List<PointD> temp = new([
                     new PointD(rect.X, a * rect.X + b),
                     new PointD(rect.UpperX, a * rect.UpperX + b),
                     new PointD((rect.Y - b) / a, rect.Y),
-                    new PointD((rect.UpperY - b) / a, rect.UpperY) });
+                    new PointD((rect.UpperY - b) / a, rect.UpperY) ]);
 
-                var pts = temp.Where(p => rect.IsInsde(p) && p.X >= p1.X && p.X <= p2.X && p.Y >= Math.Min(p1.Y, p2.Y) && p.Y <= Math.Max(p1.Y, p2.Y)).OrderBy(p => p.X).ToArray();
+                var pts = temp.Where(p => rect.IsInside(p) && p.X >= p1.X && p.X <= p2.X && p.Y >= Math.Min(p1.Y, p2.Y) && p.Y <= Math.Max(p1.Y, p2.Y)).OrderBy(p => p.X).ToArray();
                 if (pts.Length == 2)
                     return pts;
                 else
@@ -875,45 +889,29 @@ public static class Geometriy
     /// <param name="y"></param>
     /// <param name="z"></param>
     /// <returns></returns>
-    public static double GetLengthFromPlane(double a, double b, double c, double d, double x, double y, double z)
-    {
-        return Math.Abs(a * x + b * y + c * z + d) / Math.Sqrt(a * a + b * b + c * c);
-    }
+    public static double GetLengthFromPlane(double a, double b, double c, double d, double x, double y, double z) 
+        => Math.Abs(a * x + b * y + c * z + d) / Math.Sqrt(a * a + b * b + c * c);
+
+    #region 点集合から最小二乗法による平面パラメータdouble[]{a,b,c,d} (但し、平面方程式 a x + b y + c z + d = 0) を返す. 
 
     /// <summary>
     /// 点集合から最小二乗法による平面パラメータdouble[]{a,b,c,d} (但し、平面方程式 a x + b y + c z + d = 0) を返す
     /// </summary>
     /// <param name="points"></param>
     /// <returns>double[]{a,b,c,d} (但し、平面方程式 a x + b y + c z + d = 0)</returns>
-    public static double[] GetPlaneEquationFromPoints(IEnumerable<Vector3DBase> points)
-    {
-        //http://sysplan.nams.kyushu-u.ac.jp/gen/edu/Algorithms/PlaneFitting/index.html
-        //pdfはCrystallograpy/資料フォルダ
-
-        var ave = Vector3DBase.Average(points);
-        var mtx = new DenseMatrix(points.Count(), 3);
-        int n = 0;
-        foreach (var p in points.Select(p => p - ave))
-            mtx.SetRow(n++, p.ToDoublearray());
-
-        var evd = (mtx.Transpose() * mtx).Evd(Symmetricity.Unknown);
-        var index = evd.EigenValues.AbsoluteMinimumIndex();
-
-        double a = evd.EigenVectors[0, index], b = evd.EigenVectors[1, index], c = evd.EigenVectors[2, index], d = -(a * ave.X + b * ave.Y + c * ave.Z);
-        return new double[] { a, b, c, d };
-    }
+    public static (double A, double B, double C, double D) GetPlaneEquationFromPoints(IEnumerable<V3d> points) => GetPlaneEquationFromPoints(points.AsValueEnumerable());
 
     /// <summary>
     /// 点集合から最小二乗法による平面パラメータdouble[]{a,b,c,d} (但し、平面方程式 a x + b y + c z + d = 0) を返す
     /// </summary>
     /// <param name="points"></param>
     /// <returns>double[]{a,b,c,d} (但し、平面方程式 a x + b y + c z + d = 0)</returns>
-    public static double[] GetPlaneEquationFromPoints(IEnumerable<OpenTK.Vector3d> points)
+    public static (double A, double B, double C, double D) GetPlaneEquationFromPoints(ValueEnumerable<ZLinq.Linq.FromEnumerable<V3d>,V3d> points)
     {
         //http://sysplan.nams.kyushu-u.ac.jp/gen/edu/Algorithms/PlaneFitting/index.html
         //pdfはCrystallograpy/資料フォルダ
 
-        var ave = new OpenTK.Vector3d();
+        var ave = new V3d();
         foreach (var p in points)
             ave += p;
         ave /= points.Count();
@@ -921,15 +919,16 @@ public static class Geometriy
         var mtx = new DenseMatrix(points.Count(), 3);
         int n = 0;
         foreach (var p in points.Select(p => p - ave))
-            mtx.SetRow(n++, new[] { p.X, p.Y, p.Z });
+            mtx.SetRow(n++, [p.X, p.Y, p.Z]);
 
-        //var evd = (mtx.Transpose() * mtx).Evd(Symmetricity.Unknown);
         var evd = mtx.TransposeThisAndMultiply(mtx).Evd(Symmetricity.Symmetric);
         var index = evd.EigenValues.AbsoluteMinimumIndex();
 
         double a = evd.EigenVectors[0, index], b = evd.EigenVectors[1, index], c = evd.EigenVectors[2, index], d = -(a * ave.X + b * ave.Y + c * ave.Z);
-        return new double[] { a, b, c, d };
+        return (a, b, c, d);
     }
+
+    #endregion
 
 
     /// <summary>
@@ -939,6 +938,8 @@ public static class Geometriy
     /// <returns></returns>
     public static bool Enclosed(double[][] bounds)
     {
+        if (bounds.Length < 4) return false;
+
         var countList = new List<int>();
 
         for (int i = 0; i < bounds.Length; i++)
@@ -946,32 +947,94 @@ public static class Geometriy
             var n = GetClippedPolygon(i, bounds).Length;
             if (n >= 3)
                 countList.Add(GetClippedPolygon(i, bounds).Length);
+            if (countList.Count >= 4)
+                return true;
         }
 
-        return countList.Count >= 4;
+        return false;
     }
 
     /// <summary>
     /// 境界面によって切り取られた多角形の頂点座標を求める.
     /// </summary>
-    /// <param name="plane">切り取られる面 (double[4],  a x + b y + c z + d = 0) </param>
+    /// <param name="p">切り取られる面 (double[4],  a x + b y + c z + d = 0) </param>
     /// <param name="bounds">境界面 (double[4],  a x + b y + c z + d >= 0 ) </param>
     /// <returns></returns>
-    public static double[][] GetClippedPolygon(double[] plane, double[][] bounds)
+    public static double[][] GetClippedPolygon(double[] p, double[][] bounds)
     {
-        var pts = new List<Vector3DBase>();
-        for (int i = 0; i < bounds.Length; i++)
-            for (int j = i + 1; j < bounds.Length; j++)
+        if (bounds.Length == 0) return null;
+
+        List<V3d> pts;
+
+        if (bounds.Length < 250)//boundsが少ない場合は正攻法で解く
+        {
+            pts = [];
+            for (int i = 0; i < bounds.Length; i++)
             {
-                var mtx = new Matrix3D(plane[0], bounds[i][0], bounds[j][0], plane[1], bounds[i][1], bounds[j][1], plane[2], bounds[i][2], bounds[j][2]);
-                if (Math.Abs(mtx.Determinant()) > 0.0000000001)
+                var mtx = new Matrix3D(p[0], bounds[i][0], 0, p[1], bounds[i][1], 0, p[2], bounds[i][2], 0);
+                for (int j = i + 1; j < bounds.Length; j++)
                 {
-                    var pt = mtx.Inverse() * new Vector3DBase(-plane[3], -bounds[i][3], -bounds[j][3]);
-                    if (bounds.All(b => b[0] * pt.X + b[1] * pt.Y + b[2] * pt.Z + b[3] > -0.0000000001) && pts.All(p => (p - pt).Length2 > 0.0000000001))
-                        pts.Add(pt);
+                    mtx.E31 = bounds[j][0]; mtx.E32 = bounds[j][1]; mtx.E33 = bounds[j][2];
+                    if (Math.Abs(mtx.Determinant()) > 0.0000000001)
+                    {
+                        var pt = (mtx.Inverse() * (-p[3], -bounds[i][3], -bounds[j][3])).ToOpenTK();
+                        if (bounds.All(b => b[0] * pt.X + b[1] * pt.Y + b[2] * pt.Z + b[3] > -0.0000000001) && pts.All(p => (p - pt).LengthSquared > 0.0000000001))
+                            pts.Add(pt);
+                    }
                 }
             }
-        return pts.Select(p => p.ToDoublearray()).ToArray();
+        }
+        else//boundsが多い場合は、大きな矩形を徐々に切り取るようなアルゴリズム
+        {
+            var p2 = p[0] * p[0] + p[1] * p[1] + p[2] * p[2];
+
+            //plane上の、十分に大きい面積を持った4点を用意する
+            var max = bounds.Max(b => b[3]);
+            Vector3DBase temp1 = new(p[0], p[1], p[2]), temp2 = new(0, 0, 1);
+            var rotAngle = Vector3DBase.AngleBetVectors(temp1, temp2);
+            var rotAxis = Vector3DBase.VectorProduct(temp1, temp2);
+            var rot = Math.Abs(rotAngle - Math.PI) < 1E-10 ? Matrix3D.Rot((1, 0, 0), Math.PI) : Matrix3D.Rot(rotAxis, -rotAngle);
+
+            pts = [(rot * (max, max, -p[3])).ToOpenTK(), (rot * (-max, max, -p[3])).ToOpenTK(), (rot * (-max, -max, -p[3])).ToOpenTK(), (rot * (max, -max, -p[3])).ToOpenTK()];
+
+            //boundsによって切り取られる座標を計算し、新しい点集合を作っていく
+            foreach (var b in bounds.Where(b => !(b[0] == p[0] && b[1] == p[1] && b[2] == p[2] && b[3] == p[3])))
+            {
+                var b2 = b[0] * b[0] + b[1] * b[1] + b[2] * b[2];
+                var pb = b[0] * p[0] + b[1] * p[1] + b[2] * p[2];
+
+                if (pb * pb / p2 / b2 < 1 - 1E-10)// bとplaneが平行ではない場合
+                {
+                    var ptsNew = new List<V3d>(pts.Count + 1);
+                    var v1 = pts[^1];
+                    var r1 = v1.X * b[0] + v1.Y * b[1] + v1.Z * b[2] + b[3];
+                    for (int i = 0; i < pts.Count; i++)
+                    {
+                        if (r1 > -1E-10)
+                            ptsNew.Add(v1);
+
+                        var v2 = pts[i];
+                        var r2 = v2.X * b[0] + v2.Y * b[1] + v2.Z * b[2] + b[3];
+
+                        if (Math.Abs(r1) > 1E-10 && Math.Abs(r2) > 1E-10 && r1 * r2 < 0) //v1とv2の間を平面bが通るとき、
+                        {
+                            var pt = GetCrossPoint(b[0], b[1], b[2], -b[3], v1, v2);//d=b[3]の符号に注意
+                            if ((pt - v1).LengthSquared > 1E-10 && (pt - v2).LengthSquared > 1E-10)
+                                ptsNew.Add(pt);
+                        }
+                        v1 = v2;
+                        r1 = r2;
+                    }
+                    if (ptsNew.Count < 3)
+                        return null;
+                    pts = ptsNew;
+                }
+                else if ((pb > 0 && b[3] < p[3]) || (pb < 0 && b[3] < p[3]))  //bとPlaneが平行な場合、法線の向きに注意してnullを返す
+                    return null;
+            }
+        }
+
+        return [.. pts.Select(p => new double[] { p.X, p.Y, p.Z })];
     }
 
     /// <summary>
@@ -980,10 +1043,7 @@ public static class Geometriy
     /// <param name="i">切り取られる面のインデックス</param>
     /// <param name="bounds">境界面 (ただしiは除く) (double[4],  a x + b y + c z + d >= 0 ) </param>
     /// <returns></returns>
-    public static double[][] GetClippedPolygon(int i, double[][] bounds)
-    {
-        return GetClippedPolygon(bounds[i], bounds.Where((b, j) => i != j).ToArray());
-    }
+    public static double[][] GetClippedPolygon(int i, double[][] bounds) => GetClippedPolygon(bounds[i], bounds);
 
     /// <summary>
     /// ベクトルa1 => ベクトルb1 かつ ベクトルa2 => ベクトルb2に写すような回転行列を求める. a1,a2,b1,b2の長さは1でなくても構わない（関数中で規格化する）
@@ -1030,7 +1090,7 @@ public static class Geometriy
         double P = -(sinTau2 - cosAlpha2) / (l * l * (1 - cosAlpha2)), Psqrt = Math.Sqrt(Math.Abs(P));
         double Q = -P * (sinTau2 - cosAlpha2) / cosAlpha2, Qsqrt = Math.Sqrt(Q);
 
-        PointD rot(in PointD pt) => new PointD(cosPhi * pt.X - sinPhi * pt.Y, sinPhi * pt.X + cosPhi * pt.Y);
+        PointD rot(in PointD pt) => new(cosPhi * pt.X - sinPhi * pt.Y, sinPhi * pt.X + cosPhi * pt.Y);
 
         var maxWidth = Math.Max(upperLeft.Length, lowerRight.Length);
 
@@ -1070,9 +1130,9 @@ public static class Geometriy
                         //pts1.Add(rot(new PointD(x, sign * y) + shift));
                         //pts2.Add(rot(new PointD(x, -y) + shift));
                     }
-                    tempResult.Add(pts1.Select(p => rot(p + shift)).ToList());
+                    tempResult.Add([.. pts1.Select(p => rot(p + shift))]);
                     if (bothCone)
-                        tempResult.Add(pts1.Select(p => rot(new PointD(p.X, -p.Y) + shift)).ToList());
+                        tempResult.Add([.. pts1.Select(p => rot(new PointD(p.X, -p.Y) + shift))]);
                 }
             }
         }
@@ -1113,7 +1173,7 @@ public static class Geometriy
             {
                 if (flags[j])
                 {
-                    result.Add(new List<PointD>());
+                    result.Add([]);
                     for (; j < pts.Count && flags[j]; j++)
                         result[^1].Add(pts[j]);
                 }

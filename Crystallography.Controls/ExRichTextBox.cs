@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Crystallography.Controls;
 
-public partial class ExRichTextBox : System.Windows.Forms.RichTextBox
+public partial class ExRichTextBox : RichTextBox
 {
     #region "変数・定数"
 
@@ -19,7 +19,7 @@ public partial class ExRichTextBox : System.Windows.Forms.RichTextBox
     private readonly ListBox listBox = new();//入力候補のポップアップリスト
     //private Timer timer = new Timer();
 
-    private ToolTip tooltip = new();
+    private readonly ToolTip tooltip = new();
 
     //private Label toolTipLabel = new Label();
     private string[] _AutoCompleteItems;//入力候補事前登録用

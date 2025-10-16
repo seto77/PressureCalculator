@@ -209,15 +209,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PressureCalculator"
-        "ProductCode" = "8:{BCC374F6-A047-429A-BA26-4B0C876510F9}"
-        "PackageCode" = "8:{CBF1E4FC-1CB3-41A5-B759-2C6138A137DA}"
+        "ProductCode" = "8:{27E1194F-9934-4A88-8147-62B53BD3BD75}"
+        "PackageCode" = "8:{B982BA7F-D252-4DF2-93C9-CF1C85ABF496}"
         "UpgradeCode" = "8:{AB8CAB9D-1085-4D04-8812-8107672A0B5C}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.1.007"
+        "ProductVersion" = "8:0.1.008"
         "Manufacturer" = "8:Crystallography Software"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/seto77/PressureCalculator/"
@@ -619,7 +619,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_26112D64DA024FDA8358D640A59DD136"
             {
-            "SourcePath" = "8:..\\PressureCalculator\\obj\\Release\\net7.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\PressureCalculator\\obj\\Release\\net9.0-windows10.0.26100.0\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C8E792C9E3544094BC936B8F7F5808CA"

@@ -315,7 +315,7 @@ public partial class ScalablePictureBox : UserControl
 
 
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public List<Symbol> Symbols { set; get; } = new List<Symbol>();
+    public List<Symbol> Symbols { set; get; } = [];
 
     /// <summary>
     /// 左上に表示するテキスト
@@ -370,7 +370,7 @@ public partial class ScalablePictureBox : UserControl
     public bool TitleVisible { get; set; } = false;
     public (string Text, Font Font, Color Color1, Color Color2) Title { get; set; }
 
-    
+
     #endregion プロパティ
 
     /// <summary>
@@ -507,12 +507,12 @@ public partial class ScalablePictureBox : UserControl
             _Center = ConvertToSrcPt(e.Location);//イベントを起こさないように小文字のcenterに代入
             Zoom *= 0.5f;
         }
-        else if ((e.Button == MouseButtons.Left||e.Button== MouseButtons.Middle) && e.Clicks == 1)
+        else if ((e.Button == MouseButtons.Left || e.Button == MouseButtons.Middle) && e.Clicks == 1)
         {
             justBeforePoint = e.Location;
         }
     }
-    
+
 
     private bool manualSpotMode = false;
 
@@ -535,7 +535,7 @@ public partial class ScalablePictureBox : UserControl
             mouseRangeEnd = e.Location;
             pictureBox.Refresh();
         }
-        else if ((e.Button == MouseButtons.Left||e.Button == MouseButtons.Middle) && MouseTranslation && justBeforePoint != e.Location)
+        else if ((e.Button == MouseButtons.Left || e.Button == MouseButtons.Middle) && MouseTranslation && justBeforePoint != e.Location)
         {
             Center = new PointD(Center.X + (justBeforePoint.X - e.Location.X) / Zoom, Center.Y + (justBeforePoint.Y - e.Location.Y) / Zoom);
             justBeforePoint = e.Location;
@@ -722,8 +722,8 @@ public partial class ScalablePictureBox : UserControl
 
     private void drawSymbols(PaintEventArgs e, List<PointD> spot, List<string> spotLabel, Brush brush1, Brush brush2, bool showLabel, int? emphasizeNum)
     {
-        var gp = new GraphicsPath();
-        FontFamily ff = new FontFamily("Arial");
+        GraphicsPath gp;
+        FontFamily ff = new("Arial");
         Pen pen1 = new(brush1), pen2 = new(brush2);
         if (spot != null && spot.Count > 0)
             for (int i = 0; i < spot.Count; i++)
@@ -765,10 +765,7 @@ public partial class ScalablePictureBox : UserControl
     /// </summary>
     public event PaintEventHandler PaintControl;
 
-    private void ScalablePictureBox_Paint(object sender, PaintEventArgs e)
-    {
-        PaintControl?.Invoke(sender, e);
-    }
+    private void ScalablePictureBox_Paint(object sender, PaintEventArgs e) => PaintControl?.Invoke(sender, e);
 
     /// <summary>
     /// コントロール全体がリサイズされたとき
@@ -1021,24 +1018,18 @@ public partial class ScalablePictureBox : UserControl
     public void SaveAsPNG()
     {
         var dlg = new SaveFileDialog() { Filter = "*.png|*.png" };
-        if(dlg.ShowDialog()== DialogResult.OK)
+        if (dlg.ShowDialog() == DialogResult.OK)
             GetBitmapImage().Save(dlg.FileName);
     }
 
     public void CopyAsBitmap()
     {
-        Clipboard.SetDataObject(GetBitmapImage(),true);
+        Clipboard.SetDataObject(GetBitmapImage(), true);
     }
 
-    public void SaveAsMetafile()
-    {
-        metafile(true);
-    }
+    public void SaveAsMetafile() => metafile(true);
 
-    public void CopyAsMetafile()
-    {
-        metafile(false);
-    }
+    public void CopyAsMetafile() => metafile(false);
 
     private void metafile(bool save)
     {
@@ -1076,12 +1067,6 @@ public partial class ScalablePictureBox : UserControl
         else
             ClipboardMetafileHelper.PutEnhMetafileOnClipboard(this.Handle, mf);
     }
-
-
-
-
-
-
 
     //このコントロールがフォーカスを浴びた時の処理
     private void ScalablePictureBox_Enter(object sender, EventArgs e)

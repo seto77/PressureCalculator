@@ -1,12 +1,19 @@
-﻿using MathNet.Numerics.LinearAlgebra;
+﻿#region using
+
+using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Numerics;
+using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using Windows.UI.ViewManagement.Core;
 using DMat = MathNet.Numerics.LinearAlgebra.Complex.DenseMatrix;
 using MC = Crystallography.MathematicalConstants;
+
+#endregion
 
 namespace Crystallography;
 
@@ -243,25 +250,36 @@ public static class MathnetEx
 //}
 #endregion
 
-#region (int h, int k, int l)の拡張
+#region タプル型の拡張
 public static class HKL
 {
     public static (int H, int K, int L) Plus(ref this (int H, int K, int L) x, (int H, int K, int L) y) => (x.H + y.H, x.K + y.K, x.L + y.L);
     public static (int H, int K, int L) Minus(ref this (int H, int K, int L) x, (int H, int K, int L) y) => (x.H - y.H, x.K - y.K, x.L - y.L);
     public static int Multiply(ref this (int H, int K, int L) x, (int H, int K, int L) y) => x.H * y.H + x.K * y.K + x.L * y.L;
+
+    public static (int H, int K, int L) Cross(ref this (int H, int K, int L) x, (int H, int K, int L) y)
+        => (x.K * y.L - x.L * y.K, x.L * y.H - x.H * y.L, x.H * y.K - x.K * y.H);
+
+    public static Vector3DBase ToVector3DBase(ref this (double X, double Y, double Z) v) => new Vector3DBase(v.X, v.Y, v.Z);
+    public static double Length2(ref this (double X, double Y, double Z) v) => v.X * v.X + v.Y * v.Y + v.Z * v.Z;
+    public static double Length(ref this (double X, double Y, double Z) v) => Math.Sqrt(v.Length2());
+
+
 }
 #endregion
 
 #region Stringの拡張
 public static class StringEx
 {
+    public static System.Globalization.CultureInfo InvCul = System.Globalization.CultureInfo.InvariantCulture;
+
     /// <summary>
     /// 拡張メソッド.  指定したseparatorで文字を区切り、文字の配列を返す.
     /// </summary>
     /// <param name="c"></param>
     /// <returns></returns>
     public static string[] Split(this string s, string separator, bool removeEmptyEntries = true)
-        => s.Split(new[] { separator }, removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
+        => s.Split([separator], removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
 
     /// <summary>
     /// 拡張メソッド.  指定したseparatorで文字を区切り、文字の配列を返す.
@@ -271,7 +289,7 @@ public static class StringEx
     /// <param name="removeEmptyEntries"></param>
     /// <returns></returns>
     public static string[] Split(this string s, char separator, bool removeEmptyEntries = true)
-         => s.Split(new[] { separator }, removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
+         => s.Split([separator], removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
 
 
     /// <summary>
@@ -279,15 +297,33 @@ public static class StringEx
     /// </summary>
     /// <returns></returns>
     public static string[] Split(this string s, bool removeEmptyEntries = true)
-        => s.Split(new[] { " ", "," }, removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
+        => s.Split([" ", ","], removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
 
 
     /// <summary>
-    /// 拡張メソッド. ConvertToDoubleを拡張メソッドとして呼び出す. 実数と、分数に対応. 変換できない場合は例外発生
+    /// 拡張メソッド. ConvertToDoubleを拡張メソッドとして呼び出す. 実数と、分数に対応. 変換できない場合はNaNを返す
     /// </summary>
     /// <param name="s"></param>
     /// <returns></returns>
-    public static double ToDouble(this string s) => !s.Contains("/") ? Convert.ToDouble(s) : s.Split("/", true)[0].ToDouble() / s.Split("/", true)[1].ToDouble();
+    public static double ToDouble(this string s)
+    {
+
+        if(s.Contains('/'))
+        {
+            var index = s.LastIndexOf('/');
+            return s[0..index].ToDouble() / s[(index+1)..].ToDouble();
+        }
+        else
+        {
+            s = s.Replace(',', '.');
+            if (double.TryParse(s, InvCul, out var result))
+                return result;
+            else
+                return double.NaN;
+            //return Convert.ToDouble(s,InvCul);
+        }
+        //return !s.Contains('/') ? Convert.ToDouble(s) : s.Split("/", true)[0].ToDouble() / s.Split("/", true)[1].ToDouble();
+    }
 
     /// <summary>
     /// 拡張メソッド.  ConvertToInt32を拡張メソッドとして呼び出す. 変換できない場合は例外発生
@@ -319,6 +355,11 @@ public static class DoubleEx
     /// <param name="c"></param>
     /// <returns></returns>
     public static double ToDegrees(in this double d) => d * deg;
+
+    public static double Max(this double[][] d) => d.Max(e => e.Max());
+    public static double Min(this double[][] d) => d.Min(e => e.Min());
+    public static double Max(this double[][][] d) => d.Max(e => e.Max());
+    public static double Min(this double[][][] d) => d.Min(e => e.Min());
 }
 #endregion
 
@@ -328,6 +369,12 @@ public static class DoubleEx
 /// </summary>
 public static class GraphicsAlpha
 {
+    #region 座標変換
+    public static void TranslateTransform(this Graphics g, double x, double y)        => g.TranslateTransform((float)x, (float)y);
+
+    public static void RotateTransform(this Graphics g, double angle_radians)     => g.RotateTransform((float)(angle_radians / Math.PI * 180));
+    #endregion
+
     public static void DrawArc(this Graphics g, Pen pen, double x, double y, double width, double height, double startAngle, double sweepAngle)
         => g.DrawArc(pen, (float)x, (float)y, (float)width, (float)height, (float)startAngle, (float)sweepAngle);
 
@@ -356,7 +403,7 @@ public static class GraphicsAlpha
         => g.FillPie(brush, (float)x, (float)y, (float)width, (float)height, (float)startAngle, (float)sweepAngle);
 
 
-    static Dictionary<(int Alpha, Color Color), SolidBrush> solidBrushDic = new();
+    static Dictionary<(int Alpha, Color Color), SolidBrush> solidBrushDic = [];
 
     #region 円の輪郭、あるいは円の塗りつぶし
     public static void FillCircle(this Graphics graphics, in Color c, in PointD pt, in double radius, in int alpha)
@@ -373,8 +420,209 @@ public static class GraphicsAlpha
         if (Math.Abs(pt.X) < 1E6 && Math.Abs(pt.Y) < 1E6)
             graphics.DrawEllipse(new Pen(c, 0.0001f), (float)(pt.X - radius), (float)(pt.Y - radius), (float)(2 * radius), (float)(2 * radius));
     }
+
+    /// <summary>
+    /// 拡張メソッド
+    /// </summary>
+    /// <param name="graphics"></param>
+    /// <param name="s"></param>
+    /// <param name="font"></param>
+    /// <param name="color"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="resetTransform"></param>
+    public static void DrawString(this Graphics graphics, string s, Font font, Color color, double x, double y, bool resetTransform = false)
+    {
+        var transform = graphics.Transform;
+        if (resetTransform)
+            graphics.Transform = new System.Drawing.Drawing2D.Matrix(1, 0, 0, 1, 1, 1);
+
+        graphics.DrawString(s, font, new SolidBrush(color), (float)x, (float)y);
+
+        if (resetTransform)
+            graphics.Transform = transform;
+    }
+
+    public static void DrawString(this Graphics graphics, string s, Font font, Color color, PointD pt, bool resetTransform = false)
+        => DrawString(graphics, s, font, color, pt.X, pt.Y, resetTransform);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="graphics"></param>
+    /// <param name="text">描画する文字列</param>
+    /// <param name="font">描画に使用するフォント</param>
+    /// <param name="color">描画色</param>
+    /// <param name="pt">描画位置</param>
+    /// <param name="maximumSize">これ以上大きいことはないというサイズ。できるだけ小さくすること。</param>
+    /// <param name="horizontal">水平方向のアラインメント</param>
+    /// <param name="vertical">垂直方向のアラインメント</param>
+
+    public static void DrawStringWithAlignment
+        (this Graphics graphics, string text, Font font, Color color, PointD pt, Size maximumSize, HorizontalAlignment horizontal, VerticalAlignment vertical)
+    {
+
+       var rect = MeasureStringPrecisely(graphics, text, font, maximumSize, new StringFormat());
+
+        float x= (float)pt.X, y = (float)pt.Y ;
+        if (horizontal == HorizontalAlignment.Right)
+            x -= rect.Width;
+        else if(horizontal == HorizontalAlignment.Center)
+            x -= rect.Width/2f;
+        if(vertical == VerticalAlignment.Center)
+            y -= rect.Height/2f;
+        else if (vertical == VerticalAlignment.Bottom)
+            y -= rect.Height;
+        
+        graphics.DrawString(text, font, new SolidBrush(color), x, y);
+    }
+
+    /// <summary>
+    /// Graphics.DrawStringで文字列を描画した時の大きさと位置を正確に計測する
+    /// </summary>
+    /// <param name="g">文字列を描画するGraphics</param>
+    /// <param name="text">描画する文字列</param>
+    /// <param name="font">描画に使用するフォント</param>
+    /// <param name="proposedSize">これ以上大きいことはないというサイズ。
+    /// できるだけ小さくすること。</param>
+    /// <param name="stringFormat">描画に使用するStringFormat</param>
+    /// <returns>文字列が描画される範囲。
+    /// 見つからなかった時は、Rectangle.Empty。</returns>
+    public static Rectangle MeasureStringPrecisely(Graphics g,
+        string text, Font font, Size proposedSize, StringFormat stringFormat)
+    {
+        //解像度を引き継いで、Bitmapを作成する
+        Bitmap bmp = new(proposedSize.Width, proposedSize.Height, g);
+        //BitmapのGraphicsを作成する
+        Graphics bmpGraphics = Graphics.FromImage(bmp);
+        //Graphicsのプロパティを引き継ぐ
+        bmpGraphics.TextRenderingHint = g.TextRenderingHint;
+        bmpGraphics.TextContrast = g.TextContrast;
+        bmpGraphics.PixelOffsetMode = g.PixelOffsetMode;
+        bmpGraphics.Transform = g.Transform;
+        //文字列の描かれていない部分の色を取得する
+        Color backColor = bmp.GetPixel(0, 0);
+        //実際にBitmapに文字列を描画する
+        bmpGraphics.DrawString(text, font, Brushes.Black,
+            new RectangleF(0f, 0f, proposedSize.Width, proposedSize.Height),
+            stringFormat);
+        bmpGraphics.Dispose();
+        //文字列が描画されている範囲を計測する
+        Rectangle resultRect = MeasureForegroundArea(bmp, backColor);
+        bmp.Dispose();
+
+        return resultRect;
+    }
+
+    /// <summary>
+    /// 指定されたBitmapで、backColor以外の色が使われている範囲を計測する
+    /// </summary>
+    private static Rectangle MeasureForegroundArea(Bitmap bmp, Color backColor)
+    {
+        int backColorArgb = backColor.ToArgb();
+        int maxWidth = bmp.Width;
+        int maxHeight = bmp.Height;
+
+        //左側の空白部分を計測する
+        int leftPosition = -1;
+        for (int x = 0; x < maxWidth; x++)
+        {
+            for (int y = 0; y < maxHeight; y++)
+            {
+                //違う色を見つけたときは、位置を決定する
+                if (bmp.GetPixel(x, y).ToArgb() != backColorArgb)
+                {
+                    leftPosition = x;
+                    break;
+                }
+            }
+            if (0 <= leftPosition)
+            {
+                break;
+            }
+        }
+        //違う色が見つからなかった時
+        if (leftPosition < 0)
+        {
+            return Rectangle.Empty;
+        }
+
+        //右側の空白部分を計測する
+        int rightPosition = -1;
+        for (int x = maxWidth - 1; leftPosition < x; x--)
+        {
+            for (int y = 0; y < maxHeight; y++)
+            {
+                if (bmp.GetPixel(x, y).ToArgb() != backColorArgb)
+                {
+                    rightPosition = x;
+                    break;
+                }
+            }
+            if (0 <= rightPosition)
+            {
+                break;
+            }
+        }
+        if (rightPosition < 0)
+        {
+            rightPosition = leftPosition;
+        }
+
+        //上の空白部分を計測する
+        int topPosition = -1;
+        for (int y = 0; y < maxHeight; y++)
+        {
+            for (int x = leftPosition; x <= rightPosition; x++)
+            {
+                if (bmp.GetPixel(x, y).ToArgb() != backColorArgb)
+                {
+                    topPosition = y;
+                    break;
+                }
+            }
+            if (0 <= topPosition)
+            {
+                break;
+            }
+        }
+        if (topPosition < 0)
+        {
+            return Rectangle.Empty;
+        }
+
+        //下の空白部分を計測する
+        int bottomPosition = -1;
+        for (int y = maxHeight - 1; topPosition < y; y--)
+        {
+            for (int x = leftPosition; x <= rightPosition; x++)
+            {
+                if (bmp.GetPixel(x, y).ToArgb() != backColorArgb)
+                {
+                    bottomPosition = y;
+                    break;
+                }
+            }
+            if (0 <= bottomPosition)
+            {
+                break;
+            }
+        }
+        if (bottomPosition < 0)
+        {
+            bottomPosition = topPosition;
+        }
+
+        //結果を返す
+        return new Rectangle(leftPosition, topPosition,
+            rightPosition - leftPosition, bottomPosition - topPosition);
+    }
+
+
     #endregion
 
+    public static void DrawImage(this Graphics g, Image img, RectangleD rect)
+        => g.DrawImage(img, rect.ToRectangleF());
 
 }
 #endregion

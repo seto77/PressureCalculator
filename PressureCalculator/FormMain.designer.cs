@@ -104,114 +104,7 @@ namespace PressureCalculator
         private Label label3;
         private RadioButton radioButtonEOS;
         private FlowLayoutPanel flowLayoutPanelEOS;
-        private GroupBox groupBoxGold;
-        private TextBox textBoxGoldJamieson;
-        private TextBox textBoxGoldAnderson;
-        private TextBox textBoxGoldTsuchiya;
-        private Label label50;
-        private TextBox textBoxGoldSim;
-        private Label label11;
-        private Label label70;
-        private Label label15;
-        public TextBox textBoxGold_a;
-        private TextBox textBoxGold_a0;
-        private Label label16;
-        private Label label37;
-        private Label label49;
-        private Label label23;
-        private Label label22;
-        private Label label69;
-        private Label label36;
-        private Label label38;
-        private GroupBox groupBoxPlatinum;
-        private TextBox textBoxPtA0;
-        private TextBox textBoxPtJamieson;
-        private TextBox textBoxPtHolems;
-        private Label label39;
-        private Label label47;
-        private Label label61;
-        public TextBox textBoxPtA;
-        private Label label54;
-        private Label label48;
-        private Label label51;
-        private Label label52;
-        private Label label60;
-        private GroupBox groupBoxNaClB1;
-        public TextBox textBoxNaClB1_a0;
-        public TextBox textBoxNaClB1_a;
-        private Label label53;
-        private Label label55;
-        private Label label56;
-        private TextBox textBoxNaClB1Brown;
-        private Label label62;
-        private Label label57;
-        private Label label58;
-        private GroupBox groupBoxNaClB2;
-        public TextBox textBoxNaClB2_a0;
-        public TextBox textBoxNaClB2_a;
-        private TextBox textBoxNaClB2SataMgO;
-        private TextBox textBoxNaClB2SataPt;
-        private Label label65;
-        private Label label67;
-        private Label label59;
-        private Label label63;
-        private Label label64;
-        private Label label66;
-        private Label label68;
-        private Label label71;
-        private GroupBox groupBoxPericlase;
-        private Label label72;
-        private Label label73;
-        private TextBox textBoxMgOAizawa;
-        private Label label74;
-        private TextBox textBoxMgODewaele;
-        private TextBox textBoxMgOJacson;
-        public TextBox textBoxMgOA0;
-        private Label label75;
-        private Label label76;
-        private Label label77;
-        private Label label78;
-        public TextBox textBoxMgOA;
-        private Label label79;
-        private Label label80;
-        private Label label81;
-        private GroupBox groupBoxCorundum;
-        private Label label82;
-        private TextBox textBoxCorundumDubrovinsky;
-        public TextBox textBoxColundumV0;
-        private Label label83;
-        private Label label84;
-        public TextBox textBoxCorundumV;
-        private Label label85;
-        private Label label86;
-        private Label label87;
-        private GroupBox groupBoxAr;
-        public TextBox textBoxArA0;
-        public TextBox textBoxArA;
-        private TextBox textBoxArJephcoat;
-        private Label label88;
-        private TextBox textBoxArRoss;
-        private Label label89;
-        private Label label90;
-        private Label label91;
-        private Label label92;
-        private Label label93;
-        private Label label94;
-        private Label label95;
-        private GroupBox groupBoxRe;
-        private Label label96;
-        private TextBox textBoxReZha;
-        public TextBox textBoxReV0;
-        private Label label97;
-        private Label label98;
-        public TextBox textBoxReV;
-        private Label label99;
-        private Label label100;
-        private Label label101;
         private Panel panelEOS;
-        private TextBox textBoxT;
-        private Label label103;
-        private Label label102;
         private Panel panel2;
         private Label label107;
         private TextBox textBoxShenP;
@@ -336,114 +229,106 @@ namespace PressureCalculator
             label35 = new Label();
             flowLayoutPanelEOS = new FlowLayoutPanel();
             groupBoxGold = new GroupBox();
-            textBoxGoldJamieson = new TextBox();
-            textBoxGoldAnderson = new TextBox();
-            textBoxGoldTsuchiya = new TextBox();
-            label50 = new Label();
-            textBoxGoldSim = new TextBox();
+            numericBoxAuFratanduono = new Crystallography.Controls.NumericBox();
+            numericBoxAuYokoo = new Crystallography.Controls.NumericBox();
+            numericalTextBoxGoldJamieson = new Crystallography.Controls.NumericBox();
+            numericalTextBoxGoldTsuchiya = new Crystallography.Controls.NumericBox();
+            numericalTextBoxGoldSim = new Crystallography.Controls.NumericBox();
             label11 = new Label();
-            label70 = new Label();
-            label15 = new Label();
-            textBoxGold_a = new TextBox();
-            textBoxGold_a0 = new TextBox();
-            label16 = new Label();
-            label37 = new Label();
+            numericalTextBoxGoldAnderson = new Crystallography.Controls.NumericBox();
             label49 = new Label();
-            label23 = new Label();
+            numericalTextBoxGoldA = new Crystallography.Controls.NumericBox();
+            numericBoxGoldA0 = new Crystallography.Controls.NumericBox();
             label22 = new Label();
             label69 = new Label();
-            label36 = new Label();
-            label38 = new Label();
+            label15 = new Label();
+            label27 = new Label();
             groupBoxPlatinum = new GroupBox();
-            textBoxPtA0 = new TextBox();
-            textBoxPtJamieson = new TextBox();
-            textBoxPtHolems = new TextBox();
-            label39 = new Label();
-            label47 = new Label();
-            label61 = new Label();
-            textBoxPtA = new TextBox();
-            label54 = new Label();
-            label48 = new Label();
-            label51 = new Label();
-            label52 = new Label();
-            label60 = new Label();
+            numericBoxPtFratanduono = new Crystallography.Controls.NumericBox();
+            numericBoxPtYokoo = new Crystallography.Controls.NumericBox();
+            numericalTextBoxPtMatsui = new Crystallography.Controls.NumericBox();
+            numericalTextBoxPtHolmes = new Crystallography.Controls.NumericBox();
+            label16 = new Label();
+            numericalTextBoxPtJamieson = new Crystallography.Controls.NumericBox();
+            label23 = new Label();
+            label26 = new Label();
+            label36 = new Label();
+            numericalTextBoxPtA = new Crystallography.Controls.NumericBox();
+            numericBoxPtA0 = new Crystallography.Controls.NumericBox();
+            label37 = new Label();
             groupBoxNaClB1 = new GroupBox();
-            textBoxNaClB1_a0 = new TextBox();
-            textBoxNaClB1_a = new TextBox();
+            numericalTextBoxNaClB1Matsui = new Crystallography.Controls.NumericBox();
+            numericalTextBoxNaClB1Brown = new Crystallography.Controls.NumericBox();
+            label38 = new Label();
+            label39 = new Label();
+            numericalTextBoxNaClB1A = new Crystallography.Controls.NumericBox();
+            numericBoxNaClB1A0 = new Crystallography.Controls.NumericBox();
+            groupBoxNaClB2 = new GroupBox();
+            numericalTextBoxNaClB2SakaiVinet = new Crystallography.Controls.NumericBox();
+            numericalTextBoxNaClB2SakaiBM = new Crystallography.Controls.NumericBox();
+            numericalTextBoxNaClB2Ueda = new Crystallography.Controls.NumericBox();
+            label40 = new Label();
+            numericalTextBoxNaClB2SataMgO = new Crystallography.Controls.NumericBox();
+            label41 = new Label();
+            numericalTextBoxNaClB2SataPt = new Crystallography.Controls.NumericBox();
+            label47 = new Label();
+            label48 = new Label();
+            numericalTextBoxNaClB2A = new Crystallography.Controls.NumericBox();
+            label50 = new Label();
+            numericalTextBoxNaClB2A0 = new Crystallography.Controls.NumericBox();
+            groupBoxPericlase = new GroupBox();
+            numericBoxMgOTangeBM = new Crystallography.Controls.NumericBox();
+            numericBoxMgOTangeVinet = new Crystallography.Controls.NumericBox();
+            numericalTextBoxMgOAizawa = new Crystallography.Controls.NumericBox();
+            label51 = new Label();
+            numericalTextBoxMgODewaele = new Crystallography.Controls.NumericBox();
+            label52 = new Label();
+            numericalTextBoxMgOJacson = new Crystallography.Controls.NumericBox();
             label53 = new Label();
+            label54 = new Label();
+            numericalTextBoxMgOA = new Crystallography.Controls.NumericBox();
             label55 = new Label();
+            numericBoxMgOA0 = new Crystallography.Controls.NumericBox();
+            groupBoxCorundum = new GroupBox();
+            numericBoxCorundumDubrovinsky = new Crystallography.Controls.NumericBox();
+            numericalTextBoxColundumV = new Crystallography.Controls.NumericBox();
             label56 = new Label();
-            textBoxNaClB1Brown = new TextBox();
-            label62 = new Label();
+            numericBoxColundumV0 = new Crystallography.Controls.NumericBox();
+            groupBoxAr = new GroupBox();
+            numericalTextBoxArRoss = new Crystallography.Controls.NumericBox();
+            numericalTextBoxArJephcoat = new Crystallography.Controls.NumericBox();
+            numericalTextBoxArA = new Crystallography.Controls.NumericBox();
             label57 = new Label();
             label58 = new Label();
-            groupBoxNaClB2 = new GroupBox();
-            textBoxNaClB2_a0 = new TextBox();
-            textBoxNaClB2_a = new TextBox();
-            textBoxNaClB2SataMgO = new TextBox();
-            textBoxNaClB2SataPt = new TextBox();
-            label65 = new Label();
-            label67 = new Label();
-            label59 = new Label();
-            label63 = new Label();
-            label64 = new Label();
-            label66 = new Label();
-            label68 = new Label();
-            label71 = new Label();
-            groupBoxPericlase = new GroupBox();
-            label72 = new Label();
-            label73 = new Label();
-            textBoxMgOAizawa = new TextBox();
-            label74 = new Label();
-            textBoxMgODewaele = new TextBox();
-            textBoxMgOJacson = new TextBox();
-            textBoxMgOA0 = new TextBox();
-            label75 = new Label();
-            label76 = new Label();
-            label77 = new Label();
-            label78 = new Label();
-            textBoxMgOA = new TextBox();
-            label79 = new Label();
-            label80 = new Label();
-            label81 = new Label();
-            groupBoxCorundum = new GroupBox();
-            label82 = new Label();
-            textBoxCorundumDubrovinsky = new TextBox();
-            textBoxColundumV0 = new TextBox();
-            label83 = new Label();
-            label84 = new Label();
-            textBoxCorundumV = new TextBox();
-            label85 = new Label();
-            label86 = new Label();
-            label87 = new Label();
-            groupBoxAr = new GroupBox();
-            textBoxArA0 = new TextBox();
-            textBoxArA = new TextBox();
-            textBoxArJephcoat = new TextBox();
-            label88 = new Label();
-            textBoxArRoss = new TextBox();
-            label89 = new Label();
-            label90 = new Label();
-            label91 = new Label();
-            label92 = new Label();
-            label93 = new Label();
-            label94 = new Label();
-            label95 = new Label();
+            numericBoxArA0 = new Crystallography.Controls.NumericBox();
             groupBoxRe = new GroupBox();
-            label96 = new Label();
-            textBoxReZha = new TextBox();
-            textBoxReV0 = new TextBox();
-            label97 = new Label();
-            label98 = new Label();
-            textBoxReV = new TextBox();
-            label99 = new Label();
-            label100 = new Label();
-            label101 = new Label();
+            numericBoxReDub = new Crystallography.Controls.NumericBox();
+            numericBoxReSakai = new Crystallography.Controls.NumericBox();
+            label59 = new Label();
+            numericBoxReAnz = new Crystallography.Controls.NumericBox();
+            label60 = new Label();
+            numericalTextBoxReZha = new Crystallography.Controls.NumericBox();
+            label61 = new Label();
+            numericBoxReV = new Crystallography.Controls.NumericBox();
+            label62 = new Label();
+            numerictBoxReV0 = new Crystallography.Controls.NumericBox();
+            groupBoxMo = new GroupBox();
+            numericBoxMoZhao = new Crystallography.Controls.NumericBox();
+            numericBoxMoHuang = new Crystallography.Controls.NumericBox();
+            label63 = new Label();
+            numericBoxMoV = new Crystallography.Controls.NumericBox();
+            label64 = new Label();
+            numericBoxMoV0 = new Crystallography.Controls.NumericBox();
+            groupBoxPb = new GroupBox();
+            numericBoxPbStrassle = new Crystallography.Controls.NumericBox();
+            numericBoxPbA = new Crystallography.Controls.NumericBox();
+            label65 = new Label();
+            numericBoxPbA0 = new Crystallography.Controls.NumericBox();
             panelEOS = new Panel();
             panel2 = new Panel();
-            label103 = new Label();
-            textBoxT = new TextBox();
-            label102 = new Label();
+            numericBoxTemperature = new Crystallography.Controls.NumericBox();
+            numericBoxTemperature0 = new Crystallography.Controls.NumericBox();
+            numericBoxDecimalPlaces = new Crystallography.Controls.NumericBox();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             readToolStripMenuItem = new ToolStripMenuItem();
@@ -478,6 +363,8 @@ namespace PressureCalculator
             groupBoxCorundum.SuspendLayout();
             groupBoxAr.SuspendLayout();
             groupBoxRe.SuspendLayout();
+            groupBoxMo.SuspendLayout();
+            groupBoxPb.SuspendLayout();
             panelEOS.SuspendLayout();
             panel2.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -486,7 +373,7 @@ namespace PressureCalculator
             // numericUpDownDifferentiationRunningAverage
             // 
             numericUpDownDifferentiationRunningAverage.AutoSize = true;
-            numericUpDownDifferentiationRunningAverage.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDownDifferentiationRunningAverage.Font = new Font("Verdana", 9F);
             numericUpDownDifferentiationRunningAverage.Location = new Point(256, 3);
             numericUpDownDifferentiationRunningAverage.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDownDifferentiationRunningAverage.Name = "numericUpDownDifferentiationRunningAverage";
@@ -500,7 +387,7 @@ namespace PressureCalculator
             // numericUpDownOriginalRunningAverage
             // 
             numericUpDownOriginalRunningAverage.AutoSize = true;
-            numericUpDownOriginalRunningAverage.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDownOriginalRunningAverage.Font = new Font("Verdana", 9F);
             numericUpDownOriginalRunningAverage.Location = new Point(246, 3);
             numericUpDownOriginalRunningAverage.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDownOriginalRunningAverage.Name = "numericUpDownOriginalRunningAverage";
@@ -514,7 +401,7 @@ namespace PressureCalculator
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Verdana", 9F);
             label2.Location = new Point(126, 6);
             label2.Margin = new Padding(3, 6, 3, 0);
             label2.Name = "label2";
@@ -524,7 +411,7 @@ namespace PressureCalculator
             // 
             // textBoxAkahama2004A
             // 
-            textBoxAkahama2004A.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAkahama2004A.Font = new Font("Segoe UI Symbol", 8.25F);
             textBoxAkahama2004A.Location = new Point(293, 16);
             textBoxAkahama2004A.Name = "textBoxAkahama2004A";
             textBoxAkahama2004A.Size = new Size(44, 22);
@@ -534,7 +421,7 @@ namespace PressureCalculator
             // 
             // textBoxAkahama2004B
             // 
-            textBoxAkahama2004B.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAkahama2004B.Font = new Font("Segoe UI Symbol", 8.25F);
             textBoxAkahama2004B.Location = new Point(355, 16);
             textBoxAkahama2004B.Name = "textBoxAkahama2004B";
             textBoxAkahama2004B.Size = new Size(44, 22);
@@ -544,7 +431,7 @@ namespace PressureCalculator
             // 
             // textBoxAkahama2004C
             // 
-            textBoxAkahama2004C.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAkahama2004C.Font = new Font("Segoe UI Symbol", 8.25F);
             textBoxAkahama2004C.Location = new Point(427, 16);
             textBoxAkahama2004C.Name = "textBoxAkahama2004C";
             textBoxAkahama2004C.Size = new Size(44, 22);
@@ -554,7 +441,7 @@ namespace PressureCalculator
             // 
             // label5
             // 
-            label5.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("Segoe UI Symbol", 8.25F);
             label5.Location = new Point(264, 20);
             label5.Name = "label5";
             label5.Size = new Size(39, 12);
@@ -563,7 +450,7 @@ namespace PressureCalculator
             // 
             // label6
             // 
-            label6.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Font = new Font("Segoe UI Symbol", 8.25F);
             label6.Location = new Point(337, 19);
             label6.Name = "label6";
             label6.Size = new Size(12, 12);
@@ -572,7 +459,7 @@ namespace PressureCalculator
             // 
             // label7
             // 
-            label7.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Font = new Font("Segoe UI Symbol", 8.25F);
             label7.Location = new Point(399, 19);
             label7.Name = "label7";
             label7.Size = new Size(24, 12);
@@ -581,7 +468,7 @@ namespace PressureCalculator
             // 
             // label8
             // 
-            label8.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Font = new Font("Segoe UI Symbol", 8.25F);
             label8.Location = new Point(475, 19);
             label8.Name = "label8";
             label8.Size = new Size(60, 12);
@@ -591,7 +478,7 @@ namespace PressureCalculator
             // textBoxDiamondAkahama2004P
             // 
             textBoxDiamondAkahama2004P.BackColor = Color.Navy;
-            textBoxDiamondAkahama2004P.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondAkahama2004P.Font = new Font("Segoe UI Symbol", 11.25F);
             textBoxDiamondAkahama2004P.ForeColor = Color.White;
             textBoxDiamondAkahama2004P.Location = new Point(615, 11);
             textBoxDiamondAkahama2004P.Name = "textBoxDiamondAkahama2004P";
@@ -602,7 +489,7 @@ namespace PressureCalculator
             // 
             // label9
             // 
-            label9.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Font = new Font("Verdana", 9F);
             label9.Location = new Point(688, 18);
             label9.Name = "label9";
             label9.Size = new Size(34, 12);
@@ -613,7 +500,7 @@ namespace PressureCalculator
             // 
             label14.AutoSize = true;
             label14.BackColor = SystemColors.Control;
-            label14.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label14.Font = new Font("Verdana", 9F);
             label14.Location = new Point(3, 6);
             label14.Margin = new Padding(3, 6, 3, 0);
             label14.Name = "label14";
@@ -624,7 +511,7 @@ namespace PressureCalculator
             // numericUpDownOriginalGaussian
             // 
             numericUpDownOriginalGaussian.AutoSize = true;
-            numericUpDownOriginalGaussian.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDownOriginalGaussian.Font = new Font("Verdana", 9F);
             numericUpDownOriginalGaussian.Location = new Point(410, 3);
             numericUpDownOriginalGaussian.Name = "numericUpDownOriginalGaussian";
             numericUpDownOriginalGaussian.Size = new Size(47, 22);
@@ -636,7 +523,7 @@ namespace PressureCalculator
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.Font = new Font("Verdana", 9F);
             label12.Location = new Point(299, 6);
             label12.Margin = new Padding(3, 6, 3, 0);
             label12.Name = "label12";
@@ -648,7 +535,7 @@ namespace PressureCalculator
             // 
             labelBottomTitle.AutoSize = true;
             labelBottomTitle.BackColor = SystemColors.Control;
-            labelBottomTitle.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            labelBottomTitle.Font = new Font("Verdana", 9F);
             labelBottomTitle.Location = new Point(3, 6);
             labelBottomTitle.Margin = new Padding(3, 6, 3, 0);
             labelBottomTitle.Name = "labelBottomTitle";
@@ -659,7 +546,7 @@ namespace PressureCalculator
             // label13
             // 
             label13.AutoSize = true;
-            label13.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Font = new Font("Verdana", 9F);
             label13.Location = new Point(136, 6);
             label13.Margin = new Padding(3, 6, 3, 0);
             label13.Name = "label13";
@@ -670,7 +557,7 @@ namespace PressureCalculator
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Verdana", 9F);
             label1.Location = new Point(309, 6);
             label1.Margin = new Padding(3, 6, 3, 0);
             label1.Name = "label1";
@@ -681,7 +568,7 @@ namespace PressureCalculator
             // numericUpDownDifferentiationGaussian
             // 
             numericUpDownDifferentiationGaussian.AutoSize = true;
-            numericUpDownDifferentiationGaussian.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDownDifferentiationGaussian.Font = new Font("Verdana", 9F);
             numericUpDownDifferentiationGaussian.Location = new Point(420, 3);
             numericUpDownDifferentiationGaussian.Name = "numericUpDownDifferentiationGaussian";
             numericUpDownDifferentiationGaussian.Size = new Size(47, 22);
@@ -694,7 +581,7 @@ namespace PressureCalculator
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.IsSplitterFixed = true;
-            splitContainer1.Location = new Point(0, 130);
+            splitContainer1.Location = new Point(0, 255);
             splitContainer1.Margin = new Padding(0);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
@@ -711,8 +598,8 @@ namespace PressureCalculator
             splitContainer1.Panel2.Controls.Add(flowLayoutPanel4);
             splitContainer1.Panel2.Controls.Add(flowLayoutPanel2);
             splitContainer1.Panel2MinSize = 0;
-            splitContainer1.Size = new Size(725, 296);
-            splitContainer1.SplitterDistance = 136;
+            splitContainer1.Size = new Size(725, 293);
+            splitContainer1.SplitterDistance = 132;
             splitContainer1.TabIndex = 6;
             // 
             // graphControlTop
@@ -720,7 +607,7 @@ namespace PressureCalculator
             graphControlTop.AllowMouseOperation = true;
             graphControlTop.AxisLineColor = Color.Gray;
             graphControlTop.AxisTextColor = Color.Black;
-            graphControlTop.AxisTextFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlTop.AxisTextFont = new Font("Segoe UI", 9F);
             graphControlTop.AxisXTextVisible = true;
             graphControlTop.AxisYTextVisible = true;
             graphControlTop.BackgroundColor = Color.White;
@@ -732,7 +619,7 @@ namespace PressureCalculator
             graphControlTop.DrawingRange = (RectangleD)resources.GetObject("graphControlTop.DrawingRange");
             graphControlTop.FixRangeHorizontal = false;
             graphControlTop.FixRangeVertical = false;
-            graphControlTop.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlTop.Font = new Font("Segoe UI Symbol", 9F);
             graphControlTop.GraphTitle = "";
             graphControlTop.Interpolation = false;
             graphControlTop.IsIntegerX = false;
@@ -755,12 +642,12 @@ namespace PressureCalculator
             graphControlTop.Name = "graphControlTop";
             graphControlTop.OriginPosition = new Point(40, 20);
             graphControlTop.Profile = null;
-            graphControlTop.Size = new Size(725, 108);
+            graphControlTop.Size = new Size(725, 104);
             graphControlTop.Smoothing = false;
             graphControlTop.TabIndex = 5;
             graphControlTop.UnitX = "";
             graphControlTop.UnitY = "";
-            graphControlTop.UpperPanelFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlTop.UpperPanelFont = new Font("Segoe UI Symbol", 9F);
             graphControlTop.UpperPanelVisible = true;
             graphControlTop.UpperX = 1D;
             graphControlTop.UpperY = 1D;
@@ -790,7 +677,7 @@ namespace PressureCalculator
             graphControlBottom.AllowMouseOperation = true;
             graphControlBottom.AxisLineColor = Color.Gray;
             graphControlBottom.AxisTextColor = Color.Black;
-            graphControlBottom.AxisTextFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlBottom.AxisTextFont = new Font("Segoe UI", 9F);
             graphControlBottom.AxisXTextVisible = true;
             graphControlBottom.AxisYTextVisible = true;
             graphControlBottom.BackgroundColor = Color.White;
@@ -802,7 +689,7 @@ namespace PressureCalculator
             graphControlBottom.DrawingRange = (RectangleD)resources.GetObject("graphControlBottom.DrawingRange");
             graphControlBottom.FixRangeHorizontal = false;
             graphControlBottom.FixRangeVertical = false;
-            graphControlBottom.Font = new Font("Cambria", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlBottom.Font = new Font("Cambria", 9F);
             graphControlBottom.GraphTitle = "";
             graphControlBottom.Interpolation = false;
             graphControlBottom.IsIntegerX = false;
@@ -825,12 +712,12 @@ namespace PressureCalculator
             graphControlBottom.Name = "graphControlBottom";
             graphControlBottom.OriginPosition = new Point(40, 20);
             graphControlBottom.Profile = null;
-            graphControlBottom.Size = new Size(725, 96);
+            graphControlBottom.Size = new Size(725, 97);
             graphControlBottom.Smoothing = false;
             graphControlBottom.TabIndex = 6;
             graphControlBottom.UnitX = "";
             graphControlBottom.UnitY = "";
-            graphControlBottom.UpperPanelFont = new Font("Cambria", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            graphControlBottom.UpperPanelFont = new Font("Cambria", 9F);
             graphControlBottom.UpperPanelVisible = true;
             graphControlBottom.UpperX = 1D;
             graphControlBottom.UpperY = 1D;
@@ -856,7 +743,7 @@ namespace PressureCalculator
             // 
             label25.AutoSize = true;
             label25.BackColor = SystemColors.Control;
-            label25.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label25.Font = new Font("Verdana", 9F);
             label25.Location = new Point(3, 6);
             label25.Margin = new Padding(3, 6, 3, 0);
             label25.Name = "label25";
@@ -868,7 +755,7 @@ namespace PressureCalculator
             // 
             textBoxFittingInformation.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxFittingInformation.BackColor = SystemColors.Control;
-            textBoxFittingInformation.Font = new Font("Segoe UI Symbol", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxFittingInformation.Font = new Font("Segoe UI Symbol", 8F);
             textBoxFittingInformation.ForeColor = SystemColors.ControlText;
             textBoxFittingInformation.Location = new Point(132, 3);
             textBoxFittingInformation.Multiline = true;
@@ -897,7 +784,7 @@ namespace PressureCalculator
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Font = new Font("Verdana", 9F);
             label10.Location = new Point(473, 6);
             label10.Margin = new Padding(3, 6, 3, 0);
             label10.Name = "label10";
@@ -908,7 +795,7 @@ namespace PressureCalculator
             // numericUpDownFitRange
             // 
             numericUpDownFitRange.AutoSize = true;
-            numericUpDownFitRange.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDownFitRange.Font = new Font("Verdana", 9F);
             numericUpDownFitRange.Location = new Point(569, 3);
             numericUpDownFitRange.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDownFitRange.Name = "numericUpDownFitRange";
@@ -920,7 +807,7 @@ namespace PressureCalculator
             // labelDimension
             // 
             labelDimension.AutoSize = true;
-            labelDimension.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDimension.Font = new Font("Verdana", 9F);
             labelDimension.Location = new Point(622, 6);
             labelDimension.Margin = new Padding(3, 6, 3, 0);
             labelDimension.Name = "labelDimension";
@@ -932,7 +819,7 @@ namespace PressureCalculator
             // 
             radioButtonDiamondRaman.AutoSize = true;
             radioButtonDiamondRaman.Checked = true;
-            radioButtonDiamondRaman.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            radioButtonDiamondRaman.Font = new Font("Verdana", 9F);
             radioButtonDiamondRaman.Location = new Point(3, 3);
             radioButtonDiamondRaman.Name = "radioButtonDiamondRaman";
             radioButtonDiamondRaman.Size = new Size(127, 18);
@@ -945,7 +832,7 @@ namespace PressureCalculator
             // radioButtonRubyFluorescence
             // 
             radioButtonRubyFluorescence.AutoSize = true;
-            radioButtonRubyFluorescence.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            radioButtonRubyFluorescence.Font = new Font("Verdana", 9F);
             radioButtonRubyFluorescence.Location = new Point(136, 3);
             radioButtonRubyFluorescence.Name = "radioButtonRubyFluorescence";
             radioButtonRubyFluorescence.Size = new Size(142, 18);
@@ -969,7 +856,7 @@ namespace PressureCalculator
             // radioButtonEOS
             // 
             radioButtonEOS.AutoSize = true;
-            radioButtonEOS.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            radioButtonEOS.Font = new Font("Verdana", 9F);
             radioButtonEOS.Location = new Point(284, 3);
             radioButtonEOS.Name = "radioButtonEOS";
             radioButtonEOS.Size = new Size(51, 18);
@@ -981,7 +868,7 @@ namespace PressureCalculator
             // textBoxMaoHydroP
             // 
             textBoxMaoHydroP.BackColor = Color.Navy;
-            textBoxMaoHydroP.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxMaoHydroP.Font = new Font("Segoe UI Symbol", 11.25F);
             textBoxMaoHydroP.ForeColor = Color.White;
             textBoxMaoHydroP.Location = new Point(620, 20);
             textBoxMaoHydroP.Name = "textBoxMaoHydroP";
@@ -993,7 +880,7 @@ namespace PressureCalculator
             // label28
             // 
             label28.AutoSize = true;
-            label28.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label28.Font = new Font("Segoe UI Symbol", 9.75F);
             label28.Location = new Point(683, 23);
             label28.Name = "label28";
             label28.Size = new Size(31, 17);
@@ -1011,8 +898,8 @@ namespace PressureCalculator
             groupBoxMao.Controls.Add(numericBoxRubyR1);
             groupBoxMao.Controls.Add(label17);
             groupBoxMao.Dock = DockStyle.Bottom;
-            groupBoxMao.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxMao.Location = new Point(0, 550);
+            groupBoxMao.Font = new Font("Verdana", 9F);
+            groupBoxMao.Location = new Point(0, 672);
             groupBoxMao.Name = "groupBoxMao";
             groupBoxMao.Size = new Size(725, 244);
             groupBoxMao.TabIndex = 12;
@@ -1023,7 +910,7 @@ namespace PressureCalculator
             // 
             radioButtonTempUnitK.AutoSize = true;
             radioButtonTempUnitK.Checked = true;
-            radioButtonTempUnitK.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            radioButtonTempUnitK.Font = new Font("Segoe UI Symbol", 9F);
             radioButtonTempUnitK.Location = new Point(53, 88);
             radioButtonTempUnitK.Name = "radioButtonTempUnitK";
             radioButtonTempUnitK.Size = new Size(32, 19);
@@ -1036,7 +923,7 @@ namespace PressureCalculator
             // radioButtonTempUnitC
             // 
             radioButtonTempUnitC.AutoSize = true;
-            radioButtonTempUnitC.Font = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            radioButtonTempUnitC.Font = new Font("Segoe UI Symbol", 9F);
             radioButtonTempUnitC.Location = new Point(93, 88);
             radioButtonTempUnitC.Name = "radioButtonTempUnitC";
             radioButtonTempUnitC.Size = new Size(37, 19);
@@ -1074,7 +961,7 @@ namespace PressureCalculator
             // textBoxMaoP
             // 
             textBoxMaoP.BackColor = Color.Navy;
-            textBoxMaoP.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxMaoP.Font = new Font("Segoe UI Symbol", 11.25F);
             textBoxMaoP.ForeColor = Color.White;
             textBoxMaoP.Location = new Point(241, 20);
             textBoxMaoP.Name = "textBoxMaoP";
@@ -1086,10 +973,10 @@ namespace PressureCalculator
             // numericBoxMaoA
             // 
             numericBoxMaoA.BackColor = Color.Transparent;
-            numericBoxMaoA.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            numericBoxMaoA.FooterFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoA.Font = new Font("Segoe UI Symbol", 9.75F);
+            numericBoxMaoA.FooterFont = new Font("Segoe UI Symbol", 9F);
             numericBoxMaoA.FooterText = "f(x, 5)=";
-            numericBoxMaoA.HeaderFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoA.HeaderFont = new Font("Segoe UI Symbol", 9F);
             numericBoxMaoA.HeaderText = "P=";
             numericBoxMaoA.Location = new Point(118, 22);
             numericBoxMaoA.Margin = new Padding(0);
@@ -1097,19 +984,18 @@ namespace PressureCalculator
             numericBoxMaoA.MinimumSize = new Size(1, 18);
             numericBoxMaoA.Name = "numericBoxMaoA";
             numericBoxMaoA.RadianValue = 33.231068957972035D;
-            numericBoxMaoA.RoundErrorAccuracy = -1;
             numericBoxMaoA.Size = new Size(103, 25);
             numericBoxMaoA.TabIndex = 3;
-            numericBoxMaoA.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoA.TextFont = new Font("Segoe UI Symbol", 9F);
             numericBoxMaoA.Value = 1904D;
             // 
             // numericBoxMaoQuasiA
             // 
             numericBoxMaoQuasiA.BackColor = Color.Transparent;
-            numericBoxMaoQuasiA.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            numericBoxMaoQuasiA.FooterFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoQuasiA.Font = new Font("Segoe UI Symbol", 9.75F);
+            numericBoxMaoQuasiA.FooterFont = new Font("Segoe UI Symbol", 9F);
             numericBoxMaoQuasiA.FooterText = "f(x, 7.665)=";
-            numericBoxMaoQuasiA.HeaderFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoQuasiA.HeaderFont = new Font("Segoe UI Symbol", 9F);
             numericBoxMaoQuasiA.HeaderText = "P=";
             numericBoxMaoQuasiA.Location = new Point(117, 49);
             numericBoxMaoQuasiA.Margin = new Padding(0);
@@ -1117,19 +1003,18 @@ namespace PressureCalculator
             numericBoxMaoQuasiA.MinimumSize = new Size(1, 18);
             numericBoxMaoQuasiA.Name = "numericBoxMaoQuasiA";
             numericBoxMaoQuasiA.RadianValue = 33.231068957972035D;
-            numericBoxMaoQuasiA.RoundErrorAccuracy = -1;
             numericBoxMaoQuasiA.Size = new Size(123, 25);
             numericBoxMaoQuasiA.TabIndex = 3;
-            numericBoxMaoQuasiA.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoQuasiA.TextFont = new Font("Segoe UI Symbol", 9F);
             numericBoxMaoQuasiA.Value = 1904D;
             // 
             // numericBoxShenA
             // 
             numericBoxShenA.BackColor = Color.Transparent;
-            numericBoxShenA.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            numericBoxShenA.FooterFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxShenA.Font = new Font("Segoe UI Symbol", 9.75F);
+            numericBoxShenA.FooterFont = new Font("Segoe UI Symbol", 9F);
             numericBoxShenA.FooterText = "(Δ+5.63 Δ²)=";
-            numericBoxShenA.HeaderFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxShenA.HeaderFont = new Font("Segoe UI Symbol", 9F);
             numericBoxShenA.HeaderText = "P=";
             numericBoxShenA.Location = new Point(485, 49);
             numericBoxShenA.Margin = new Padding(0);
@@ -1137,19 +1022,18 @@ namespace PressureCalculator
             numericBoxShenA.MinimumSize = new Size(1, 18);
             numericBoxShenA.Name = "numericBoxShenA";
             numericBoxShenA.RadianValue = 32.637657012293964D;
-            numericBoxShenA.RoundErrorAccuracy = -1;
             numericBoxShenA.Size = new Size(131, 25);
             numericBoxShenA.TabIndex = 3;
-            numericBoxShenA.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxShenA.TextFont = new Font("Segoe UI Symbol", 9F);
             numericBoxShenA.Value = 1870D;
             // 
             // numericBoxMaoHydroA
             // 
             numericBoxMaoHydroA.BackColor = Color.Transparent;
-            numericBoxMaoHydroA.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            numericBoxMaoHydroA.FooterFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoHydroA.Font = new Font("Segoe UI Symbol", 9.75F);
+            numericBoxMaoHydroA.FooterFont = new Font("Segoe UI Symbol", 9F);
             numericBoxMaoHydroA.FooterText = "f(x, 7.715)=";
-            numericBoxMaoHydroA.HeaderFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoHydroA.HeaderFont = new Font("Segoe UI Symbol", 9F);
             numericBoxMaoHydroA.HeaderText = "P=";
             numericBoxMaoHydroA.Location = new Point(485, 22);
             numericBoxMaoHydroA.Margin = new Padding(0);
@@ -1157,16 +1041,15 @@ namespace PressureCalculator
             numericBoxMaoHydroA.MinimumSize = new Size(1, 18);
             numericBoxMaoHydroA.Name = "numericBoxMaoHydroA";
             numericBoxMaoHydroA.RadianValue = 33.231068957972035D;
-            numericBoxMaoHydroA.RoundErrorAccuracy = -1;
             numericBoxMaoHydroA.Size = new Size(123, 25);
             numericBoxMaoHydroA.TabIndex = 3;
-            numericBoxMaoHydroA.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxMaoHydroA.TextFont = new Font("Segoe UI Symbol", 9F);
             numericBoxMaoHydroA.Value = 1904D;
             // 
             // label42
             // 
             label42.AutoSize = true;
-            label42.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label42.Font = new Font("Segoe UI Symbol", 9.75F);
             label42.Location = new Point(305, 50);
             label42.Name = "label42";
             label42.Size = new Size(31, 17);
@@ -1176,7 +1059,7 @@ namespace PressureCalculator
             // label18
             // 
             label18.AutoSize = true;
-            label18.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label18.Font = new Font("Segoe UI Symbol", 9.75F);
             label18.Location = new Point(305, 23);
             label18.Name = "label18";
             label18.Size = new Size(31, 17);
@@ -1186,7 +1069,7 @@ namespace PressureCalculator
             // textBoxMaoQuasiP
             // 
             textBoxMaoQuasiP.BackColor = Color.Navy;
-            textBoxMaoQuasiP.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxMaoQuasiP.Font = new Font("Segoe UI Symbol", 11.25F);
             textBoxMaoQuasiP.ForeColor = Color.White;
             textBoxMaoQuasiP.Location = new Point(241, 47);
             textBoxMaoQuasiP.Name = "textBoxMaoQuasiP";
@@ -1198,7 +1081,7 @@ namespace PressureCalculator
             // label107
             // 
             label107.AutoSize = true;
-            label107.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label107.Font = new Font("Segoe UI Symbol", 9.75F);
             label107.Location = new Point(367, 50);
             label107.Name = "label107";
             label107.Size = new Size(108, 17);
@@ -1208,7 +1091,7 @@ namespace PressureCalculator
             // label46
             // 
             label46.AutoSize = true;
-            label46.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label46.Font = new Font("Segoe UI Symbol", 9.75F);
             label46.Location = new Point(367, 23);
             label46.Name = "label46";
             label46.Size = new Size(114, 17);
@@ -1218,7 +1101,7 @@ namespace PressureCalculator
             // label45
             // 
             label45.AutoSize = true;
-            label45.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label45.Font = new Font("Segoe UI Symbol", 9.75F);
             label45.Location = new Point(6, 50);
             label45.Name = "label45";
             label45.Size = new Size(111, 17);
@@ -1228,7 +1111,7 @@ namespace PressureCalculator
             // label34
             // 
             label34.AutoSize = true;
-            label34.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label34.Font = new Font("Segoe UI Symbol", 9.75F);
             label34.Location = new Point(6, 23);
             label34.Name = "label34";
             label34.Size = new Size(75, 17);
@@ -1238,7 +1121,7 @@ namespace PressureCalculator
             // textBoxShenP
             // 
             textBoxShenP.BackColor = Color.Navy;
-            textBoxShenP.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxShenP.Font = new Font("Segoe UI Symbol", 11.25F);
             textBoxShenP.ForeColor = Color.White;
             textBoxShenP.Location = new Point(620, 47);
             textBoxShenP.Name = "textBoxShenP";
@@ -1250,7 +1133,7 @@ namespace PressureCalculator
             // label104
             // 
             label104.AutoSize = true;
-            label104.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label104.Font = new Font("Segoe UI Symbol", 9.75F);
             label104.Location = new Point(683, 50);
             label104.Name = "label104";
             label104.Size = new Size(31, 17);
@@ -1271,7 +1154,7 @@ namespace PressureCalculator
             // 
             numericBoxRubyRagan.BackColor = Color.Transparent;
             numericBoxRubyRagan.DecimalPlaces = 3;
-            numericBoxRubyRagan.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRagan.Font = new Font("Segoe UI Symbol", 9.75F);
             numericBoxRubyRagan.FooterText = "+ 4.49×10⁻²×T - 4.81×10⁻⁴×T² + 3.71×10⁻⁷×T³ )⁻¹ ×10⁷    [nm]";
             numericBoxRubyRagan.HeaderText = "R1(T, P=0) = (";
             numericBoxRubyRagan.Location = new Point(9, 18);
@@ -1280,10 +1163,9 @@ namespace PressureCalculator
             numericBoxRubyRagan.MinimumSize = new Size(1, 18);
             numericBoxRubyRagan.Name = "numericBoxRubyRagan";
             numericBoxRubyRagan.RadianValue = 251.72883801514214D;
-            numericBoxRubyRagan.RoundErrorAccuracy = -1;
             numericBoxRubyRagan.Size = new Size(542, 25);
             numericBoxRubyRagan.TabIndex = 3;
-            numericBoxRubyRagan.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRagan.TextFont = new Font("Segoe UI Symbol", 9F);
             numericBoxRubyRagan.Value = 14423D;
             numericBoxRubyRagan.ValueChanged += numericBoxRubyRagan_ValueChanged;
             // 
@@ -1303,7 +1185,7 @@ namespace PressureCalculator
             // checkBoxRubyR1_0CalculatedFromRagan
             // 
             checkBoxRubyR1_0CalculatedFromRagan.AutoSize = true;
-            checkBoxRubyR1_0CalculatedFromRagan.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxRubyR1_0CalculatedFromRagan.Font = new Font("Segoe UI Symbol", 9.75F);
             checkBoxRubyR1_0CalculatedFromRagan.Location = new Point(185, 43);
             checkBoxRubyR1_0CalculatedFromRagan.Name = "checkBoxRubyR1_0CalculatedFromRagan";
             checkBoxRubyR1_0CalculatedFromRagan.Size = new Size(132, 38);
@@ -1317,7 +1199,7 @@ namespace PressureCalculator
             numericBoxRubyT.BackColor = Color.Transparent;
             numericBoxRubyT.DecimalPlaces = 2;
             numericBoxRubyT.Enabled = false;
-            numericBoxRubyT.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyT.Font = new Font("Segoe UI Symbol", 9.75F);
             numericBoxRubyT.FooterText = "K";
             numericBoxRubyT.HeaderText = "T =";
             numericBoxRubyT.Location = new Point(11, 18);
@@ -1326,10 +1208,9 @@ namespace PressureCalculator
             numericBoxRubyT.MinimumSize = new Size(1, 18);
             numericBoxRubyT.Name = "numericBoxRubyT";
             numericBoxRubyT.RadianValue = 5.18624587230115D;
-            numericBoxRubyT.RoundErrorAccuracy = -1;
             numericBoxRubyT.Size = new Size(116, 23);
             numericBoxRubyT.TabIndex = 3;
-            numericBoxRubyT.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyT.TextFont = new Font("Segoe UI Symbol", 9F);
             numericBoxRubyT.Value = 297.15D;
             numericBoxRubyT.ValueChanged += numericBoxRubyT_ValueChanged;
             // 
@@ -1338,7 +1219,7 @@ namespace PressureCalculator
             checkBoxRubyTemeratureSameAsRef.AutoSize = true;
             checkBoxRubyTemeratureSameAsRef.Checked = true;
             checkBoxRubyTemeratureSameAsRef.CheckState = CheckState.Checked;
-            checkBoxRubyTemeratureSameAsRef.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxRubyTemeratureSameAsRef.Font = new Font("Segoe UI Symbol", 9.75F);
             checkBoxRubyTemeratureSameAsRef.Location = new Point(135, 20);
             checkBoxRubyTemeratureSameAsRef.Name = "checkBoxRubyTemeratureSameAsRef";
             checkBoxRubyTemeratureSameAsRef.Size = new Size(135, 21);
@@ -1351,7 +1232,7 @@ namespace PressureCalculator
             // 
             numericBoxRubyR1_0.BackColor = Color.Transparent;
             numericBoxRubyR1_0.DecimalPlaces = 3;
-            numericBoxRubyR1_0.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyR1_0.Font = new Font("Segoe UI Symbol", 9.75F);
             numericBoxRubyR1_0.FooterText = "nm";
             numericBoxRubyR1_0.HeaderText = "R1₀=R1(T,P=0)";
             numericBoxRubyR1_0.Location = new Point(11, 52);
@@ -1360,10 +1241,9 @@ namespace PressureCalculator
             numericBoxRubyR1_0.MinimumSize = new Size(1, 18);
             numericBoxRubyR1_0.Name = "numericBoxRubyR1_0";
             numericBoxRubyR1_0.RadianValue = 12.12392964897861D;
-            numericBoxRubyR1_0.RoundErrorAccuracy = -1;
             numericBoxRubyR1_0.Size = new Size(171, 25);
             numericBoxRubyR1_0.TabIndex = 3;
-            numericBoxRubyR1_0.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyR1_0.TextFont = new Font("Segoe UI Symbol", 9F);
             numericBoxRubyR1_0.Value = 694.65D;
             numericBoxRubyR1_0.ValueChanged += numericBoxR1_0_ValueChanged;
             // 
@@ -1383,7 +1263,7 @@ namespace PressureCalculator
             // 
             buttonRubyRefR1Set.AutoSize = true;
             buttonRubyRefR1Set.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            buttonRubyRefR1Set.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonRubyRefR1Set.Font = new Font("Segoe UI Symbol", 9.75F);
             buttonRubyRefR1Set.Location = new Point(128, 49);
             buttonRubyRefR1Set.Name = "buttonRubyRefR1Set";
             buttonRubyRefR1Set.Size = new Size(122, 27);
@@ -1396,7 +1276,7 @@ namespace PressureCalculator
             // 
             numericBoxRubyRefT.BackColor = Color.Transparent;
             numericBoxRubyRefT.DecimalPlaces = 2;
-            numericBoxRubyRefT.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRefT.Font = new Font("Segoe UI Symbol", 9.75F);
             numericBoxRubyRefT.FooterText = "K";
             numericBoxRubyRefT.Location = new Point(46, 21);
             numericBoxRubyRefT.Margin = new Padding(0);
@@ -1404,10 +1284,9 @@ namespace PressureCalculator
             numericBoxRubyRefT.MinimumSize = new Size(1, 18);
             numericBoxRubyRefT.Name = "numericBoxRubyRefT";
             numericBoxRubyRefT.RadianValue = 5.18624587230115D;
-            numericBoxRubyRefT.RoundErrorAccuracy = -1;
             numericBoxRubyRefT.Size = new Size(67, 23);
             numericBoxRubyRefT.TabIndex = 3;
-            numericBoxRubyRefT.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRefT.TextFont = new Font("Segoe UI Symbol", 9F);
             numericBoxRubyRefT.Value = 297.15D;
             numericBoxRubyRefT.ValueChanged += numericBoxRubyRefT_ValueChanged;
             // 
@@ -1415,7 +1294,7 @@ namespace PressureCalculator
             // 
             numericBoxRubyRefR1.BackColor = Color.Transparent;
             numericBoxRubyRefR1.DecimalPlaces = 3;
-            numericBoxRubyRefR1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRefR1.Font = new Font("Segoe UI Symbol", 9.75F);
             numericBoxRubyRefR1.FooterText = "nm";
             numericBoxRubyRefR1.HeaderText = "R1(T=                , P=0) = ";
             numericBoxRubyRefR1.Location = new Point(7, 21);
@@ -1424,10 +1303,9 @@ namespace PressureCalculator
             numericBoxRubyRefR1.MinimumSize = new Size(1, 18);
             numericBoxRubyRefR1.Name = "numericBoxRubyRefR1";
             numericBoxRubyRefR1.RadianValue = 12.116948331970631D;
-            numericBoxRubyRefR1.RoundErrorAccuracy = -1;
             numericBoxRubyRefR1.Size = new Size(243, 25);
             numericBoxRubyRefR1.TabIndex = 3;
-            numericBoxRubyRefR1.TextFont = new Font("Segoe UI Symbol", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyRefR1.TextFont = new Font("Segoe UI Symbol", 9F);
             numericBoxRubyRefR1.Value = 694.25D;
             numericBoxRubyRefR1.ValueChanged += numericBoxRubyRefR1_ValueChanged;
             // 
@@ -1435,7 +1313,7 @@ namespace PressureCalculator
             // 
             numericBoxRubyR1.BackColor = Color.Transparent;
             numericBoxRubyR1.DecimalPlaces = 3;
-            numericBoxRubyR1.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyR1.Font = new Font("Segoe UI Symbol", 9.75F);
             numericBoxRubyR1.FooterText = "nm";
             numericBoxRubyR1.HeaderText = "R1";
             numericBoxRubyR1.Location = new Point(8, 28);
@@ -1444,17 +1322,16 @@ namespace PressureCalculator
             numericBoxRubyR1.MinimumSize = new Size(1, 22);
             numericBoxRubyR1.Name = "numericBoxRubyR1";
             numericBoxRubyR1.RadianValue = 12.12392964897861D;
-            numericBoxRubyR1.RoundErrorAccuracy = -1;
             numericBoxRubyR1.Size = new Size(125, 29);
             numericBoxRubyR1.TabIndex = 3;
-            numericBoxRubyR1.TextFont = new Font("Segoe UI Symbol", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBoxRubyR1.TextFont = new Font("Segoe UI Symbol", 11F);
             numericBoxRubyR1.Value = 694.65D;
             numericBoxRubyR1.ValueChanged += numericBoxRubyR1_ValueChanged;
             // 
             // label17
             // 
             label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label17.Font = new Font("Segoe UI Symbol", 9.75F);
             label17.Location = new Point(6, 68);
             label17.Name = "label17";
             label17.Size = new Size(108, 17);
@@ -1494,8 +1371,8 @@ namespace PressureCalculator
             groupBoxAkahama2006.Controls.Add(label32);
             groupBoxAkahama2006.Controls.Add(label35);
             groupBoxAkahama2006.Dock = DockStyle.Bottom;
-            groupBoxAkahama2006.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxAkahama2006.Location = new Point(0, 426);
+            groupBoxAkahama2006.Font = new Font("Verdana", 9F);
+            groupBoxAkahama2006.Location = new Point(0, 548);
             groupBoxAkahama2006.Name = "groupBoxAkahama2006";
             groupBoxAkahama2006.Size = new Size(725, 124);
             groupBoxAkahama2006.TabIndex = 13;
@@ -1505,7 +1382,7 @@ namespace PressureCalculator
             // textBoxDiamondFratandunoHigh
             // 
             textBoxDiamondFratandunoHigh.BackColor = Color.Navy;
-            textBoxDiamondFratandunoHigh.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondFratandunoHigh.Font = new Font("Segoe UI Symbol", 11.25F);
             textBoxDiamondFratandunoHigh.ForeColor = Color.White;
             textBoxDiamondFratandunoHigh.Location = new Point(615, 92);
             textBoxDiamondFratandunoHigh.Name = "textBoxDiamondFratandunoHigh";
@@ -1517,7 +1394,7 @@ namespace PressureCalculator
             // textBoxDiamondAkahama2006P
             // 
             textBoxDiamondAkahama2006P.BackColor = Color.Navy;
-            textBoxDiamondAkahama2006P.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondAkahama2006P.Font = new Font("Segoe UI Symbol", 11.25F);
             textBoxDiamondAkahama2006P.ForeColor = Color.White;
             textBoxDiamondAkahama2006P.Location = new Point(615, 38);
             textBoxDiamondAkahama2006P.Name = "textBoxDiamondAkahama2006P";
@@ -1528,7 +1405,7 @@ namespace PressureCalculator
             // 
             // label44
             // 
-            label44.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label44.Font = new Font("Verdana", 9F);
             label44.Location = new Point(6, 43);
             label44.Name = "label44";
             label44.Size = new Size(24, 12);
@@ -1537,7 +1414,7 @@ namespace PressureCalculator
             // 
             // label29
             // 
-            label29.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label29.Font = new Font("Verdana", 9F);
             label29.Location = new Point(4, 20);
             label29.Name = "label29";
             label29.Size = new Size(16, 12);
@@ -1546,7 +1423,7 @@ namespace PressureCalculator
             // 
             // textBoxDiamondRamanNu0
             // 
-            textBoxDiamondRamanNu0.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondRamanNu0.Font = new Font("Verdana", 9F);
             textBoxDiamondRamanNu0.Location = new Point(36, 39);
             textBoxDiamondRamanNu0.Name = "textBoxDiamondRamanNu0";
             textBoxDiamondRamanNu0.Size = new Size(63, 22);
@@ -1556,7 +1433,7 @@ namespace PressureCalculator
             // 
             // label43
             // 
-            label43.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label43.Font = new Font("Verdana", 9F);
             label43.Location = new Point(105, 46);
             label43.Name = "label43";
             label43.Size = new Size(52, 12);
@@ -1565,7 +1442,7 @@ namespace PressureCalculator
             // 
             // textBoxDiamondRamanNu
             // 
-            textBoxDiamondRamanNu.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondRamanNu.Font = new Font("Verdana", 9F);
             textBoxDiamondRamanNu.Location = new Point(35, 16);
             textBoxDiamondRamanNu.Name = "textBoxDiamondRamanNu";
             textBoxDiamondRamanNu.Size = new Size(64, 22);
@@ -1575,7 +1452,7 @@ namespace PressureCalculator
             // 
             // label30
             // 
-            label30.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label30.Font = new Font("Verdana", 9F);
             label30.Location = new Point(105, 20);
             label30.Name = "label30";
             label30.Size = new Size(52, 12);
@@ -1584,7 +1461,7 @@ namespace PressureCalculator
             // 
             // textBoxAkahama2006K0
             // 
-            textBoxAkahama2006K0.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAkahama2006K0.Font = new Font("Segoe UI Symbol", 8.25F);
             textBoxAkahama2006K0.Location = new Point(309, 43);
             textBoxAkahama2006K0.Name = "textBoxAkahama2006K0";
             textBoxAkahama2006K0.Size = new Size(44, 22);
@@ -1594,7 +1471,7 @@ namespace PressureCalculator
             // 
             // textBoxAkahama2006K0Prime
             // 
-            textBoxAkahama2006K0Prime.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAkahama2006K0Prime.Font = new Font("Segoe UI Symbol", 8.25F);
             textBoxAkahama2006K0Prime.Location = new Point(474, 43);
             textBoxAkahama2006K0Prime.Name = "textBoxAkahama2006K0Prime";
             textBoxAkahama2006K0Prime.Size = new Size(44, 22);
@@ -1605,7 +1482,7 @@ namespace PressureCalculator
             // textBoxDiamondFratandunoLow
             // 
             textBoxDiamondFratandunoLow.BackColor = Color.Navy;
-            textBoxDiamondFratandunoLow.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiamondFratandunoLow.Font = new Font("Segoe UI Symbol", 11.25F);
             textBoxDiamondFratandunoLow.ForeColor = Color.White;
             textBoxDiamondFratandunoLow.Location = new Point(615, 65);
             textBoxDiamondFratandunoLow.Name = "textBoxDiamondFratandunoLow";
@@ -1617,7 +1494,7 @@ namespace PressureCalculator
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Font = new Font("Segoe UI Symbol", 8.25F);
             label4.Location = new Point(160, 19);
             label4.Name = "label4";
             label4.Size = new Size(90, 13);
@@ -1627,7 +1504,7 @@ namespace PressureCalculator
             // label20
             // 
             label20.AutoSize = true;
-            label20.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label20.Font = new Font("Segoe UI Symbol", 8.25F);
             label20.Location = new Point(160, 100);
             label20.Name = "label20";
             label20.Size = new Size(430, 13);
@@ -1637,7 +1514,7 @@ namespace PressureCalculator
             // label19
             // 
             label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label19.Font = new Font("Segoe UI Symbol", 8.25F);
             label19.Location = new Point(160, 73);
             label19.Name = "label19";
             label19.Size = new Size(387, 13);
@@ -1647,7 +1524,7 @@ namespace PressureCalculator
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Segoe UI Symbol", 8.25F);
             label3.Location = new Point(160, 46);
             label3.Name = "label3";
             label3.Size = new Size(90, 13);
@@ -1656,7 +1533,7 @@ namespace PressureCalculator
             // 
             // label24
             // 
-            label24.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label24.Font = new Font("Verdana", 9F);
             label24.Location = new Point(688, 72);
             label24.Name = "label24";
             label24.Size = new Size(34, 12);
@@ -1666,7 +1543,7 @@ namespace PressureCalculator
             // label31
             // 
             label31.AutoSize = true;
-            label31.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label31.Font = new Font("Segoe UI Symbol", 8.25F);
             label31.Location = new Point(264, 46);
             label31.Name = "label31";
             label31.Size = new Size(39, 13);
@@ -1676,7 +1553,7 @@ namespace PressureCalculator
             // label33
             // 
             label33.AutoSize = true;
-            label33.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label33.Font = new Font("Segoe UI Symbol", 8.25F);
             label33.Location = new Point(520, 46);
             label33.Name = "label33";
             label33.Size = new Size(65, 13);
@@ -1685,7 +1562,7 @@ namespace PressureCalculator
             // 
             // label21
             // 
-            label21.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label21.Font = new Font("Verdana", 9F);
             label21.Location = new Point(691, 99);
             label21.Name = "label21";
             label21.Size = new Size(34, 12);
@@ -1695,7 +1572,7 @@ namespace PressureCalculator
             // label32
             // 
             label32.AutoSize = true;
-            label32.Font = new Font("Segoe UI Symbol", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label32.Font = new Font("Segoe UI Symbol", 8.25F);
             label32.Location = new Point(357, 46);
             label32.Name = "label32";
             label32.Size = new Size(115, 13);
@@ -1704,7 +1581,7 @@ namespace PressureCalculator
             // 
             // label35
             // 
-            label35.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label35.Font = new Font("Verdana", 9F);
             label35.Location = new Point(691, 45);
             label35.Name = "label35";
             label35.Size = new Size(34, 12);
@@ -1722,1117 +1599,1921 @@ namespace PressureCalculator
             flowLayoutPanelEOS.Controls.Add(groupBoxCorundum);
             flowLayoutPanelEOS.Controls.Add(groupBoxAr);
             flowLayoutPanelEOS.Controls.Add(groupBoxRe);
+            flowLayoutPanelEOS.Controls.Add(groupBoxMo);
+            flowLayoutPanelEOS.Controls.Add(groupBoxPb);
             flowLayoutPanelEOS.Dock = DockStyle.Fill;
-            flowLayoutPanelEOS.Location = new Point(0, 26);
+            flowLayoutPanelEOS.Font = new Font("Tahoma", 8.25F);
+            flowLayoutPanelEOS.Location = new Point(0, 29);
             flowLayoutPanelEOS.Name = "flowLayoutPanelEOS";
-            flowLayoutPanelEOS.Size = new Size(725, 56);
+            flowLayoutPanelEOS.Size = new Size(725, 178);
             flowLayoutPanelEOS.TabIndex = 14;
             // 
             // groupBoxGold
             // 
-            groupBoxGold.Controls.Add(textBoxGoldJamieson);
-            groupBoxGold.Controls.Add(textBoxGoldAnderson);
-            groupBoxGold.Controls.Add(textBoxGoldTsuchiya);
-            groupBoxGold.Controls.Add(label50);
-            groupBoxGold.Controls.Add(textBoxGoldSim);
+            groupBoxGold.Controls.Add(numericBoxAuFratanduono);
+            groupBoxGold.Controls.Add(numericBoxAuYokoo);
+            groupBoxGold.Controls.Add(numericalTextBoxGoldJamieson);
+            groupBoxGold.Controls.Add(numericalTextBoxGoldTsuchiya);
+            groupBoxGold.Controls.Add(numericalTextBoxGoldSim);
             groupBoxGold.Controls.Add(label11);
-            groupBoxGold.Controls.Add(label70);
-            groupBoxGold.Controls.Add(label15);
-            groupBoxGold.Controls.Add(textBoxGold_a);
-            groupBoxGold.Controls.Add(textBoxGold_a0);
-            groupBoxGold.Controls.Add(label16);
-            groupBoxGold.Controls.Add(label37);
+            groupBoxGold.Controls.Add(numericalTextBoxGoldAnderson);
             groupBoxGold.Controls.Add(label49);
-            groupBoxGold.Controls.Add(label23);
+            groupBoxGold.Controls.Add(numericalTextBoxGoldA);
+            groupBoxGold.Controls.Add(numericBoxGoldA0);
             groupBoxGold.Controls.Add(label22);
             groupBoxGold.Controls.Add(label69);
-            groupBoxGold.Controls.Add(label36);
-            groupBoxGold.Controls.Add(label38);
-            groupBoxGold.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBoxGold.Controls.Add(label15);
+            groupBoxGold.Controls.Add(label27);
+            groupBoxGold.Font = new Font("Segoe UI Symbol", 9.75F);
             groupBoxGold.Location = new Point(3, 3);
             groupBoxGold.Name = "groupBoxGold";
-            groupBoxGold.Size = new Size(100, 214);
-            groupBoxGold.TabIndex = 14;
+            groupBoxGold.Size = new Size(218, 208);
+            groupBoxGold.TabIndex = 9;
             groupBoxGold.TabStop = false;
             groupBoxGold.Text = "Gold";
             // 
-            // textBoxGoldJamieson
+            // numericBoxAuFratanduono
             // 
-            textBoxGoldJamieson.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxGoldJamieson.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxGoldJamieson.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxGoldJamieson.Location = new Point(12, 74);
-            textBoxGoldJamieson.Name = "textBoxGoldJamieson";
-            textBoxGoldJamieson.ReadOnly = true;
-            textBoxGoldJamieson.Size = new Size(48, 22);
-            textBoxGoldJamieson.TabIndex = 5;
-            textBoxGoldJamieson.Text = "0";
+            numericBoxAuFratanduono.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxAuFratanduono.BackColor = SystemColors.Control;
+            numericBoxAuFratanduono.DecimalPlaces = 3;
+            numericBoxAuFratanduono.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxAuFratanduono.FooterBackColor = SystemColors.Control;
+            numericBoxAuFratanduono.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxAuFratanduono.FooterText = "GPa";
+            numericBoxAuFratanduono.HeaderBackColor = SystemColors.Control;
+            numericBoxAuFratanduono.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxAuFratanduono.Location = new Point(84, 179);
+            numericBoxAuFratanduono.Margin = new Padding(0);
+            numericBoxAuFratanduono.MaximumSize = new Size(1000, 30);
+            numericBoxAuFratanduono.MinimumSize = new Size(1, 20);
+            numericBoxAuFratanduono.Name = "numericBoxAuFratanduono";
+            numericBoxAuFratanduono.Padding = new Padding(0, 0, 1, 0);
+            numericBoxAuFratanduono.Size = new Size(123, 27);
+            numericBoxAuFratanduono.SkipEventDuringInput = false;
+            numericBoxAuFratanduono.SmartIncrement = true;
+            numericBoxAuFratanduono.TabIndex = 12;
+            numericBoxAuFratanduono.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxAuFratanduono.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxAuFratanduono.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxAuFratanduono.ThonsandsSeparator = true;
             // 
-            // textBoxGoldAnderson
+            // numericBoxAuYokoo
             // 
-            textBoxGoldAnderson.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxGoldAnderson.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxGoldAnderson.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxGoldAnderson.Location = new Point(12, 111);
-            textBoxGoldAnderson.Name = "textBoxGoldAnderson";
-            textBoxGoldAnderson.ReadOnly = true;
-            textBoxGoldAnderson.Size = new Size(48, 22);
-            textBoxGoldAnderson.TabIndex = 5;
-            textBoxGoldAnderson.Text = "0";
+            numericBoxAuYokoo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxAuYokoo.BackColor = SystemColors.Control;
+            numericBoxAuYokoo.DecimalPlaces = 3;
+            numericBoxAuYokoo.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxAuYokoo.FooterBackColor = SystemColors.Control;
+            numericBoxAuYokoo.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxAuYokoo.FooterText = "GPa";
+            numericBoxAuYokoo.HeaderBackColor = SystemColors.Control;
+            numericBoxAuYokoo.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxAuYokoo.Location = new Point(84, 153);
+            numericBoxAuYokoo.Margin = new Padding(0);
+            numericBoxAuYokoo.MaximumSize = new Size(1000, 30);
+            numericBoxAuYokoo.MinimumSize = new Size(1, 20);
+            numericBoxAuYokoo.Name = "numericBoxAuYokoo";
+            numericBoxAuYokoo.Padding = new Padding(0, 0, 1, 0);
+            numericBoxAuYokoo.Size = new Size(123, 27);
+            numericBoxAuYokoo.SkipEventDuringInput = false;
+            numericBoxAuYokoo.SmartIncrement = true;
+            numericBoxAuYokoo.TabIndex = 12;
+            numericBoxAuYokoo.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxAuYokoo.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxAuYokoo.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxAuYokoo.ThonsandsSeparator = true;
             // 
-            // textBoxGoldTsuchiya
+            // numericalTextBoxGoldJamieson
             // 
-            textBoxGoldTsuchiya.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxGoldTsuchiya.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxGoldTsuchiya.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxGoldTsuchiya.Location = new Point(12, 183);
-            textBoxGoldTsuchiya.Name = "textBoxGoldTsuchiya";
-            textBoxGoldTsuchiya.ReadOnly = true;
-            textBoxGoldTsuchiya.Size = new Size(48, 22);
-            textBoxGoldTsuchiya.TabIndex = 5;
-            textBoxGoldTsuchiya.Text = "0";
+            numericalTextBoxGoldJamieson.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxGoldJamieson.BackColor = SystemColors.Control;
+            numericalTextBoxGoldJamieson.DecimalPlaces = 3;
+            numericalTextBoxGoldJamieson.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldJamieson.FooterBackColor = SystemColors.Control;
+            numericalTextBoxGoldJamieson.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldJamieson.FooterText = "GPa";
+            numericalTextBoxGoldJamieson.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxGoldJamieson.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldJamieson.Location = new Point(84, 51);
+            numericalTextBoxGoldJamieson.Margin = new Padding(0);
+            numericalTextBoxGoldJamieson.MaximumSize = new Size(1000, 30);
+            numericalTextBoxGoldJamieson.MinimumSize = new Size(1, 20);
+            numericalTextBoxGoldJamieson.Name = "numericalTextBoxGoldJamieson";
+            numericalTextBoxGoldJamieson.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxGoldJamieson.Size = new Size(123, 27);
+            numericalTextBoxGoldJamieson.SkipEventDuringInput = false;
+            numericalTextBoxGoldJamieson.SmartIncrement = true;
+            numericalTextBoxGoldJamieson.TabIndex = 12;
+            numericalTextBoxGoldJamieson.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxGoldJamieson.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxGoldJamieson.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxGoldJamieson.ThonsandsSeparator = true;
             // 
-            // label50
+            // numericalTextBoxGoldTsuchiya
             // 
-            label50.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label50.Location = new Point(60, 78);
-            label50.Name = "label50";
-            label50.Size = new Size(38, 16);
-            label50.TabIndex = 7;
-            label50.Text = "GPa";
+            numericalTextBoxGoldTsuchiya.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxGoldTsuchiya.BackColor = SystemColors.Control;
+            numericalTextBoxGoldTsuchiya.DecimalPlaces = 3;
+            numericalTextBoxGoldTsuchiya.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldTsuchiya.FooterBackColor = SystemColors.Control;
+            numericalTextBoxGoldTsuchiya.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldTsuchiya.FooterText = "GPa";
+            numericalTextBoxGoldTsuchiya.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxGoldTsuchiya.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldTsuchiya.Location = new Point(84, 127);
+            numericalTextBoxGoldTsuchiya.Margin = new Padding(0);
+            numericalTextBoxGoldTsuchiya.MaximumSize = new Size(1000, 30);
+            numericalTextBoxGoldTsuchiya.MinimumSize = new Size(1, 20);
+            numericalTextBoxGoldTsuchiya.Name = "numericalTextBoxGoldTsuchiya";
+            numericalTextBoxGoldTsuchiya.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxGoldTsuchiya.Size = new Size(123, 27);
+            numericalTextBoxGoldTsuchiya.SkipEventDuringInput = false;
+            numericalTextBoxGoldTsuchiya.SmartIncrement = true;
+            numericalTextBoxGoldTsuchiya.TabIndex = 12;
+            numericalTextBoxGoldTsuchiya.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxGoldTsuchiya.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxGoldTsuchiya.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxGoldTsuchiya.ThonsandsSeparator = true;
             // 
-            // textBoxGoldSim
+            // numericalTextBoxGoldSim
             // 
-            textBoxGoldSim.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxGoldSim.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxGoldSim.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxGoldSim.Location = new Point(12, 147);
-            textBoxGoldSim.Name = "textBoxGoldSim";
-            textBoxGoldSim.ReadOnly = true;
-            textBoxGoldSim.Size = new Size(48, 22);
-            textBoxGoldSim.TabIndex = 5;
-            textBoxGoldSim.Text = "0";
+            numericalTextBoxGoldSim.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxGoldSim.BackColor = SystemColors.Control;
+            numericalTextBoxGoldSim.DecimalPlaces = 3;
+            numericalTextBoxGoldSim.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldSim.FooterBackColor = SystemColors.Control;
+            numericalTextBoxGoldSim.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldSim.FooterText = "GPa";
+            numericalTextBoxGoldSim.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxGoldSim.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldSim.Location = new Point(84, 102);
+            numericalTextBoxGoldSim.Margin = new Padding(0);
+            numericalTextBoxGoldSim.MaximumSize = new Size(1000, 30);
+            numericalTextBoxGoldSim.MinimumSize = new Size(1, 20);
+            numericalTextBoxGoldSim.Name = "numericalTextBoxGoldSim";
+            numericalTextBoxGoldSim.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxGoldSim.Size = new Size(123, 27);
+            numericalTextBoxGoldSim.SkipEventDuringInput = false;
+            numericalTextBoxGoldSim.SmartIncrement = true;
+            numericalTextBoxGoldSim.TabIndex = 12;
+            numericalTextBoxGoldSim.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxGoldSim.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxGoldSim.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxGoldSim.ThonsandsSeparator = true;
             // 
             // label11
             // 
-            label11.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(60, 115);
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI Symbol", 9F);
+            label11.ImeMode = ImeMode.NoControl;
+            label11.Location = new Point(20, 157);
             label11.Name = "label11";
-            label11.Size = new Size(38, 16);
+            label11.Size = new Size(64, 15);
             label11.TabIndex = 7;
-            label11.Text = "GPa";
+            label11.Text = "Yokoo (09)";
             // 
-            // label70
+            // numericalTextBoxGoldAnderson
             // 
-            label70.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label70.Location = new Point(60, 187);
-            label70.Name = "label70";
-            label70.Size = new Size(38, 16);
-            label70.TabIndex = 7;
-            label70.Text = "GPa";
-            // 
-            // label15
-            // 
-            label15.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label15.Location = new Point(60, 151);
-            label15.Name = "label15";
-            label15.Size = new Size(38, 16);
-            label15.TabIndex = 7;
-            label15.Text = "GPa";
-            // 
-            // textBoxGold_a
-            // 
-            textBoxGold_a.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxGold_a.Location = new Point(20, 36);
-            textBoxGold_a.Name = "textBoxGold_a";
-            textBoxGold_a.Size = new Size(48, 21);
-            textBoxGold_a.TabIndex = 5;
-            textBoxGold_a.Text = "4.0786";
-            textBoxGold_a.TextChanged += textBox_TextChanged;
-            // 
-            // textBoxGold_a0
-            // 
-            textBoxGold_a0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxGold_a0.Location = new Point(20, 16);
-            textBoxGold_a0.Name = "textBoxGold_a0";
-            textBoxGold_a0.Size = new Size(48, 21);
-            textBoxGold_a0.TabIndex = 5;
-            textBoxGold_a0.Text = "4.0786";
-            textBoxGold_a0.TextChanged += textBox_TextChanged;
-            // 
-            // label16
-            // 
-            label16.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label16.Location = new Point(4, 20);
-            label16.Name = "label16";
-            label16.Size = new Size(20, 12);
-            label16.TabIndex = 7;
-            label16.Text = "a0";
-            // 
-            // label37
-            // 
-            label37.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label37.Location = new Point(68, 20);
-            label37.Name = "label37";
-            label37.Size = new Size(12, 16);
-            label37.TabIndex = 7;
-            label37.Text = "Å";
+            numericalTextBoxGoldAnderson.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxGoldAnderson.BackColor = SystemColors.Control;
+            numericalTextBoxGoldAnderson.DecimalPlaces = 3;
+            numericalTextBoxGoldAnderson.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldAnderson.FooterBackColor = SystemColors.Control;
+            numericalTextBoxGoldAnderson.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldAnderson.FooterText = "GPa";
+            numericalTextBoxGoldAnderson.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxGoldAnderson.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldAnderson.Location = new Point(84, 77);
+            numericalTextBoxGoldAnderson.Margin = new Padding(0);
+            numericalTextBoxGoldAnderson.MaximumSize = new Size(1000, 30);
+            numericalTextBoxGoldAnderson.MinimumSize = new Size(1, 20);
+            numericalTextBoxGoldAnderson.Name = "numericalTextBoxGoldAnderson";
+            numericalTextBoxGoldAnderson.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxGoldAnderson.Size = new Size(123, 27);
+            numericalTextBoxGoldAnderson.SkipEventDuringInput = false;
+            numericalTextBoxGoldAnderson.SmartIncrement = true;
+            numericalTextBoxGoldAnderson.TabIndex = 12;
+            numericalTextBoxGoldAnderson.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxGoldAnderson.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxGoldAnderson.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxGoldAnderson.ThonsandsSeparator = true;
             // 
             // label49
             // 
-            label49.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label49.Location = new Point(12, 59);
+            label49.AutoSize = true;
+            label49.Font = new Font("Segoe UI Symbol", 9F);
+            label49.ImeMode = ImeMode.NoControl;
+            label49.Location = new Point(6, 56);
             label49.Name = "label49";
-            label49.Size = new Size(88, 19);
+            label49.Size = new Size(79, 15);
             label49.TabIndex = 7;
             label49.Text = "Jamieson (82)";
             // 
-            // label23
+            // numericalTextBoxGoldA
             // 
-            label23.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label23.Location = new Point(68, 40);
-            label23.Name = "label23";
-            label23.Size = new Size(12, 16);
-            label23.TabIndex = 7;
-            label23.Text = "Å";
+            numericalTextBoxGoldA.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxGoldA.BackColor = SystemColors.Control;
+            numericalTextBoxGoldA.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxGoldA.FooterBackColor = SystemColors.Control;
+            numericalTextBoxGoldA.FooterText = "Å";
+            numericalTextBoxGoldA.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxGoldA.HeaderText = "a ";
+            numericalTextBoxGoldA.Location = new Point(111, 20);
+            numericalTextBoxGoldA.Margin = new Padding(0);
+            numericalTextBoxGoldA.MaximumSize = new Size(1000, 30);
+            numericalTextBoxGoldA.MinimumSize = new Size(1, 20);
+            numericalTextBoxGoldA.Name = "numericalTextBoxGoldA";
+            numericalTextBoxGoldA.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxGoldA.RadianValue = 0.071178890219458738D;
+            numericalTextBoxGoldA.Size = new Size(99, 27);
+            numericalTextBoxGoldA.SkipEventDuringInput = false;
+            numericalTextBoxGoldA.SmartIncrement = true;
+            numericalTextBoxGoldA.TabIndex = 10;
+            numericalTextBoxGoldA.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxGoldA.ThonsandsSeparator = true;
+            numericalTextBoxGoldA.Value = 4.07825D;
+            numericalTextBoxGoldA.ValueChanged += textBox_TextChanged;
+            // 
+            // numericBoxGoldA0
+            // 
+            numericBoxGoldA0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxGoldA0.BackColor = SystemColors.Control;
+            numericBoxGoldA0.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxGoldA0.FooterBackColor = SystemColors.Control;
+            numericBoxGoldA0.FooterText = "Å";
+            numericBoxGoldA0.HeaderBackColor = SystemColors.Control;
+            numericBoxGoldA0.HeaderText = "a₀";
+            numericBoxGoldA0.Location = new Point(3, 20);
+            numericBoxGoldA0.Margin = new Padding(0);
+            numericBoxGoldA0.MaximumSize = new Size(1000, 30);
+            numericBoxGoldA0.MinimumSize = new Size(1, 20);
+            numericBoxGoldA0.Name = "numericBoxGoldA0";
+            numericBoxGoldA0.Padding = new Padding(0, 0, 1, 0);
+            numericBoxGoldA0.RadianValue = 0.071178890219458738D;
+            numericBoxGoldA0.Size = new Size(108, 27);
+            numericBoxGoldA0.SkipEventDuringInput = false;
+            numericBoxGoldA0.SmartIncrement = true;
+            numericBoxGoldA0.TabIndex = 10;
+            numericBoxGoldA0.TextFont = new Font("メイリオ", 9F);
+            numericBoxGoldA0.ThonsandsSeparator = true;
+            numericBoxGoldA0.Value = 4.07825D;
+            numericBoxGoldA0.ValueChanged += textBox_TextChanged;
             // 
             // label22
             // 
-            label22.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label22.Location = new Point(12, 96);
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI Symbol", 9F);
+            label22.ImeMode = ImeMode.NoControl;
+            label22.Location = new Point(4, 81);
             label22.Name = "label22";
-            label22.Size = new Size(88, 19);
+            label22.Size = new Size(81, 15);
             label22.TabIndex = 7;
             label22.Text = "Anderson (89)";
             // 
             // label69
             // 
-            label69.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label69.Location = new Point(12, 171);
+            label69.AutoSize = true;
+            label69.Font = new Font("Segoe UI Symbol", 9F);
+            label69.ImeMode = ImeMode.NoControl;
+            label69.Location = new Point(7, 131);
             label69.Name = "label69";
-            label69.Size = new Size(86, 16);
+            label69.Size = new Size(77, 15);
             label69.TabIndex = 7;
             label69.Text = "Tsuchiya (03)";
             // 
-            // label36
+            // label15
             // 
-            label36.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label36.Location = new Point(12, 135);
-            label36.Name = "label36";
-            label36.Size = new Size(86, 16);
-            label36.TabIndex = 7;
-            label36.Text = "Sim (02)";
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI Symbol", 9F);
+            label15.ImeMode = ImeMode.NoControl;
+            label15.Location = new Point(34, 107);
+            label15.Name = "label15";
+            label15.Size = new Size(50, 15);
+            label15.TabIndex = 7;
+            label15.Text = "Sim (02)";
             // 
-            // label38
+            // label27
             // 
-            label38.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label38.Location = new Point(12, 40);
-            label38.Name = "label38";
-            label38.Size = new Size(16, 12);
-            label38.TabIndex = 7;
-            label38.Text = "a";
+            label27.AutoSize = true;
+            label27.Font = new Font("Segoe UI Symbol", 7F);
+            label27.ImeMode = ImeMode.NoControl;
+            label27.Location = new Point(3, 184);
+            label27.Name = "label27";
+            label27.Size = new Size(81, 12);
+            label27.TabIndex = 7;
+            label27.Text = "Fratanduono (21)";
             // 
             // groupBoxPlatinum
             // 
-            groupBoxPlatinum.Controls.Add(textBoxPtA0);
-            groupBoxPlatinum.Controls.Add(textBoxPtJamieson);
-            groupBoxPlatinum.Controls.Add(textBoxPtHolems);
-            groupBoxPlatinum.Controls.Add(label39);
-            groupBoxPlatinum.Controls.Add(label47);
-            groupBoxPlatinum.Controls.Add(label61);
-            groupBoxPlatinum.Controls.Add(textBoxPtA);
-            groupBoxPlatinum.Controls.Add(label54);
-            groupBoxPlatinum.Controls.Add(label48);
-            groupBoxPlatinum.Controls.Add(label51);
-            groupBoxPlatinum.Controls.Add(label52);
-            groupBoxPlatinum.Controls.Add(label60);
-            groupBoxPlatinum.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxPlatinum.Location = new Point(109, 3);
+            groupBoxPlatinum.Controls.Add(numericBoxPtFratanduono);
+            groupBoxPlatinum.Controls.Add(numericBoxPtYokoo);
+            groupBoxPlatinum.Controls.Add(numericalTextBoxPtMatsui);
+            groupBoxPlatinum.Controls.Add(numericalTextBoxPtHolmes);
+            groupBoxPlatinum.Controls.Add(label16);
+            groupBoxPlatinum.Controls.Add(numericalTextBoxPtJamieson);
+            groupBoxPlatinum.Controls.Add(label23);
+            groupBoxPlatinum.Controls.Add(label26);
+            groupBoxPlatinum.Controls.Add(label36);
+            groupBoxPlatinum.Controls.Add(numericalTextBoxPtA);
+            groupBoxPlatinum.Controls.Add(numericBoxPtA0);
+            groupBoxPlatinum.Controls.Add(label37);
+            groupBoxPlatinum.Font = new Font("Segoe UI Symbol", 9.75F);
+            groupBoxPlatinum.Location = new Point(227, 3);
             groupBoxPlatinum.Name = "groupBoxPlatinum";
-            groupBoxPlatinum.Size = new Size(98, 136);
-            groupBoxPlatinum.TabIndex = 13;
+            groupBoxPlatinum.Size = new Size(218, 178);
+            groupBoxPlatinum.TabIndex = 10;
             groupBoxPlatinum.TabStop = false;
             groupBoxPlatinum.Text = "Platinum";
             // 
-            // textBoxPtA0
+            // numericBoxPtFratanduono
             // 
-            textBoxPtA0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxPtA0.Location = new Point(20, 16);
-            textBoxPtA0.Name = "textBoxPtA0";
-            textBoxPtA0.Size = new Size(48, 21);
-            textBoxPtA0.TabIndex = 5;
-            textBoxPtA0.Text = "3.9231";
-            textBoxPtA0.TextChanged += textBox_TextChanged;
+            numericBoxPtFratanduono.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxPtFratanduono.BackColor = SystemColors.Control;
+            numericBoxPtFratanduono.DecimalPlaces = 3;
+            numericBoxPtFratanduono.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxPtFratanduono.FooterBackColor = SystemColors.Control;
+            numericBoxPtFratanduono.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxPtFratanduono.FooterText = "GPa";
+            numericBoxPtFratanduono.HeaderBackColor = SystemColors.Control;
+            numericBoxPtFratanduono.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxPtFratanduono.Location = new Point(84, 149);
+            numericBoxPtFratanduono.Margin = new Padding(0);
+            numericBoxPtFratanduono.MaximumSize = new Size(1000, 30);
+            numericBoxPtFratanduono.MinimumSize = new Size(1, 20);
+            numericBoxPtFratanduono.Name = "numericBoxPtFratanduono";
+            numericBoxPtFratanduono.Padding = new Padding(0, 0, 1, 0);
+            numericBoxPtFratanduono.Size = new Size(123, 27);
+            numericBoxPtFratanduono.SkipEventDuringInput = false;
+            numericBoxPtFratanduono.SmartIncrement = true;
+            numericBoxPtFratanduono.TabIndex = 12;
+            numericBoxPtFratanduono.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxPtFratanduono.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxPtFratanduono.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxPtFratanduono.ThonsandsSeparator = true;
             // 
-            // textBoxPtJamieson
+            // numericBoxPtYokoo
             // 
-            textBoxPtJamieson.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxPtJamieson.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxPtJamieson.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxPtJamieson.Location = new Point(12, 76);
-            textBoxPtJamieson.Name = "textBoxPtJamieson";
-            textBoxPtJamieson.ReadOnly = true;
-            textBoxPtJamieson.Size = new Size(48, 22);
-            textBoxPtJamieson.TabIndex = 5;
-            textBoxPtJamieson.Text = "0";
+            numericBoxPtYokoo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxPtYokoo.BackColor = SystemColors.Control;
+            numericBoxPtYokoo.DecimalPlaces = 3;
+            numericBoxPtYokoo.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxPtYokoo.FooterBackColor = SystemColors.Control;
+            numericBoxPtYokoo.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxPtYokoo.FooterText = "GPa";
+            numericBoxPtYokoo.HeaderBackColor = SystemColors.Control;
+            numericBoxPtYokoo.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxPtYokoo.Location = new Point(84, 123);
+            numericBoxPtYokoo.Margin = new Padding(0);
+            numericBoxPtYokoo.MaximumSize = new Size(1000, 30);
+            numericBoxPtYokoo.MinimumSize = new Size(1, 20);
+            numericBoxPtYokoo.Name = "numericBoxPtYokoo";
+            numericBoxPtYokoo.Padding = new Padding(0, 0, 1, 0);
+            numericBoxPtYokoo.Size = new Size(123, 27);
+            numericBoxPtYokoo.SkipEventDuringInput = false;
+            numericBoxPtYokoo.SmartIncrement = true;
+            numericBoxPtYokoo.TabIndex = 12;
+            numericBoxPtYokoo.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxPtYokoo.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxPtYokoo.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxPtYokoo.ThonsandsSeparator = true;
             // 
-            // textBoxPtHolems
+            // numericalTextBoxPtMatsui
             // 
-            textBoxPtHolems.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxPtHolems.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxPtHolems.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxPtHolems.Location = new Point(12, 112);
-            textBoxPtHolems.Name = "textBoxPtHolems";
-            textBoxPtHolems.ReadOnly = true;
-            textBoxPtHolems.Size = new Size(48, 22);
-            textBoxPtHolems.TabIndex = 5;
-            textBoxPtHolems.Text = "0";
+            numericalTextBoxPtMatsui.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxPtMatsui.BackColor = SystemColors.Control;
+            numericalTextBoxPtMatsui.DecimalPlaces = 3;
+            numericalTextBoxPtMatsui.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxPtMatsui.FooterBackColor = SystemColors.Control;
+            numericalTextBoxPtMatsui.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxPtMatsui.FooterText = "GPa";
+            numericalTextBoxPtMatsui.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxPtMatsui.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxPtMatsui.Location = new Point(84, 97);
+            numericalTextBoxPtMatsui.Margin = new Padding(0);
+            numericalTextBoxPtMatsui.MaximumSize = new Size(1000, 30);
+            numericalTextBoxPtMatsui.MinimumSize = new Size(1, 20);
+            numericalTextBoxPtMatsui.Name = "numericalTextBoxPtMatsui";
+            numericalTextBoxPtMatsui.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxPtMatsui.Size = new Size(123, 27);
+            numericalTextBoxPtMatsui.SkipEventDuringInput = false;
+            numericalTextBoxPtMatsui.SmartIncrement = true;
+            numericalTextBoxPtMatsui.TabIndex = 12;
+            numericalTextBoxPtMatsui.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxPtMatsui.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxPtMatsui.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxPtMatsui.ThonsandsSeparator = true;
             // 
-            // label39
+            // numericalTextBoxPtHolmes
             // 
-            label39.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label39.Location = new Point(60, 80);
-            label39.Name = "label39";
-            label39.Size = new Size(24, 16);
-            label39.TabIndex = 7;
-            label39.Text = "GPa";
+            numericalTextBoxPtHolmes.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxPtHolmes.BackColor = SystemColors.Control;
+            numericalTextBoxPtHolmes.DecimalPlaces = 3;
+            numericalTextBoxPtHolmes.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxPtHolmes.FooterBackColor = SystemColors.Control;
+            numericalTextBoxPtHolmes.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxPtHolmes.FooterText = "GPa";
+            numericalTextBoxPtHolmes.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxPtHolmes.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxPtHolmes.Location = new Point(84, 72);
+            numericalTextBoxPtHolmes.Margin = new Padding(0);
+            numericalTextBoxPtHolmes.MaximumSize = new Size(1000, 30);
+            numericalTextBoxPtHolmes.MinimumSize = new Size(1, 20);
+            numericalTextBoxPtHolmes.Name = "numericalTextBoxPtHolmes";
+            numericalTextBoxPtHolmes.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxPtHolmes.Size = new Size(123, 27);
+            numericalTextBoxPtHolmes.SkipEventDuringInput = false;
+            numericalTextBoxPtHolmes.SmartIncrement = true;
+            numericalTextBoxPtHolmes.TabIndex = 12;
+            numericalTextBoxPtHolmes.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxPtHolmes.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxPtHolmes.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxPtHolmes.ThonsandsSeparator = true;
             // 
-            // label47
+            // label16
             // 
-            label47.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label47.Location = new Point(4, 20);
-            label47.Name = "label47";
-            label47.Size = new Size(24, 12);
-            label47.TabIndex = 7;
-            label47.Text = "a0";
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI Symbol", 9F);
+            label16.ImeMode = ImeMode.NoControl;
+            label16.Location = new Point(16, 128);
+            label16.Name = "label16";
+            label16.Size = new Size(64, 15);
+            label16.TabIndex = 7;
+            label16.Text = "Yokoo (09)";
             // 
-            // label61
+            // numericalTextBoxPtJamieson
             // 
-            label61.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label61.Location = new Point(60, 116);
-            label61.Name = "label61";
-            label61.Size = new Size(24, 16);
-            label61.TabIndex = 7;
-            label61.Text = "GPa";
+            numericalTextBoxPtJamieson.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxPtJamieson.BackColor = SystemColors.Control;
+            numericalTextBoxPtJamieson.DecimalPlaces = 3;
+            numericalTextBoxPtJamieson.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxPtJamieson.FooterBackColor = SystemColors.Control;
+            numericalTextBoxPtJamieson.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxPtJamieson.FooterText = "GPa";
+            numericalTextBoxPtJamieson.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxPtJamieson.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxPtJamieson.Location = new Point(84, 47);
+            numericalTextBoxPtJamieson.Margin = new Padding(0);
+            numericalTextBoxPtJamieson.MaximumSize = new Size(1000, 30);
+            numericalTextBoxPtJamieson.MinimumSize = new Size(1, 20);
+            numericalTextBoxPtJamieson.Name = "numericalTextBoxPtJamieson";
+            numericalTextBoxPtJamieson.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxPtJamieson.Size = new Size(123, 27);
+            numericalTextBoxPtJamieson.SkipEventDuringInput = false;
+            numericalTextBoxPtJamieson.SmartIncrement = true;
+            numericalTextBoxPtJamieson.TabIndex = 12;
+            numericalTextBoxPtJamieson.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxPtJamieson.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxPtJamieson.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxPtJamieson.ThonsandsSeparator = true;
             // 
-            // textBoxPtA
+            // label23
             // 
-            textBoxPtA.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxPtA.Location = new Point(20, 40);
-            textBoxPtA.Name = "textBoxPtA";
-            textBoxPtA.Size = new Size(48, 21);
-            textBoxPtA.TabIndex = 5;
-            textBoxPtA.Text = "3.9231";
-            textBoxPtA.TextChanged += textBox_TextChanged;
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI Symbol", 9F);
+            label23.ImeMode = ImeMode.NoControl;
+            label23.Location = new Point(15, 102);
+            label23.Name = "label23";
+            label23.Size = new Size(66, 15);
+            label23.TabIndex = 7;
+            label23.Text = "Matsui (09)";
             // 
-            // label54
+            // label26
             // 
-            label54.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label54.Location = new Point(68, 20);
-            label54.Name = "label54";
-            label54.Size = new Size(12, 16);
-            label54.TabIndex = 7;
-            label54.Text = "Å";
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI Symbol", 9F);
+            label26.ImeMode = ImeMode.NoControl;
+            label26.Location = new Point(11, 77);
+            label26.Name = "label26";
+            label26.Size = new Size(71, 15);
+            label26.TabIndex = 7;
+            label26.Text = "Holmes (89)";
             // 
-            // label48
+            // label36
             // 
-            label48.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label48.Location = new Point(68, 44);
-            label48.Name = "label48";
-            label48.Size = new Size(12, 16);
-            label48.TabIndex = 7;
-            label48.Text = "Å";
+            label36.AutoSize = true;
+            label36.Font = new Font("Segoe UI Symbol", 9F);
+            label36.ImeMode = ImeMode.NoControl;
+            label36.Location = new Point(4, 52);
+            label36.Name = "label36";
+            label36.Size = new Size(79, 15);
+            label36.TabIndex = 7;
+            label36.Text = "Jamieson (82)";
             // 
-            // label51
+            // numericalTextBoxPtA
             // 
-            label51.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label51.Location = new Point(4, 64);
-            label51.Name = "label51";
-            label51.Size = new Size(96, 14);
-            label51.TabIndex = 7;
-            label51.Text = "Jamieson (82)";
+            numericalTextBoxPtA.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxPtA.BackColor = SystemColors.Control;
+            numericalTextBoxPtA.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxPtA.FooterBackColor = SystemColors.Control;
+            numericalTextBoxPtA.FooterText = "Å";
+            numericalTextBoxPtA.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxPtA.HeaderText = "a";
+            numericalTextBoxPtA.Location = new Point(111, 19);
+            numericalTextBoxPtA.Margin = new Padding(0);
+            numericalTextBoxPtA.MaximumSize = new Size(1000, 30);
+            numericalTextBoxPtA.MinimumSize = new Size(1, 20);
+            numericalTextBoxPtA.Name = "numericalTextBoxPtA";
+            numericalTextBoxPtA.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxPtA.RadianValue = 0.068471011884989538D;
+            numericalTextBoxPtA.Size = new Size(104, 27);
+            numericalTextBoxPtA.SkipEventDuringInput = false;
+            numericalTextBoxPtA.SmartIncrement = true;
+            numericalTextBoxPtA.TabIndex = 10;
+            numericalTextBoxPtA.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxPtA.ThonsandsSeparator = true;
+            numericalTextBoxPtA.Value = 3.9231D;
+            numericalTextBoxPtA.ValueChanged += textBox_TextChanged;
             // 
-            // label52
+            // numericBoxPtA0
             // 
-            label52.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label52.Location = new Point(12, 44);
-            label52.Name = "label52";
-            label52.Size = new Size(36, 12);
-            label52.TabIndex = 7;
-            label52.Text = "a";
+            numericBoxPtA0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxPtA0.BackColor = SystemColors.Control;
+            numericBoxPtA0.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxPtA0.FooterBackColor = SystemColors.Control;
+            numericBoxPtA0.FooterText = "Å";
+            numericBoxPtA0.HeaderBackColor = SystemColors.Control;
+            numericBoxPtA0.HeaderText = "a₀";
+            numericBoxPtA0.Location = new Point(1, 20);
+            numericBoxPtA0.Margin = new Padding(0);
+            numericBoxPtA0.MaximumSize = new Size(1000, 30);
+            numericBoxPtA0.MinimumSize = new Size(1, 20);
+            numericBoxPtA0.Name = "numericBoxPtA0";
+            numericBoxPtA0.Padding = new Padding(0, 0, 1, 0);
+            numericBoxPtA0.RadianValue = 0.068471011884989538D;
+            numericBoxPtA0.Size = new Size(110, 27);
+            numericBoxPtA0.SkipEventDuringInput = false;
+            numericBoxPtA0.SmartIncrement = true;
+            numericBoxPtA0.TabIndex = 10;
+            numericBoxPtA0.TextFont = new Font("メイリオ", 9F);
+            numericBoxPtA0.ThonsandsSeparator = true;
+            numericBoxPtA0.Value = 3.9231D;
+            numericBoxPtA0.ValueChanged += textBox_TextChanged;
             // 
-            // label60
+            // label37
             // 
-            label60.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label60.Location = new Point(8, 101);
-            label60.Name = "label60";
-            label60.Size = new Size(92, 15);
-            label60.TabIndex = 7;
-            label60.Text = "Holmes (89)";
+            label37.AutoSize = true;
+            label37.Font = new Font("Segoe UI Symbol", 7F);
+            label37.ImeMode = ImeMode.NoControl;
+            label37.Location = new Point(3, 155);
+            label37.Name = "label37";
+            label37.Size = new Size(81, 12);
+            label37.TabIndex = 7;
+            label37.Text = "Fratanduono (21)";
             // 
             // groupBoxNaClB1
             // 
-            groupBoxNaClB1.Controls.Add(textBoxNaClB1_a0);
-            groupBoxNaClB1.Controls.Add(textBoxNaClB1_a);
-            groupBoxNaClB1.Controls.Add(label53);
-            groupBoxNaClB1.Controls.Add(label55);
-            groupBoxNaClB1.Controls.Add(label56);
-            groupBoxNaClB1.Controls.Add(textBoxNaClB1Brown);
-            groupBoxNaClB1.Controls.Add(label62);
-            groupBoxNaClB1.Controls.Add(label57);
-            groupBoxNaClB1.Controls.Add(label58);
-            groupBoxNaClB1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxNaClB1.Location = new Point(213, 3);
+            groupBoxNaClB1.Controls.Add(numericalTextBoxNaClB1Matsui);
+            groupBoxNaClB1.Controls.Add(numericalTextBoxNaClB1Brown);
+            groupBoxNaClB1.Controls.Add(label38);
+            groupBoxNaClB1.Controls.Add(label39);
+            groupBoxNaClB1.Controls.Add(numericalTextBoxNaClB1A);
+            groupBoxNaClB1.Controls.Add(numericBoxNaClB1A0);
+            groupBoxNaClB1.Font = new Font("Segoe UI Symbol", 9.75F);
+            groupBoxNaClB1.Location = new Point(451, 3);
             groupBoxNaClB1.Name = "groupBoxNaClB1";
-            groupBoxNaClB1.Size = new Size(98, 100);
-            groupBoxNaClB1.TabIndex = 16;
+            groupBoxNaClB1.Size = new Size(218, 104);
+            groupBoxNaClB1.TabIndex = 11;
             groupBoxNaClB1.TabStop = false;
             groupBoxNaClB1.Text = "NaCl B1";
             // 
-            // textBoxNaClB1_a0
+            // numericalTextBoxNaClB1Matsui
             // 
-            textBoxNaClB1_a0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxNaClB1_a0.Location = new Point(20, 16);
-            textBoxNaClB1_a0.Name = "textBoxNaClB1_a0";
-            textBoxNaClB1_a0.Size = new Size(48, 21);
-            textBoxNaClB1_a0.TabIndex = 5;
-            textBoxNaClB1_a0.Text = "5.63900";
-            textBoxNaClB1_a0.TextChanged += textBox_TextChanged;
+            numericalTextBoxNaClB1Matsui.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxNaClB1Matsui.BackColor = SystemColors.Control;
+            numericalTextBoxNaClB1Matsui.DecimalPlaces = 3;
+            numericalTextBoxNaClB1Matsui.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB1Matsui.FooterBackColor = SystemColors.Control;
+            numericalTextBoxNaClB1Matsui.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB1Matsui.FooterText = "GPa";
+            numericalTextBoxNaClB1Matsui.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxNaClB1Matsui.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB1Matsui.Location = new Point(84, 75);
+            numericalTextBoxNaClB1Matsui.Margin = new Padding(0);
+            numericalTextBoxNaClB1Matsui.MaximumSize = new Size(1000, 30);
+            numericalTextBoxNaClB1Matsui.MinimumSize = new Size(1, 20);
+            numericalTextBoxNaClB1Matsui.Name = "numericalTextBoxNaClB1Matsui";
+            numericalTextBoxNaClB1Matsui.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxNaClB1Matsui.Size = new Size(123, 27);
+            numericalTextBoxNaClB1Matsui.SkipEventDuringInput = false;
+            numericalTextBoxNaClB1Matsui.SmartIncrement = true;
+            numericalTextBoxNaClB1Matsui.TabIndex = 12;
+            numericalTextBoxNaClB1Matsui.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxNaClB1Matsui.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxNaClB1Matsui.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB1Matsui.ThonsandsSeparator = true;
             // 
-            // textBoxNaClB1_a
+            // numericalTextBoxNaClB1Brown
             // 
-            textBoxNaClB1_a.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxNaClB1_a.Location = new Point(20, 36);
-            textBoxNaClB1_a.Name = "textBoxNaClB1_a";
-            textBoxNaClB1_a.Size = new Size(48, 21);
-            textBoxNaClB1_a.TabIndex = 5;
-            textBoxNaClB1_a.Text = "4.0786";
-            textBoxNaClB1_a.TextChanged += textBox_TextChanged;
+            numericalTextBoxNaClB1Brown.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxNaClB1Brown.BackColor = SystemColors.Control;
+            numericalTextBoxNaClB1Brown.DecimalPlaces = 3;
+            numericalTextBoxNaClB1Brown.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB1Brown.FooterBackColor = SystemColors.Control;
+            numericalTextBoxNaClB1Brown.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB1Brown.FooterText = "GPa";
+            numericalTextBoxNaClB1Brown.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxNaClB1Brown.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB1Brown.Location = new Point(84, 50);
+            numericalTextBoxNaClB1Brown.Margin = new Padding(0);
+            numericalTextBoxNaClB1Brown.MaximumSize = new Size(1000, 30);
+            numericalTextBoxNaClB1Brown.MinimumSize = new Size(1, 20);
+            numericalTextBoxNaClB1Brown.Name = "numericalTextBoxNaClB1Brown";
+            numericalTextBoxNaClB1Brown.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxNaClB1Brown.Size = new Size(123, 27);
+            numericalTextBoxNaClB1Brown.SkipEventDuringInput = false;
+            numericalTextBoxNaClB1Brown.SmartIncrement = true;
+            numericalTextBoxNaClB1Brown.TabIndex = 12;
+            numericalTextBoxNaClB1Brown.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxNaClB1Brown.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxNaClB1Brown.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB1Brown.ThonsandsSeparator = true;
             // 
-            // label53
+            // label38
             // 
-            label53.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label53.Location = new Point(4, 20);
-            label53.Name = "label53";
-            label53.Size = new Size(20, 12);
-            label53.TabIndex = 7;
-            label53.Text = "a0";
+            label38.AutoSize = true;
+            label38.Font = new Font("Segoe UI Symbol", 9F);
+            label38.ImeMode = ImeMode.NoControl;
+            label38.Location = new Point(10, 80);
+            label38.Name = "label38";
+            label38.Size = new Size(66, 15);
+            label38.TabIndex = 7;
+            label38.Text = "Matsui (12)";
             // 
-            // label55
+            // label39
             // 
-            label55.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label55.Location = new Point(12, 40);
-            label55.Name = "label55";
-            label55.Size = new Size(16, 12);
-            label55.TabIndex = 7;
-            label55.Text = "a";
+            label39.AutoSize = true;
+            label39.Font = new Font("Segoe UI Symbol", 9F);
+            label39.ImeMode = ImeMode.NoControl;
+            label39.Location = new Point(12, 55);
+            label39.Name = "label39";
+            label39.Size = new Size(64, 15);
+            label39.TabIndex = 7;
+            label39.Text = "Brown (99)";
             // 
-            // label56
+            // numericalTextBoxNaClB1A
             // 
-            label56.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label56.Location = new Point(60, 76);
-            label56.Name = "label56";
-            label56.Size = new Size(32, 16);
-            label56.TabIndex = 7;
-            label56.Text = "GPa";
+            numericalTextBoxNaClB1A.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxNaClB1A.BackColor = SystemColors.Control;
+            numericalTextBoxNaClB1A.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB1A.FooterBackColor = SystemColors.Control;
+            numericalTextBoxNaClB1A.FooterText = "Å";
+            numericalTextBoxNaClB1A.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxNaClB1A.HeaderText = "a";
+            numericalTextBoxNaClB1A.Location = new Point(111, 19);
+            numericalTextBoxNaClB1A.Margin = new Padding(0);
+            numericalTextBoxNaClB1A.MaximumSize = new Size(1000, 30);
+            numericalTextBoxNaClB1A.MinimumSize = new Size(1, 20);
+            numericalTextBoxNaClB1A.Name = "numericalTextBoxNaClB1A";
+            numericalTextBoxNaClB1A.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxNaClB1A.RadianValue = 0.098419116519960256D;
+            numericalTextBoxNaClB1A.Size = new Size(99, 27);
+            numericalTextBoxNaClB1A.SkipEventDuringInput = false;
+            numericalTextBoxNaClB1A.SmartIncrement = true;
+            numericalTextBoxNaClB1A.TabIndex = 10;
+            numericalTextBoxNaClB1A.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxNaClB1A.ThonsandsSeparator = true;
+            numericalTextBoxNaClB1A.Value = 5.639D;
+            numericalTextBoxNaClB1A.ValueChanged += textBox_TextChanged;
             // 
-            // textBoxNaClB1Brown
+            // numericBoxNaClB1A0
             // 
-            textBoxNaClB1Brown.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxNaClB1Brown.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxNaClB1Brown.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxNaClB1Brown.Location = new Point(12, 72);
-            textBoxNaClB1Brown.Name = "textBoxNaClB1Brown";
-            textBoxNaClB1Brown.ReadOnly = true;
-            textBoxNaClB1Brown.Size = new Size(48, 22);
-            textBoxNaClB1Brown.TabIndex = 5;
-            textBoxNaClB1Brown.Text = "0";
-            // 
-            // label62
-            // 
-            label62.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label62.Location = new Point(68, 20);
-            label62.Name = "label62";
-            label62.Size = new Size(12, 16);
-            label62.TabIndex = 7;
-            label62.Text = "Å";
-            // 
-            // label57
-            // 
-            label57.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label57.Location = new Point(68, 40);
-            label57.Name = "label57";
-            label57.Size = new Size(12, 16);
-            label57.TabIndex = 7;
-            label57.Text = "Å";
-            // 
-            // label58
-            // 
-            label58.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label58.Location = new Point(8, 60);
-            label58.Name = "label58";
-            label58.Size = new Size(76, 16);
-            label58.TabIndex = 7;
-            label58.Text = "Brown (99)";
+            numericBoxNaClB1A0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxNaClB1A0.BackColor = SystemColors.Control;
+            numericBoxNaClB1A0.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxNaClB1A0.FooterBackColor = SystemColors.Control;
+            numericBoxNaClB1A0.FooterText = "Å";
+            numericBoxNaClB1A0.HeaderBackColor = SystemColors.Control;
+            numericBoxNaClB1A0.HeaderText = "a₀";
+            numericBoxNaClB1A0.Location = new Point(3, 19);
+            numericBoxNaClB1A0.Margin = new Padding(0);
+            numericBoxNaClB1A0.MaximumSize = new Size(1000, 30);
+            numericBoxNaClB1A0.MinimumSize = new Size(1, 20);
+            numericBoxNaClB1A0.Name = "numericBoxNaClB1A0";
+            numericBoxNaClB1A0.Padding = new Padding(0, 0, 1, 0);
+            numericBoxNaClB1A0.RadianValue = 0.098419116519960256D;
+            numericBoxNaClB1A0.Size = new Size(108, 27);
+            numericBoxNaClB1A0.SkipEventDuringInput = false;
+            numericBoxNaClB1A0.SmartIncrement = true;
+            numericBoxNaClB1A0.TabIndex = 10;
+            numericBoxNaClB1A0.TextFont = new Font("メイリオ", 9F);
+            numericBoxNaClB1A0.ThonsandsSeparator = true;
+            numericBoxNaClB1A0.Value = 5.639D;
+            numericBoxNaClB1A0.ValueChanged += textBox_TextChanged;
             // 
             // groupBoxNaClB2
             // 
-            groupBoxNaClB2.Controls.Add(textBoxNaClB2_a0);
-            groupBoxNaClB2.Controls.Add(textBoxNaClB2_a);
-            groupBoxNaClB2.Controls.Add(textBoxNaClB2SataMgO);
-            groupBoxNaClB2.Controls.Add(textBoxNaClB2SataPt);
-            groupBoxNaClB2.Controls.Add(label65);
-            groupBoxNaClB2.Controls.Add(label67);
-            groupBoxNaClB2.Controls.Add(label59);
-            groupBoxNaClB2.Controls.Add(label63);
-            groupBoxNaClB2.Controls.Add(label64);
-            groupBoxNaClB2.Controls.Add(label66);
-            groupBoxNaClB2.Controls.Add(label68);
-            groupBoxNaClB2.Controls.Add(label71);
-            groupBoxNaClB2.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxNaClB2.Location = new Point(317, 3);
+            groupBoxNaClB2.Controls.Add(numericalTextBoxNaClB2SakaiVinet);
+            groupBoxNaClB2.Controls.Add(numericalTextBoxNaClB2SakaiBM);
+            groupBoxNaClB2.Controls.Add(numericalTextBoxNaClB2Ueda);
+            groupBoxNaClB2.Controls.Add(label40);
+            groupBoxNaClB2.Controls.Add(numericalTextBoxNaClB2SataMgO);
+            groupBoxNaClB2.Controls.Add(label41);
+            groupBoxNaClB2.Controls.Add(numericalTextBoxNaClB2SataPt);
+            groupBoxNaClB2.Controls.Add(label47);
+            groupBoxNaClB2.Controls.Add(label48);
+            groupBoxNaClB2.Controls.Add(numericalTextBoxNaClB2A);
+            groupBoxNaClB2.Controls.Add(label50);
+            groupBoxNaClB2.Controls.Add(numericalTextBoxNaClB2A0);
+            groupBoxNaClB2.Font = new Font("Segoe UI Symbol", 9.75F);
+            groupBoxNaClB2.Location = new Point(3, 217);
             groupBoxNaClB2.Name = "groupBoxNaClB2";
-            groupBoxNaClB2.Size = new Size(100, 128);
-            groupBoxNaClB2.TabIndex = 15;
+            groupBoxNaClB2.Size = new Size(218, 181);
+            groupBoxNaClB2.TabIndex = 12;
             groupBoxNaClB2.TabStop = false;
             groupBoxNaClB2.Text = "NaCl B2";
             // 
-            // textBoxNaClB2_a0
+            // numericalTextBoxNaClB2SakaiVinet
             // 
-            textBoxNaClB2_a0.Enabled = false;
-            textBoxNaClB2_a0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxNaClB2_a0.Location = new Point(20, 16);
-            textBoxNaClB2_a0.Name = "textBoxNaClB2_a0";
-            textBoxNaClB2_a0.Size = new Size(48, 21);
-            textBoxNaClB2_a0.TabIndex = 5;
-            textBoxNaClB2_a0.Text = "0";
-            textBoxNaClB2_a0.TextChanged += textBox_TextChanged;
+            numericalTextBoxNaClB2SakaiVinet.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxNaClB2SakaiVinet.BackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SakaiVinet.DecimalPlaces = 3;
+            numericalTextBoxNaClB2SakaiVinet.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SakaiVinet.FooterBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SakaiVinet.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SakaiVinet.FooterText = "GPa";
+            numericalTextBoxNaClB2SakaiVinet.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SakaiVinet.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SakaiVinet.Location = new Point(95, 148);
+            numericalTextBoxNaClB2SakaiVinet.Margin = new Padding(0);
+            numericalTextBoxNaClB2SakaiVinet.MaximumSize = new Size(1000, 30);
+            numericalTextBoxNaClB2SakaiVinet.MinimumSize = new Size(1, 20);
+            numericalTextBoxNaClB2SakaiVinet.Name = "numericalTextBoxNaClB2SakaiVinet";
+            numericalTextBoxNaClB2SakaiVinet.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxNaClB2SakaiVinet.Size = new Size(115, 27);
+            numericalTextBoxNaClB2SakaiVinet.SkipEventDuringInput = false;
+            numericalTextBoxNaClB2SakaiVinet.SmartIncrement = true;
+            numericalTextBoxNaClB2SakaiVinet.TabIndex = 12;
+            numericalTextBoxNaClB2SakaiVinet.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxNaClB2SakaiVinet.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxNaClB2SakaiVinet.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB2SakaiVinet.ThonsandsSeparator = true;
             // 
-            // textBoxNaClB2_a
+            // numericalTextBoxNaClB2SakaiBM
             // 
-            textBoxNaClB2_a.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxNaClB2_a.Location = new Point(20, 36);
-            textBoxNaClB2_a.Name = "textBoxNaClB2_a";
-            textBoxNaClB2_a.Size = new Size(48, 21);
-            textBoxNaClB2_a.TabIndex = 5;
-            textBoxNaClB2_a.Text = "4.0786";
-            textBoxNaClB2_a.TextChanged += textBox_TextChanged;
+            numericalTextBoxNaClB2SakaiBM.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxNaClB2SakaiBM.BackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SakaiBM.DecimalPlaces = 3;
+            numericalTextBoxNaClB2SakaiBM.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SakaiBM.FooterBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SakaiBM.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SakaiBM.FooterText = "GPa";
+            numericalTextBoxNaClB2SakaiBM.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SakaiBM.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SakaiBM.Location = new Point(95, 121);
+            numericalTextBoxNaClB2SakaiBM.Margin = new Padding(0);
+            numericalTextBoxNaClB2SakaiBM.MaximumSize = new Size(1000, 30);
+            numericalTextBoxNaClB2SakaiBM.MinimumSize = new Size(1, 20);
+            numericalTextBoxNaClB2SakaiBM.Name = "numericalTextBoxNaClB2SakaiBM";
+            numericalTextBoxNaClB2SakaiBM.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxNaClB2SakaiBM.Size = new Size(115, 27);
+            numericalTextBoxNaClB2SakaiBM.SkipEventDuringInput = false;
+            numericalTextBoxNaClB2SakaiBM.SmartIncrement = true;
+            numericalTextBoxNaClB2SakaiBM.TabIndex = 12;
+            numericalTextBoxNaClB2SakaiBM.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxNaClB2SakaiBM.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxNaClB2SakaiBM.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB2SakaiBM.ThonsandsSeparator = true;
             // 
-            // textBoxNaClB2SataMgO
+            // numericalTextBoxNaClB2Ueda
             // 
-            textBoxNaClB2SataMgO.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxNaClB2SataMgO.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxNaClB2SataMgO.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxNaClB2SataMgO.Location = new Point(12, 104);
-            textBoxNaClB2SataMgO.Name = "textBoxNaClB2SataMgO";
-            textBoxNaClB2SataMgO.ReadOnly = true;
-            textBoxNaClB2SataMgO.Size = new Size(48, 22);
-            textBoxNaClB2SataMgO.TabIndex = 5;
-            textBoxNaClB2SataMgO.Text = "0";
+            numericalTextBoxNaClB2Ueda.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxNaClB2Ueda.BackColor = SystemColors.Control;
+            numericalTextBoxNaClB2Ueda.DecimalPlaces = 3;
+            numericalTextBoxNaClB2Ueda.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2Ueda.FooterBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2Ueda.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2Ueda.FooterText = "GPa";
+            numericalTextBoxNaClB2Ueda.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2Ueda.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2Ueda.Location = new Point(95, 96);
+            numericalTextBoxNaClB2Ueda.Margin = new Padding(0);
+            numericalTextBoxNaClB2Ueda.MaximumSize = new Size(1000, 30);
+            numericalTextBoxNaClB2Ueda.MinimumSize = new Size(1, 20);
+            numericalTextBoxNaClB2Ueda.Name = "numericalTextBoxNaClB2Ueda";
+            numericalTextBoxNaClB2Ueda.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxNaClB2Ueda.Size = new Size(115, 27);
+            numericalTextBoxNaClB2Ueda.SkipEventDuringInput = false;
+            numericalTextBoxNaClB2Ueda.SmartIncrement = true;
+            numericalTextBoxNaClB2Ueda.TabIndex = 12;
+            numericalTextBoxNaClB2Ueda.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxNaClB2Ueda.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxNaClB2Ueda.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB2Ueda.ThonsandsSeparator = true;
             // 
-            // textBoxNaClB2SataPt
+            // label40
             // 
-            textBoxNaClB2SataPt.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxNaClB2SataPt.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxNaClB2SataPt.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxNaClB2SataPt.Location = new Point(12, 68);
-            textBoxNaClB2SataPt.Name = "textBoxNaClB2SataPt";
-            textBoxNaClB2SataPt.ReadOnly = true;
-            textBoxNaClB2SataPt.Size = new Size(48, 22);
-            textBoxNaClB2SataPt.TabIndex = 5;
-            textBoxNaClB2SataPt.Text = "0";
+            label40.AutoSize = true;
+            label40.Font = new Font("Segoe UI Symbol", 9F);
+            label40.ImeMode = ImeMode.NoControl;
+            label40.Location = new Point(2, 153);
+            label40.Name = "label40";
+            label40.Size = new Size(92, 15);
+            label40.TabIndex = 7;
+            label40.Text = "Sakai+(11) Vinet";
             // 
-            // label65
+            // numericalTextBoxNaClB2SataMgO
             // 
-            label65.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label65.Location = new Point(4, 20);
-            label65.Name = "label65";
-            label65.Size = new Size(32, 12);
-            label65.TabIndex = 7;
-            label65.Text = "a0";
+            numericalTextBoxNaClB2SataMgO.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxNaClB2SataMgO.BackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SataMgO.DecimalPlaces = 3;
+            numericalTextBoxNaClB2SataMgO.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SataMgO.FooterBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SataMgO.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SataMgO.FooterText = "GPa";
+            numericalTextBoxNaClB2SataMgO.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SataMgO.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SataMgO.Location = new Point(95, 70);
+            numericalTextBoxNaClB2SataMgO.Margin = new Padding(0);
+            numericalTextBoxNaClB2SataMgO.MaximumSize = new Size(1000, 30);
+            numericalTextBoxNaClB2SataMgO.MinimumSize = new Size(1, 20);
+            numericalTextBoxNaClB2SataMgO.Name = "numericalTextBoxNaClB2SataMgO";
+            numericalTextBoxNaClB2SataMgO.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxNaClB2SataMgO.Size = new Size(115, 27);
+            numericalTextBoxNaClB2SataMgO.SkipEventDuringInput = false;
+            numericalTextBoxNaClB2SataMgO.SmartIncrement = true;
+            numericalTextBoxNaClB2SataMgO.TabIndex = 12;
+            numericalTextBoxNaClB2SataMgO.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxNaClB2SataMgO.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxNaClB2SataMgO.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB2SataMgO.ThonsandsSeparator = true;
             // 
-            // label67
+            // label41
             // 
-            label67.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label67.Location = new Point(60, 108);
-            label67.Name = "label67";
-            label67.Size = new Size(40, 16);
-            label67.TabIndex = 7;
-            label67.Text = "GPa";
+            label41.AutoSize = true;
+            label41.Font = new Font("Segoe UI Symbol", 9F);
+            label41.ImeMode = ImeMode.NoControl;
+            label41.Location = new Point(7, 126);
+            label41.Name = "label41";
+            label41.Size = new Size(83, 15);
+            label41.TabIndex = 7;
+            label41.Text = "Sakai+(11) BM";
             // 
-            // label59
+            // numericalTextBoxNaClB2SataPt
             // 
-            label59.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label59.Location = new Point(60, 72);
-            label59.Name = "label59";
-            label59.Size = new Size(40, 16);
-            label59.TabIndex = 7;
-            label59.Text = "GPa";
+            numericalTextBoxNaClB2SataPt.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxNaClB2SataPt.BackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SataPt.DecimalPlaces = 3;
+            numericalTextBoxNaClB2SataPt.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SataPt.FooterBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SataPt.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SataPt.FooterText = "GPa";
+            numericalTextBoxNaClB2SataPt.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2SataPt.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2SataPt.Location = new Point(95, 44);
+            numericalTextBoxNaClB2SataPt.Margin = new Padding(0);
+            numericalTextBoxNaClB2SataPt.MaximumSize = new Size(1000, 30);
+            numericalTextBoxNaClB2SataPt.MinimumSize = new Size(1, 20);
+            numericalTextBoxNaClB2SataPt.Name = "numericalTextBoxNaClB2SataPt";
+            numericalTextBoxNaClB2SataPt.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxNaClB2SataPt.Size = new Size(115, 27);
+            numericalTextBoxNaClB2SataPt.SkipEventDuringInput = false;
+            numericalTextBoxNaClB2SataPt.SmartIncrement = true;
+            numericalTextBoxNaClB2SataPt.TabIndex = 12;
+            numericalTextBoxNaClB2SataPt.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxNaClB2SataPt.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxNaClB2SataPt.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB2SataPt.ThonsandsSeparator = true;
             // 
-            // label63
+            // label47
             // 
-            label63.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label63.Location = new Point(12, 40);
-            label63.Name = "label63";
-            label63.Size = new Size(32, 12);
-            label63.TabIndex = 7;
-            label63.Text = "a";
+            label47.AutoSize = true;
+            label47.Font = new Font("Segoe UI Symbol", 9F);
+            label47.ImeMode = ImeMode.NoControl;
+            label47.Location = new Point(27, 102);
+            label47.Name = "label47";
+            label47.Size = new Size(62, 15);
+            label47.TabIndex = 7;
+            label47.Text = "Ueda+(08)";
             // 
-            // label64
+            // label48
             // 
-            label64.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label64.Location = new Point(68, 20);
-            label64.Name = "label64";
-            label64.Size = new Size(12, 16);
-            label64.TabIndex = 7;
-            label64.Text = "Å";
+            label48.AutoSize = true;
+            label48.Font = new Font("Segoe UI Symbol", 9F);
+            label48.ImeMode = ImeMode.NoControl;
+            label48.Location = new Point(10, 75);
+            label48.Name = "label48";
+            label48.Size = new Size(81, 15);
+            label48.TabIndex = 7;
+            label48.Text = "Sata (02) (Mg)";
             // 
-            // label66
+            // numericalTextBoxNaClB2A
             // 
-            label66.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label66.Location = new Point(68, 40);
-            label66.Name = "label66";
-            label66.Size = new Size(12, 16);
-            label66.TabIndex = 7;
-            label66.Text = "Å";
+            numericalTextBoxNaClB2A.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxNaClB2A.BackColor = SystemColors.Control;
+            numericalTextBoxNaClB2A.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2A.FooterBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2A.FooterText = "Å";
+            numericalTextBoxNaClB2A.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2A.HeaderText = "a ";
+            numericalTextBoxNaClB2A.Location = new Point(110, 15);
+            numericalTextBoxNaClB2A.Margin = new Padding(0);
+            numericalTextBoxNaClB2A.MaximumSize = new Size(1000, 30);
+            numericalTextBoxNaClB2A.MinimumSize = new Size(1, 20);
+            numericalTextBoxNaClB2A.Name = "numericalTextBoxNaClB2A";
+            numericalTextBoxNaClB2A.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxNaClB2A.RadianValue = 0.051138147083433859D;
+            numericalTextBoxNaClB2A.Size = new Size(98, 27);
+            numericalTextBoxNaClB2A.SkipEventDuringInput = false;
+            numericalTextBoxNaClB2A.SmartIncrement = true;
+            numericalTextBoxNaClB2A.TabIndex = 10;
+            numericalTextBoxNaClB2A.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxNaClB2A.ThonsandsSeparator = true;
+            numericalTextBoxNaClB2A.Value = 2.93D;
+            numericalTextBoxNaClB2A.ValueChanged += textBox_TextChanged;
             // 
-            // label68
+            // label50
             // 
-            label68.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label68.Location = new Point(4, 92);
-            label68.Name = "label68";
-            label68.Size = new Size(76, 16);
-            label68.TabIndex = 7;
-            label68.Text = "Sata (02) (MgO)";
+            label50.AutoSize = true;
+            label50.Font = new Font("Segoe UI Symbol", 9F);
+            label50.ImeMode = ImeMode.NoControl;
+            label50.Location = new Point(15, 49);
+            label50.Name = "label50";
+            label50.Size = new Size(74, 15);
+            label50.TabIndex = 7;
+            label50.Text = "Sata (02) (Pt)";
             // 
-            // label71
+            // numericalTextBoxNaClB2A0
             // 
-            label71.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label71.Location = new Point(4, 56);
-            label71.Name = "label71";
-            label71.Size = new Size(76, 12);
-            label71.TabIndex = 7;
-            label71.Text = "Sata (02) (Pt)";
+            numericalTextBoxNaClB2A0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxNaClB2A0.BackColor = SystemColors.Control;
+            numericalTextBoxNaClB2A0.Enabled = false;
+            numericalTextBoxNaClB2A0.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxNaClB2A0.FooterBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2A0.FooterText = "Å";
+            numericalTextBoxNaClB2A0.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2A0.HeaderText = "a₀";
+            numericalTextBoxNaClB2A0.Location = new Point(2, 15);
+            numericalTextBoxNaClB2A0.Margin = new Padding(0);
+            numericalTextBoxNaClB2A0.MaximumSize = new Size(1000, 30);
+            numericalTextBoxNaClB2A0.MinimumSize = new Size(1, 20);
+            numericalTextBoxNaClB2A0.Name = "numericalTextBoxNaClB2A0";
+            numericalTextBoxNaClB2A0.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxNaClB2A0.ReadOnly = true;
+            numericalTextBoxNaClB2A0.Size = new Size(98, 27);
+            numericalTextBoxNaClB2A0.SkipEventDuringInput = false;
+            numericalTextBoxNaClB2A0.SmartIncrement = true;
+            numericalTextBoxNaClB2A0.TabIndex = 10;
+            numericalTextBoxNaClB2A0.TextBoxBackColor = SystemColors.Control;
+            numericalTextBoxNaClB2A0.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxNaClB2A0.ThonsandsSeparator = true;
             // 
             // groupBoxPericlase
             // 
-            groupBoxPericlase.Controls.Add(label72);
-            groupBoxPericlase.Controls.Add(label73);
-            groupBoxPericlase.Controls.Add(textBoxMgOAizawa);
-            groupBoxPericlase.Controls.Add(label74);
-            groupBoxPericlase.Controls.Add(textBoxMgODewaele);
-            groupBoxPericlase.Controls.Add(textBoxMgOJacson);
-            groupBoxPericlase.Controls.Add(textBoxMgOA0);
-            groupBoxPericlase.Controls.Add(label75);
-            groupBoxPericlase.Controls.Add(label76);
-            groupBoxPericlase.Controls.Add(label77);
-            groupBoxPericlase.Controls.Add(label78);
-            groupBoxPericlase.Controls.Add(textBoxMgOA);
-            groupBoxPericlase.Controls.Add(label79);
-            groupBoxPericlase.Controls.Add(label80);
-            groupBoxPericlase.Controls.Add(label81);
-            groupBoxPericlase.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxPericlase.Location = new Point(423, 3);
+            groupBoxPericlase.Controls.Add(numericBoxMgOTangeBM);
+            groupBoxPericlase.Controls.Add(numericBoxMgOTangeVinet);
+            groupBoxPericlase.Controls.Add(numericalTextBoxMgOAizawa);
+            groupBoxPericlase.Controls.Add(label51);
+            groupBoxPericlase.Controls.Add(numericalTextBoxMgODewaele);
+            groupBoxPericlase.Controls.Add(label52);
+            groupBoxPericlase.Controls.Add(numericalTextBoxMgOJacson);
+            groupBoxPericlase.Controls.Add(label53);
+            groupBoxPericlase.Controls.Add(label54);
+            groupBoxPericlase.Controls.Add(numericalTextBoxMgOA);
+            groupBoxPericlase.Controls.Add(label55);
+            groupBoxPericlase.Controls.Add(numericBoxMgOA0);
+            groupBoxPericlase.Font = new Font("Segoe UI Symbol", 9.75F);
+            groupBoxPericlase.Location = new Point(227, 217);
             groupBoxPericlase.Name = "groupBoxPericlase";
-            groupBoxPericlase.Size = new Size(100, 172);
-            groupBoxPericlase.TabIndex = 10;
+            groupBoxPericlase.Size = new Size(218, 181);
+            groupBoxPericlase.TabIndex = 13;
             groupBoxPericlase.TabStop = false;
             groupBoxPericlase.Text = "Periclase";
             // 
-            // label72
+            // numericBoxMgOTangeBM
             // 
-            label72.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label72.Location = new Point(60, 148);
-            label72.Name = "label72";
-            label72.Size = new Size(40, 16);
-            label72.TabIndex = 7;
-            label72.Text = "GPa";
+            numericBoxMgOTangeBM.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxMgOTangeBM.BackColor = SystemColors.Control;
+            numericBoxMgOTangeBM.DecimalPlaces = 3;
+            numericBoxMgOTangeBM.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxMgOTangeBM.FooterBackColor = SystemColors.Control;
+            numericBoxMgOTangeBM.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxMgOTangeBM.FooterText = "GPa";
+            numericBoxMgOTangeBM.HeaderBackColor = SystemColors.Control;
+            numericBoxMgOTangeBM.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxMgOTangeBM.Location = new Point(95, 153);
+            numericBoxMgOTangeBM.Margin = new Padding(0);
+            numericBoxMgOTangeBM.MaximumSize = new Size(1000, 30);
+            numericBoxMgOTangeBM.MinimumSize = new Size(1, 20);
+            numericBoxMgOTangeBM.Name = "numericBoxMgOTangeBM";
+            numericBoxMgOTangeBM.Padding = new Padding(0, 0, 1, 0);
+            numericBoxMgOTangeBM.Size = new Size(114, 27);
+            numericBoxMgOTangeBM.SkipEventDuringInput = false;
+            numericBoxMgOTangeBM.SmartIncrement = true;
+            numericBoxMgOTangeBM.TabIndex = 12;
+            numericBoxMgOTangeBM.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxMgOTangeBM.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxMgOTangeBM.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxMgOTangeBM.ThonsandsSeparator = true;
             // 
-            // label73
+            // numericBoxMgOTangeVinet
             // 
-            label73.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label73.Location = new Point(60, 112);
-            label73.Name = "label73";
-            label73.Size = new Size(40, 16);
-            label73.TabIndex = 7;
-            label73.Text = "GPa";
+            numericBoxMgOTangeVinet.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxMgOTangeVinet.BackColor = SystemColors.Control;
+            numericBoxMgOTangeVinet.DecimalPlaces = 3;
+            numericBoxMgOTangeVinet.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxMgOTangeVinet.FooterBackColor = SystemColors.Control;
+            numericBoxMgOTangeVinet.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxMgOTangeVinet.FooterText = "GPa";
+            numericBoxMgOTangeVinet.HeaderBackColor = SystemColors.Control;
+            numericBoxMgOTangeVinet.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxMgOTangeVinet.Location = new Point(94, 128);
+            numericBoxMgOTangeVinet.Margin = new Padding(0);
+            numericBoxMgOTangeVinet.MaximumSize = new Size(1000, 30);
+            numericBoxMgOTangeVinet.MinimumSize = new Size(1, 20);
+            numericBoxMgOTangeVinet.Name = "numericBoxMgOTangeVinet";
+            numericBoxMgOTangeVinet.Padding = new Padding(0, 0, 1, 0);
+            numericBoxMgOTangeVinet.Size = new Size(115, 27);
+            numericBoxMgOTangeVinet.SkipEventDuringInput = false;
+            numericBoxMgOTangeVinet.SmartIncrement = true;
+            numericBoxMgOTangeVinet.TabIndex = 12;
+            numericBoxMgOTangeVinet.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxMgOTangeVinet.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxMgOTangeVinet.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxMgOTangeVinet.ThonsandsSeparator = true;
             // 
-            // textBoxMgOAizawa
+            // numericalTextBoxMgOAizawa
             // 
-            textBoxMgOAizawa.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxMgOAizawa.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxMgOAizawa.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxMgOAizawa.Location = new Point(12, 144);
-            textBoxMgOAizawa.Name = "textBoxMgOAizawa";
-            textBoxMgOAizawa.ReadOnly = true;
-            textBoxMgOAizawa.Size = new Size(48, 22);
-            textBoxMgOAizawa.TabIndex = 5;
-            textBoxMgOAizawa.Text = "0";
+            numericalTextBoxMgOAizawa.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxMgOAizawa.BackColor = SystemColors.Control;
+            numericalTextBoxMgOAizawa.DecimalPlaces = 3;
+            numericalTextBoxMgOAizawa.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxMgOAizawa.FooterBackColor = SystemColors.Control;
+            numericalTextBoxMgOAizawa.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxMgOAizawa.FooterText = "GPa";
+            numericalTextBoxMgOAizawa.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxMgOAizawa.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxMgOAizawa.Location = new Point(95, 101);
+            numericalTextBoxMgOAizawa.Margin = new Padding(0);
+            numericalTextBoxMgOAizawa.MaximumSize = new Size(1000, 30);
+            numericalTextBoxMgOAizawa.MinimumSize = new Size(1, 20);
+            numericalTextBoxMgOAizawa.Name = "numericalTextBoxMgOAizawa";
+            numericalTextBoxMgOAizawa.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxMgOAizawa.Size = new Size(115, 27);
+            numericalTextBoxMgOAizawa.SkipEventDuringInput = false;
+            numericalTextBoxMgOAizawa.SmartIncrement = true;
+            numericalTextBoxMgOAizawa.TabIndex = 12;
+            numericalTextBoxMgOAizawa.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxMgOAizawa.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxMgOAizawa.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxMgOAizawa.ThonsandsSeparator = true;
             // 
-            // label74
+            // label51
             // 
-            label74.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label74.Location = new Point(60, 76);
-            label74.Name = "label74";
-            label74.Size = new Size(40, 16);
-            label74.TabIndex = 7;
-            label74.Text = "GPa";
+            label51.AutoSize = true;
+            label51.Font = new Font("Segoe UI Symbol", 9F);
+            label51.ImeMode = ImeMode.NoControl;
+            label51.Location = new Point(2, 157);
+            label51.Name = "label51";
+            label51.Size = new Size(84, 15);
+            label51.TabIndex = 7;
+            label51.Text = "Tange (09) BM";
             // 
-            // textBoxMgODewaele
+            // numericalTextBoxMgODewaele
             // 
-            textBoxMgODewaele.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxMgODewaele.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxMgODewaele.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxMgODewaele.Location = new Point(12, 108);
-            textBoxMgODewaele.Name = "textBoxMgODewaele";
-            textBoxMgODewaele.ReadOnly = true;
-            textBoxMgODewaele.Size = new Size(48, 22);
-            textBoxMgODewaele.TabIndex = 5;
-            textBoxMgODewaele.Text = "0";
+            numericalTextBoxMgODewaele.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxMgODewaele.BackColor = SystemColors.Control;
+            numericalTextBoxMgODewaele.DecimalPlaces = 3;
+            numericalTextBoxMgODewaele.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxMgODewaele.FooterBackColor = SystemColors.Control;
+            numericalTextBoxMgODewaele.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxMgODewaele.FooterText = "GPa";
+            numericalTextBoxMgODewaele.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxMgODewaele.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxMgODewaele.Location = new Point(95, 75);
+            numericalTextBoxMgODewaele.Margin = new Padding(0);
+            numericalTextBoxMgODewaele.MaximumSize = new Size(1000, 30);
+            numericalTextBoxMgODewaele.MinimumSize = new Size(1, 20);
+            numericalTextBoxMgODewaele.Name = "numericalTextBoxMgODewaele";
+            numericalTextBoxMgODewaele.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxMgODewaele.Size = new Size(115, 27);
+            numericalTextBoxMgODewaele.SkipEventDuringInput = false;
+            numericalTextBoxMgODewaele.SmartIncrement = true;
+            numericalTextBoxMgODewaele.TabIndex = 12;
+            numericalTextBoxMgODewaele.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxMgODewaele.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxMgODewaele.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxMgODewaele.ThonsandsSeparator = true;
             // 
-            // textBoxMgOJacson
+            // label52
             // 
-            textBoxMgOJacson.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxMgOJacson.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxMgOJacson.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxMgOJacson.Location = new Point(12, 72);
-            textBoxMgOJacson.Name = "textBoxMgOJacson";
-            textBoxMgOJacson.ReadOnly = true;
-            textBoxMgOJacson.Size = new Size(48, 22);
-            textBoxMgOJacson.TabIndex = 5;
-            textBoxMgOJacson.Text = "0";
+            label52.AutoSize = true;
+            label52.Font = new Font("Segoe UI Symbol", 9F);
+            label52.ImeMode = ImeMode.NoControl;
+            label52.Location = new Point(1, 132);
+            label52.Name = "label52";
+            label52.Size = new Size(93, 15);
+            label52.TabIndex = 7;
+            label52.Text = "Tange (09) Vinet";
             // 
-            // textBoxMgOA0
+            // numericalTextBoxMgOJacson
             // 
-            textBoxMgOA0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxMgOA0.Location = new Point(20, 16);
-            textBoxMgOA0.Name = "textBoxMgOA0";
-            textBoxMgOA0.Size = new Size(48, 21);
-            textBoxMgOA0.TabIndex = 5;
-            textBoxMgOA0.Text = "4.2112";
-            textBoxMgOA0.TextChanged += textBox_TextChanged;
+            numericalTextBoxMgOJacson.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxMgOJacson.BackColor = SystemColors.Control;
+            numericalTextBoxMgOJacson.DecimalPlaces = 3;
+            numericalTextBoxMgOJacson.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxMgOJacson.FooterBackColor = SystemColors.Control;
+            numericalTextBoxMgOJacson.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxMgOJacson.FooterText = "GPa";
+            numericalTextBoxMgOJacson.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxMgOJacson.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxMgOJacson.Location = new Point(95, 49);
+            numericalTextBoxMgOJacson.Margin = new Padding(0);
+            numericalTextBoxMgOJacson.MaximumSize = new Size(1000, 30);
+            numericalTextBoxMgOJacson.MinimumSize = new Size(1, 20);
+            numericalTextBoxMgOJacson.Name = "numericalTextBoxMgOJacson";
+            numericalTextBoxMgOJacson.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxMgOJacson.Size = new Size(115, 27);
+            numericalTextBoxMgOJacson.SkipEventDuringInput = false;
+            numericalTextBoxMgOJacson.SmartIncrement = true;
+            numericalTextBoxMgOJacson.TabIndex = 12;
+            numericalTextBoxMgOJacson.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxMgOJacson.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxMgOJacson.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxMgOJacson.ThonsandsSeparator = true;
             // 
-            // label75
+            // label53
             // 
-            label75.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label75.Location = new Point(8, 132);
-            label75.Name = "label75";
-            label75.Size = new Size(84, 12);
-            label75.TabIndex = 7;
-            label75.Text = "Aizawa (06)";
+            label53.AutoSize = true;
+            label53.Font = new Font("Segoe UI Symbol", 9F);
+            label53.ImeMode = ImeMode.NoControl;
+            label53.Location = new Point(19, 106);
+            label53.Name = "label53";
+            label53.Size = new Size(67, 15);
+            label53.TabIndex = 7;
+            label53.Text = "Aizawa (06)";
             // 
-            // label76
+            // label54
             // 
-            label76.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label76.Location = new Point(4, 96);
-            label76.Name = "label76";
-            label76.Size = new Size(88, 12);
-            label76.TabIndex = 7;
-            label76.Text = "Dewaele (00)";
+            label54.AutoSize = true;
+            label54.Font = new Font("Segoe UI Symbol", 9F);
+            label54.ImeMode = ImeMode.NoControl;
+            label54.Location = new Point(12, 80);
+            label54.Name = "label54";
+            label54.Size = new Size(74, 15);
+            label54.TabIndex = 7;
+            label54.Text = "Dewaele (00)";
             // 
-            // label77
+            // numericalTextBoxMgOA
             // 
-            label77.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label77.Location = new Point(4, 60);
-            label77.Name = "label77";
-            label77.Size = new Size(92, 16);
-            label77.TabIndex = 7;
-            label77.Text = "Jackson (98)";
+            numericalTextBoxMgOA.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxMgOA.BackColor = SystemColors.Control;
+            numericalTextBoxMgOA.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxMgOA.FooterBackColor = SystemColors.Control;
+            numericalTextBoxMgOA.FooterText = "Å";
+            numericalTextBoxMgOA.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxMgOA.HeaderText = "a";
+            numericalTextBoxMgOA.Location = new Point(110, 20);
+            numericalTextBoxMgOA.Margin = new Padding(0);
+            numericalTextBoxMgOA.MaximumSize = new Size(1000, 30);
+            numericalTextBoxMgOA.MinimumSize = new Size(1, 20);
+            numericalTextBoxMgOA.Name = "numericalTextBoxMgOA";
+            numericalTextBoxMgOA.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxMgOA.RadianValue = 0.0734993054599852D;
+            numericalTextBoxMgOA.Size = new Size(98, 27);
+            numericalTextBoxMgOA.SkipEventDuringInput = false;
+            numericalTextBoxMgOA.SmartIncrement = true;
+            numericalTextBoxMgOA.TabIndex = 10;
+            numericalTextBoxMgOA.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxMgOA.ThonsandsSeparator = true;
+            numericalTextBoxMgOA.Value = 4.2112D;
+            numericalTextBoxMgOA.ValueChanged += textBox_TextChanged;
             // 
-            // label78
+            // label55
             // 
-            label78.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label78.Location = new Point(4, 20);
-            label78.Name = "label78";
-            label78.Size = new Size(20, 12);
-            label78.TabIndex = 7;
-            label78.Text = "a0";
+            label55.AutoSize = true;
+            label55.Font = new Font("Segoe UI Symbol", 9F);
+            label55.ImeMode = ImeMode.NoControl;
+            label55.Location = new Point(15, 55);
+            label55.Name = "label55";
+            label55.Size = new Size(71, 15);
+            label55.TabIndex = 7;
+            label55.Text = "Jackson (98)";
             // 
-            // textBoxMgOA
+            // numericBoxMgOA0
             // 
-            textBoxMgOA.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxMgOA.Location = new Point(20, 36);
-            textBoxMgOA.Name = "textBoxMgOA";
-            textBoxMgOA.Size = new Size(48, 21);
-            textBoxMgOA.TabIndex = 5;
-            textBoxMgOA.Text = "4.2112";
-            textBoxMgOA.TextChanged += textBox_TextChanged;
-            // 
-            // label79
-            // 
-            label79.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label79.Location = new Point(68, 20);
-            label79.Name = "label79";
-            label79.Size = new Size(12, 16);
-            label79.TabIndex = 7;
-            label79.Text = "Å";
-            // 
-            // label80
-            // 
-            label80.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label80.Location = new Point(4, 40);
-            label80.Name = "label80";
-            label80.Size = new Size(16, 12);
-            label80.TabIndex = 7;
-            label80.Text = "a";
-            // 
-            // label81
-            // 
-            label81.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label81.Location = new Point(68, 40);
-            label81.Name = "label81";
-            label81.Size = new Size(12, 16);
-            label81.TabIndex = 7;
-            label81.Text = "Å";
+            numericBoxMgOA0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxMgOA0.BackColor = SystemColors.Control;
+            numericBoxMgOA0.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxMgOA0.FooterBackColor = SystemColors.Control;
+            numericBoxMgOA0.FooterText = "Å";
+            numericBoxMgOA0.HeaderBackColor = SystemColors.Control;
+            numericBoxMgOA0.HeaderText = "a₀";
+            numericBoxMgOA0.Location = new Point(2, 20);
+            numericBoxMgOA0.Margin = new Padding(0);
+            numericBoxMgOA0.MaximumSize = new Size(1000, 30);
+            numericBoxMgOA0.MinimumSize = new Size(1, 20);
+            numericBoxMgOA0.Name = "numericBoxMgOA0";
+            numericBoxMgOA0.Padding = new Padding(0, 0, 1, 0);
+            numericBoxMgOA0.RadianValue = 0.0734993054599852D;
+            numericBoxMgOA0.Size = new Size(98, 27);
+            numericBoxMgOA0.SkipEventDuringInput = false;
+            numericBoxMgOA0.SmartIncrement = true;
+            numericBoxMgOA0.TabIndex = 10;
+            numericBoxMgOA0.TextFont = new Font("メイリオ", 9F);
+            numericBoxMgOA0.ThonsandsSeparator = true;
+            numericBoxMgOA0.Value = 4.2112D;
+            numericBoxMgOA0.ValueChanged += textBox_TextChanged;
             // 
             // groupBoxCorundum
             // 
-            groupBoxCorundum.Controls.Add(label82);
-            groupBoxCorundum.Controls.Add(textBoxCorundumDubrovinsky);
-            groupBoxCorundum.Controls.Add(textBoxColundumV0);
-            groupBoxCorundum.Controls.Add(label83);
-            groupBoxCorundum.Controls.Add(label84);
-            groupBoxCorundum.Controls.Add(textBoxCorundumV);
-            groupBoxCorundum.Controls.Add(label85);
-            groupBoxCorundum.Controls.Add(label86);
-            groupBoxCorundum.Controls.Add(label87);
-            groupBoxCorundum.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxCorundum.Location = new Point(529, 3);
+            groupBoxCorundum.Controls.Add(numericBoxCorundumDubrovinsky);
+            groupBoxCorundum.Controls.Add(numericalTextBoxColundumV);
+            groupBoxCorundum.Controls.Add(label56);
+            groupBoxCorundum.Controls.Add(numericBoxColundumV0);
+            groupBoxCorundum.Font = new Font("Segoe UI Symbol", 9.75F);
+            groupBoxCorundum.Location = new Point(451, 217);
             groupBoxCorundum.Name = "groupBoxCorundum";
-            groupBoxCorundum.Size = new Size(100, 101);
-            groupBoxCorundum.TabIndex = 9;
+            groupBoxCorundum.Size = new Size(218, 80);
+            groupBoxCorundum.TabIndex = 14;
             groupBoxCorundum.TabStop = false;
             groupBoxCorundum.Text = "Corundum";
             // 
-            // label82
+            // numericBoxCorundumDubrovinsky
             // 
-            label82.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label82.Location = new Point(56, 76);
-            label82.Name = "label82";
-            label82.Size = new Size(40, 16);
-            label82.TabIndex = 7;
-            label82.Text = "GPa";
+            numericBoxCorundumDubrovinsky.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxCorundumDubrovinsky.BackColor = SystemColors.Control;
+            numericBoxCorundumDubrovinsky.DecimalPlaces = 3;
+            numericBoxCorundumDubrovinsky.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxCorundumDubrovinsky.FooterBackColor = SystemColors.Control;
+            numericBoxCorundumDubrovinsky.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxCorundumDubrovinsky.FooterText = "GPa";
+            numericBoxCorundumDubrovinsky.HeaderBackColor = SystemColors.Control;
+            numericBoxCorundumDubrovinsky.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxCorundumDubrovinsky.Location = new Point(103, 50);
+            numericBoxCorundumDubrovinsky.Margin = new Padding(0);
+            numericBoxCorundumDubrovinsky.MaximumSize = new Size(1000, 30);
+            numericBoxCorundumDubrovinsky.MinimumSize = new Size(1, 20);
+            numericBoxCorundumDubrovinsky.Name = "numericBoxCorundumDubrovinsky";
+            numericBoxCorundumDubrovinsky.Padding = new Padding(0, 0, 1, 0);
+            numericBoxCorundumDubrovinsky.Size = new Size(104, 27);
+            numericBoxCorundumDubrovinsky.SkipEventDuringInput = false;
+            numericBoxCorundumDubrovinsky.SmartIncrement = true;
+            numericBoxCorundumDubrovinsky.TabIndex = 12;
+            numericBoxCorundumDubrovinsky.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxCorundumDubrovinsky.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxCorundumDubrovinsky.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxCorundumDubrovinsky.ThonsandsSeparator = true;
             // 
-            // textBoxCorundumDubrovinsky
+            // numericalTextBoxColundumV
             // 
-            textBoxCorundumDubrovinsky.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxCorundumDubrovinsky.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxCorundumDubrovinsky.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxCorundumDubrovinsky.Location = new Point(8, 72);
-            textBoxCorundumDubrovinsky.Name = "textBoxCorundumDubrovinsky";
-            textBoxCorundumDubrovinsky.ReadOnly = true;
-            textBoxCorundumDubrovinsky.Size = new Size(48, 22);
-            textBoxCorundumDubrovinsky.TabIndex = 5;
-            textBoxCorundumDubrovinsky.Text = "0";
+            numericalTextBoxColundumV.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxColundumV.BackColor = SystemColors.Control;
+            numericalTextBoxColundumV.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxColundumV.FooterBackColor = SystemColors.Control;
+            numericalTextBoxColundumV.FooterText = "Å³";
+            numericalTextBoxColundumV.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxColundumV.HeaderText = "V";
+            numericalTextBoxColundumV.Location = new Point(108, 21);
+            numericalTextBoxColundumV.Margin = new Padding(0);
+            numericalTextBoxColundumV.MaximumSize = new Size(1000, 30);
+            numericalTextBoxColundumV.MinimumSize = new Size(1, 20);
+            numericalTextBoxColundumV.Name = "numericalTextBoxColundumV";
+            numericalTextBoxColundumV.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxColundumV.RadianValue = 4.4662054024689839D;
+            numericalTextBoxColundumV.Size = new Size(98, 27);
+            numericalTextBoxColundumV.SkipEventDuringInput = false;
+            numericalTextBoxColundumV.SmartIncrement = true;
+            numericalTextBoxColundumV.TabIndex = 10;
+            numericalTextBoxColundumV.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxColundumV.ThonsandsSeparator = true;
+            numericalTextBoxColundumV.Value = 255.89472D;
+            numericalTextBoxColundumV.ValueChanged += textBox_TextChanged;
             // 
-            // textBoxColundumV0
+            // label56
             // 
-            textBoxColundumV0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxColundumV0.Location = new Point(20, 16);
-            textBoxColundumV0.Name = "textBoxColundumV0";
-            textBoxColundumV0.Size = new Size(36, 21);
-            textBoxColundumV0.TabIndex = 5;
-            textBoxColundumV0.Text = "254.6959";
-            textBoxColundumV0.TextChanged += textBox_TextChanged;
+            label56.AutoSize = true;
+            label56.Font = new Font("Segoe UI Symbol", 9F);
+            label56.ImeMode = ImeMode.NoControl;
+            label56.Location = new Point(4, 55);
+            label56.Name = "label56";
+            label56.Size = new Size(96, 15);
+            label56.TabIndex = 7;
+            label56.Text = "Dubrovinsky (98)";
             // 
-            // label83
+            // numericBoxColundumV0
             // 
-            label83.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label83.Location = new Point(4, 56);
-            label83.Name = "label83";
-            label83.Size = new Size(105, 20);
-            label83.TabIndex = 7;
-            label83.Text = "Dubrovinsky (98)";
-            // 
-            // label84
-            // 
-            label84.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label84.Location = new Point(4, 20);
-            label84.Name = "label84";
-            label84.Size = new Size(20, 12);
-            label84.TabIndex = 7;
-            label84.Text = "V0";
-            // 
-            // textBoxCorundumV
-            // 
-            textBoxCorundumV.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxCorundumV.Location = new Point(20, 36);
-            textBoxCorundumV.Name = "textBoxCorundumV";
-            textBoxCorundumV.Size = new Size(36, 21);
-            textBoxCorundumV.TabIndex = 5;
-            textBoxCorundumV.Text = "254.6959";
-            textBoxCorundumV.TextChanged += textBox_TextChanged;
-            // 
-            // label85
-            // 
-            label85.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label85.Location = new Point(56, 20);
-            label85.Name = "label85";
-            label85.Size = new Size(38, 16);
-            label85.TabIndex = 7;
-            label85.Text = "Å^3";
-            // 
-            // label86
-            // 
-            label86.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label86.Location = new Point(4, 40);
-            label86.Name = "label86";
-            label86.Size = new Size(16, 12);
-            label86.TabIndex = 7;
-            label86.Text = "V";
-            // 
-            // label87
-            // 
-            label87.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label87.Location = new Point(56, 40);
-            label87.Name = "label87";
-            label87.Size = new Size(40, 16);
-            label87.TabIndex = 7;
-            label87.Text = "Å^3";
+            numericBoxColundumV0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxColundumV0.BackColor = SystemColors.Control;
+            numericBoxColundumV0.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxColundumV0.FooterBackColor = SystemColors.Control;
+            numericBoxColundumV0.FooterText = "Å³";
+            numericBoxColundumV0.HeaderBackColor = SystemColors.Control;
+            numericBoxColundumV0.HeaderText = "V₀";
+            numericBoxColundumV0.Location = new Point(2, 21);
+            numericBoxColundumV0.Margin = new Padding(0);
+            numericBoxColundumV0.MaximumSize = new Size(1000, 30);
+            numericBoxColundumV0.MinimumSize = new Size(1, 20);
+            numericBoxColundumV0.Name = "numericBoxColundumV0";
+            numericBoxColundumV0.Padding = new Padding(0, 0, 1, 0);
+            numericBoxColundumV0.RadianValue = 4.4662054024689839D;
+            numericBoxColundumV0.Size = new Size(106, 27);
+            numericBoxColundumV0.SkipEventDuringInput = false;
+            numericBoxColundumV0.SmartIncrement = true;
+            numericBoxColundumV0.TabIndex = 10;
+            numericBoxColundumV0.TextFont = new Font("メイリオ", 9F);
+            numericBoxColundumV0.ThonsandsSeparator = true;
+            numericBoxColundumV0.Value = 255.89472D;
+            numericBoxColundumV0.ValueChanged += textBox_TextChanged;
             // 
             // groupBoxAr
             // 
-            groupBoxAr.Controls.Add(textBoxArA0);
-            groupBoxAr.Controls.Add(textBoxArA);
-            groupBoxAr.Controls.Add(textBoxArJephcoat);
-            groupBoxAr.Controls.Add(label88);
-            groupBoxAr.Controls.Add(textBoxArRoss);
-            groupBoxAr.Controls.Add(label89);
-            groupBoxAr.Controls.Add(label90);
-            groupBoxAr.Controls.Add(label91);
-            groupBoxAr.Controls.Add(label92);
-            groupBoxAr.Controls.Add(label93);
-            groupBoxAr.Controls.Add(label94);
-            groupBoxAr.Controls.Add(label95);
-            groupBoxAr.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxAr.Location = new Point(3, 223);
+            groupBoxAr.Controls.Add(numericalTextBoxArRoss);
+            groupBoxAr.Controls.Add(numericalTextBoxArJephcoat);
+            groupBoxAr.Controls.Add(numericalTextBoxArA);
+            groupBoxAr.Controls.Add(label57);
+            groupBoxAr.Controls.Add(label58);
+            groupBoxAr.Controls.Add(numericBoxArA0);
+            groupBoxAr.Font = new Font("Segoe UI Symbol", 9.75F);
+            groupBoxAr.Location = new Point(3, 404);
             groupBoxAr.Name = "groupBoxAr";
-            groupBoxAr.Size = new Size(104, 132);
-            groupBoxAr.TabIndex = 12;
+            groupBoxAr.Size = new Size(218, 100);
+            groupBoxAr.TabIndex = 15;
             groupBoxAr.TabStop = false;
             groupBoxAr.Text = "Ar";
             // 
-            // textBoxArA0
+            // numericalTextBoxArRoss
             // 
-            textBoxArA0.Enabled = false;
-            textBoxArA0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxArA0.Location = new Point(20, 15);
-            textBoxArA0.Name = "textBoxArA0";
-            textBoxArA0.Size = new Size(48, 21);
-            textBoxArA0.TabIndex = 5;
-            textBoxArA0.Text = "0";
-            textBoxArA0.TextChanged += textBox_TextChanged;
+            numericalTextBoxArRoss.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxArRoss.BackColor = SystemColors.Control;
+            numericalTextBoxArRoss.DecimalPlaces = 3;
+            numericalTextBoxArRoss.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxArRoss.FooterBackColor = SystemColors.Control;
+            numericalTextBoxArRoss.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxArRoss.FooterText = "GPa";
+            numericalTextBoxArRoss.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxArRoss.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxArRoss.Location = new Point(93, 44);
+            numericalTextBoxArRoss.Margin = new Padding(0);
+            numericalTextBoxArRoss.MaximumSize = new Size(1000, 30);
+            numericalTextBoxArRoss.MinimumSize = new Size(1, 20);
+            numericalTextBoxArRoss.Name = "numericalTextBoxArRoss";
+            numericalTextBoxArRoss.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxArRoss.Size = new Size(111, 27);
+            numericalTextBoxArRoss.SkipEventDuringInput = false;
+            numericalTextBoxArRoss.SmartIncrement = true;
+            numericalTextBoxArRoss.TabIndex = 12;
+            numericalTextBoxArRoss.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxArRoss.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxArRoss.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxArRoss.ThonsandsSeparator = true;
             // 
-            // textBoxArA
+            // numericalTextBoxArJephcoat
             // 
-            textBoxArA.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxArA.Location = new Point(20, 36);
-            textBoxArA.Name = "textBoxArA";
-            textBoxArA.Size = new Size(48, 21);
-            textBoxArA.TabIndex = 5;
-            textBoxArA.Text = "4.0786";
-            textBoxArA.TextChanged += textBox_TextChanged;
+            numericalTextBoxArJephcoat.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxArJephcoat.BackColor = SystemColors.Control;
+            numericalTextBoxArJephcoat.DecimalPlaces = 3;
+            numericalTextBoxArJephcoat.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxArJephcoat.FooterBackColor = SystemColors.Control;
+            numericalTextBoxArJephcoat.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxArJephcoat.FooterText = "GPa";
+            numericalTextBoxArJephcoat.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxArJephcoat.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxArJephcoat.Location = new Point(93, 70);
+            numericalTextBoxArJephcoat.Margin = new Padding(0);
+            numericalTextBoxArJephcoat.MaximumSize = new Size(1000, 30);
+            numericalTextBoxArJephcoat.MinimumSize = new Size(1, 20);
+            numericalTextBoxArJephcoat.Name = "numericalTextBoxArJephcoat";
+            numericalTextBoxArJephcoat.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxArJephcoat.Size = new Size(111, 27);
+            numericalTextBoxArJephcoat.SkipEventDuringInput = false;
+            numericalTextBoxArJephcoat.SmartIncrement = true;
+            numericalTextBoxArJephcoat.TabIndex = 12;
+            numericalTextBoxArJephcoat.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxArJephcoat.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxArJephcoat.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxArJephcoat.ThonsandsSeparator = true;
             // 
-            // textBoxArJephcoat
+            // numericalTextBoxArA
             // 
-            textBoxArJephcoat.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxArJephcoat.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxArJephcoat.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxArJephcoat.Location = new Point(12, 106);
-            textBoxArJephcoat.Name = "textBoxArJephcoat";
-            textBoxArJephcoat.ReadOnly = true;
-            textBoxArJephcoat.Size = new Size(48, 22);
-            textBoxArJephcoat.TabIndex = 5;
-            textBoxArJephcoat.Text = "0";
+            numericalTextBoxArA.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxArA.BackColor = SystemColors.Control;
+            numericalTextBoxArA.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxArA.FooterBackColor = SystemColors.Control;
+            numericalTextBoxArA.FooterText = "Å";
+            numericalTextBoxArA.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxArA.HeaderText = "a";
+            numericalTextBoxArA.Location = new Point(111, 15);
+            numericalTextBoxArA.Margin = new Padding(0);
+            numericalTextBoxArA.MaximumSize = new Size(1000, 30);
+            numericalTextBoxArA.MinimumSize = new Size(1, 20);
+            numericalTextBoxArA.Name = "numericalTextBoxArA";
+            numericalTextBoxArA.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxArA.RadianValue = 0.071184998871840724D;
+            numericalTextBoxArA.Size = new Size(93, 27);
+            numericalTextBoxArA.SkipEventDuringInput = false;
+            numericalTextBoxArA.SmartIncrement = true;
+            numericalTextBoxArA.TabIndex = 10;
+            numericalTextBoxArA.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxArA.ThonsandsSeparator = true;
+            numericalTextBoxArA.Value = 4.0786D;
+            numericalTextBoxArA.ValueChanged += textBox_TextChanged;
             // 
-            // label88
+            // label57
             // 
-            label88.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label88.Location = new Point(60, 110);
-            label88.Name = "label88";
-            label88.Size = new Size(38, 16);
-            label88.TabIndex = 7;
-            label88.Text = "GPa";
+            label57.AutoSize = true;
+            label57.Font = new Font("Segoe UI Symbol", 9F);
+            label57.ImeMode = ImeMode.NoControl;
+            label57.Location = new Point(13, 75);
+            label57.Name = "label57";
+            label57.Size = new Size(77, 15);
+            label57.TabIndex = 7;
+            label57.Text = "Jephcoat (98)";
             // 
-            // textBoxArRoss
+            // label58
             // 
-            textBoxArRoss.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxArRoss.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxArRoss.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxArRoss.Location = new Point(12, 70);
-            textBoxArRoss.Name = "textBoxArRoss";
-            textBoxArRoss.ReadOnly = true;
-            textBoxArRoss.Size = new Size(48, 22);
-            textBoxArRoss.TabIndex = 5;
-            textBoxArRoss.Text = "0";
+            label58.AutoSize = true;
+            label58.Font = new Font("Segoe UI Symbol", 9F);
+            label58.ImeMode = ImeMode.NoControl;
+            label58.Location = new Point(8, 49);
+            label58.Name = "label58";
+            label58.Size = new Size(82, 15);
+            label58.TabIndex = 7;
+            label58.Text = "Ross et al. (86)";
             // 
-            // label89
+            // numericBoxArA0
             // 
-            label89.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label89.Location = new Point(60, 74);
-            label89.Name = "label89";
-            label89.Size = new Size(38, 16);
-            label89.TabIndex = 7;
-            label89.Text = "GPa";
-            // 
-            // label90
-            // 
-            label90.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label90.Location = new Point(4, 19);
-            label90.Name = "label90";
-            label90.Size = new Size(32, 12);
-            label90.TabIndex = 7;
-            label90.Text = "a0";
-            // 
-            // label91
-            // 
-            label91.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label91.Location = new Point(12, 40);
-            label91.Name = "label91";
-            label91.Size = new Size(32, 12);
-            label91.TabIndex = 7;
-            label91.Text = "a";
-            // 
-            // label92
-            // 
-            label92.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label92.Location = new Point(4, 94);
-            label92.Name = "label92";
-            label92.Size = new Size(94, 12);
-            label92.TabIndex = 7;
-            label92.Text = "Jephcoat (98)";
-            // 
-            // label93
-            // 
-            label93.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label93.Location = new Point(68, 40);
-            label93.Name = "label93";
-            label93.Size = new Size(12, 16);
-            label93.TabIndex = 7;
-            label93.Text = "Å";
-            // 
-            // label94
-            // 
-            label94.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label94.Location = new Point(4, 58);
-            label94.Name = "label94";
-            label94.Size = new Size(94, 12);
-            label94.TabIndex = 7;
-            label94.Text = "Ross et al. (86)";
-            // 
-            // label95
-            // 
-            label95.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label95.Location = new Point(68, 19);
-            label95.Name = "label95";
-            label95.Size = new Size(12, 16);
-            label95.TabIndex = 7;
-            label95.Text = "Å";
+            numericBoxArA0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxArA0.BackColor = SystemColors.Control;
+            numericBoxArA0.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxArA0.FooterBackColor = SystemColors.Control;
+            numericBoxArA0.FooterText = "Å";
+            numericBoxArA0.HeaderBackColor = SystemColors.Control;
+            numericBoxArA0.HeaderText = "a₀";
+            numericBoxArA0.Location = new Point(3, 15);
+            numericBoxArA0.Margin = new Padding(0);
+            numericBoxArA0.MaximumSize = new Size(1000, 30);
+            numericBoxArA0.MinimumSize = new Size(1, 20);
+            numericBoxArA0.Name = "numericBoxArA0";
+            numericBoxArA0.Padding = new Padding(0, 0, 1, 0);
+            numericBoxArA0.Size = new Size(98, 27);
+            numericBoxArA0.SkipEventDuringInput = false;
+            numericBoxArA0.SmartIncrement = true;
+            numericBoxArA0.TabIndex = 10;
+            numericBoxArA0.TextFont = new Font("メイリオ", 9F);
+            numericBoxArA0.ThonsandsSeparator = true;
+            numericBoxArA0.ValueChanged += textBox_TextChanged;
             // 
             // groupBoxRe
             // 
-            groupBoxRe.Controls.Add(label96);
-            groupBoxRe.Controls.Add(textBoxReZha);
-            groupBoxRe.Controls.Add(textBoxReV0);
-            groupBoxRe.Controls.Add(label97);
-            groupBoxRe.Controls.Add(label98);
-            groupBoxRe.Controls.Add(textBoxReV);
-            groupBoxRe.Controls.Add(label99);
-            groupBoxRe.Controls.Add(label100);
-            groupBoxRe.Controls.Add(label101);
-            groupBoxRe.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBoxRe.Location = new Point(113, 223);
+            groupBoxRe.Controls.Add(numericBoxReDub);
+            groupBoxRe.Controls.Add(numericBoxReSakai);
+            groupBoxRe.Controls.Add(label59);
+            groupBoxRe.Controls.Add(numericBoxReAnz);
+            groupBoxRe.Controls.Add(label60);
+            groupBoxRe.Controls.Add(numericalTextBoxReZha);
+            groupBoxRe.Controls.Add(label61);
+            groupBoxRe.Controls.Add(numericBoxReV);
+            groupBoxRe.Controls.Add(label62);
+            groupBoxRe.Controls.Add(numerictBoxReV0);
+            groupBoxRe.Font = new Font("Segoe UI Symbol", 9.75F);
+            groupBoxRe.Location = new Point(227, 404);
             groupBoxRe.Name = "groupBoxRe";
-            groupBoxRe.Size = new Size(104, 101);
-            groupBoxRe.TabIndex = 11;
+            groupBoxRe.Size = new Size(218, 157);
+            groupBoxRe.TabIndex = 16;
             groupBoxRe.TabStop = false;
             groupBoxRe.Text = "Re";
             // 
-            // label96
+            // numericBoxReDub
             // 
-            label96.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label96.Location = new Point(56, 76);
-            label96.Name = "label96";
-            label96.Size = new Size(24, 16);
-            label96.TabIndex = 7;
-            label96.Text = "GPa";
+            numericBoxReDub.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxReDub.BackColor = SystemColors.Control;
+            numericBoxReDub.DecimalPlaces = 3;
+            numericBoxReDub.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxReDub.FooterBackColor = SystemColors.Control;
+            numericBoxReDub.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxReDub.FooterText = "GPa";
+            numericBoxReDub.HeaderBackColor = SystemColors.Control;
+            numericBoxReDub.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxReDub.Location = new Point(96, 126);
+            numericBoxReDub.Margin = new Padding(0);
+            numericBoxReDub.MaximumSize = new Size(1000, 30);
+            numericBoxReDub.MinimumSize = new Size(1, 20);
+            numericBoxReDub.Name = "numericBoxReDub";
+            numericBoxReDub.Padding = new Padding(0, 0, 1, 0);
+            numericBoxReDub.Size = new Size(119, 27);
+            numericBoxReDub.SkipEventDuringInput = false;
+            numericBoxReDub.SmartIncrement = true;
+            numericBoxReDub.TabIndex = 12;
+            numericBoxReDub.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxReDub.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxReDub.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxReDub.ThonsandsSeparator = true;
             // 
-            // textBoxReZha
+            // numericBoxReSakai
             // 
-            textBoxReZha.BackColor = Color.FromArgb(64, 64, 64);
-            textBoxReZha.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxReZha.ForeColor = Color.FromArgb(192, 192, 255);
-            textBoxReZha.Location = new Point(8, 72);
-            textBoxReZha.Name = "textBoxReZha";
-            textBoxReZha.ReadOnly = true;
-            textBoxReZha.Size = new Size(48, 22);
-            textBoxReZha.TabIndex = 5;
-            textBoxReZha.Text = "0";
+            numericBoxReSakai.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxReSakai.BackColor = SystemColors.Control;
+            numericBoxReSakai.DecimalPlaces = 3;
+            numericBoxReSakai.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxReSakai.FooterBackColor = SystemColors.Control;
+            numericBoxReSakai.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxReSakai.FooterText = "GPa";
+            numericBoxReSakai.HeaderBackColor = SystemColors.Control;
+            numericBoxReSakai.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxReSakai.Location = new Point(96, 100);
+            numericBoxReSakai.Margin = new Padding(0);
+            numericBoxReSakai.MaximumSize = new Size(1000, 30);
+            numericBoxReSakai.MinimumSize = new Size(1, 20);
+            numericBoxReSakai.Name = "numericBoxReSakai";
+            numericBoxReSakai.Padding = new Padding(0, 0, 1, 0);
+            numericBoxReSakai.Size = new Size(119, 27);
+            numericBoxReSakai.SkipEventDuringInput = false;
+            numericBoxReSakai.SmartIncrement = true;
+            numericBoxReSakai.TabIndex = 12;
+            numericBoxReSakai.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxReSakai.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxReSakai.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxReSakai.ThonsandsSeparator = true;
             // 
-            // textBoxReV0
+            // label59
             // 
-            textBoxReV0.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxReV0.Location = new Point(20, 16);
-            textBoxReV0.Name = "textBoxReV0";
-            textBoxReV0.Size = new Size(36, 21);
-            textBoxReV0.TabIndex = 5;
-            textBoxReV0.Text = "29.42795";
-            textBoxReV0.TextChanged += textBox_TextChanged;
+            label59.AutoSize = true;
+            label59.Font = new Font("Segoe UI Symbol", 9F);
+            label59.ImeMode = ImeMode.NoControl;
+            label59.Location = new Point(4, 131);
+            label59.Name = "label59";
+            label59.Size = new Size(57, 15);
+            label59.TabIndex = 7;
+            label59.Text = "Dub. (##)";
             // 
-            // label97
+            // numericBoxReAnz
             // 
-            label97.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label97.Location = new Point(4, 56);
-            label97.Name = "label97";
-            label97.Size = new Size(100, 20);
-            label97.TabIndex = 7;
-            label97.Text = "Zha et al. (04)";
+            numericBoxReAnz.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxReAnz.BackColor = SystemColors.Control;
+            numericBoxReAnz.DecimalPlaces = 3;
+            numericBoxReAnz.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxReAnz.FooterBackColor = SystemColors.Control;
+            numericBoxReAnz.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxReAnz.FooterText = "GPa";
+            numericBoxReAnz.HeaderBackColor = SystemColors.Control;
+            numericBoxReAnz.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxReAnz.Location = new Point(96, 76);
+            numericBoxReAnz.Margin = new Padding(0);
+            numericBoxReAnz.MaximumSize = new Size(1000, 30);
+            numericBoxReAnz.MinimumSize = new Size(1, 20);
+            numericBoxReAnz.Name = "numericBoxReAnz";
+            numericBoxReAnz.Padding = new Padding(0, 0, 1, 0);
+            numericBoxReAnz.Size = new Size(119, 27);
+            numericBoxReAnz.SkipEventDuringInput = false;
+            numericBoxReAnz.SmartIncrement = true;
+            numericBoxReAnz.TabIndex = 12;
+            numericBoxReAnz.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxReAnz.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxReAnz.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxReAnz.ThonsandsSeparator = true;
             // 
-            // label98
+            // label60
             // 
-            label98.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label98.Location = new Point(4, 20);
-            label98.Name = "label98";
-            label98.Size = new Size(20, 12);
-            label98.TabIndex = 7;
-            label98.Text = "V0";
+            label60.AutoSize = true;
+            label60.Font = new Font("Segoe UI Symbol", 9F);
+            label60.ImeMode = ImeMode.NoControl;
+            label60.Location = new Point(4, 105);
+            label60.Name = "label60";
+            label60.Size = new Size(62, 15);
+            label60.TabIndex = 7;
+            label60.Text = "Sakai. (##)";
             // 
-            // textBoxReV
+            // numericalTextBoxReZha
             // 
-            textBoxReV.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxReV.Location = new Point(20, 36);
-            textBoxReV.Name = "textBoxReV";
-            textBoxReV.Size = new Size(36, 21);
-            textBoxReV.TabIndex = 5;
-            textBoxReV.Text = "254.6959";
-            textBoxReV.TextChanged += textBox_TextChanged;
+            numericalTextBoxReZha.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericalTextBoxReZha.BackColor = SystemColors.Control;
+            numericalTextBoxReZha.DecimalPlaces = 3;
+            numericalTextBoxReZha.Font = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxReZha.FooterBackColor = SystemColors.Control;
+            numericalTextBoxReZha.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxReZha.FooterText = "GPa";
+            numericalTextBoxReZha.HeaderBackColor = SystemColors.Control;
+            numericalTextBoxReZha.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericalTextBoxReZha.Location = new Point(96, 49);
+            numericalTextBoxReZha.Margin = new Padding(0);
+            numericalTextBoxReZha.MaximumSize = new Size(1000, 30);
+            numericalTextBoxReZha.MinimumSize = new Size(1, 20);
+            numericalTextBoxReZha.Name = "numericalTextBoxReZha";
+            numericalTextBoxReZha.Padding = new Padding(0, 0, 1, 0);
+            numericalTextBoxReZha.Size = new Size(119, 27);
+            numericalTextBoxReZha.SkipEventDuringInput = false;
+            numericalTextBoxReZha.SmartIncrement = true;
+            numericalTextBoxReZha.TabIndex = 12;
+            numericalTextBoxReZha.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericalTextBoxReZha.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericalTextBoxReZha.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxReZha.ThonsandsSeparator = true;
             // 
-            // label99
+            // label61
             // 
-            label99.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label99.Location = new Point(56, 20);
-            label99.Name = "label99";
-            label99.Size = new Size(42, 16);
-            label99.TabIndex = 7;
-            label99.Text = "Å^3";
+            label61.AutoSize = true;
+            label61.Font = new Font("Segoe UI Symbol", 9F);
+            label61.ImeMode = ImeMode.NoControl;
+            label61.Location = new Point(4, 81);
+            label61.Name = "label61";
+            label61.Size = new Size(52, 15);
+            label61.TabIndex = 7;
+            label61.Text = "Anz (##)";
             // 
-            // label100
+            // numericBoxReV
             // 
-            label100.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label100.Location = new Point(4, 40);
-            label100.Name = "label100";
-            label100.Size = new Size(16, 12);
-            label100.TabIndex = 7;
-            label100.Text = "V";
+            numericBoxReV.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxReV.BackColor = SystemColors.Control;
+            numericBoxReV.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxReV.FooterBackColor = SystemColors.Control;
+            numericBoxReV.FooterText = "Å³";
+            numericBoxReV.HeaderBackColor = SystemColors.Control;
+            numericBoxReV.HeaderText = "V";
+            numericBoxReV.Location = new Point(110, 20);
+            numericBoxReV.Margin = new Padding(0);
+            numericBoxReV.MaximumSize = new Size(1000, 30);
+            numericBoxReV.MinimumSize = new Size(1, 20);
+            numericBoxReV.Name = "numericBoxReV";
+            numericBoxReV.Padding = new Padding(0, 0, 1, 0);
+            numericBoxReV.RadianValue = 0.51361461961226529D;
+            numericBoxReV.Size = new Size(105, 27);
+            numericBoxReV.SkipEventDuringInput = false;
+            numericBoxReV.SmartIncrement = true;
+            numericBoxReV.TabIndex = 10;
+            numericBoxReV.TextFont = new Font("メイリオ", 9F);
+            numericBoxReV.ThonsandsSeparator = true;
+            numericBoxReV.Value = 29.42795D;
+            numericBoxReV.ValueChanged += textBox_TextChanged;
             // 
-            // label101
+            // label62
             // 
-            label101.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label101.Location = new Point(56, 40);
-            label101.Name = "label101";
-            label101.Size = new Size(42, 16);
-            label101.TabIndex = 7;
-            label101.Text = "Å^3";
+            label62.AutoSize = true;
+            label62.Font = new Font("Segoe UI Symbol", 9F);
+            label62.ImeMode = ImeMode.NoControl;
+            label62.Location = new Point(4, 54);
+            label62.Name = "label62";
+            label62.Size = new Size(78, 15);
+            label62.TabIndex = 7;
+            label62.Text = "Zha et al. (04)";
+            // 
+            // numerictBoxReV0
+            // 
+            numerictBoxReV0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numerictBoxReV0.BackColor = SystemColors.Control;
+            numerictBoxReV0.Font = new Font("Segoe UI Symbol", 9F);
+            numerictBoxReV0.FooterBackColor = SystemColors.Control;
+            numerictBoxReV0.FooterText = "Å³";
+            numerictBoxReV0.HeaderBackColor = SystemColors.Control;
+            numerictBoxReV0.HeaderText = "V₀";
+            numerictBoxReV0.Location = new Point(2, 20);
+            numerictBoxReV0.Margin = new Padding(0);
+            numerictBoxReV0.MaximumSize = new Size(1000, 30);
+            numerictBoxReV0.MinimumSize = new Size(1, 20);
+            numerictBoxReV0.Name = "numerictBoxReV0";
+            numerictBoxReV0.Padding = new Padding(0, 0, 1, 0);
+            numerictBoxReV0.RadianValue = 0.51361461961226529D;
+            numerictBoxReV0.Size = new Size(108, 27);
+            numerictBoxReV0.SkipEventDuringInput = false;
+            numerictBoxReV0.SmartIncrement = true;
+            numerictBoxReV0.TabIndex = 10;
+            numerictBoxReV0.TextFont = new Font("メイリオ", 9F);
+            numerictBoxReV0.ThonsandsSeparator = true;
+            numerictBoxReV0.Value = 29.42795D;
+            numerictBoxReV0.ValueChanged += textBox_TextChanged;
+            // 
+            // groupBoxMo
+            // 
+            groupBoxMo.Controls.Add(numericBoxMoZhao);
+            groupBoxMo.Controls.Add(numericBoxMoHuang);
+            groupBoxMo.Controls.Add(label63);
+            groupBoxMo.Controls.Add(numericBoxMoV);
+            groupBoxMo.Controls.Add(label64);
+            groupBoxMo.Controls.Add(numericBoxMoV0);
+            groupBoxMo.Font = new Font("Segoe UI Symbol", 9.75F);
+            groupBoxMo.Location = new Point(451, 404);
+            groupBoxMo.Name = "groupBoxMo";
+            groupBoxMo.Size = new Size(218, 103);
+            groupBoxMo.TabIndex = 17;
+            groupBoxMo.TabStop = false;
+            groupBoxMo.Text = "Mo";
+            groupBoxMo.Visible = false;
+            // 
+            // numericBoxMoZhao
+            // 
+            numericBoxMoZhao.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxMoZhao.BackColor = SystemColors.Control;
+            numericBoxMoZhao.DecimalPlaces = 3;
+            numericBoxMoZhao.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxMoZhao.FooterBackColor = SystemColors.Control;
+            numericBoxMoZhao.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxMoZhao.FooterText = "GPa";
+            numericBoxMoZhao.HeaderBackColor = SystemColors.Control;
+            numericBoxMoZhao.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxMoZhao.Location = new Point(105, 78);
+            numericBoxMoZhao.Margin = new Padding(0);
+            numericBoxMoZhao.MaximumSize = new Size(1000, 30);
+            numericBoxMoZhao.MinimumSize = new Size(1, 20);
+            numericBoxMoZhao.Name = "numericBoxMoZhao";
+            numericBoxMoZhao.Padding = new Padding(0, 0, 1, 0);
+            numericBoxMoZhao.Size = new Size(110, 27);
+            numericBoxMoZhao.SkipEventDuringInput = false;
+            numericBoxMoZhao.SmartIncrement = true;
+            numericBoxMoZhao.TabIndex = 12;
+            numericBoxMoZhao.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxMoZhao.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxMoZhao.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxMoZhao.ThonsandsSeparator = true;
+            // 
+            // numericBoxMoHuang
+            // 
+            numericBoxMoHuang.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxMoHuang.BackColor = SystemColors.Control;
+            numericBoxMoHuang.DecimalPlaces = 3;
+            numericBoxMoHuang.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxMoHuang.FooterBackColor = SystemColors.Control;
+            numericBoxMoHuang.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxMoHuang.FooterText = "GPa";
+            numericBoxMoHuang.HeaderBackColor = SystemColors.Control;
+            numericBoxMoHuang.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxMoHuang.Location = new Point(105, 50);
+            numericBoxMoHuang.Margin = new Padding(0);
+            numericBoxMoHuang.MaximumSize = new Size(1000, 30);
+            numericBoxMoHuang.MinimumSize = new Size(1, 20);
+            numericBoxMoHuang.Name = "numericBoxMoHuang";
+            numericBoxMoHuang.Padding = new Padding(0, 0, 1, 0);
+            numericBoxMoHuang.Size = new Size(110, 27);
+            numericBoxMoHuang.SkipEventDuringInput = false;
+            numericBoxMoHuang.SmartIncrement = true;
+            numericBoxMoHuang.TabIndex = 12;
+            numericBoxMoHuang.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxMoHuang.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxMoHuang.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxMoHuang.ThonsandsSeparator = true;
+            // 
+            // label63
+            // 
+            label63.AutoSize = true;
+            label63.Font = new Font("Segoe UI Symbol", 9F);
+            label63.ImeMode = ImeMode.NoControl;
+            label63.Location = new Point(4, 82);
+            label63.Name = "label63";
+            label63.Size = new Size(62, 15);
+            label63.TabIndex = 7;
+            label63.Text = "Zhao+(00)";
+            // 
+            // numericBoxMoV
+            // 
+            numericBoxMoV.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxMoV.BackColor = SystemColors.Control;
+            numericBoxMoV.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxMoV.FooterBackColor = SystemColors.Control;
+            numericBoxMoV.FooterText = "Å³";
+            numericBoxMoV.HeaderBackColor = SystemColors.Control;
+            numericBoxMoV.HeaderText = "V";
+            numericBoxMoV.Location = new Point(110, 20);
+            numericBoxMoV.Margin = new Padding(0);
+            numericBoxMoV.MaximumSize = new Size(1000, 30);
+            numericBoxMoV.MinimumSize = new Size(1, 20);
+            numericBoxMoV.Name = "numericBoxMoV";
+            numericBoxMoV.Padding = new Padding(0, 0, 1, 0);
+            numericBoxMoV.RadianValue = 0.54349552907103427D;
+            numericBoxMoV.Size = new Size(105, 27);
+            numericBoxMoV.SkipEventDuringInput = false;
+            numericBoxMoV.SmartIncrement = true;
+            numericBoxMoV.TabIndex = 10;
+            numericBoxMoV.TextFont = new Font("メイリオ", 9F);
+            numericBoxMoV.ThonsandsSeparator = true;
+            numericBoxMoV.Value = 31.14D;
+            numericBoxMoV.ValueChanged += textBox_TextChanged;
+            // 
+            // label64
+            // 
+            label64.AutoSize = true;
+            label64.Font = new Font("Segoe UI Symbol", 9F);
+            label64.ImeMode = ImeMode.NoControl;
+            label64.Location = new Point(4, 54);
+            label64.Name = "label64";
+            label64.Size = new Size(98, 15);
+            label64.TabIndex = 7;
+            label64.Text = "Huang+(16)MGD";
+            // 
+            // numericBoxMoV0
+            // 
+            numericBoxMoV0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxMoV0.BackColor = SystemColors.Control;
+            numericBoxMoV0.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxMoV0.FooterBackColor = SystemColors.Control;
+            numericBoxMoV0.FooterText = "Å³";
+            numericBoxMoV0.HeaderBackColor = SystemColors.Control;
+            numericBoxMoV0.HeaderText = "V₀";
+            numericBoxMoV0.Location = new Point(2, 20);
+            numericBoxMoV0.Margin = new Padding(0);
+            numericBoxMoV0.MaximumSize = new Size(1000, 30);
+            numericBoxMoV0.MinimumSize = new Size(1, 20);
+            numericBoxMoV0.Name = "numericBoxMoV0";
+            numericBoxMoV0.Padding = new Padding(0, 0, 1, 0);
+            numericBoxMoV0.RadianValue = 0.54349552907103427D;
+            numericBoxMoV0.Size = new Size(108, 27);
+            numericBoxMoV0.SkipEventDuringInput = false;
+            numericBoxMoV0.SmartIncrement = true;
+            numericBoxMoV0.TabIndex = 10;
+            numericBoxMoV0.TextFont = new Font("メイリオ", 9F);
+            numericBoxMoV0.ThonsandsSeparator = true;
+            numericBoxMoV0.Value = 31.14D;
+            numericBoxMoV0.ValueChanged += textBox_TextChanged;
+            // 
+            // groupBoxPb
+            // 
+            groupBoxPb.Controls.Add(numericBoxPbStrassle);
+            groupBoxPb.Controls.Add(numericBoxPbA);
+            groupBoxPb.Controls.Add(label65);
+            groupBoxPb.Controls.Add(numericBoxPbA0);
+            groupBoxPb.Font = new Font("Segoe UI Symbol", 9.75F);
+            groupBoxPb.Location = new Point(3, 567);
+            groupBoxPb.Name = "groupBoxPb";
+            groupBoxPb.Size = new Size(218, 76);
+            groupBoxPb.TabIndex = 18;
+            groupBoxPb.TabStop = false;
+            groupBoxPb.Text = "Pb";
+            groupBoxPb.Visible = false;
+            // 
+            // numericBoxPbStrassle
+            // 
+            numericBoxPbStrassle.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxPbStrassle.BackColor = SystemColors.Control;
+            numericBoxPbStrassle.DecimalPlaces = 3;
+            numericBoxPbStrassle.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxPbStrassle.FooterBackColor = SystemColors.Control;
+            numericBoxPbStrassle.FooterFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxPbStrassle.FooterText = "GPa";
+            numericBoxPbStrassle.HeaderBackColor = SystemColors.Control;
+            numericBoxPbStrassle.HeaderFont = new Font("Segoe UI Symbol", 9F);
+            numericBoxPbStrassle.Location = new Point(105, 50);
+            numericBoxPbStrassle.Margin = new Padding(0);
+            numericBoxPbStrassle.MaximumSize = new Size(1000, 30);
+            numericBoxPbStrassle.MinimumSize = new Size(1, 20);
+            numericBoxPbStrassle.Name = "numericBoxPbStrassle";
+            numericBoxPbStrassle.Padding = new Padding(0, 0, 1, 0);
+            numericBoxPbStrassle.Size = new Size(110, 27);
+            numericBoxPbStrassle.SkipEventDuringInput = false;
+            numericBoxPbStrassle.SmartIncrement = true;
+            numericBoxPbStrassle.TabIndex = 12;
+            numericBoxPbStrassle.TextBoxBackColor = Color.FromArgb(64, 64, 64);
+            numericBoxPbStrassle.TextBoxForeColor = Color.FromArgb(192, 192, 255);
+            numericBoxPbStrassle.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxPbStrassle.ThonsandsSeparator = true;
+            // 
+            // numericBoxPbA
+            // 
+            numericBoxPbA.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxPbA.BackColor = SystemColors.Control;
+            numericBoxPbA.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxPbA.FooterBackColor = SystemColors.Control;
+            numericBoxPbA.FooterText = "Å";
+            numericBoxPbA.HeaderBackColor = SystemColors.Control;
+            numericBoxPbA.HeaderText = "a";
+            numericBoxPbA.Location = new Point(110, 20);
+            numericBoxPbA.Margin = new Padding(0);
+            numericBoxPbA.MaximumSize = new Size(1000, 30);
+            numericBoxPbA.MinimumSize = new Size(1, 20);
+            numericBoxPbA.Name = "numericBoxPbA";
+            numericBoxPbA.Padding = new Padding(0, 0, 1, 0);
+            numericBoxPbA.RadianValue = 0.086404095416306087D;
+            numericBoxPbA.Size = new Size(105, 27);
+            numericBoxPbA.SkipEventDuringInput = false;
+            numericBoxPbA.SmartIncrement = true;
+            numericBoxPbA.TabIndex = 10;
+            numericBoxPbA.TextFont = new Font("メイリオ", 9F);
+            numericBoxPbA.ThonsandsSeparator = true;
+            numericBoxPbA.Value = 4.95059D;
+            numericBoxPbA.ValueChanged += textBox_TextChanged;
+            // 
+            // label65
+            // 
+            label65.AutoSize = true;
+            label65.Font = new Font("Segoe UI Symbol", 9F);
+            label65.ImeMode = ImeMode.NoControl;
+            label65.Location = new Point(4, 54);
+            label65.Name = "label65";
+            label65.Size = new Size(74, 15);
+            label65.TabIndex = 7;
+            label65.Text = "Strässle+(14)";
+            // 
+            // numericBoxPbA0
+            // 
+            numericBoxPbA0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxPbA0.BackColor = SystemColors.Control;
+            numericBoxPbA0.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxPbA0.FooterBackColor = SystemColors.Control;
+            numericBoxPbA0.FooterText = "Å";
+            numericBoxPbA0.HeaderBackColor = SystemColors.Control;
+            numericBoxPbA0.HeaderText = "a₀";
+            numericBoxPbA0.Location = new Point(2, 20);
+            numericBoxPbA0.Margin = new Padding(0);
+            numericBoxPbA0.MaximumSize = new Size(1000, 30);
+            numericBoxPbA0.MinimumSize = new Size(1, 20);
+            numericBoxPbA0.Name = "numericBoxPbA0";
+            numericBoxPbA0.Padding = new Padding(0, 0, 1, 0);
+            numericBoxPbA0.RadianValue = 0.086404095416306087D;
+            numericBoxPbA0.Size = new Size(108, 27);
+            numericBoxPbA0.SkipEventDuringInput = false;
+            numericBoxPbA0.SmartIncrement = true;
+            numericBoxPbA0.TabIndex = 10;
+            numericBoxPbA0.TextFont = new Font("メイリオ", 9F);
+            numericBoxPbA0.ThonsandsSeparator = true;
+            numericBoxPbA0.Value = 4.95059D;
+            numericBoxPbA0.ValueChanged += textBox_TextChanged;
             // 
             // panelEOS
             // 
@@ -2841,48 +3522,91 @@ namespace PressureCalculator
             panelEOS.Dock = DockStyle.Top;
             panelEOS.Location = new Point(0, 48);
             panelEOS.Name = "panelEOS";
-            panelEOS.Size = new Size(725, 82);
+            panelEOS.Size = new Size(725, 207);
             panelEOS.TabIndex = 15;
             // 
             // panel2
             // 
-            panel2.Controls.Add(label103);
-            panel2.Controls.Add(textBoxT);
-            panel2.Controls.Add(label102);
+            panel2.Controls.Add(numericBoxTemperature);
+            panel2.Controls.Add(numericBoxTemperature0);
+            panel2.Controls.Add(numericBoxDecimalPlaces);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(725, 26);
+            panel2.Size = new Size(725, 29);
             panel2.TabIndex = 19;
             // 
-            // label103
+            // numericBoxTemperature
             // 
-            label103.AutoSize = true;
-            label103.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label103.Location = new Point(7, 5);
-            label103.Name = "label103";
-            label103.Size = new Size(87, 14);
-            label103.TabIndex = 18;
-            label103.Text = "Temperature";
+            numericBoxTemperature.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxTemperature.BackColor = SystemColors.Control;
+            numericBoxTemperature.Font = new Font("Segoe UI Symbol", 9.75F);
+            numericBoxTemperature.FooterBackColor = SystemColors.Control;
+            numericBoxTemperature.FooterText = "K";
+            numericBoxTemperature.HeaderBackColor = SystemColors.Control;
+            numericBoxTemperature.HeaderText = "Temperature";
+            numericBoxTemperature.Location = new Point(3, 0);
+            numericBoxTemperature.Margin = new Padding(0);
+            numericBoxTemperature.MaximumSize = new Size(1000, 30);
+            numericBoxTemperature.MinimumSize = new Size(1, 20);
+            numericBoxTemperature.Name = "numericBoxTemperature";
+            numericBoxTemperature.Padding = new Padding(0, 0, 1, 0);
+            numericBoxTemperature.RadianValue = 5.2359877559829888D;
+            numericBoxTemperature.Size = new Size(133, 27);
+            numericBoxTemperature.SkipEventDuringInput = false;
+            numericBoxTemperature.SmartIncrement = true;
+            numericBoxTemperature.TabIndex = 21;
+            numericBoxTemperature.TextFont = new Font("メイリオ", 9F);
+            numericBoxTemperature.ThonsandsSeparator = true;
+            numericBoxTemperature.Value = 300D;
+            numericBoxTemperature.ValueChanged += textBox_TextChanged;
             // 
-            // textBoxT
+            // numericBoxTemperature0
             // 
-            textBoxT.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxT.Location = new Point(94, 2);
-            textBoxT.Name = "textBoxT";
-            textBoxT.Size = new Size(83, 22);
-            textBoxT.TabIndex = 17;
-            textBoxT.Text = "300";
-            textBoxT.TextChanged += textBox_TextChanged;
+            numericBoxTemperature0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            numericBoxTemperature0.BackColor = SystemColors.Control;
+            numericBoxTemperature0.Font = new Font("Segoe UI Symbol", 9F);
+            numericBoxTemperature0.FooterBackColor = SystemColors.Control;
+            numericBoxTemperature0.FooterText = "K";
+            numericBoxTemperature0.HeaderBackColor = SystemColors.Control;
+            numericBoxTemperature0.HeaderText = "T₀";
+            numericBoxTemperature0.Location = new Point(160, 0);
+            numericBoxTemperature0.Margin = new Padding(0);
+            numericBoxTemperature0.MaximumSize = new Size(1000, 30);
+            numericBoxTemperature0.MinimumSize = new Size(1, 20);
+            numericBoxTemperature0.Name = "numericBoxTemperature0";
+            numericBoxTemperature0.Padding = new Padding(0, 0, 1, 0);
+            numericBoxTemperature0.RadianValue = 5.2359877559829888D;
+            numericBoxTemperature0.Size = new Size(79, 27);
+            numericBoxTemperature0.SkipEventDuringInput = false;
+            numericBoxTemperature0.SmartIncrement = true;
+            numericBoxTemperature0.TabIndex = 20;
+            numericBoxTemperature0.TextFont = new Font("メイリオ", 9F);
+            numericBoxTemperature0.ThonsandsSeparator = true;
+            numericBoxTemperature0.Value = 300D;
+            numericBoxTemperature0.ValueChanged += textBox_TextChanged;
             // 
-            // label102
+            // numericBoxDecimalPlaces
             // 
-            label102.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label102.Location = new Point(183, 5);
-            label102.Name = "label102";
-            label102.Size = new Size(16, 16);
-            label102.TabIndex = 18;
-            label102.Text = "K";
+            numericBoxDecimalPlaces.BackColor = Color.Transparent;
+            numericBoxDecimalPlaces.Font = new Font("Verdana", 9F);
+            numericBoxDecimalPlaces.FooterFont = new Font("Verdana", 9F);
+            numericBoxDecimalPlaces.HeaderFont = new Font("Verdana", 9F);
+            numericBoxDecimalPlaces.HeaderText = "Number of decimal places";
+            numericBoxDecimalPlaces.Location = new Point(263, 2);
+            numericBoxDecimalPlaces.Margin = new Padding(0);
+            numericBoxDecimalPlaces.Maximum = 10D;
+            numericBoxDecimalPlaces.MaximumSize = new Size(1000, 27);
+            numericBoxDecimalPlaces.Minimum = 0D;
+            numericBoxDecimalPlaces.MinimumSize = new Size(1, 17);
+            numericBoxDecimalPlaces.Name = "numericBoxDecimalPlaces";
+            numericBoxDecimalPlaces.RadianValue = 0.069813170079773182D;
+            numericBoxDecimalPlaces.ShowUpDown = true;
+            numericBoxDecimalPlaces.Size = new Size(208, 24);
+            numericBoxDecimalPlaces.TabIndex = 19;
+            numericBoxDecimalPlaces.TextFont = new Font("Verdana", 9F);
+            numericBoxDecimalPlaces.Value = 4D;
+            numericBoxDecimalPlaces.ValueChanged += numericBoxDecimalPlaces_ValueChanged;
             // 
             // menuStrip1
             // 
@@ -2934,14 +3658,14 @@ namespace PressureCalculator
             // 
             AllowDrop = true;
             AutoScaleBaseSize = new Size(7, 15);
-            ClientSize = new Size(725, 794);
+            ClientSize = new Size(725, 916);
             Controls.Add(splitContainer1);
             Controls.Add(groupBoxAkahama2006);
             Controls.Add(groupBoxMao);
             Controls.Add(panelEOS);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(menuStrip1);
-            Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Verdana", 9F);
             MainMenuStrip = menuStrip1;
             Name = "FormMain";
             Text = "Pressure Calculator";
@@ -2997,9 +3721,12 @@ namespace PressureCalculator
             groupBoxAr.PerformLayout();
             groupBoxRe.ResumeLayout(false);
             groupBoxRe.PerformLayout();
+            groupBoxMo.ResumeLayout(false);
+            groupBoxMo.PerformLayout();
+            groupBoxPb.ResumeLayout(false);
+            groupBoxPb.PerformLayout();
             panelEOS.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -3028,6 +3755,105 @@ namespace PressureCalculator
         private FlowLayoutPanel flowLayoutPanel4;
         private TextBox textBoxFittingInformation;
         private Label label25;
+        private Crystallography.Controls.NumericBox numericBoxDecimalPlaces;
+        private GroupBox groupBoxGold;
+        private Crystallography.Controls.NumericBox numericBoxAuFratanduono;
+        private Crystallography.Controls.NumericBox numericBoxAuYokoo;
+        private Crystallography.Controls.NumericBox numericalTextBoxGoldJamieson;
+        private Crystallography.Controls.NumericBox numericalTextBoxGoldTsuchiya;
+        private Crystallography.Controls.NumericBox numericalTextBoxGoldSim;
+        private Label label11;
+        private Crystallography.Controls.NumericBox numericalTextBoxGoldAnderson;
+        private Label label49;
+        public Crystallography.Controls.NumericBox numericalTextBoxGoldA;
+        public Crystallography.Controls.NumericBox numericBoxGoldA0;
+        private Label label22;
+        private Label label69;
+        private Label label15;
+        private Label label27;
+        private GroupBox groupBoxPlatinum;
+        private Crystallography.Controls.NumericBox numericBoxPtFratanduono;
+        private Crystallography.Controls.NumericBox numericBoxPtYokoo;
+        private Crystallography.Controls.NumericBox numericalTextBoxPtMatsui;
+        private Crystallography.Controls.NumericBox numericalTextBoxPtHolmes;
+        private Label label16;
+        private Crystallography.Controls.NumericBox numericalTextBoxPtJamieson;
+        private Label label23;
+        private Label label26;
+        private Label label36;
+        public Crystallography.Controls.NumericBox numericalTextBoxPtA;
+        public Crystallography.Controls.NumericBox numericBoxPtA0;
+        private Label label37;
+        private GroupBox groupBoxNaClB1;
+        private Crystallography.Controls.NumericBox numericalTextBoxNaClB1Matsui;
+        private Crystallography.Controls.NumericBox numericalTextBoxNaClB1Brown;
+        private Label label38;
+        private Label label39;
+        public Crystallography.Controls.NumericBox numericalTextBoxNaClB1A;
+        public Crystallography.Controls.NumericBox numericBoxNaClB1A0;
+        private GroupBox groupBoxNaClB2;
+        private Crystallography.Controls.NumericBox numericalTextBoxNaClB2SakaiVinet;
+        private Crystallography.Controls.NumericBox numericalTextBoxNaClB2SakaiBM;
+        private Crystallography.Controls.NumericBox numericalTextBoxNaClB2Ueda;
+        private Label label40;
+        private Crystallography.Controls.NumericBox numericalTextBoxNaClB2SataMgO;
+        private Label label41;
+        private Crystallography.Controls.NumericBox numericalTextBoxNaClB2SataPt;
+        private Label label47;
+        private Label label48;
+        public Crystallography.Controls.NumericBox numericalTextBoxNaClB2A;
+        private Label label50;
+        private Crystallography.Controls.NumericBox numericalTextBoxNaClB2A0;
+        private GroupBox groupBoxPericlase;
+        private Crystallography.Controls.NumericBox numericBoxMgOTangeBM;
+        private Crystallography.Controls.NumericBox numericBoxMgOTangeVinet;
+        private Crystallography.Controls.NumericBox numericalTextBoxMgOAizawa;
+        private Label label51;
+        private Crystallography.Controls.NumericBox numericalTextBoxMgODewaele;
+        private Label label52;
+        private Crystallography.Controls.NumericBox numericalTextBoxMgOJacson;
+        private Label label53;
+        private Label label54;
+        public Crystallography.Controls.NumericBox numericalTextBoxMgOA;
+        private Label label55;
+        public Crystallography.Controls.NumericBox numericBoxMgOA0;
+        private GroupBox groupBoxCorundum;
+        private Crystallography.Controls.NumericBox numericBoxCorundumDubrovinsky;
+        public Crystallography.Controls.NumericBox numericalTextBoxColundumV;
+        private Label label56;
+        public Crystallography.Controls.NumericBox numericBoxColundumV0;
+        private GroupBox groupBoxAr;
+        private Crystallography.Controls.NumericBox numericalTextBoxArRoss;
+        private Crystallography.Controls.NumericBox numericalTextBoxArJephcoat;
+        public Crystallography.Controls.NumericBox numericalTextBoxArA;
+        private Label label57;
+        private Label label58;
+        public Crystallography.Controls.NumericBox numericBoxArA0;
+        private GroupBox groupBoxRe;
+        private Crystallography.Controls.NumericBox numericBoxReDub;
+        private Crystallography.Controls.NumericBox numericBoxReSakai;
+        private Label label59;
+        private Crystallography.Controls.NumericBox numericBoxReAnz;
+        private Label label60;
+        private Crystallography.Controls.NumericBox numericalTextBoxReZha;
+        private Label label61;
+        public Crystallography.Controls.NumericBox numericBoxReV;
+        private Label label62;
+        public Crystallography.Controls.NumericBox numerictBoxReV0;
+        private GroupBox groupBoxMo;
+        private Crystallography.Controls.NumericBox numericBoxMoZhao;
+        private Crystallography.Controls.NumericBox numericBoxMoHuang;
+        private Label label63;
+        public Crystallography.Controls.NumericBox numericBoxMoV;
+        private Label label64;
+        public Crystallography.Controls.NumericBox numericBoxMoV0;
+        private GroupBox groupBoxPb;
+        private Crystallography.Controls.NumericBox numericBoxPbStrassle;
+        public Crystallography.Controls.NumericBox numericBoxPbA;
+        private Label label65;
+        public Crystallography.Controls.NumericBox numericBoxPbA0;
+        public Crystallography.Controls.NumericBox numericBoxTemperature;
+        public Crystallography.Controls.NumericBox numericBoxTemperature0;
     }
 
 

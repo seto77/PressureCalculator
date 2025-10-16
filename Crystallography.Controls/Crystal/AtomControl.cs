@@ -349,19 +349,28 @@ public partial class AtomControl : UserControl
     {
         if (SkipEvent) return;
         if (comboBoxAtom.SelectedIndex < 0) return;
-        comboBoxScatteringFactorXray.Items.Clear();
-        comboBoxScatteringFactorElectron.Items.Clear();
 
+        //コンボボックスに原子番号に対応するX線散乱因子の価数と手法を追加
+        comboBoxScatteringFactorXray.Items.Clear();
         for (int i = 0; i < AtomStatic.XrayScatteringWK[AtomNo].Length; i++)
             comboBoxScatteringFactorXray.Items.Add(AtomStatic.XrayScatteringWK[AtomNo][i].Method);
+        comboBoxScatteringFactorXray.SelectedIndex = 0;
 
+        //コンボボックスに原子番号に対応する電子散乱因子の価数と手法を追加        
+        comboBoxScatteringFactorElectron.Items.Clear();
         for (int i = 0; i < AtomStatic.ElectronScatteringPeng[AtomNo].Length; i++)
             comboBoxScatteringFactorElectron.Items.Add(AtomStatic.ElectronScatteringPeng[AtomNo][i].Method);
-
-        comboBoxScatteringFactorXray.SelectedIndex = 0;
         comboBoxScatteringFactorElectron.SelectedIndex = 0;
+
+        //コンボボックスに原子番号に対応する中性子散乱長の設定
         comboBoxNeutron.SelectedIndex = 0;
         comboBoxNeutron_SelectedIndexChanged(new object(), new EventArgs());
+
+        //原子番号に対応する原子のサイズや色などを設定
+        var (radius, argb) = AtomStatic.GetVesta(AtomNo);
+        Radius = radius;
+        AtomColor = Color.FromArgb(argb);
+
     }
 
     //散乱因子を選択変更されたら
@@ -587,13 +596,13 @@ public partial class AtomControl : UserControl
     private Atoms GetFromInterface()
     {
 
-        var aniso = UseTypeU ?
-            new[] { Aniso11 / 100, Aniso22 / 100, Aniso33 / 100, Aniso12 / 100, Aniso23 / 100, Aniso13 / 100 } :
-            new[] { Aniso11, Aniso22, Aniso33, Aniso12, Aniso23, Aniso13 };
+        double[] aniso = UseTypeU ?
+            [Aniso11 / 100, Aniso22 / 100, Aniso33 / 100, Aniso12 / 100, Aniso23 / 100, Aniso13 / 100] :
+            [Aniso11, Aniso22, Aniso33, Aniso12, Aniso23, Aniso13];
 
-        var anisoErr = UseTypeU ?
-            new[] { Aniso11Err / 100, Aniso22Err / 100, Aniso33Err / 100, Aniso12Err / 100, Aniso23Err / 100, Aniso13Err / 100 } :
-            new[] { Aniso11Err, Aniso22Err, Aniso33Err, Aniso12Err, Aniso23Err, Aniso13Err };
+        double[] anisoErr = UseTypeU ?
+            [Aniso11Err / 100, Aniso22Err / 100, Aniso33Err / 100, Aniso12Err / 100, Aniso23Err / 100, Aniso13Err / 100] :
+            [Aniso11Err, Aniso22Err, Aniso33Err, Aniso12Err, Aniso23Err, Aniso13Err];
 
         var dsf = new DiffuseScatteringFactor(UseTypeU ? DiffuseScatteringFactor.Type.U : DiffuseScatteringFactor.Type.B,
             UseIsotropy, Iso / 100, IsoErr / 100, aniso, anisoErr, Crystal.CellValue);

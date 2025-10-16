@@ -33,6 +33,9 @@ public partial class WaveLengthControl : UserControl
         }
     }
 
+    /// <summary>
+    /// コントロールの配置をLeftToRightか、TopDownにするか
+    /// </summary>
     public FlowDirection Direction
     {
         set
@@ -40,11 +43,14 @@ public partial class WaveLengthControl : UserControl
             direction = value;
             if (direction == FlowDirection.LeftToRight)
             {
+                this.AutoSize = false;
                 flowLayoutPanelWaveSource.FlowDirection = FlowDirection.TopDown;
                 flowLayoutPanelWaveSource.Dock = DockStyle.Left;
+
             }
             else
             {
+                this.AutoSize = true;
                 flowLayoutPanelWaveSource.FlowDirection = FlowDirection.LeftToRight;
                 flowLayoutPanelWaveSource.Dock = DockStyle.Top;
             }
@@ -59,18 +65,38 @@ public partial class WaveLengthControl : UserControl
     }
     public FlowDirection direction = FlowDirection.TopDown;
 
+    
+    bool monochrome = true;
+    /// <summary>
+    /// 単色モードかどうか falseの場合は白色モード
+    /// </summary>
+    public bool Monochrome
+    {
+        set
+        {
+            monochrome = value;
+            numericBoxEnergy.Visible = numericBoxWaveLength.Visible = monochrome;
+            flowLayoutPanelElement.Visible = WaveSource == WaveSource.Xray && monochrome;
+            labelFlatWhite.Visible = !monochrome;
+        }
+        get => monochrome;
+    }
+
+    [Localizable(true)]
     public Font TextFont
     {
         set
         {
-            numericBoxEnergy.TextFont = value;
-            numericBoxWaveLength.TextFont = value;
+            numericBoxEnergy.HeaderFont = numericBoxEnergy.FooterFont = numericBoxEnergy.TextFont = value;
+            numericBoxWaveLength.HeaderFont = numericBoxWaveLength.FooterFont = numericBoxWaveLength.TextFont = value;
+            comboBoxXRayElement.Font = comboBoxXrayLine.Font = value;
+            radioButtonElectron.Font = radioButtonNeutron.Font = radioButtonXray.Font = value;
+            label1.Font = value;
         }
         get => numericBoxWaveLength.TextFont;
     }
 
     public bool showWaveSource = true;
-
     /// <summary>
     /// WaveSourceを表示するかどうか
     /// </summary>
@@ -123,6 +149,7 @@ public partial class WaveLengthControl : UserControl
         get => numericBoxWaveLength.Value / 10.0;
     }
 
+    WaveSource waveSource = WaveSource.Xray;
     /// <summary>
     /// 線源を取得/設定
     /// </summary>
@@ -130,16 +157,16 @@ public partial class WaveLengthControl : UserControl
     {
         set
         {
-            if (value == WaveSource.Xray)
+         waveSource = value;
+            if (waveSource == WaveSource.Xray)
                 radioButtonXray.Checked = true;
-            else if (value == WaveSource.Electron)
+            else if (waveSource == WaveSource.Electron)
                 radioButtonElectron.Checked = true;
-            else if (value == WaveSource.Neutron)
+            else
                 radioButtonNeutron.Checked = true;
         }
         get
         {
-
             if (radioButtonXray.Checked)
                 return WaveSource.Xray;
             else if (radioButtonElectron.Checked)
@@ -264,6 +291,8 @@ public partial class WaveLengthControl : UserControl
         comboBoxXRayElement.SelectedIndex = 0;
     }
 
+
+
     /// <summary>
     /// X線のElementが変更されたとき
     /// </summary>
@@ -327,6 +356,12 @@ public partial class WaveLengthControl : UserControl
             }
         }
     }
+
+    /// <summary>
+    /// 現状の原子番号、線種で、特性X線の波長とエネルギーをリセット
+    /// </summary>
+    public void SetCharacteristicXray() => comboBoxXrayLine_SelectedIndexChanged(new object(), new EventArgs());
+
 
     /// <summary>
     /// 線源が変更されたとき

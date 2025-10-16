@@ -41,7 +41,7 @@ public class Plane : IComparable
     public double XCalc;
     public double Weight;
     public string strHKL, strD;
-    public string[] strCondition = Array.Empty<string>();
+    public string[] strCondition = [];
     public string str;
     public int num;
 
@@ -71,7 +71,7 @@ public class Plane : IComparable
     public override string ToString()
     {
         //return str.ToString();
-        string s = (strHKL + "                            ").Remove(13);//‹ó”’‚ğ‘}“ü‚µ‚Ä‚©‚ç10•¶š–ÚˆÈ~‚ğƒJƒbƒg
+        string s = (strHKL + "                            ")[..13];//‹ó”’‚ğ‘}“ü‚µ‚Ä‚©‚ç10•¶š–ÚˆÈ~‚ğƒJƒbƒg
         if (double.IsNaN(XCalc) || XCalc == 0)
             s += " " + "##.####";
         else

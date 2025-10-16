@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -40,6 +42,16 @@ public struct FastSpinLock
 
 public static class Miscellaneous
 {
+    public static Color BlendColor(Color col1, Color col2, double ratio)
+    {
+        var r = ratio > 1 ? 1 : ratio < 0 ? 0 : ratio;
+        return Color.FromArgb(
+            (byte)(col1.A * r + col2.A * (1 - r)),
+            (byte)(col1.R * r + col2.R * (1 - r)),
+            (byte)(col1.G * r + col2.G * (1 - r)),
+            (byte)(col1.B * r + col2.B * (1 - r)));
+    }
+
 
     /// <summary>
     /// 数字に stとかthみたいな文字を追加した文字列で返す
@@ -79,13 +91,16 @@ public static class Miscellaneous
     private static bool isDecimalPointCommaFlag = true;
     private static bool isDecimalPointComma = false;
 
+    /// <summary>
+    /// 小数点がカンマかどうかを判定する
+    /// </summary>
     public static bool IsDecimalPointComma
     {
         get
         {
             if (isDecimalPointCommaFlag)
             {
-                isDecimalPointComma = double.TryParse("1.000,01", out _);
+                isDecimalPointComma = (1.01).ToString().Contains(',');
                 isDecimalPointCommaFlag = false;
             }
             return isDecimalPointComma;
@@ -94,6 +109,51 @@ public static class Miscellaneous
 
     public static (int Division, int Modulus) DivMod(int n, int m) => (n / m, n % m);
 
+    /// <summary>
+    /// ファイルが使用中かどうかをチェック
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public static bool isFileExistsAndLocked(string path)
+    {
+       
+        if (File.Exists(path))
+        {
+            FileStream stream = null;
+
+            try
+            {
+                stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                return false;
+            }
+            catch (FileNotFoundException e)
+            {
+                return false;
+            }
+            catch (IOException e)
+            {
+                if (File.Exists(path))
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            finally
+            {
+                stream?.Close();
+            }
+
+            return false;
+        }
+
+        return false;
+    }
 }
 
 
@@ -114,7 +174,7 @@ public class DefinitionOrderTypeConverter : TypeConverter
         foreach (PropertyInfo propertyInfo in type.GetProperties())
             list.Add(propertyInfo.Name);
         // リフレクションから取得した順でソート
-        return pdc.Sort(list.ToArray());
+        return pdc.Sort([.. list]);
     }
 
     /// <summary>

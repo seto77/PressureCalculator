@@ -81,13 +81,10 @@ public static class MathematicalConstants
 
 public static class UniversalConstants
 {
-    public enum LengthUnit
-    {
-        km, m, cm, mm, um, nm, pm, fm
-    }
+    public enum LengthUnit { km, m, cm, mm, um, nm, pm, fm }
 
     /// <summary>
-    /// アボガドロ数 (g)
+    /// アボガドロ数 (1/mol)
     /// </summary>
     public const double A = 6.0221367E23;
 
@@ -146,34 +143,80 @@ public static class UniversalConstants
     /// </summary>
     public const double Ry = 13.60569253;
 
+    /// <summary>
+    /// 真空の誘電率 (permittivity) of vacuum ε0 (F/m = C^2×s^2 /kg/m^3 ) 
+    /// c^2 = 1/ε0/μ0の関係がある。
+    /// </summary>
+    public const double ε0 = 8.8541878188E-12;
+
+    /// <summary>
+    /// 真空の透磁率 (permeability in vacuum) μ0 (N/A^2)
+    /// c^2 = 1/ε0/μ0の関係がある。
+    /// </summary>
+    public const double μ0 = 1.25663706127E-6;
+
+    
+
     public static class Convert
     {
+        /// <summary>
+        /// エネルギー(kev)を与えて電子の速度(m/s)を返す
+        /// </summary>
+        /// <param name="kev"></param>
+        /// <returns></returns>
+        public static double EnergyToElectronVelosity(in double kev)
+        {
+            //return c * Math.Sqrt(1 - 1 / Math.Pow(1 + e0 * kev * 1000 / m0 / c / c, 2));
+            var tmp = 1 + kev * 0.0019569507450453425;
+            return c * Math.Sqrt(1 - 1 / tmp / tmp);
+        }
+
+        /// <summary>
+        /// エネルギー(kev)を与えて電子の速度の2乗(m^2/s^2)を返す
+        /// </summary>
+        /// <param name="kev"></param>
+        /// <returns></returns>
+        public static double EnergyToElectronVelositySquared(in double kev)
+        {
+            var tmp = 1 + kev * 0.0019569507450453425;
+            return c2 * (1 - 1 / tmp / tmp);
+        }
+
+        /// <summary>
+        /// エネルギー(kev)を与えて電子の重量(kg)を返す
+        /// </summary>
+        /// <param name="kev"></param>
+        /// <returns></returns>
+        public static double EnergyToElectronMass(in double kev)
+        {
+            //var r = EnergyToElectronVelosity(kev) / c;
+            //return m0 / Math.Sqrt(1 - r * r);
+            return m0 * (1 + kev * 0.0019569507450453425);
+        }
+
         /// <summary>
         /// 中性子の速度(m/μs)を与えて波長(nm)を返す
         /// </summary>
         /// <param name="velocity"></param>
         /// <returns></returns>
-        public static double NeutronVelocityToWavelength(in double velocity)
-            => h / n0 / velocity * 1.0E3;
+        public static double NeutronVelocityToWavelength(in double velocity) => h / n0 / velocity * 1.0E3;
 
         /// <summary>
         /// 中性子の波長(nm)を与えて速度(m/μs)を返す
         /// </summary>
         /// <param name="velocity"></param>
         /// <returns></returns>
-        public static double WavelengthToNeutronVelocity(in double wavelength)
-            => h / n0 / wavelength * 1.0E3;
+        public static double WavelengthToNeutronVelocity(in double wavelength) => h / n0 / wavelength * 1.0E3;
 
         /// <summary>
         /// 中性子の速度を与えてエネルギー(eV)を返す
         /// </summary>
         /// <param name="velocity"></param>
         /// <returns></returns>
-        public static double NeutronVelocityToNeutronEnergy(in double velocity)
-            => n0 * velocity * velocity / 2.0 / eV_joule;
+        public static double NeutronVelocityToNeutronEnergy(in double velocity) => n0 * velocity * velocity / 2.0 / eV_joule;
 
         /// <summary>
-        /// 波長(nm)を電子線のエネルギー(kV)に変換
+        /// 電子の波長(nm)をエネルギー(kV)に変換
         /// </summary>
         /// <param name="kiloVoltage"></param>
         /// <returns></returns>
@@ -181,14 +224,14 @@ public static class UniversalConstants
         {
             //U =voltage
             //WaveLength = h / Math.Sqrt ( 2 * m0 * e0 * U * ( 1 + e0 * U / 2 / m0 / c^2 ) )
-            double b = 1000;
-            double a = 0.9784753725226711491437618236159;
-            double c = -1.2264262862108010441350327657997 / waveLength;
-            return (-b + Math.Sqrt(b * b + 4 * a * c * c)) / 2 / a;
+            const double b = 1000;
+            const double a = 0.9784753725226711491437618236159;
+            const double c = -1.2264262862108010441350327657997;
+            return (-b + Math.Sqrt(b * b + 4 * a * c / waveLength * c / waveLength)) / 2 / a;
         }
 
         /// <summary>
-        /// 波長(nm)を電磁波のエネルギー(eV)に変換
+        /// 電磁波の波長(nm)をエネルギー(eV)に変換
         /// </summary>
         /// <param name="waveLength"></param>
         /// <returns></returns>
@@ -196,7 +239,7 @@ public static class UniversalConstants
             => 6.62606896 / 1.60217733 * 2.99792458 / waveLength * 100.0;
 
         /// <summary>
-        /// 波長(nm)を中性子のエネルギー(eV)に変換
+        /// 中性子の波長(nm)をエネルギー(eV)に変換
         /// </summary>
         /// <param name="velocity"></param>
         /// <returns></returns>
@@ -204,7 +247,7 @@ public static class UniversalConstants
             => 6.62606896 * 6.62606896 / 1.674927351 / wavelength / wavelength / 2.0 / 1.602176565 * 1.0E5;
 
         /// <summary>
-        /// エネルギーを電磁波の波長(nm)に変換
+        /// 電磁波のエネルギー(ev)を波長(nm)に変換
         /// </summary>
         /// <param name="energy"></param>
         /// <returns></returns>
@@ -212,45 +255,37 @@ public static class UniversalConstants
             => 6.62606896 / 1.60217733 * 2.99792458 / energy * 100.0;
 
         /// <summary>
-        /// エネルギー(kV)を電子線の波長(nm)に変換
+        /// 電子線のエネルギー(kV)を波長(nm)に変換
+        /// WaveLength = h / Math.Sqrt ( 2 * m0 * e0 * V * ( 1 + e0 * V / 2 / m0 / c^2 ) )
         /// </summary>
         /// <param name="kiloVoltage"></param>
         /// <returns></returns>
         public static double EnergyToElectronWaveLength(in double kiloVoltage)
-        {
-            //U =voltage
-            //WaveLength = h / Math.Sqrt ( 2 * m0 * e0 * U * ( 1 + e0 * U / 2 / m0 / c^2 ) )
-            return 1.2264262862108010441350327657997 / Math.Sqrt(kiloVoltage * 1000.0 * (1 + kiloVoltage * 0.9784753725226711491437618236159 / 1000));
-        }
+            => 1.2264262862108010441350327657997 / Math.Sqrt(kiloVoltage * 1000.0 * (1 + kiloVoltage * 0.9784753725226711491437618236159 / 1000));
 
         /// <summary>
-        /// エネルギー(kV)を電子線の波数(nm^-1)に変換 (2πで割った数値では無い)
+        /// 電子線のエネルギー(kV)を波数(nm^-1)に変換 (2πで割った数値では無い)
+        /// WaveLength = h / Math.Sqrt ( 2 * m0 * e0 * V * ( 1 + e0 * V / 2 / m0 / c^2 ) 
         /// </summary>
         /// <param name="kiloVoltage"></param>
         /// <returns></returns>
         public static double EnergyToElectronWaveNumber(in double kiloVoltage)
-        {
-            //U =voltage
-            //WaveLength = h / Math.Sqrt ( 2 * m0 * e0 * U * ( 1 + e0 * U / 2 / m0 / c^2 ) )
-            return Math.Sqrt(kiloVoltage * 1000.0 * (1 + kiloVoltage * 0.9784753725226711491437618236159 / 1000)) / 1.2264262862108010441350327657997;
-        }
+            => Math.Sqrt(kiloVoltage * 1000.0 * (1 + kiloVoltage * 0.9784753725226711491437618236159 / 1000)) / 1.2264262862108010441350327657997;
 
         /// <summary>
         /// 電子線の波数(nm^-1)をエネルギー(kV)に変換 
         /// </summary>
         /// <param name="kiloVoltage"></param>
         /// <returns></returns>
-        public static double ElectronWaveNumberToEnergy(in double wavenumber)
-            => WaveLengthToElectronEnergy(1 / wavenumber);
+        public static double ElectronWaveNumberToEnergy(in double wavenumber) => WaveLengthToElectronEnergy(1 / wavenumber);
 
 
         /// <summary>
-        /// エネルギー(kV)を中性子の波長(nm)に変換
+        /// 中性子のエネルギー(kV)を波長(nm)に変換
         /// </summary>
         /// <param name="energy"></param>
         /// <returns></returns>
-        public static double EnergyToNeutronWaveLength(in double energy)
-            => 6.62606896 * Math.Sqrt(1 / 1.674927351 / energy / 2.0 / 1.602176565 * 1.0E5);
+        public static double EnergyToNeutronWaveLength(in double energy) => 6.62606896 * Math.Sqrt(1 / 1.674927351 / energy / 2.0 / 1.602176565 * 1.0E5);
 
         /// <summary>
         /// 面間隔d(nm)と取り出し角(2Θ)を与えるとブラッグ条件を満たす入射線の波長(nm)を返す
@@ -267,13 +302,7 @@ public static class UniversalConstants
 }
 
 [Serializable()]
-public enum XrayLine
-{
-    Ka, Ka1, Ka2, Kb1, Kb3, KbI2, KbII2, La1, La2, Lb1, Lb2
-}
+public enum XrayLine { Ka, Ka1, Ka2, Kb1, Kb3, KbI2, KbII2, La1, La2, Lb1, Lb2 }
 
 [Serializable()]
-public enum XrayLineEdge
-{
-    K, L1, L2, L3, M1, M2, M3, M4, M5, N1, N2, N3, N4, N5, N6, N7, O1, O2, O3, O4, O5, O6, P1, P2, P3
-}
+public enum XrayLineEdge { K, L1, L2, L3, M1, M2, M3, M4, M5, N1, N2, N3, N4, N5, N6, N7, O1, O2, O3, O4, O5, O6, P1, P2, P3 }
