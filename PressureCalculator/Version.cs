@@ -6,10 +6,11 @@
         static public string Software =
             "Pressure Calculator"
             ;
-        static public string VersionAndDate { get => History.Remove(0, 10).Remove(20); }
+        static public string VersionAndDate { get => History[10..][..20]; }
 
         static public string History =
            "History" +
+           "\r\n ver1.009(2025/10/16) Improved the EOS functions." +
            "\r\n ver1.008(2025/10/16) Improved the EOS functions." +
            "\r\n ver1.007(2023/10/11) Improved the export functions." +
            "\r\n ver1.004(2023/10/07) Fitting information is now displayed. Target framework has been changed to .Net Desktop Runtime 7.0." +

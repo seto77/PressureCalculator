@@ -172,6 +172,7 @@ namespace PressureCalculator
             radioButtonRubyFluorescence = new RadioButton();
             flowLayoutPanel1 = new FlowLayoutPanel();
             radioButtonEOS = new RadioButton();
+            numericBoxDecimalPlaces = new Crystallography.Controls.NumericBox();
             textBoxMaoHydroP = new TextBox();
             label28 = new Label();
             groupBoxMao = new GroupBox();
@@ -328,7 +329,6 @@ namespace PressureCalculator
             panel2 = new Panel();
             numericBoxTemperature = new Crystallography.Controls.NumericBox();
             numericBoxTemperature0 = new Crystallography.Controls.NumericBox();
-            numericBoxDecimalPlaces = new Crystallography.Controls.NumericBox();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             readToolStripMenuItem = new ToolStripMenuItem();
@@ -581,7 +581,7 @@ namespace PressureCalculator
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.IsSplitterFixed = true;
-            splitContainer1.Location = new Point(0, 255);
+            splitContainer1.Location = new Point(0, 191);
             splitContainer1.Margin = new Padding(0);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
@@ -598,8 +598,8 @@ namespace PressureCalculator
             splitContainer1.Panel2.Controls.Add(flowLayoutPanel4);
             splitContainer1.Panel2.Controls.Add(flowLayoutPanel2);
             splitContainer1.Panel2MinSize = 0;
-            splitContainer1.Size = new Size(725, 293);
-            splitContainer1.SplitterDistance = 132;
+            splitContainer1.Size = new Size(739, 357);
+            splitContainer1.SplitterDistance = 156;
             splitContainer1.TabIndex = 6;
             // 
             // graphControlTop
@@ -642,7 +642,7 @@ namespace PressureCalculator
             graphControlTop.Name = "graphControlTop";
             graphControlTop.OriginPosition = new Point(40, 20);
             graphControlTop.Profile = null;
-            graphControlTop.Size = new Size(725, 104);
+            graphControlTop.Size = new Size(739, 128);
             graphControlTop.Smoothing = false;
             graphControlTop.TabIndex = 5;
             graphControlTop.UnitX = "";
@@ -669,7 +669,7 @@ namespace PressureCalculator
             flowLayoutPanel3.Dock = DockStyle.Top;
             flowLayoutPanel3.Location = new Point(0, 0);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
-            flowLayoutPanel3.Size = new Size(725, 28);
+            flowLayoutPanel3.Size = new Size(739, 28);
             flowLayoutPanel3.TabIndex = 4;
             // 
             // graphControlBottom
@@ -712,7 +712,7 @@ namespace PressureCalculator
             graphControlBottom.Name = "graphControlBottom";
             graphControlBottom.OriginPosition = new Point(40, 20);
             graphControlBottom.Profile = null;
-            graphControlBottom.Size = new Size(725, 97);
+            graphControlBottom.Size = new Size(739, 137);
             graphControlBottom.Smoothing = false;
             graphControlBottom.TabIndex = 6;
             graphControlBottom.UnitX = "";
@@ -736,7 +736,7 @@ namespace PressureCalculator
             flowLayoutPanel4.Dock = DockStyle.Top;
             flowLayoutPanel4.Location = new Point(0, 28);
             flowLayoutPanel4.Name = "flowLayoutPanel4";
-            flowLayoutPanel4.Size = new Size(725, 32);
+            flowLayoutPanel4.Size = new Size(739, 32);
             flowLayoutPanel4.TabIndex = 7;
             // 
             // label25
@@ -778,7 +778,7 @@ namespace PressureCalculator
             flowLayoutPanel2.Dock = DockStyle.Top;
             flowLayoutPanel2.Location = new Point(0, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(725, 28);
+            flowLayoutPanel2.Size = new Size(739, 28);
             flowLayoutPanel2.TabIndex = 4;
             // 
             // label10
@@ -847,10 +847,11 @@ namespace PressureCalculator
             flowLayoutPanel1.Controls.Add(radioButtonDiamondRaman);
             flowLayoutPanel1.Controls.Add(radioButtonRubyFluorescence);
             flowLayoutPanel1.Controls.Add(radioButtonEOS);
+            flowLayoutPanel1.Controls.Add(numericBoxDecimalPlaces);
             flowLayoutPanel1.Dock = DockStyle.Top;
             flowLayoutPanel1.Location = new Point(0, 24);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(725, 24);
+            flowLayoutPanel1.Size = new Size(739, 24);
             flowLayoutPanel1.TabIndex = 9;
             // 
             // radioButtonEOS
@@ -864,6 +865,29 @@ namespace PressureCalculator
             radioButtonEOS.Text = "EOS";
             radioButtonEOS.UseVisualStyleBackColor = true;
             radioButtonEOS.CheckedChanged += radioButtonMode_CheckedChanged;
+            // 
+            // numericBoxDecimalPlaces
+            // 
+            numericBoxDecimalPlaces.BackColor = Color.Transparent;
+            numericBoxDecimalPlaces.Font = new Font("Verdana", 9F);
+            numericBoxDecimalPlaces.FooterFont = new Font("Verdana", 9F);
+            numericBoxDecimalPlaces.HeaderFont = new Font("Verdana", 9F);
+            numericBoxDecimalPlaces.HeaderPadding = new Padding(20, 6, 0, 0);
+            numericBoxDecimalPlaces.HeaderText = "Number of decimal places";
+            numericBoxDecimalPlaces.Location = new Point(338, 0);
+            numericBoxDecimalPlaces.Margin = new Padding(0);
+            numericBoxDecimalPlaces.Maximum = 10D;
+            numericBoxDecimalPlaces.MaximumSize = new Size(1000, 27);
+            numericBoxDecimalPlaces.Minimum = 0D;
+            numericBoxDecimalPlaces.MinimumSize = new Size(1, 17);
+            numericBoxDecimalPlaces.Name = "numericBoxDecimalPlaces";
+            numericBoxDecimalPlaces.RadianValue = 0.069813170079773182D;
+            numericBoxDecimalPlaces.ShowUpDown = true;
+            numericBoxDecimalPlaces.Size = new Size(247, 24);
+            numericBoxDecimalPlaces.TabIndex = 19;
+            numericBoxDecimalPlaces.TextFont = new Font("Verdana", 9F);
+            numericBoxDecimalPlaces.Value = 4D;
+            numericBoxDecimalPlaces.ValueChanged += numericBoxDecimalPlaces_ValueChanged;
             // 
             // textBoxMaoHydroP
             // 
@@ -901,7 +925,7 @@ namespace PressureCalculator
             groupBoxMao.Font = new Font("Verdana", 9F);
             groupBoxMao.Location = new Point(0, 672);
             groupBoxMao.Name = "groupBoxMao";
-            groupBoxMao.Size = new Size(725, 244);
+            groupBoxMao.Size = new Size(739, 244);
             groupBoxMao.TabIndex = 12;
             groupBoxMao.TabStop = false;
             groupBoxMao.Text = "Pressure calculation from the ruby fluorescence";
@@ -953,7 +977,7 @@ namespace PressureCalculator
             groupBox4.Dock = DockStyle.Bottom;
             groupBox4.Location = new Point(3, 164);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(719, 77);
+            groupBox4.Size = new Size(733, 77);
             groupBox4.TabIndex = 6;
             groupBox4.TabStop = false;
             groupBox4.Text = "Pressure calculation, where x = R1/R1₀ ,  f(x, y) = (x^y-1)/y ,  Δ=R1-R1₀";
@@ -1374,7 +1398,7 @@ namespace PressureCalculator
             groupBoxAkahama2006.Font = new Font("Verdana", 9F);
             groupBoxAkahama2006.Location = new Point(0, 548);
             groupBoxAkahama2006.Name = "groupBoxAkahama2006";
-            groupBoxAkahama2006.Size = new Size(725, 124);
+            groupBoxAkahama2006.Size = new Size(739, 124);
             groupBoxAkahama2006.TabIndex = 13;
             groupBoxAkahama2006.TabStop = false;
             groupBoxAkahama2006.Text = "Pressure calculation from the Raman edge";
@@ -1582,7 +1606,7 @@ namespace PressureCalculator
             // label35
             // 
             label35.Font = new Font("Verdana", 9F);
-            label35.Location = new Point(691, 45);
+            label35.Location = new Point(688, 45);
             label35.Name = "label35";
             label35.Size = new Size(34, 12);
             label35.TabIndex = 1;
@@ -1605,7 +1629,7 @@ namespace PressureCalculator
             flowLayoutPanelEOS.Font = new Font("Tahoma", 8.25F);
             flowLayoutPanelEOS.Location = new Point(0, 29);
             flowLayoutPanelEOS.Name = "flowLayoutPanelEOS";
-            flowLayoutPanelEOS.Size = new Size(725, 178);
+            flowLayoutPanelEOS.Size = new Size(739, 114);
             flowLayoutPanelEOS.TabIndex = 14;
             // 
             // groupBoxGold
@@ -1636,7 +1660,7 @@ namespace PressureCalculator
             // 
             numericBoxAuFratanduono.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxAuFratanduono.BackColor = SystemColors.Control;
-            numericBoxAuFratanduono.DecimalPlaces = 3;
+            numericBoxAuFratanduono.DecimalPlaces = 4;
             numericBoxAuFratanduono.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxAuFratanduono.FooterBackColor = SystemColors.Control;
             numericBoxAuFratanduono.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -1655,14 +1679,14 @@ namespace PressureCalculator
             numericBoxAuFratanduono.TabIndex = 12;
             numericBoxAuFratanduono.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxAuFratanduono.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxAuFratanduono.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxAuFratanduono.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxAuFratanduono.ThonsandsSeparator = true;
             // 
             // numericBoxAuYokoo
             // 
             numericBoxAuYokoo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxAuYokoo.BackColor = SystemColors.Control;
-            numericBoxAuYokoo.DecimalPlaces = 3;
+            numericBoxAuYokoo.DecimalPlaces = 4;
             numericBoxAuYokoo.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxAuYokoo.FooterBackColor = SystemColors.Control;
             numericBoxAuYokoo.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -1681,14 +1705,14 @@ namespace PressureCalculator
             numericBoxAuYokoo.TabIndex = 12;
             numericBoxAuYokoo.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxAuYokoo.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxAuYokoo.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxAuYokoo.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxAuYokoo.ThonsandsSeparator = true;
             // 
             // numericalTextBoxGoldJamieson
             // 
             numericalTextBoxGoldJamieson.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxGoldJamieson.BackColor = SystemColors.Control;
-            numericalTextBoxGoldJamieson.DecimalPlaces = 3;
+            numericalTextBoxGoldJamieson.DecimalPlaces = 4;
             numericalTextBoxGoldJamieson.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxGoldJamieson.FooterBackColor = SystemColors.Control;
             numericalTextBoxGoldJamieson.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -1707,14 +1731,14 @@ namespace PressureCalculator
             numericalTextBoxGoldJamieson.TabIndex = 12;
             numericalTextBoxGoldJamieson.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxGoldJamieson.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxGoldJamieson.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxGoldJamieson.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxGoldJamieson.ThonsandsSeparator = true;
             // 
             // numericalTextBoxGoldTsuchiya
             // 
             numericalTextBoxGoldTsuchiya.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxGoldTsuchiya.BackColor = SystemColors.Control;
-            numericalTextBoxGoldTsuchiya.DecimalPlaces = 3;
+            numericalTextBoxGoldTsuchiya.DecimalPlaces = 4;
             numericalTextBoxGoldTsuchiya.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxGoldTsuchiya.FooterBackColor = SystemColors.Control;
             numericalTextBoxGoldTsuchiya.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -1733,14 +1757,14 @@ namespace PressureCalculator
             numericalTextBoxGoldTsuchiya.TabIndex = 12;
             numericalTextBoxGoldTsuchiya.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxGoldTsuchiya.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxGoldTsuchiya.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxGoldTsuchiya.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxGoldTsuchiya.ThonsandsSeparator = true;
             // 
             // numericalTextBoxGoldSim
             // 
             numericalTextBoxGoldSim.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxGoldSim.BackColor = SystemColors.Control;
-            numericalTextBoxGoldSim.DecimalPlaces = 3;
+            numericalTextBoxGoldSim.DecimalPlaces = 4;
             numericalTextBoxGoldSim.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxGoldSim.FooterBackColor = SystemColors.Control;
             numericalTextBoxGoldSim.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -1759,7 +1783,7 @@ namespace PressureCalculator
             numericalTextBoxGoldSim.TabIndex = 12;
             numericalTextBoxGoldSim.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxGoldSim.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxGoldSim.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxGoldSim.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxGoldSim.ThonsandsSeparator = true;
             // 
             // label11
@@ -1777,7 +1801,7 @@ namespace PressureCalculator
             // 
             numericalTextBoxGoldAnderson.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxGoldAnderson.BackColor = SystemColors.Control;
-            numericalTextBoxGoldAnderson.DecimalPlaces = 3;
+            numericalTextBoxGoldAnderson.DecimalPlaces = 4;
             numericalTextBoxGoldAnderson.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxGoldAnderson.FooterBackColor = SystemColors.Control;
             numericalTextBoxGoldAnderson.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -1796,7 +1820,7 @@ namespace PressureCalculator
             numericalTextBoxGoldAnderson.TabIndex = 12;
             numericalTextBoxGoldAnderson.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxGoldAnderson.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxGoldAnderson.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxGoldAnderson.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxGoldAnderson.ThonsandsSeparator = true;
             // 
             // label49
@@ -1830,7 +1854,7 @@ namespace PressureCalculator
             numericalTextBoxGoldA.SkipEventDuringInput = false;
             numericalTextBoxGoldA.SmartIncrement = true;
             numericalTextBoxGoldA.TabIndex = 10;
-            numericalTextBoxGoldA.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxGoldA.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxGoldA.ThonsandsSeparator = true;
             numericalTextBoxGoldA.Value = 4.07825D;
             numericalTextBoxGoldA.ValueChanged += textBox_TextChanged;
@@ -1855,7 +1879,7 @@ namespace PressureCalculator
             numericBoxGoldA0.SkipEventDuringInput = false;
             numericBoxGoldA0.SmartIncrement = true;
             numericBoxGoldA0.TabIndex = 10;
-            numericBoxGoldA0.TextFont = new Font("メイリオ", 9F);
+            numericBoxGoldA0.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxGoldA0.ThonsandsSeparator = true;
             numericBoxGoldA0.Value = 4.07825D;
             numericBoxGoldA0.ValueChanged += textBox_TextChanged;
@@ -1930,7 +1954,7 @@ namespace PressureCalculator
             // 
             numericBoxPtFratanduono.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxPtFratanduono.BackColor = SystemColors.Control;
-            numericBoxPtFratanduono.DecimalPlaces = 3;
+            numericBoxPtFratanduono.DecimalPlaces = 4;
             numericBoxPtFratanduono.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxPtFratanduono.FooterBackColor = SystemColors.Control;
             numericBoxPtFratanduono.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -1949,14 +1973,14 @@ namespace PressureCalculator
             numericBoxPtFratanduono.TabIndex = 12;
             numericBoxPtFratanduono.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxPtFratanduono.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxPtFratanduono.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxPtFratanduono.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxPtFratanduono.ThonsandsSeparator = true;
             // 
             // numericBoxPtYokoo
             // 
             numericBoxPtYokoo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxPtYokoo.BackColor = SystemColors.Control;
-            numericBoxPtYokoo.DecimalPlaces = 3;
+            numericBoxPtYokoo.DecimalPlaces = 4;
             numericBoxPtYokoo.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxPtYokoo.FooterBackColor = SystemColors.Control;
             numericBoxPtYokoo.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -1975,14 +1999,14 @@ namespace PressureCalculator
             numericBoxPtYokoo.TabIndex = 12;
             numericBoxPtYokoo.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxPtYokoo.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxPtYokoo.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxPtYokoo.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxPtYokoo.ThonsandsSeparator = true;
             // 
             // numericalTextBoxPtMatsui
             // 
             numericalTextBoxPtMatsui.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxPtMatsui.BackColor = SystemColors.Control;
-            numericalTextBoxPtMatsui.DecimalPlaces = 3;
+            numericalTextBoxPtMatsui.DecimalPlaces = 4;
             numericalTextBoxPtMatsui.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxPtMatsui.FooterBackColor = SystemColors.Control;
             numericalTextBoxPtMatsui.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2001,14 +2025,14 @@ namespace PressureCalculator
             numericalTextBoxPtMatsui.TabIndex = 12;
             numericalTextBoxPtMatsui.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxPtMatsui.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxPtMatsui.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxPtMatsui.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxPtMatsui.ThonsandsSeparator = true;
             // 
             // numericalTextBoxPtHolmes
             // 
             numericalTextBoxPtHolmes.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxPtHolmes.BackColor = SystemColors.Control;
-            numericalTextBoxPtHolmes.DecimalPlaces = 3;
+            numericalTextBoxPtHolmes.DecimalPlaces = 4;
             numericalTextBoxPtHolmes.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxPtHolmes.FooterBackColor = SystemColors.Control;
             numericalTextBoxPtHolmes.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2027,7 +2051,7 @@ namespace PressureCalculator
             numericalTextBoxPtHolmes.TabIndex = 12;
             numericalTextBoxPtHolmes.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxPtHolmes.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxPtHolmes.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxPtHolmes.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxPtHolmes.ThonsandsSeparator = true;
             // 
             // label16
@@ -2045,7 +2069,7 @@ namespace PressureCalculator
             // 
             numericalTextBoxPtJamieson.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxPtJamieson.BackColor = SystemColors.Control;
-            numericalTextBoxPtJamieson.DecimalPlaces = 3;
+            numericalTextBoxPtJamieson.DecimalPlaces = 4;
             numericalTextBoxPtJamieson.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxPtJamieson.FooterBackColor = SystemColors.Control;
             numericalTextBoxPtJamieson.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2064,7 +2088,7 @@ namespace PressureCalculator
             numericalTextBoxPtJamieson.TabIndex = 12;
             numericalTextBoxPtJamieson.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxPtJamieson.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxPtJamieson.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxPtJamieson.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxPtJamieson.ThonsandsSeparator = true;
             // 
             // label23
@@ -2120,7 +2144,7 @@ namespace PressureCalculator
             numericalTextBoxPtA.SkipEventDuringInput = false;
             numericalTextBoxPtA.SmartIncrement = true;
             numericalTextBoxPtA.TabIndex = 10;
-            numericalTextBoxPtA.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxPtA.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxPtA.ThonsandsSeparator = true;
             numericalTextBoxPtA.Value = 3.9231D;
             numericalTextBoxPtA.ValueChanged += textBox_TextChanged;
@@ -2145,7 +2169,7 @@ namespace PressureCalculator
             numericBoxPtA0.SkipEventDuringInput = false;
             numericBoxPtA0.SmartIncrement = true;
             numericBoxPtA0.TabIndex = 10;
-            numericBoxPtA0.TextFont = new Font("メイリオ", 9F);
+            numericBoxPtA0.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxPtA0.ThonsandsSeparator = true;
             numericBoxPtA0.Value = 3.9231D;
             numericBoxPtA0.ValueChanged += textBox_TextChanged;
@@ -2181,7 +2205,7 @@ namespace PressureCalculator
             // 
             numericalTextBoxNaClB1Matsui.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxNaClB1Matsui.BackColor = SystemColors.Control;
-            numericalTextBoxNaClB1Matsui.DecimalPlaces = 3;
+            numericalTextBoxNaClB1Matsui.DecimalPlaces = 4;
             numericalTextBoxNaClB1Matsui.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxNaClB1Matsui.FooterBackColor = SystemColors.Control;
             numericalTextBoxNaClB1Matsui.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2200,14 +2224,14 @@ namespace PressureCalculator
             numericalTextBoxNaClB1Matsui.TabIndex = 12;
             numericalTextBoxNaClB1Matsui.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxNaClB1Matsui.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxNaClB1Matsui.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB1Matsui.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxNaClB1Matsui.ThonsandsSeparator = true;
             // 
             // numericalTextBoxNaClB1Brown
             // 
             numericalTextBoxNaClB1Brown.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxNaClB1Brown.BackColor = SystemColors.Control;
-            numericalTextBoxNaClB1Brown.DecimalPlaces = 3;
+            numericalTextBoxNaClB1Brown.DecimalPlaces = 4;
             numericalTextBoxNaClB1Brown.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxNaClB1Brown.FooterBackColor = SystemColors.Control;
             numericalTextBoxNaClB1Brown.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2226,7 +2250,7 @@ namespace PressureCalculator
             numericalTextBoxNaClB1Brown.TabIndex = 12;
             numericalTextBoxNaClB1Brown.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxNaClB1Brown.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxNaClB1Brown.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB1Brown.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxNaClB1Brown.ThonsandsSeparator = true;
             // 
             // label38
@@ -2271,7 +2295,7 @@ namespace PressureCalculator
             numericalTextBoxNaClB1A.SkipEventDuringInput = false;
             numericalTextBoxNaClB1A.SmartIncrement = true;
             numericalTextBoxNaClB1A.TabIndex = 10;
-            numericalTextBoxNaClB1A.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxNaClB1A.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxNaClB1A.ThonsandsSeparator = true;
             numericalTextBoxNaClB1A.Value = 5.639D;
             numericalTextBoxNaClB1A.ValueChanged += textBox_TextChanged;
@@ -2296,7 +2320,7 @@ namespace PressureCalculator
             numericBoxNaClB1A0.SkipEventDuringInput = false;
             numericBoxNaClB1A0.SmartIncrement = true;
             numericBoxNaClB1A0.TabIndex = 10;
-            numericBoxNaClB1A0.TextFont = new Font("メイリオ", 9F);
+            numericBoxNaClB1A0.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxNaClB1A0.ThonsandsSeparator = true;
             numericBoxNaClB1A0.Value = 5.639D;
             numericBoxNaClB1A0.ValueChanged += textBox_TextChanged;
@@ -2327,7 +2351,7 @@ namespace PressureCalculator
             // 
             numericalTextBoxNaClB2SakaiVinet.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxNaClB2SakaiVinet.BackColor = SystemColors.Control;
-            numericalTextBoxNaClB2SakaiVinet.DecimalPlaces = 3;
+            numericalTextBoxNaClB2SakaiVinet.DecimalPlaces = 4;
             numericalTextBoxNaClB2SakaiVinet.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxNaClB2SakaiVinet.FooterBackColor = SystemColors.Control;
             numericalTextBoxNaClB2SakaiVinet.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2346,14 +2370,14 @@ namespace PressureCalculator
             numericalTextBoxNaClB2SakaiVinet.TabIndex = 12;
             numericalTextBoxNaClB2SakaiVinet.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxNaClB2SakaiVinet.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxNaClB2SakaiVinet.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB2SakaiVinet.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxNaClB2SakaiVinet.ThonsandsSeparator = true;
             // 
             // numericalTextBoxNaClB2SakaiBM
             // 
             numericalTextBoxNaClB2SakaiBM.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxNaClB2SakaiBM.BackColor = SystemColors.Control;
-            numericalTextBoxNaClB2SakaiBM.DecimalPlaces = 3;
+            numericalTextBoxNaClB2SakaiBM.DecimalPlaces = 4;
             numericalTextBoxNaClB2SakaiBM.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxNaClB2SakaiBM.FooterBackColor = SystemColors.Control;
             numericalTextBoxNaClB2SakaiBM.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2372,14 +2396,14 @@ namespace PressureCalculator
             numericalTextBoxNaClB2SakaiBM.TabIndex = 12;
             numericalTextBoxNaClB2SakaiBM.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxNaClB2SakaiBM.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxNaClB2SakaiBM.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB2SakaiBM.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxNaClB2SakaiBM.ThonsandsSeparator = true;
             // 
             // numericalTextBoxNaClB2Ueda
             // 
             numericalTextBoxNaClB2Ueda.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxNaClB2Ueda.BackColor = SystemColors.Control;
-            numericalTextBoxNaClB2Ueda.DecimalPlaces = 3;
+            numericalTextBoxNaClB2Ueda.DecimalPlaces = 4;
             numericalTextBoxNaClB2Ueda.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxNaClB2Ueda.FooterBackColor = SystemColors.Control;
             numericalTextBoxNaClB2Ueda.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2398,7 +2422,7 @@ namespace PressureCalculator
             numericalTextBoxNaClB2Ueda.TabIndex = 12;
             numericalTextBoxNaClB2Ueda.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxNaClB2Ueda.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxNaClB2Ueda.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB2Ueda.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxNaClB2Ueda.ThonsandsSeparator = true;
             // 
             // label40
@@ -2416,7 +2440,7 @@ namespace PressureCalculator
             // 
             numericalTextBoxNaClB2SataMgO.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxNaClB2SataMgO.BackColor = SystemColors.Control;
-            numericalTextBoxNaClB2SataMgO.DecimalPlaces = 3;
+            numericalTextBoxNaClB2SataMgO.DecimalPlaces = 4;
             numericalTextBoxNaClB2SataMgO.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxNaClB2SataMgO.FooterBackColor = SystemColors.Control;
             numericalTextBoxNaClB2SataMgO.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2435,7 +2459,7 @@ namespace PressureCalculator
             numericalTextBoxNaClB2SataMgO.TabIndex = 12;
             numericalTextBoxNaClB2SataMgO.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxNaClB2SataMgO.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxNaClB2SataMgO.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB2SataMgO.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxNaClB2SataMgO.ThonsandsSeparator = true;
             // 
             // label41
@@ -2453,7 +2477,7 @@ namespace PressureCalculator
             // 
             numericalTextBoxNaClB2SataPt.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxNaClB2SataPt.BackColor = SystemColors.Control;
-            numericalTextBoxNaClB2SataPt.DecimalPlaces = 3;
+            numericalTextBoxNaClB2SataPt.DecimalPlaces = 4;
             numericalTextBoxNaClB2SataPt.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxNaClB2SataPt.FooterBackColor = SystemColors.Control;
             numericalTextBoxNaClB2SataPt.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2472,7 +2496,7 @@ namespace PressureCalculator
             numericalTextBoxNaClB2SataPt.TabIndex = 12;
             numericalTextBoxNaClB2SataPt.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxNaClB2SataPt.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxNaClB2SataPt.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxNaClB2SataPt.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxNaClB2SataPt.ThonsandsSeparator = true;
             // 
             // label47
@@ -2517,7 +2541,7 @@ namespace PressureCalculator
             numericalTextBoxNaClB2A.SkipEventDuringInput = false;
             numericalTextBoxNaClB2A.SmartIncrement = true;
             numericalTextBoxNaClB2A.TabIndex = 10;
-            numericalTextBoxNaClB2A.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxNaClB2A.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxNaClB2A.ThonsandsSeparator = true;
             numericalTextBoxNaClB2A.Value = 2.93D;
             numericalTextBoxNaClB2A.ValueChanged += textBox_TextChanged;
@@ -2555,7 +2579,7 @@ namespace PressureCalculator
             numericalTextBoxNaClB2A0.SmartIncrement = true;
             numericalTextBoxNaClB2A0.TabIndex = 10;
             numericalTextBoxNaClB2A0.TextBoxBackColor = SystemColors.Control;
-            numericalTextBoxNaClB2A0.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxNaClB2A0.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxNaClB2A0.ThonsandsSeparator = true;
             // 
             // groupBoxPericlase
@@ -2584,7 +2608,7 @@ namespace PressureCalculator
             // 
             numericBoxMgOTangeBM.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxMgOTangeBM.BackColor = SystemColors.Control;
-            numericBoxMgOTangeBM.DecimalPlaces = 3;
+            numericBoxMgOTangeBM.DecimalPlaces = 4;
             numericBoxMgOTangeBM.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxMgOTangeBM.FooterBackColor = SystemColors.Control;
             numericBoxMgOTangeBM.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2603,14 +2627,14 @@ namespace PressureCalculator
             numericBoxMgOTangeBM.TabIndex = 12;
             numericBoxMgOTangeBM.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxMgOTangeBM.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxMgOTangeBM.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxMgOTangeBM.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxMgOTangeBM.ThonsandsSeparator = true;
             // 
             // numericBoxMgOTangeVinet
             // 
             numericBoxMgOTangeVinet.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxMgOTangeVinet.BackColor = SystemColors.Control;
-            numericBoxMgOTangeVinet.DecimalPlaces = 3;
+            numericBoxMgOTangeVinet.DecimalPlaces = 4;
             numericBoxMgOTangeVinet.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxMgOTangeVinet.FooterBackColor = SystemColors.Control;
             numericBoxMgOTangeVinet.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2629,14 +2653,14 @@ namespace PressureCalculator
             numericBoxMgOTangeVinet.TabIndex = 12;
             numericBoxMgOTangeVinet.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxMgOTangeVinet.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxMgOTangeVinet.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxMgOTangeVinet.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxMgOTangeVinet.ThonsandsSeparator = true;
             // 
             // numericalTextBoxMgOAizawa
             // 
             numericalTextBoxMgOAizawa.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxMgOAizawa.BackColor = SystemColors.Control;
-            numericalTextBoxMgOAizawa.DecimalPlaces = 3;
+            numericalTextBoxMgOAizawa.DecimalPlaces = 4;
             numericalTextBoxMgOAizawa.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxMgOAizawa.FooterBackColor = SystemColors.Control;
             numericalTextBoxMgOAizawa.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2655,7 +2679,7 @@ namespace PressureCalculator
             numericalTextBoxMgOAizawa.TabIndex = 12;
             numericalTextBoxMgOAizawa.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxMgOAizawa.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxMgOAizawa.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxMgOAizawa.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxMgOAizawa.ThonsandsSeparator = true;
             // 
             // label51
@@ -2673,7 +2697,7 @@ namespace PressureCalculator
             // 
             numericalTextBoxMgODewaele.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxMgODewaele.BackColor = SystemColors.Control;
-            numericalTextBoxMgODewaele.DecimalPlaces = 3;
+            numericalTextBoxMgODewaele.DecimalPlaces = 4;
             numericalTextBoxMgODewaele.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxMgODewaele.FooterBackColor = SystemColors.Control;
             numericalTextBoxMgODewaele.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2692,7 +2716,7 @@ namespace PressureCalculator
             numericalTextBoxMgODewaele.TabIndex = 12;
             numericalTextBoxMgODewaele.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxMgODewaele.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxMgODewaele.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxMgODewaele.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxMgODewaele.ThonsandsSeparator = true;
             // 
             // label52
@@ -2710,7 +2734,7 @@ namespace PressureCalculator
             // 
             numericalTextBoxMgOJacson.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxMgOJacson.BackColor = SystemColors.Control;
-            numericalTextBoxMgOJacson.DecimalPlaces = 3;
+            numericalTextBoxMgOJacson.DecimalPlaces = 4;
             numericalTextBoxMgOJacson.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxMgOJacson.FooterBackColor = SystemColors.Control;
             numericalTextBoxMgOJacson.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2729,7 +2753,7 @@ namespace PressureCalculator
             numericalTextBoxMgOJacson.TabIndex = 12;
             numericalTextBoxMgOJacson.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxMgOJacson.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxMgOJacson.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxMgOJacson.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxMgOJacson.ThonsandsSeparator = true;
             // 
             // label53
@@ -2774,7 +2798,7 @@ namespace PressureCalculator
             numericalTextBoxMgOA.SkipEventDuringInput = false;
             numericalTextBoxMgOA.SmartIncrement = true;
             numericalTextBoxMgOA.TabIndex = 10;
-            numericalTextBoxMgOA.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxMgOA.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxMgOA.ThonsandsSeparator = true;
             numericalTextBoxMgOA.Value = 4.2112D;
             numericalTextBoxMgOA.ValueChanged += textBox_TextChanged;
@@ -2810,7 +2834,7 @@ namespace PressureCalculator
             numericBoxMgOA0.SkipEventDuringInput = false;
             numericBoxMgOA0.SmartIncrement = true;
             numericBoxMgOA0.TabIndex = 10;
-            numericBoxMgOA0.TextFont = new Font("メイリオ", 9F);
+            numericBoxMgOA0.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxMgOA0.ThonsandsSeparator = true;
             numericBoxMgOA0.Value = 4.2112D;
             numericBoxMgOA0.ValueChanged += textBox_TextChanged;
@@ -2833,7 +2857,7 @@ namespace PressureCalculator
             // 
             numericBoxCorundumDubrovinsky.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxCorundumDubrovinsky.BackColor = SystemColors.Control;
-            numericBoxCorundumDubrovinsky.DecimalPlaces = 3;
+            numericBoxCorundumDubrovinsky.DecimalPlaces = 4;
             numericBoxCorundumDubrovinsky.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxCorundumDubrovinsky.FooterBackColor = SystemColors.Control;
             numericBoxCorundumDubrovinsky.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2852,7 +2876,7 @@ namespace PressureCalculator
             numericBoxCorundumDubrovinsky.TabIndex = 12;
             numericBoxCorundumDubrovinsky.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxCorundumDubrovinsky.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxCorundumDubrovinsky.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxCorundumDubrovinsky.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxCorundumDubrovinsky.ThonsandsSeparator = true;
             // 
             // numericalTextBoxColundumV
@@ -2875,7 +2899,7 @@ namespace PressureCalculator
             numericalTextBoxColundumV.SkipEventDuringInput = false;
             numericalTextBoxColundumV.SmartIncrement = true;
             numericalTextBoxColundumV.TabIndex = 10;
-            numericalTextBoxColundumV.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxColundumV.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxColundumV.ThonsandsSeparator = true;
             numericalTextBoxColundumV.Value = 255.89472D;
             numericalTextBoxColundumV.ValueChanged += textBox_TextChanged;
@@ -2911,7 +2935,7 @@ namespace PressureCalculator
             numericBoxColundumV0.SkipEventDuringInput = false;
             numericBoxColundumV0.SmartIncrement = true;
             numericBoxColundumV0.TabIndex = 10;
-            numericBoxColundumV0.TextFont = new Font("メイリオ", 9F);
+            numericBoxColundumV0.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxColundumV0.ThonsandsSeparator = true;
             numericBoxColundumV0.Value = 255.89472D;
             numericBoxColundumV0.ValueChanged += textBox_TextChanged;
@@ -2936,7 +2960,7 @@ namespace PressureCalculator
             // 
             numericalTextBoxArRoss.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxArRoss.BackColor = SystemColors.Control;
-            numericalTextBoxArRoss.DecimalPlaces = 3;
+            numericalTextBoxArRoss.DecimalPlaces = 4;
             numericalTextBoxArRoss.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxArRoss.FooterBackColor = SystemColors.Control;
             numericalTextBoxArRoss.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2955,14 +2979,14 @@ namespace PressureCalculator
             numericalTextBoxArRoss.TabIndex = 12;
             numericalTextBoxArRoss.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxArRoss.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxArRoss.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxArRoss.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxArRoss.ThonsandsSeparator = true;
             // 
             // numericalTextBoxArJephcoat
             // 
             numericalTextBoxArJephcoat.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxArJephcoat.BackColor = SystemColors.Control;
-            numericalTextBoxArJephcoat.DecimalPlaces = 3;
+            numericalTextBoxArJephcoat.DecimalPlaces = 4;
             numericalTextBoxArJephcoat.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxArJephcoat.FooterBackColor = SystemColors.Control;
             numericalTextBoxArJephcoat.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -2981,7 +3005,7 @@ namespace PressureCalculator
             numericalTextBoxArJephcoat.TabIndex = 12;
             numericalTextBoxArJephcoat.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxArJephcoat.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxArJephcoat.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxArJephcoat.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxArJephcoat.ThonsandsSeparator = true;
             // 
             // numericalTextBoxArA
@@ -3004,7 +3028,7 @@ namespace PressureCalculator
             numericalTextBoxArA.SkipEventDuringInput = false;
             numericalTextBoxArA.SmartIncrement = true;
             numericalTextBoxArA.TabIndex = 10;
-            numericalTextBoxArA.TextFont = new Font("メイリオ", 9F);
+            numericalTextBoxArA.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxArA.ThonsandsSeparator = true;
             numericalTextBoxArA.Value = 4.0786D;
             numericalTextBoxArA.ValueChanged += textBox_TextChanged;
@@ -3050,7 +3074,7 @@ namespace PressureCalculator
             numericBoxArA0.SkipEventDuringInput = false;
             numericBoxArA0.SmartIncrement = true;
             numericBoxArA0.TabIndex = 10;
-            numericBoxArA0.TextFont = new Font("メイリオ", 9F);
+            numericBoxArA0.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxArA0.ThonsandsSeparator = true;
             numericBoxArA0.ValueChanged += textBox_TextChanged;
             // 
@@ -3078,7 +3102,7 @@ namespace PressureCalculator
             // 
             numericBoxReDub.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxReDub.BackColor = SystemColors.Control;
-            numericBoxReDub.DecimalPlaces = 3;
+            numericBoxReDub.DecimalPlaces = 4;
             numericBoxReDub.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxReDub.FooterBackColor = SystemColors.Control;
             numericBoxReDub.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -3097,14 +3121,14 @@ namespace PressureCalculator
             numericBoxReDub.TabIndex = 12;
             numericBoxReDub.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxReDub.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxReDub.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxReDub.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxReDub.ThonsandsSeparator = true;
             // 
             // numericBoxReSakai
             // 
             numericBoxReSakai.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxReSakai.BackColor = SystemColors.Control;
-            numericBoxReSakai.DecimalPlaces = 3;
+            numericBoxReSakai.DecimalPlaces = 4;
             numericBoxReSakai.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxReSakai.FooterBackColor = SystemColors.Control;
             numericBoxReSakai.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -3123,7 +3147,7 @@ namespace PressureCalculator
             numericBoxReSakai.TabIndex = 12;
             numericBoxReSakai.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxReSakai.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxReSakai.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxReSakai.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxReSakai.ThonsandsSeparator = true;
             // 
             // label59
@@ -3141,7 +3165,7 @@ namespace PressureCalculator
             // 
             numericBoxReAnz.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxReAnz.BackColor = SystemColors.Control;
-            numericBoxReAnz.DecimalPlaces = 3;
+            numericBoxReAnz.DecimalPlaces = 4;
             numericBoxReAnz.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxReAnz.FooterBackColor = SystemColors.Control;
             numericBoxReAnz.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -3160,7 +3184,7 @@ namespace PressureCalculator
             numericBoxReAnz.TabIndex = 12;
             numericBoxReAnz.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxReAnz.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxReAnz.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxReAnz.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxReAnz.ThonsandsSeparator = true;
             // 
             // label60
@@ -3178,7 +3202,7 @@ namespace PressureCalculator
             // 
             numericalTextBoxReZha.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericalTextBoxReZha.BackColor = SystemColors.Control;
-            numericalTextBoxReZha.DecimalPlaces = 3;
+            numericalTextBoxReZha.DecimalPlaces = 4;
             numericalTextBoxReZha.Font = new Font("Segoe UI Symbol", 9F);
             numericalTextBoxReZha.FooterBackColor = SystemColors.Control;
             numericalTextBoxReZha.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -3197,7 +3221,7 @@ namespace PressureCalculator
             numericalTextBoxReZha.TabIndex = 12;
             numericalTextBoxReZha.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericalTextBoxReZha.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericalTextBoxReZha.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericalTextBoxReZha.TextFont = new Font("Segoe UI Symbol", 10F);
             numericalTextBoxReZha.ThonsandsSeparator = true;
             // 
             // label61
@@ -3231,7 +3255,7 @@ namespace PressureCalculator
             numericBoxReV.SkipEventDuringInput = false;
             numericBoxReV.SmartIncrement = true;
             numericBoxReV.TabIndex = 10;
-            numericBoxReV.TextFont = new Font("メイリオ", 9F);
+            numericBoxReV.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxReV.ThonsandsSeparator = true;
             numericBoxReV.Value = 29.42795D;
             numericBoxReV.ValueChanged += textBox_TextChanged;
@@ -3267,7 +3291,7 @@ namespace PressureCalculator
             numerictBoxReV0.SkipEventDuringInput = false;
             numerictBoxReV0.SmartIncrement = true;
             numerictBoxReV0.TabIndex = 10;
-            numerictBoxReV0.TextFont = new Font("メイリオ", 9F);
+            numerictBoxReV0.TextFont = new Font("Segoe UI Symbol", 10F);
             numerictBoxReV0.ThonsandsSeparator = true;
             numerictBoxReV0.Value = 29.42795D;
             numerictBoxReV0.ValueChanged += textBox_TextChanged;
@@ -3293,7 +3317,7 @@ namespace PressureCalculator
             // 
             numericBoxMoZhao.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxMoZhao.BackColor = SystemColors.Control;
-            numericBoxMoZhao.DecimalPlaces = 3;
+            numericBoxMoZhao.DecimalPlaces = 4;
             numericBoxMoZhao.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxMoZhao.FooterBackColor = SystemColors.Control;
             numericBoxMoZhao.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -3312,14 +3336,14 @@ namespace PressureCalculator
             numericBoxMoZhao.TabIndex = 12;
             numericBoxMoZhao.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxMoZhao.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxMoZhao.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxMoZhao.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxMoZhao.ThonsandsSeparator = true;
             // 
             // numericBoxMoHuang
             // 
             numericBoxMoHuang.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxMoHuang.BackColor = SystemColors.Control;
-            numericBoxMoHuang.DecimalPlaces = 3;
+            numericBoxMoHuang.DecimalPlaces = 4;
             numericBoxMoHuang.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxMoHuang.FooterBackColor = SystemColors.Control;
             numericBoxMoHuang.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -3338,7 +3362,7 @@ namespace PressureCalculator
             numericBoxMoHuang.TabIndex = 12;
             numericBoxMoHuang.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxMoHuang.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxMoHuang.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxMoHuang.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxMoHuang.ThonsandsSeparator = true;
             // 
             // label63
@@ -3372,7 +3396,7 @@ namespace PressureCalculator
             numericBoxMoV.SkipEventDuringInput = false;
             numericBoxMoV.SmartIncrement = true;
             numericBoxMoV.TabIndex = 10;
-            numericBoxMoV.TextFont = new Font("メイリオ", 9F);
+            numericBoxMoV.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxMoV.ThonsandsSeparator = true;
             numericBoxMoV.Value = 31.14D;
             numericBoxMoV.ValueChanged += textBox_TextChanged;
@@ -3408,7 +3432,7 @@ namespace PressureCalculator
             numericBoxMoV0.SkipEventDuringInput = false;
             numericBoxMoV0.SmartIncrement = true;
             numericBoxMoV0.TabIndex = 10;
-            numericBoxMoV0.TextFont = new Font("メイリオ", 9F);
+            numericBoxMoV0.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxMoV0.ThonsandsSeparator = true;
             numericBoxMoV0.Value = 31.14D;
             numericBoxMoV0.ValueChanged += textBox_TextChanged;
@@ -3432,7 +3456,7 @@ namespace PressureCalculator
             // 
             numericBoxPbStrassle.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             numericBoxPbStrassle.BackColor = SystemColors.Control;
-            numericBoxPbStrassle.DecimalPlaces = 3;
+            numericBoxPbStrassle.DecimalPlaces = 4;
             numericBoxPbStrassle.Font = new Font("Segoe UI Symbol", 9F);
             numericBoxPbStrassle.FooterBackColor = SystemColors.Control;
             numericBoxPbStrassle.FooterFont = new Font("Segoe UI Symbol", 9F);
@@ -3451,7 +3475,7 @@ namespace PressureCalculator
             numericBoxPbStrassle.TabIndex = 12;
             numericBoxPbStrassle.TextBoxBackColor = Color.FromArgb(64, 64, 64);
             numericBoxPbStrassle.TextBoxForeColor = Color.FromArgb(192, 192, 255);
-            numericBoxPbStrassle.TextFont = new Font("Segoe UI Symbol", 9.75F, FontStyle.Bold);
+            numericBoxPbStrassle.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxPbStrassle.ThonsandsSeparator = true;
             // 
             // numericBoxPbA
@@ -3474,7 +3498,7 @@ namespace PressureCalculator
             numericBoxPbA.SkipEventDuringInput = false;
             numericBoxPbA.SmartIncrement = true;
             numericBoxPbA.TabIndex = 10;
-            numericBoxPbA.TextFont = new Font("メイリオ", 9F);
+            numericBoxPbA.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxPbA.ThonsandsSeparator = true;
             numericBoxPbA.Value = 4.95059D;
             numericBoxPbA.ValueChanged += textBox_TextChanged;
@@ -3510,7 +3534,7 @@ namespace PressureCalculator
             numericBoxPbA0.SkipEventDuringInput = false;
             numericBoxPbA0.SmartIncrement = true;
             numericBoxPbA0.TabIndex = 10;
-            numericBoxPbA0.TextFont = new Font("メイリオ", 9F);
+            numericBoxPbA0.TextFont = new Font("Segoe UI Symbol", 10F);
             numericBoxPbA0.ThonsandsSeparator = true;
             numericBoxPbA0.Value = 4.95059D;
             numericBoxPbA0.ValueChanged += textBox_TextChanged;
@@ -3522,18 +3546,17 @@ namespace PressureCalculator
             panelEOS.Dock = DockStyle.Top;
             panelEOS.Location = new Point(0, 48);
             panelEOS.Name = "panelEOS";
-            panelEOS.Size = new Size(725, 207);
+            panelEOS.Size = new Size(739, 143);
             panelEOS.TabIndex = 15;
             // 
             // panel2
             // 
             panel2.Controls.Add(numericBoxTemperature);
             panel2.Controls.Add(numericBoxTemperature0);
-            panel2.Controls.Add(numericBoxDecimalPlaces);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(725, 29);
+            panel2.Size = new Size(739, 29);
             panel2.TabIndex = 19;
             // 
             // numericBoxTemperature
@@ -3586,34 +3609,12 @@ namespace PressureCalculator
             numericBoxTemperature0.Value = 300D;
             numericBoxTemperature0.ValueChanged += textBox_TextChanged;
             // 
-            // numericBoxDecimalPlaces
-            // 
-            numericBoxDecimalPlaces.BackColor = Color.Transparent;
-            numericBoxDecimalPlaces.Font = new Font("Verdana", 9F);
-            numericBoxDecimalPlaces.FooterFont = new Font("Verdana", 9F);
-            numericBoxDecimalPlaces.HeaderFont = new Font("Verdana", 9F);
-            numericBoxDecimalPlaces.HeaderText = "Number of decimal places";
-            numericBoxDecimalPlaces.Location = new Point(263, 2);
-            numericBoxDecimalPlaces.Margin = new Padding(0);
-            numericBoxDecimalPlaces.Maximum = 10D;
-            numericBoxDecimalPlaces.MaximumSize = new Size(1000, 27);
-            numericBoxDecimalPlaces.Minimum = 0D;
-            numericBoxDecimalPlaces.MinimumSize = new Size(1, 17);
-            numericBoxDecimalPlaces.Name = "numericBoxDecimalPlaces";
-            numericBoxDecimalPlaces.RadianValue = 0.069813170079773182D;
-            numericBoxDecimalPlaces.ShowUpDown = true;
-            numericBoxDecimalPlaces.Size = new Size(208, 24);
-            numericBoxDecimalPlaces.TabIndex = 19;
-            numericBoxDecimalPlaces.TextFont = new Font("Verdana", 9F);
-            numericBoxDecimalPlaces.Value = 4D;
-            numericBoxDecimalPlaces.ValueChanged += numericBoxDecimalPlaces_ValueChanged;
-            // 
             // menuStrip1
             // 
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(725, 24);
+            menuStrip1.Size = new Size(739, 24);
             menuStrip1.TabIndex = 16;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -3658,7 +3659,7 @@ namespace PressureCalculator
             // 
             AllowDrop = true;
             AutoScaleBaseSize = new Size(7, 15);
-            ClientSize = new Size(725, 916);
+            ClientSize = new Size(739, 916);
             Controls.Add(splitContainer1);
             Controls.Add(groupBoxAkahama2006);
             Controls.Add(groupBoxMao);

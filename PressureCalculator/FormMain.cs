@@ -662,14 +662,14 @@ namespace PressureCalculator
 
                 //Akahama2004
                 textBoxDiamondAkahama2004P.Text =
-                    (Convert.ToDouble(textBoxAkahama2004A.Text) + Convert.ToDouble(textBoxAkahama2004B.Text) * nu + Convert.ToDouble(textBoxAkahama2004C.Text) * 0.0001 * nu * nu).ToString("f2");
+                    (Convert.ToDouble(textBoxAkahama2004A.Text) + Convert.ToDouble(textBoxAkahama2004B.Text) * nu + Convert.ToDouble(textBoxAkahama2004C.Text) * 0.0001 * nu * nu).ToString(StringFormat);
                 //Akahama2006
                 textBoxDiamondAkahama2006P.Text =
-                    (Convert.ToDouble(textBoxAkahama2006K0.Text) * nuPerNu0 * (1 + 0.5 * (Convert.ToDouble(textBoxAkahama2006K0Prime.Text) - 1) * nuPerNu0)).ToString("f2");
+                    (Convert.ToDouble(textBoxAkahama2006K0.Text) * nuPerNu0 * (1 + 0.5 * (Convert.ToDouble(textBoxAkahama2006K0Prime.Text) - 1) * nuPerNu0)).ToString(StringFormat);
                 //Fratanduno 2021 Low
-                textBoxDiamondFratandunoLow.Text = (530.77 * nuPerNu0 + 753.83 * nuPerNu0 * nuPerNu0).ToString("f2");
+                textBoxDiamondFratandunoLow.Text = (530.77 * nuPerNu0 + 753.83 * nuPerNu0 * nuPerNu0).ToString(StringFormat);
                 //Fratanduno 2021 High
-                textBoxDiamondFratandunoHigh.Text = (199.49 - 852.78 * nuPerNu0 + 3103.8 * nuPerNu0 * nuPerNu0).ToString("f2");
+                textBoxDiamondFratandunoHigh.Text = (199.49 - 852.78 * nuPerNu0 + 3103.8 * nuPerNu0 * nuPerNu0).ToString(StringFormat);
 
             }
             catch
@@ -862,17 +862,17 @@ namespace PressureCalculator
         {
             //Mao
             var r = numericBoxRubyR1.Value / numericBoxRubyR1_0.Value;
-            textBoxMaoP.Text = (numericBoxMaoA.Value * (Math.Pow(r, 5) - 1) / 5).ToString("f2");
+            textBoxMaoP.Text = (numericBoxMaoA.Value * (Math.Pow(r, 5) - 1) / 5).ToString(StringFormat);
 
             //MaoQuasi
-            textBoxMaoQuasiP.Text = (numericBoxMaoQuasiA.Value * (Math.Pow(r, 7.665) - 1) / 7.665).ToString("f2");
+            textBoxMaoQuasiP.Text = (numericBoxMaoQuasiA.Value * (Math.Pow(r, 7.665) - 1) / 7.665).ToString(StringFormat);
 
             //MaoQuasi
-            textBoxMaoHydroP.Text = (numericBoxMaoHydroA.Value * (Math.Pow(r, 7.715) - 1) / 7.715).ToString("f2");
+            textBoxMaoHydroP.Text = (numericBoxMaoHydroA.Value * (Math.Pow(r, 7.715) - 1) / 7.715).ToString(StringFormat);
 
             var delta = (numericBoxRubyR1.Value - numericBoxRubyR1_0.Value) / numericBoxRubyR1_0.Value;
             //Shen et al
-            textBoxShenP.Text = (numericBoxShenA.Value * (delta + delta * delta * 5.63)).ToString("f2");
+            textBoxShenP.Text = (numericBoxShenA.Value * (delta + delta * delta * 5.63)).ToString(StringFormat);
         }
 
         private void radioButtonTempUnit_CheckedChanged(object sender, EventArgs e)
@@ -897,52 +897,7 @@ namespace PressureCalculator
 
         #region EOS関連
 
-        private void numericBoxDecimalPlaces_ValueChanged(object sender, EventArgs e)
-        {
-            numericalTextBoxGoldJamieson.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxGoldAnderson.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxGoldSim.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxGoldTsuchiya.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericBoxAuYokoo.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericBoxAuFratanduono.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-
-            numericalTextBoxPtJamieson.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxPtHolmes.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxPtMatsui.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericBoxPtYokoo.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericBoxPtFratanduono.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-
-            numericalTextBoxArJephcoat.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxArRoss.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-
-            numericalTextBoxMgOJacson.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxMgODewaele.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxMgOAizawa.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericBoxMgOTangeVinet.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericBoxMgOTangeBM.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-
-            numericalTextBoxNaClB2SataPt.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxNaClB2SataMgO.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxNaClB2Ueda.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxNaClB2SakaiBM.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxNaClB2SakaiVinet.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-
-
-            numericalTextBoxNaClB1Brown.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericalTextBoxNaClB1Matsui.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-
-            numericBoxCorundumDubrovinsky.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-
-            numericalTextBoxReZha.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericBoxReAnz.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericBoxReSakai.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericBoxReDub.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-
-            numericBoxMoHuang.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-            numericBoxMoZhao.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-
-            numericBoxPbStrassle.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
-        }
+     
 
         public void textBox_TextChanged(object sender, System.EventArgs e)
         {
@@ -1454,8 +1409,56 @@ namespace PressureCalculator
         #endregion
 
 
+        private void numericBoxDecimalPlaces_ValueChanged(object sender, EventArgs e)
+        {
+            textBoxNu_TextChanged(sender, e);
+            calcRubyPressure();
 
-     
+            numericalTextBoxGoldJamieson.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxGoldAnderson.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxGoldSim.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxGoldTsuchiya.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericBoxAuYokoo.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericBoxAuFratanduono.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+
+            numericalTextBoxPtJamieson.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxPtHolmes.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxPtMatsui.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericBoxPtYokoo.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericBoxPtFratanduono.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+
+            numericalTextBoxArJephcoat.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxArRoss.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+
+            numericalTextBoxMgOJacson.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxMgODewaele.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxMgOAizawa.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericBoxMgOTangeVinet.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericBoxMgOTangeBM.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+
+            numericalTextBoxNaClB2SataPt.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxNaClB2SataMgO.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxNaClB2Ueda.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxNaClB2SakaiBM.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxNaClB2SakaiVinet.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+
+
+            numericalTextBoxNaClB1Brown.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericalTextBoxNaClB1Matsui.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+
+            numericBoxCorundumDubrovinsky.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+
+            numericalTextBoxReZha.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericBoxReAnz.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericBoxReSakai.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericBoxReDub.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+
+            numericBoxMoHuang.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+            numericBoxMoZhao.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+
+            numericBoxPbStrassle.DecimalPlaces = numericBoxDecimalPlaces.ValueInteger;
+        }
+
     }
 
 
