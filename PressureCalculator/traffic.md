@@ -25,7 +25,7 @@ Last updated: 2026-04-27
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
 | 2026-W17 | 7 | 3 |
-| 2026-W16 | 19 | 6 |
+| 2026-W16 | 22 | 7 |
 | 2026-W15 | 1 | 1 |
 | 2026-W14 | 4 | 4 |
 | 2026-W13 | 3 | 2 |
@@ -33,13 +33,13 @@ Last updated: 2026-04-27
 ### Monthly (最大12か月保持)
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
-| 2026-04 | 31 | 14 |
+| 2026-04 | 34 | 15 |
 | 2026-03 | 3 | 2 |
 
 ### Yearly (無制限)
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
-| 2026 | 34 | 16 |
+| 2026 | 37 | 17 |
 
 ## Clones
 
