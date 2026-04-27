@@ -25,7 +25,7 @@ Last updated: 2026-04-27
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
 | 2026-W17 | 7 | 3 |
-| 2026-W16 | 16 | 5 |
+| 2026-W16 | 19 | 6 |
 | 2026-W15 | 1 | 1 |
 | 2026-W14 | 4 | 4 |
 | 2026-W13 | 3 | 2 |
@@ -33,13 +33,13 @@ Last updated: 2026-04-27
 ### Monthly (最大12か月保持)
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
-| 2026-04 | 28 | 13 |
+| 2026-04 | 31 | 14 |
 | 2026-03 | 3 | 2 |
 
 ### Yearly (無制限)
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
-| 2026 | 31 | 15 |
+| 2026 | 34 | 16 |
 
 ## Clones
 
@@ -82,14 +82,14 @@ Last updated: 2026-04-27
 
 ## Referrers
 
-### Weekly (最大14週保持)
+### Weekly (最大2週保持)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
 | 2026-W18 | github.com | 20 | 5 |
 | 2026-W18 | Bing | 1 | 1 |
 | 2026-W17 | github.com | 20 | 5 |
 
-### Monthly (最大12か月保持)
+### Monthly (最大3か月保持)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
 | 2026-04 | github.com | 85 | 20 |
@@ -103,7 +103,7 @@ Last updated: 2026-04-27
 
 ## Popular Paths
 
-### Weekly (最大14週保持)
+### Weekly (最大2週保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
 | 2026-W18 | /seto77/PressureCalculator | Overview | 7 | 5 |
@@ -127,7 +127,7 @@ Last updated: 2026-04-27
 | 2026-W17 | /seto77/PressureCalculator/tree/master/Crystallography.Controls/Crystal | /tree/master/Crystallography.Controls/Crystal | 1 | 1 |
 | 2026-W17 | /seto77/PressureCalculator/tree/master/Crystallography.Controls/CrystalDatabase | /tree/master/Crystallography.Controls/CrystalDatabase | 1 | 1 |
 
-### Monthly (最大12か月保持)
+### Monthly (最大3か月保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
 | 2026-04 | /seto77/PressureCalculator | Overview | 37 | 30 |
