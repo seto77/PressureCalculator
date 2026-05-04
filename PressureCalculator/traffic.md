@@ -1,12 +1,13 @@
 # Traffic Data: PressureCalculator
 
-Last updated: 2026-05-03
+Last updated: 2026-05-04
 
 ## Views
 
 ### Daily (最大14日保持)
 | Date | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
+| 2026-05-03 | 4 | 4 |
 | 2026-05-02 | 1 | 1 |
 | 2026-05-01 | 1 | 1 |
 | 2026-04-30 | 2 | 1 |
@@ -19,12 +20,11 @@ Last updated: 2026-05-03
 | 2026-04-23 | 0 | 0 |
 | 2026-04-22 | 0 | 0 |
 | 2026-04-21 | 0 | 0 |
-| 2026-04-20 | 6 | 2 |
 
 ### Weekly (最大14週保持)
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
-| 2026-W18 | 44 | 6 |
+| 2026-W18 | 48 | 10 |
 | 2026-W17 | 7 | 3 |
 | 2026-W16 | 29 | 8 |
 | 2026-W15 | 1 | 1 |
@@ -34,20 +34,21 @@ Last updated: 2026-05-03
 ### Monthly (最大12か月保持)
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
-| 2026-05 | 2 | 2 |
+| 2026-05 | 6 | 6 |
 | 2026-04 | 83 | 20 |
 | 2026-03 | 3 | 2 |
 
 ### Yearly (無制限)
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
-| 2026 | 88 | 24 |
+| 2026 | 92 | 28 |
 
 ## Clones
 
 ### Daily (最大14日保持)
 | Date | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
+| 2026-05-03 | 11 | 5 |
 | 2026-05-02 | 0 | 0 |
 | 2026-05-01 | 9 | 6 |
 | 2026-04-30 | 1 | 1 |
@@ -60,12 +61,11 @@ Last updated: 2026-05-03
 | 2026-04-23 | 1 | 1 |
 | 2026-04-22 | 19 | 5 |
 | 2026-04-21 | 7 | 4 |
-| 2026-04-20 | 4 | 4 |
 
 ### Weekly (最大14週保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026-W18 | 58 | 29 |
+| 2026-W18 | 69 | 34 |
 | 2026-W17 | 73 | 30 |
 | 2026-W16 | 91 | 52 |
 | 2026-W15 | 3 | 3 |
@@ -75,31 +75,33 @@ Last updated: 2026-05-03
 ### Monthly (最大12か月保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026-05 | 9 | 6 |
+| 2026-05 | 20 | 11 |
 | 2026-04 | 219 | 111 |
 | 2026-03 | 1 | 1 |
 
 ### Yearly (無制限)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026 | 229 | 118 |
+| 2026 | 240 | 123 |
 
 ## Referrers
 
 ### Weekly (最大2週保持)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
+| 2026-W19 | Google | 25 | 5 |
+| 2026-W19 | github.com | 12 | 3 |
+| 2026-W19 | Bing | 1 | 1 |
 | 2026-W18 | Google | 111 | 16 |
 | 2026-W18 | github.com | 106 | 25 |
 | 2026-W18 | Bing | 6 | 6 |
-| 2026-W17 | github.com | 20 | 5 |
 
 ### Monthly (最大3か月保持)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
-| 2026-05 | Google | 49 | 9 |
-| 2026-05 | github.com | 24 | 6 |
-| 2026-05 | Bing | 2 | 2 |
+| 2026-05 | Google | 74 | 14 |
+| 2026-05 | github.com | 36 | 9 |
+| 2026-05 | Bing | 3 | 3 |
 | 2026-04 | github.com | 147 | 34 |
 | 2026-04 | Google | 62 | 7 |
 | 2026-04 | Bing | 10 | 10 |
@@ -107,15 +109,25 @@ Last updated: 2026-05-03
 ### Yearly (無制限)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
-| 2026 | github.com | 171 | 40 |
-| 2026 | Google | 111 | 16 |
-| 2026 | Bing | 12 | 12 |
+| 2026 | github.com | 183 | 43 |
+| 2026 | Google | 136 | 21 |
+| 2026 | Bing | 13 | 13 |
 
 ## Popular Paths
 
 ### Weekly (最大2週保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-W19 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 14 | 5 |
+| 2026-W19 | /seto77/PressureCalculator | Overview | 10 | 6 |
+| 2026-W19 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 8 | 2 |
+| 2026-W19 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 5 | 2 |
+| 2026-W19 | /seto77/PressureCalculator/tree/master | /tree/master | 4 | 1 |
+| 2026-W19 | /seto77/PressureCalculator/stargazers | /stargazers | 3 | 3 |
+| 2026-W19 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | /blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | 2 | 2 |
+| 2026-W19 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 2 | 1 |
+| 2026-W19 | /seto77/PressureCalculator/blame/master/LICENSE.md | /blame/master/LICENSE.md | 1 | 1 |
+| 2026-W19 | /seto77/PressureCalculator/releases | /releases | 1 | 1 |
 | 2026-W18 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 65 | 19 |
 | 2026-W18 | /seto77/PressureCalculator | Overview | 55 | 30 |
 | 2026-W18 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 46 | 13 |
@@ -133,31 +145,21 @@ Last updated: 2026-05-03
 | 2026-W18 | /seto77/PressureCalculator/tree/master/Crystallography.Controls/Crystal | /tree/master/Crystallography.Controls/Crystal | 1 | 1 |
 | 2026-W18 | /seto77/PressureCalculator/tree/master/Crystallography.Controls/CrystalDatabase | /tree/master/Crystallography.Controls/CrystalDatabase | 1 | 1 |
 | 2026-W18 | /seto77/PressureCalculator/stargazers | /stargazers | 1 | 1 |
-| 2026-W17 | /seto77/PressureCalculator | Overview | 7 | 5 |
-| 2026-W17 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 3 | 1 |
-| 2026-W17 | /seto77/PressureCalculator/releases | /releases | 2 | 2 |
-| 2026-W17 | /seto77/PressureCalculator/tree/master/Crystallography | /tree/master/Crystallography | 2 | 1 |
-| 2026-W17 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 2 | 1 |
-| 2026-W17 | /seto77/PressureCalculator/blame/master/PressureCalculatorSetup/setup.exe | /blame/master/PressureCalculatorSetup/setup.exe | 1 | 1 |
-| 2026-W17 | /seto77/PressureCalculator/commit/cdbf23acf3d88ebcc89e264a5729bf6ebba39ba0 | /commit/cdbf23acf3d88ebcc89e264a5729bf6ebba39ba0 | 1 | 1 |
-| 2026-W17 | /seto77/PressureCalculator/tree/master/Crystallography.Controls | /tree/master/Crystallography.Controls | 1 | 1 |
-| 2026-W17 | /seto77/PressureCalculator/tree/master/Crystallography.Controls/Crystal | /tree/master/Crystallography.Controls/Crystal | 1 | 1 |
-| 2026-W17 | /seto77/PressureCalculator/tree/master/Crystallography.Controls/CrystalDatabase | /tree/master/Crystallography.Controls/CrystalDatabase | 1 | 1 |
 
 ### Monthly (最大3か月保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026-05 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 27 | 9 |
-| 2026-05 | /seto77/PressureCalculator | Overview | 16 | 8 |
-| 2026-05 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 16 | 4 |
-| 2026-05 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 10 | 4 |
-| 2026-05 | /seto77/PressureCalculator/tree/master | /tree/master | 8 | 2 |
-| 2026-05 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | /blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | 4 | 4 |
-| 2026-05 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 4 | 2 |
-| 2026-05 | /seto77/PressureCalculator/blame/master/LICENSE.md | /blame/master/LICENSE.md | 2 | 2 |
-| 2026-05 | /seto77/PressureCalculator/releases | /releases | 2 | 2 |
+| 2026-05 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 41 | 14 |
+| 2026-05 | /seto77/PressureCalculator | Overview | 26 | 14 |
+| 2026-05 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 24 | 6 |
+| 2026-05 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 15 | 6 |
+| 2026-05 | /seto77/PressureCalculator/tree/master | /tree/master | 12 | 3 |
+| 2026-05 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | /blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | 6 | 6 |
+| 2026-05 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 6 | 3 |
+| 2026-05 | /seto77/PressureCalculator/stargazers | /stargazers | 4 | 4 |
+| 2026-05 | /seto77/PressureCalculator/blame/master/LICENSE.md | /blame/master/LICENSE.md | 3 | 3 |
+| 2026-05 | /seto77/PressureCalculator/releases | /releases | 3 | 3 |
 | 2026-05 | /seto77/PressureCalculator/tree/master/Crystallography.Controls | /tree/master/Crystallography.Controls | 1 | 1 |
-| 2026-05 | /seto77/PressureCalculator/stargazers | /stargazers | 1 | 1 |
 | 2026-04 | /seto77/PressureCalculator | Overview | 69 | 47 |
 | 2026-04 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 50 | 14 |
 | 2026-04 | /seto77/PressureCalculator/releases | /releases | 39 | 39 |
@@ -178,23 +180,23 @@ Last updated: 2026-05-03
 ### Yearly (無制限)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026 | /seto77/PressureCalculator | Overview | 85 | 55 |
-| 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 77 | 23 |
-| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 54 | 17 |
-| 2026 | /seto77/PressureCalculator/releases | /releases | 41 | 41 |
-| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 31 | 16 |
-| 2026 | /seto77/PressureCalculator/tree/master | /tree/master | 20 | 5 |
+| 2026 | /seto77/PressureCalculator | Overview | 95 | 61 |
+| 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 91 | 28 |
+| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 62 | 19 |
+| 2026 | /seto77/PressureCalculator/releases | /releases | 42 | 42 |
+| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 36 | 18 |
+| 2026 | /seto77/PressureCalculator/tree/master | /tree/master | 24 | 6 |
 | 2026 | /seto77/PressureCalculator/tree/master/Crystallography | /tree/master/Crystallography | 12 | 6 |
-| 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | /blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | 10 | 10 |
-| 2026 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 10 | 5 |
+| 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | /blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | 12 | 12 |
+| 2026 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 12 | 6 |
 | 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator/Properties | /tree/master/PressureCalculator/Properties | 9 | 9 |
+| 2026 | /seto77/PressureCalculator/blame/master/LICENSE.md | /blame/master/LICENSE.md | 6 | 6 |
 | 2026 | /seto77/PressureCalculator/blame/master/PressureCalculatorSetup/setup.exe | /blame/master/PressureCalculatorSetup/setup.exe | 5 | 5 |
 | 2026 | /seto77/PressureCalculator/commit/cdbf23acf3d88ebcc89e264a5729bf6ebba39ba0 | /commit/cdbf23acf3d88ebcc89e264a5729bf6ebba39ba0 | 5 | 5 |
-| 2026 | /seto77/PressureCalculator/blame/master/LICENSE.md | /blame/master/LICENSE.md | 5 | 5 |
+| 2026 | /seto77/PressureCalculator/stargazers | /stargazers | 4 | 4 |
 | 2026 | /seto77/PressureCalculator/tree/master/Crystallography.Controls | /tree/master/Crystallography.Controls | 3 | 3 |
 | 2026 | /seto77/PressureCalculator/tree/master/Crystallography.Controls/Crystal | /tree/master/Crystallography.Controls/Crystal | 2 | 2 |
 | 2026 | /seto77/PressureCalculator/tree/master/Crystallography.Controls/CrystalDatabase | /tree/master/Crystallography.Controls/CrystalDatabase | 2 | 2 |
-| 2026 | /seto77/PressureCalculator/stargazers | /stargazers | 1 | 1 |
 
 ## Downloads
 
@@ -215,6 +217,7 @@ Last updated: 2026-05-03
 ### Daily (最大14日保持)
 | Date | Stars | Forks | Open Issues | Watchers |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-05-04 | 1 | 0 | 0 | 1 |
 | 2026-05-03 | 1 | 0 | 0 | 1 |
 | 2026-05-01 | 1 | 0 | 0 | 1 |
 | 2026-04-30 | 1 | 0 | 0 | 1 |
@@ -226,6 +229,7 @@ Last updated: 2026-05-03
 ### Weekly (最大14週保持)
 | Period | Stars | Forks | Open Issues | Watchers |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-W19 | 1 | 0 | 0 | 1 |
 | 2026-W18 | 1 | 0 | 0 | 1 |
 | 2026-W17 | 1 | 0 | 0 | 1 |
 | 2026-W16 | 1 | 0 | 0 | 1 |
@@ -242,4 +246,4 @@ Last updated: 2026-05-03
 | ---- | ---- | ---- | ---- | ---- |
 | 2026 | 1 | 0 | 0 | 1 |
 
-<!-- meta: last_collected_paths=2026-05-03 last_collected_referrers=2026-05-03 -->
+<!-- meta: last_collected_paths=2026-05-04 last_collected_referrers=2026-05-04 -->
