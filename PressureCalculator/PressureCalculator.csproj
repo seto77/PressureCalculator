@@ -2,7 +2,9 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <!-- 260624Cl 共有lib(net10.0-windows)に合わせ net9.0-windows10.0.26100.0 から変更 (submodule移行のNU1201解消) -->
+    <!--<TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>-->
+    <TargetFramework>net10.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyVersion>2025.10.16.0829</AssemblyVersion>
     <FileVersion>2025.10.16.0829</FileVersion>
