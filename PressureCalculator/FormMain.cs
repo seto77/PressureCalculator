@@ -1321,7 +1321,7 @@ namespace PressureCalculator
                 else
                     textList.Add("X, Y (original), Y (smoothed),, X(Edge),Y(Edge)");
 
-                var dlg = new SaveFileDialog { Filter = "*.csv|*.csv" };
+                var dlg = new System.Windows.Forms.SaveFileDialog { Filter = "*.csv|*.csv" };//260703Cl 変更: Microsoft.Win32 (Registry用using) との名前衝突回避 (旧: new SaveFileDialog)
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     for (int i = 0; i < smoothPt.Length; i++)
@@ -1351,7 +1351,7 @@ namespace PressureCalculator
         //メニューから呼び出されるFileRead
         private void menuItemFileRead_Click(object sender, System.EventArgs e)
         {
-            var Dlg = new OpenFileDialog();
+            var Dlg = new System.Windows.Forms.OpenFileDialog();//260703Cl 変更: Microsoft.Win32 との名前衝突回避 (旧: new OpenFileDialog)
             if (Dlg.ShowDialog() == DialogResult.OK)
             {
                 try
