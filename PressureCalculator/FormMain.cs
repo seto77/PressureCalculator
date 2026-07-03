@@ -60,6 +60,12 @@ namespace PressureCalculator
             PopulateLanguageMenu();//260703Cl 追加: 言語メニューを SupportedCultures から動的生成
             UpdateLanguageMenuChecks(Crystallography.SupportedCultures.Current.Name);//260703Cl 追加
 
+            //260704Cl 追加: NumericBox.HeaderText は CodeLocalizer (Control.Text/HeaderText=DataGridView限定) の対象外のため実行時 Loc で差し替える
+            numericBoxDecimalPlaces.HeaderText = Crystallography.Localization.Loc(
+                en: "Number of decimal places", ja: "小数点以下の桁数", de: "Anzahl der Dezimalstellen", fr: "Nombre de décimales",
+                es: "Número de decimales", pt: "Número de casas decimais", it: "Numero di cifre decimali",
+                ru: "Число десятичных знаков", zhHans: "小数位数", zhHant: "小數位數", ko: "소수점 이하 자릿수");
+
             MouseRange = false;
 
             timer.Start();
@@ -229,6 +235,14 @@ namespace PressureCalculator
             Close();
         }
         #endregion
+
+        //260704Cl 追加: GuiCapture (--capture) 用のモード切替。radioButton は private のため internal メソッドで公開する。
+        internal void SetCaptureMode(string mode)
+        {
+            if (mode == "diamond") radioButtonDiamondRaman.Checked = true;
+            else if (mode == "ruby") radioButtonRubyFluorescence.Checked = true;
+            else radioButtonEOS.Checked = true;
+        }
 
         //260703Cl 追加: Help メニュー「Online manual」(F1 と同じ URL を開く)
         private void helpOnlineManualToolStripMenuItem_Click(object sender, EventArgs e)
@@ -840,6 +854,10 @@ namespace PressureCalculator
                 groupBoxAkahama2006.Visible = false;
                 groupBoxMao.Visible = false;
             }
+
+            //260704Cl 追加: F1 オンラインヘルプの飛び先を現在のモードのページに合わせる (slug は docs/mkdocs.yml の実ページ名と一致必須)
+            HelpPage = radioButtonDiamondRaman.Checked ? "2-diamond-raman"
+                     : radioButtonRubyFluorescence.Checked ? "1-ruby-fluorescence" : "3-equation-of-states";
 
             CalcSmoothingAndDifferentiation();
             graphControlTop.Profile = OriginalSmooth;

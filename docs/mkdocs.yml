@@ -1,0 +1,198 @@
+# 260704Cl: MkDocs Material configuration for the PressureCalculator GitHub Pages manual.
+#   Ported from CSManager/docs/mkdocs.yml (explicit per-language nav, 11 languages, so that
+#   `mkdocs build --strict` catches any missing/extra page). search.lang lists stemmers bundled
+#   by mkdocs-material (one `zh` serves zh-Hans and zh-Hant; `ko` for Korean); extra.alternate
+#   carries every language for the header selector and is retargeted to the matching slug by
+#   language_switch.js.
+site_name: PressureCalculator Manual
+site_description: PressureCalculator user manual
+site_url: https://seto77.github.io/PressureCalculator/
+repo_url: https://github.com/seto77/PressureCalculator
+repo_name: seto77/PressureCalculator
+edit_uri: edit/master/docs/src/
+
+docs_dir: src
+site_dir: site
+use_directory_urls: true
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.footer
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search:
+      lang:
+        - en
+        - ja
+        - de
+        - fr
+        - es
+        - pt
+        - it
+        - ru
+        - zh
+        - ko
+  - glightbox
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - abbr
+  - pymdownx.snippets:
+      base_path:
+        - docs
+        - .
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.tilde
+  - pymdownx.mark
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+  - assets/javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - assets/javascripts/language_switch.js
+
+extra:
+  alternate:
+    - name: English
+      link: /PressureCalculator/
+      lang: en
+    - name: 日本語
+      link: /PressureCalculator/ja/
+      lang: ja
+    - name: Deutsch
+      link: /PressureCalculator/de/
+      lang: de
+    - name: Français
+      link: /PressureCalculator/fr/
+      lang: fr
+    - name: Español
+      link: /PressureCalculator/es/
+      lang: es
+    - name: Português
+      link: /PressureCalculator/pt/
+      lang: pt
+    - name: Italiano
+      link: /PressureCalculator/it/
+      lang: it
+    - name: Русский
+      link: /PressureCalculator/ru/
+      lang: ru
+    - name: 简体中文
+      link: /PressureCalculator/zh-Hans/
+      lang: zh-Hans
+    - name: 繁體中文
+      link: /PressureCalculator/zh-Hant/
+      lang: zh-Hant
+    - name: 한국어
+      link: /PressureCalculator/ko/
+      lang: ko
+
+nav:
+  - English:
+      - Home: index.md
+      - 1. Ruby fluorescence: en/1-ruby-fluorescence.md
+      - 2. Diamond Raman edge: en/2-diamond-raman.md
+      - 3. Equation of states (EOS): en/3-equation-of-states.md
+      - 4. Spectra and fitting: en/4-spectra-and-fitting.md
+  - 日本語:
+      - ホーム: ja/index.md
+      - 1. ルビー蛍光: ja/1-ruby-fluorescence.md
+      - 2. ダイヤモンドラマンエッジ: ja/2-diamond-raman.md
+      - 3. 状態方程式 (EOS): ja/3-equation-of-states.md
+      - 4. スペクトルとフィッティング: ja/4-spectra-and-fitting.md
+  - Deutsch:
+      - Startseite: de/index.md
+      - 1. Rubin-Fluoreszenz: de/1-ruby-fluorescence.md
+      - 2. Diamant-Raman-Kante: de/2-diamond-raman.md
+      - 3. Zustandsgleichung (EOS): de/3-equation-of-states.md
+      - 4. Spektren und Fitting: de/4-spectra-and-fitting.md
+  - Français:
+      - Accueil: fr/index.md
+      - 1. Fluorescence du rubis: fr/1-ruby-fluorescence.md
+      - 2. Bord Raman du diamant: fr/2-diamond-raman.md
+      - 3. Équation d'état (EOS): fr/3-equation-of-states.md
+      - 4. Spectres et ajustement: fr/4-spectra-and-fitting.md
+  - Español:
+      - Inicio: es/index.md
+      - 1. Fluorescencia del rubí: es/1-ruby-fluorescence.md
+      - 2. Borde Raman del diamante: es/2-diamond-raman.md
+      - 3. Ecuación de estado (EOS): es/3-equation-of-states.md
+      - 4. Espectros y ajuste: es/4-spectra-and-fitting.md
+  - Português:
+      - Início: pt/index.md
+      - 1. Fluorescência do rubi: pt/1-ruby-fluorescence.md
+      - 2. Borda Raman do diamante: pt/2-diamond-raman.md
+      - 3. Equação de estado (EOS): pt/3-equation-of-states.md
+      - 4. Espectros e ajuste: pt/4-spectra-and-fitting.md
+  - Italiano:
+      - Home: it/index.md
+      - 1. Fluorescenza del rubino: it/1-ruby-fluorescence.md
+      - 2. Bordo Raman del diamante: it/2-diamond-raman.md
+      - 3. Equazione di stato (EOS): it/3-equation-of-states.md
+      - 4. Spettri e fitting: it/4-spectra-and-fitting.md
+  - Русский:
+      - Главная: ru/index.md
+      - 1. Флуоресценция рубина: ru/1-ruby-fluorescence.md
+      - 2. Край рамановской полосы алмаза: ru/2-diamond-raman.md
+      - 3. Уравнение состояния (EOS): ru/3-equation-of-states.md
+      - 4. Спектры и подгонка: ru/4-spectra-and-fitting.md
+  - 简体中文:
+      - 首页: zh-Hans/index.md
+      - 1. 红宝石荧光: zh-Hans/1-ruby-fluorescence.md
+      - 2. 金刚石拉曼边: zh-Hans/2-diamond-raman.md
+      - 3. 状态方程 (EOS): zh-Hans/3-equation-of-states.md
+      - 4. 光谱与拟合: zh-Hans/4-spectra-and-fitting.md
+  - 繁體中文:
+      - 首頁: zh-Hant/index.md
+      - 1. 紅寶石螢光: zh-Hant/1-ruby-fluorescence.md
+      - 2. 鑽石拉曼邊緣: zh-Hant/2-diamond-raman.md
+      - 3. 狀態方程式 (EOS): zh-Hant/3-equation-of-states.md
+      - 4. 光譜與擬合: zh-Hant/4-spectra-and-fitting.md
+  - 한국어:
+      - 홈: ko/index.md
+      - 1. 루비 형광: ko/1-ruby-fluorescence.md
+      - 2. 다이아몬드 라만 에지: ko/2-diamond-raman.md
+      - 3. 상태방정식 (EOS): ko/3-equation-of-states.md
+      - 4. 스펙트럼과 피팅: ko/4-spectra-and-fitting.md
