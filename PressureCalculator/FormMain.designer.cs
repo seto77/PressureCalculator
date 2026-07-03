@@ -17,7 +17,8 @@ namespace PressureCalculator
     /// <summary>
     /// Form1 の概要の説明です。
     /// </summary>
-    partial class FormMain : System.Windows.Forms.Form
+    //260704Cl 変更: Form → FormBase 継承 (FormMain.cs 側の宣言と一致させる)。旧: partial class FormMain : System.Windows.Forms.Form
+    partial class FormMain : Crystallography.Controls.FormBase
     {
 
         /// <summary>
@@ -334,6 +335,9 @@ namespace PressureCalculator
             readToolStripMenuItem = new ToolStripMenuItem();
             exportAsCSVToolStripMenuItem = new ToolStripMenuItem();
             watchNewFileToolStripMenuItem = new ToolStripMenuItem();
+            languageToolStripMenuItem = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            helpOnlineManualToolStripMenuItem = new ToolStripMenuItem();
             timer = new System.Windows.Forms.Timer(components);
             ((ISupportInitialize)numericUpDownDifferentiationRunningAverage).BeginInit();
             ((ISupportInitialize)numericUpDownOriginalRunningAverage).BeginInit();
@@ -1198,7 +1202,7 @@ namespace PressureCalculator
             groupBox3.Size = new Size(319, 88);
             groupBox3.TabIndex = 5;
             groupBox3.TabStop = false;
-            groupBox3.Text = "Measument condition";
+            groupBox3.Text = "Measurement condition";
             // 
             // checkBoxRubyR1_0CalculatedFromRagan
             // 
@@ -1208,7 +1212,7 @@ namespace PressureCalculator
             checkBoxRubyR1_0CalculatedFromRagan.Name = "checkBoxRubyR1_0CalculatedFromRagan";
             checkBoxRubyR1_0CalculatedFromRagan.Size = new Size(132, 38);
             checkBoxRubyR1_0CalculatedFromRagan.TabIndex = 7;
-            checkBoxRubyR1_0CalculatedFromRagan.Text = "Caluculate from\r\n Ragan's equation";
+            checkBoxRubyR1_0CalculatedFromRagan.Text = "Calculate from\r\n Ragan's equation";
             checkBoxRubyR1_0CalculatedFromRagan.UseVisualStyleBackColor = true;
             checkBoxRubyR1_0CalculatedFromRagan.CheckedChanged += checkBoxRubyR1CalculatedFromRagan_CheckedChanged;
             // 
@@ -3538,7 +3542,7 @@ namespace PressureCalculator
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, languageToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(739, 24);
@@ -3575,9 +3579,30 @@ namespace PressureCalculator
             watchNewFileToolStripMenuItem.Size = new Size(226, 22);
             watchNewFileToolStripMenuItem.Text = "Reload the file if it is updated";
             watchNewFileToolStripMenuItem.CheckedChanged += menuItemWatchFile_Click;
-            // 
+            //
+            // languageToolStripMenuItem
+            //
+            languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            languageToolStripMenuItem.Size = new Size(71, 20);
+            languageToolStripMenuItem.Text = "Language";
+            //
+            // helpToolStripMenuItem
+            //
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { helpOnlineManualToolStripMenuItem });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(44, 20);
+            helpToolStripMenuItem.Text = "Help";
+            //
+            // helpOnlineManualToolStripMenuItem
+            //
+            helpOnlineManualToolStripMenuItem.Name = "helpOnlineManualToolStripMenuItem";
+            helpOnlineManualToolStripMenuItem.ShortcutKeyDisplayString = "F1";
+            helpOnlineManualToolStripMenuItem.Size = new Size(226, 22);
+            helpOnlineManualToolStripMenuItem.Text = "Online manual";
+            helpOnlineManualToolStripMenuItem.Click += helpOnlineManualToolStripMenuItem_Click;
+            //
             // timer
-            // 
+            //
             timer.Enabled = true;
             timer.Interval = 1000;
             timer.Tick += timer_Tick;
@@ -3585,7 +3610,9 @@ namespace PressureCalculator
             // FormMain
             // 
             AllowDrop = true;
-            AutoScaleBaseSize = new Size(7, 15);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            //AutoScaleBaseSize = new Size(7, 15); //260703Cl 変更: 旧 .NET1.x 系プロパティを廃止し Dpi スケーリングへ (兄弟アプリ同型・96,96 必須)
             ClientSize = new Size(739, 916);
             Controls.Add(splitContainer1);
             Controls.Add(groupBoxAkahama2006);
@@ -3670,6 +3697,9 @@ namespace PressureCalculator
         private Label label17;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem languageToolStripMenuItem;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem helpOnlineManualToolStripMenuItem;
         private ToolStripMenuItem readToolStripMenuItem;
         private ToolStripMenuItem exportAsCSVToolStripMenuItem;
         private ToolStripMenuItem watchNewFileToolStripMenuItem;

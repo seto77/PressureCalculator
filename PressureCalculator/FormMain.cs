@@ -21,7 +21,9 @@ namespace PressureCalculator
     /// <summary>
     /// Form1 の概要の説明です。
     /// </summary>
-    public partial class FormMain : Form
+    //260703Cl 変更: Form → FormBase 継承 (UiFont 一元適用 + F1 オンラインヘルプ + CodeLocalizer による多言語化。兄弟アプリ同型)
+    //旧: public partial class FormMain : Form
+    public partial class FormMain : Crystallography.Controls.FormBase
     {
 
         private DateTime lastWriteTime;
@@ -39,11 +41,24 @@ namespace PressureCalculator
         public FormMain()
         {
             InitializeComponent();
+
+            //260703Cl 追加: F1 オンラインヘルプの URL 解決ロジックを登録 (起動時に 1 回、IPAnalyzer/FormMain と同方式)。
+            //  マニュアルは mkdocs-static-i18n (folder mode): en はサイトルート直下、他言語は /{lang}/ 配下。
+            Crystallography.Controls.FormBase.HelpUrlResolver = f =>
+            {
+                var lang = Crystallography.SupportedCultures.Current.HelpCulture;
+                return string.IsNullOrEmpty(f.HelpPage)
+                    ? (lang == "en" ? "https://seto77.github.io/PressureCalculator/" : $"https://seto77.github.io/PressureCalculator/{lang}/")
+                    : (lang == "en" ? $"https://seto77.github.io/PressureCalculator/{f.HelpPage}/" : $"https://seto77.github.io/PressureCalculator/{lang}/{f.HelpPage}/");
+            };
         }
 
         private void FormMain_Load(object sender, System.EventArgs e)
         {
             this.Text = Version.Software + "  " + Version.VersionAndDate;
+
+            PopulateLanguageMenu();//260703Cl 追加: 言語メニューを SupportedCultures から動的生成
+            UpdateLanguageMenuChecks(Crystallography.SupportedCultures.Current.Name);//260703Cl 追加
 
             MouseRange = false;
 
@@ -127,10 +142,101 @@ namespace PressureCalculator
             regKey.SetValue("radioButtonTempUnitK.Checked", radioButtonTempUnitK.Checked);
             regKey.SetValue("radioButtonTempUnitC.Checked", radioButtonTempUnitC.Checked);
 
+            regKey.SetValue("Culture", Thread.CurrentThread.CurrentUICulture.Name);//260703Cl 追加: UI 言語の永続化 (Program.Main が起動時に読む)
 
             regKey.Close();
         }
         #endregion
+
+        #region 言語メニュー (260703Cl 追加: CSManager/FormMain の SupportedCultures 駆動 + 自動再起動方式を移植)
+        // 言語メニュー項目を中央 allow-list (SupportedCultures) から動的生成する。
+        // Released=true の言語だけを各々の自言語表記 (NativeName) で並べ、Tag に CultureInfo 名を入れて Tag 駆動で切り替える。
+        private void PopulateLanguageMenu()
+        {
+            languageToolStripMenuItem.DropDownItems.Clear();
+            foreach (var c in Crystallography.SupportedCultures.All)
+            {
+                if (!c.Released)
+                    continue;
+                var item = new ToolStripMenuItem(c.NativeName) { Tag = c.Name, Name = c.Name + "ToolStripMenuItem" };
+                item.Click += languageToolStripMenuItem_Click;
+                languageToolStripMenuItem.DropDownItems.Add(item);
+            }
+        }
+
+        private void UpdateLanguageMenuChecks(string currentName)
+        {
+            foreach (ToolStripItem it in languageToolStripMenuItem.DropDownItems)
+                if (it is ToolStripMenuItem mi)
+                    mi.Checked = (mi.Tag as string) == currentName;
+        }
+
+        private void languageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var culture = Crystallography.SupportedCultures.Resolve(((ToolStripMenuItem)sender).Tag as string);
+
+            // 既に現在の言語を選んだだけなら何もしない (再クリックでの無用な再起動を防ぐ)。
+            if (culture.Name == Crystallography.SupportedCultures.Current.Name)
+            {
+                UpdateLanguageMenuChecks(culture.Name);
+                return;
+            }
+
+            // 切替には再起動が要る (作業中の状態は失われる) ことを、まだ切り替わっていない現在の言語で確認する。
+            var msg = Crystallography.Localization.Loc(
+                en: $"Switching the display language to \"{culture.NativeName}\" requires restarting PressureCalculator.\nUnsaved work will be lost. Restart now?",
+                ja: $"表示言語を「{culture.NativeName}」に切り替えるには PressureCalculator の再起動が必要です。\n保存していない作業は失われます。今すぐ再起動しますか？");
+            if (MessageBox.Show(this, msg, Crystallography.Localization.Loc(en: "Change language", ja: "言語の変更"),
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                UpdateLanguageMenuChecks(Crystallography.SupportedCultures.Current.Name);
+                return;
+            }
+
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture.Name);
+            UpdateLanguageMenuChecks(culture.Name);
+            RestartApplicationForLanguageChange();
+        }
+
+        // 言語切替の自動再起動。FormClosing を待たず先に言語値を保存し、新インスタンスを起動してから自身を閉じる。
+        private void RestartApplicationForLanguageChange()
+        {
+            SaveInitialRegistry();// ここで CurrentUICulture は新言語へ切替済み → 新プロセスが起動直後に新言語を読める
+
+            var startInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = !string.IsNullOrEmpty(Application.ExecutablePath) ? Application.ExecutablePath : Environment.ProcessPath,
+                WorkingDirectory = Environment.CurrentDirectory,
+                UseShellExecute = true,
+            };
+
+            try
+            {
+                if (System.Diagnostics.Process.Start(startInfo) == null)
+                    throw new InvalidOperationException("Process.Start returned null.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this,
+                    Crystallography.Localization.Loc(
+                        en: $"Failed to restart PressureCalculator.\n{ex.Message}",
+                        ja: $"PressureCalculator の再起動に失敗しました。\n{ex.Message}"),
+                    Crystallography.Localization.Loc(en: "Change language", ja: "言語の変更"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Close();
+        }
+        #endregion
+
+        //260703Cl 追加: Help メニュー「Online manual」(F1 と同じ URL を開く)
+        private void helpOnlineManualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var url = Crystallography.Controls.FormBase.HelpUrlResolver?.Invoke(this);
+            if (!string.IsNullOrEmpty(url))
+                try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true }); } catch { }
+        }
 
 
 
@@ -674,7 +780,12 @@ namespace PressureCalculator
             }
             catch
             {
-                MessageBox.Show("適切な数値を入れてください");
+                //260704Cl 変更: 日本語直書き → 11言語 Loc (旧: MessageBox.Show("適切な数値を入れてください");)
+                MessageBox.Show(Crystallography.Localization.Loc(
+                    en: "Please enter a valid number.", ja: "適切な数値を入れてください", de: "Bitte geben Sie eine gültige Zahl ein.",
+                    fr: "Veuillez saisir un nombre valide.", es: "Introduzca un número válido.", pt: "Insira um número válido.",
+                    it: "Inserire un numero valido.", ru: "Введите корректное число.", zhHans: "请输入有效的数值。",
+                    zhHant: "請輸入有效的數值。", ko: "올바른 숫자를 입력하세요."));
             }
         }
 
@@ -687,7 +798,11 @@ namespace PressureCalculator
                 numericUpDownFitRange.Value = (decimal)fittingRangeDiamond;
 
                 splitContainer1.SplitterDistance = splitContainer1.Height / 2;
-                labelBottomTitle.Text = "First Differentiation";
+                //260704Cl 変更: 11言語 Loc (旧: labelBottomTitle.Text = "First Differentiation";)
+                labelBottomTitle.Text = Crystallography.Localization.Loc(
+                    en: "First Differentiation", ja: "一次微分", de: "Erste Ableitung", fr: "Dérivée première",
+                    es: "Primera derivada", pt: "Primeira derivada", it: "Derivata prima", ru: "Первая производная",
+                    zhHans: "一阶微分", zhHant: "一階微分", ko: "1차 미분");
                 groupBoxAkahama2006.Visible = true;
                 groupBoxMao.Visible = false;
                 labelDimension.Text = "cm^-1";
@@ -701,7 +816,11 @@ namespace PressureCalculator
                 panelEOS.Visible = false;
                 splitContainer1.Visible = true;
                 splitContainer1.SplitterDistance = 0;
-                labelBottomTitle.Text = "Ruby Fluorescence";
+                //260704Cl 変更: 11言語 Loc (旧: labelBottomTitle.Text = "Ruby Fluorescence";)
+                labelBottomTitle.Text = Crystallography.Localization.Loc(
+                    en: "Ruby Fluorescence", ja: "ルビー蛍光", de: "Rubin-Fluoreszenz", fr: "Fluorescence du rubis",
+                    es: "Fluorescencia del rubí", pt: "Fluorescência do rubi", it: "Fluorescenza del rubino",
+                    ru: "Флуоресценция рубина", zhHans: "红宝石荧光", zhHant: "紅寶石螢光", ko: "루비 형광");
                 numericUpDownFitRange.Value = (decimal)fittingRangeRuby;
 
 
@@ -1365,7 +1484,12 @@ namespace PressureCalculator
                 }
                 catch
                 {
-                    MessageBox.Show("ファイルを開けません");
+                    //260704Cl 変更: 日本語直書き → 11言語 Loc (旧: MessageBox.Show("ファイルを開けません");)
+                    MessageBox.Show(Crystallography.Localization.Loc(
+                        en: "Cannot open the file.", ja: "ファイルを開けません", de: "Die Datei kann nicht geöffnet werden.",
+                        fr: "Impossible d'ouvrir le fichier.", es: "No se puede abrir el archivo.", pt: "Não é possível abrir o arquivo.",
+                        it: "Impossibile aprire il file.", ru: "Не удаётся открыть файл.", zhHans: "无法打开文件。",
+                        zhHant: "無法開啟檔案。", ko: "파일을 열 수 없습니다."));
                     return;
                 }
             }
@@ -1398,7 +1522,12 @@ namespace PressureCalculator
                     }
                     catch
                     {
-                        MessageBox.Show("ファイルを開けません");
+                        //260704Cl 変更: 日本語直書き → 11言語 Loc (旧: MessageBox.Show("ファイルを開けません");)
+                    MessageBox.Show(Crystallography.Localization.Loc(
+                        en: "Cannot open the file.", ja: "ファイルを開けません", de: "Die Datei kann nicht geöffnet werden.",
+                        fr: "Impossible d'ouvrir le fichier.", es: "No se puede abrir el archivo.", pt: "Não é possível abrir o arquivo.",
+                        it: "Impossibile aprire il file.", ru: "Не удаётся открыть файл.", zhHans: "无法打开文件。",
+                        zhHant: "無法開啟檔案。", ko: "파일을 열 수 없습니다."));
                         return;
                     }
                 }
