@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -8,6 +8,29 @@
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyVersion>2025.10.16.0829</AssemblyVersion>
     <FileVersion>2025.10.16.0829</FileVersion>
+    <ApplicationIcon>App.ico</ApplicationIcon><!-- 260703Cl 追加: exe アイコン (SDK 移行時に喪失していた)。CSManager 同型 -->
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion><!-- 260703Cl 追加: CSManager 同型 -->
+    <Platforms>x64;ARM64</Platforms><!-- 260703Cl 追加: arm64 MSI/portable 用 (CSManager D-CS-4 同型) -->
+    <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers><!-- 260703Cl 追加: arm64 publish の restore グラフ用 (build 出力には無影響) -->
+    <!-- 260703Cl 追加: design-time ビルド (WinForms デザイナーの background build) では RID を外す。
+         RID を無条件で持つと out-of-process デザイナーが別プロジェクトの基底クラス Crystallography.Controls.FormBase を
+         ロードできず「基本クラス … を読み込めませんでした」になる (兄弟4アプリ実績)。 -->
+    <RuntimeIdentifier Condition="'$(DesignTimeBuild)' != 'true'">win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <!-- 260703Cl 追加: arm64 は bin\Release を x64 と共有しない (x64 MSI への arm64 混入防止)。CSManager 同型 -->
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <OutputPath>bin\ARM64\Release\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

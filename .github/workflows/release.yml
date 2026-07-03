@@ -1,0 +1,480 @@
+# 260406Cl PDIndexer 由来の PressureCalculator release.yml
+# 260625Cl vdproj→WiX 移行 (計画書 .project-guidance/PressureCalculator_WiX移行計画.md §5)。旧 vdproj ビルド経路 (devenv / DisableOutOfProcBuild /
+#   CI 専用 sln / vdproj regex / 非原子的 git tag→push) を全廃し、PDIndexer の 5-job 構成 (prepare/build-x64/build-arm64/
+#   smoke-arm64/release) へ再編。x64 MSI + arm64 MSI + portable ZIP (x64/arm64) を同一 run でビルド・smoke し、1 回の
+#   gh release create --target $GITHUB_SHA で原子的に公開する。PressureCalculator 固有の簡素化 (PDIndexer 計画 D-CS-1/2/6):
+#     * Crystallography.Native / xraylib(libxrl) を UI から使わない → devenv/native ビルド不要、smoke は arch 確認のみ
+#     * glfw3.dll は死荷物 → staging/portable から除外、arm64 publish には元々来ない (混入検出のみ)
+#   不変条件「x64 は arm64 の成否に連動しない」を維持: release job は build-x64 成功のみ必須。arm64 (build/smoke) が
+#   失敗したら x64 のみ公開して †脚注を残す。FileVersion は prepare で 1 度算出し x64/arm64 双方へ渡して完全一致させる
+#   (same-version cross-grade 要件)。
+name: Build And Release Installer And Portable ZIP
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "PressureCalculator/Version.cs"
+  # 260625Cl force input を廃止 (コード署名準備 / v* tag 保護 ruleset との整合、ReciPro 方針2)。既存 release は常に skip。
+  #   手動再実行は引数なし workflow_dispatch で可能 (tag/release は全 job 成功後の最終ステップでのみ原子的に作成されるため、
+  #   ビルド失敗時は同一バージョンで再実行できる)。公開済みを作り直す場合は Version.cs を進めて新 tag で出す。
+  #   旧:
+  #     inputs:
+  #       force:
+  #         description: "既存リリースを削除してリビルドする"
+  #         type: boolean
+  #         default: false
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "x64+arm64 をビルド・smoke するが release は作らない (資産は artifact のみ)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  # ---- 1. prepare: 版数解析・リリース要否判定・FileVersion 算出 ----
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      needed: ${{ steps.version.outputs.needed }}
+      version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
+      product_version: ${{ steps.version.outputs.product_version }}
+      assembly_version: ${{ steps.version.outputs.assembly_version }}
+      history_line: ${{ steps.version.outputs.history_line }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 2 # 260625Cl GITHUB_SHA(=HEAD) の commit 時刻取得には浅い clone で足りる。PressureCalculator は旧 vdproj MSI/setup.exe がコミットされた履歴を持つため浅い clone を維持
+
+      - name: Parse version and check if release needed
+        id: version
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          $content = Get-Content "PressureCalculator/Version.cs" -Raw
+          if ($content -notmatch 'ver(\d+\.\d+)\(') { throw "Could not parse version from Version.cs History." }
+          $ver = $Matches[1]
+          $tag = "v.$ver"
+          $dryRun = $env:DRY_RUN -eq 'true'
+
+          gh release view $tag 2>&1 | Out-Null
+          $releaseExists = ($LASTEXITCODE -eq 0)
+          $global:LASTEXITCODE = 0
+          # 260625Cl force モード廃止 (v* tag 保護 ruleset と非整合: 既存 tag を削除して同一 tag を再利用すると署名/provenance を壊す)。
+          #   既存 release があれば常に skip。作り直しは Version.cs を進めて新 tag で。
+          #   旧 force 処理:
+          #     if (inputs.force == true) { gh release delete $tag --yes; git push origin :refs/tags/$tag; ... } else { skip }
+          if ($releaseExists -and -not $dryRun) {
+            Write-Host "Release $tag already exists. Skipping (force mode removed; bump Version.cs to re-release)."
+            "needed=false" >> $env:GITHUB_OUTPUT
+            return
+          }
+
+          $historyLine = ([regex]::Match($content, 'ver[^\r\n"]+').Value).Trim()
+
+          # AssemblyVersion / FileVersion: x64⇔arm64 の same-version cross-grade には両 MSI の FileVersion 完全一致が必要。
+          #   release commit (GITHUB_SHA) の commit 時刻にアンカーして決定論化する (同一 run の x64/arm64 がこの 1 値を共有)。
+          $now = ([System.DateTimeOffset]::Parse((git log -1 --format=%cI $env:GITHUB_SHA))).UtcDateTime
+          $assemblyVer = "$($now.Year).$($now.Month).$($now.Day).$($now.ToString('HHmm'))"
+
+          Write-Host "Version: $ver (tag: $tag, assembly: $assemblyVer, dryRun: $dryRun)"
+          "needed=true"            >> $env:GITHUB_OUTPUT
+          "version=$ver"           >> $env:GITHUB_OUTPUT
+          "tag=$tag"               >> $env:GITHUB_OUTPUT
+          "product_version=0.$ver" >> $env:GITHUB_OUTPUT
+          "assembly_version=$assemblyVer" >> $env:GITHUB_OUTPUT
+          "history_line=$historyLine" >> $env:GITHUB_OUTPUT
+
+  # ---- 2. build-x64: x64 MSI (+旧名コピー) + portable ZIP ----
+  build-x64:
+    needs: prepare
+    if: needs.prepare.outputs.needed == 'true'
+    runs-on: windows-2025-vs2026
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive # shared libs are git submodules
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore managed dependencies
+        shell: pwsh
+        run: dotnet restore PressureCalculator\PressureCalculator.csproj
+
+      # PressureCalculator は Crystallography.Native / xraylib を UI から使わないため devenv / native ビルドは無い (D-CS-1)。
+      - name: Stage MSI payload (framework-dependent publish)
+        shell: pwsh
+        run: |
+          $s = "artifacts\staging-msi-x64"
+          dotnet publish PressureCalculator\PressureCalculator.csproj -c Release -p:Platform=x64 --self-contained false -o $s --no-restore `
+            -p:AssemblyVersion=${{ needs.prepare.outputs.assembly_version }} -p:FileVersion=${{ needs.prepare.outputs.assembly_version }}
+          if ($LASTEXITCODE -ne 0) { throw "x64 publish failed." }
+          Get-ChildItem $s -Filter "glfw3*.dll" -ErrorAction SilentlyContinue | Remove-Item -Force  # glfw3.dll は死荷物 (D-CS-2)
+          Copy-Item PressureCalculatorSetup.Wix\LICENSE.rtf $s
+          Get-ChildItem $s -Filter *.pdb | Remove-Item
+          if (Test-Path "$s\README-PORTABLE.txt") { throw "README-PORTABLE.txt leaked (portable marker must not be in MSI)" }
+          if (Test-Path "$s\coreclr.dll") { throw "self-contained runtime leaked into framework-dependent staging" }
+          if (Test-Path "$s\glfw3.dll") { throw "glfw3.dll leaked (must be excluded per D-CS-2)" }
+          if (-not (Test-Path "$s\PressureCalculator.exe")) { throw "PressureCalculator.exe missing from staging" }
+          $expectedCultures = @('ja','de','fr','es','pt','it','ru','zh-Hans','zh-Hant','ko')
+          $missingSat = $expectedCultures | Where-Object { -not (Get-ChildItem "$s\$_" -Filter *.resources.dll -ErrorAction SilentlyContinue) }
+          if ($missingSat) { throw "satellite assemblies missing for culture(s): $($missingSat -join ', ')" }
+          Write-Host "MSI staging OK: $((Get-ChildItem $s -Recurse -File).Count) files"
+
+      - name: Build installer with WiX
+        id: build_installer
+        timeout-minutes: 10
+        shell: pwsh
+        run: |
+          dotnet build PressureCalculatorSetup.Wix\PressureCalculatorSetup.wixproj -c Release -p:InstallerPlatform=x64 `
+            -p:ProductVersion=${{ needs.prepare.outputs.product_version }} `
+            -p:StagingDir="$PWD\artifacts\staging-msi-x64"
+          if ($LASTEXITCODE -ne 0) { throw "WiX build failed (exit $LASTEXITCODE)." }
+          # 主名称 PressureCalculator-setup.msi + 旧名互換コピー PressureCalculatorSetup.msi (同一バイト、{software}Setup.msi 自動更新固定参照を維持)
+          $msi = Get-Item "PressureCalculatorSetup.Wix\bin\Release\PressureCalculator-setup.msi" -ErrorAction SilentlyContinue
+          if (-not $msi) { throw "PressureCalculator-setup.msi was not found." }
+          Write-Host "MSI built: $($msi.FullName) ($($msi.Length) bytes)"
+          "msi_path=$($msi.FullName)" >> $env:GITHUB_OUTPUT
+          $legacy = Join-Path (Split-Path $msi.FullName) "PressureCalculatorSetup.msi"
+          Copy-Item $msi.FullName $legacy -Force
+          "legacy_msi_path=$legacy" >> $env:GITHUB_OUTPUT
+
+      - name: Publish portable ZIP
+        id: portable
+        shell: pwsh
+        run: |
+          $publishDir = Join-Path $env:RUNNER_TEMP "PressureCalculator-portable\PressureCalculator"
+          $zipPath = Join-Path (Get-Location) "PressureCalculator-v.${{ needs.prepare.outputs.version }}.zip"
+          if (Test-Path $publishDir) { Remove-Item -LiteralPath $publishDir -Recurse -Force }
+          if (Test-Path $zipPath) { Remove-Item -LiteralPath $zipPath -Force }
+          dotnet publish PressureCalculator\PressureCalculator.csproj `
+            -c Release -r win-x64 --self-contained true -p:Platform=x64 `
+            -p:AssemblyVersion=${{ needs.prepare.outputs.assembly_version }} -p:FileVersion=${{ needs.prepare.outputs.assembly_version }} `
+            -p:PublishSingleFile=false -p:PublishTrimmed=false -p:DebugType=None -p:DebugSymbols=false `
+            -o $publishDir
+          if ($LASTEXITCODE -ne 0) { throw "x64 self-contained publish failed." }
+          Get-ChildItem $publishDir -Filter "glfw3*.dll" -ErrorAction SilentlyContinue | Remove-Item -Force  # glfw3.dll 除外 (D-CS-2)
+          Copy-Item "LICENSE.md" $publishDir -Force
+          Copy-Item "README-PORTABLE.txt" $publishDir -Force # portable 判定マーカー (MSI には入れない)
+          Compress-Archive -Path (Join-Path (Split-Path $publishDir -Parent) "PressureCalculator") -DestinationPath $zipPath -Force
+          Write-Host "Portable ZIP built: $zipPath"
+          "zip_path=$zipPath" >> $env:GITHUB_OUTPUT
+
+      - name: Collect x64 release assets
+        shell: pwsh
+        run: |
+          $out = Join-Path $env:RUNNER_TEMP "x64-out"
+          New-Item -ItemType Directory -Force -Path $out | Out-Null
+          Copy-Item "${{ steps.build_installer.outputs.msi_path }}" $out
+          Copy-Item "${{ steps.build_installer.outputs.legacy_msi_path }}" $out
+          Copy-Item "${{ steps.portable.outputs.zip_path }}" $out
+          Get-ChildItem $out | ForEach-Object { Write-Host "x64 asset: $($_.Name) ($($_.Length) bytes)" }
+
+      - name: Upload x64 release assets
+        uses: actions/upload-artifact@v6
+        with:
+          name: x64-release-assets
+          path: ${{ runner.temp }}/x64-out
+
+  # ---- 3. build-arm64: reusable build。prepare の FileVersion を渡して x64 と一致させる ----
+  build-arm64:
+    needs: prepare
+    if: needs.prepare.outputs.needed == 'true'
+    uses: ./.github/workflows/build-arm64-portable.yml
+    with:
+      assembly_version: ${{ needs.prepare.outputs.assembly_version }}
+    permissions:
+      contents: read
+
+  # ---- 4. smoke-arm64: windows-11-arm 実機で smoke → 検証済み ZIP+MSI を artifact 化 ----
+  smoke-arm64:
+    needs: [prepare, build-arm64]
+    if: needs.prepare.outputs.needed == 'true'
+    runs-on: windows-11-arm
+    timeout-minutes: 30
+    steps:
+      - name: Resolve arm64 asset names
+        id: names
+        shell: pwsh
+        run: |
+          $ver = "${{ needs.prepare.outputs.version }}"
+          "zip_name=PressureCalculator-v.${ver}_arm64.zip" >> $env:GITHUB_OUTPUT
+          "msi_name=PressureCalculator-setup_arm64.msi"    >> $env:GITHUB_OUTPUT
+
+      - name: Verify version consistency between prepare and build
+        shell: pwsh
+        run: |
+          if ('${{ needs.prepare.outputs.version }}' -ne '${{ needs.build-arm64.outputs.version }}') {
+            throw "Version mismatch: prepare=${{ needs.prepare.outputs.version }} build=${{ needs.build-arm64.outputs.version }}"
+          }
+
+      - name: Download portable artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: ${{ needs.build-arm64.outputs.artifact_name }}
+          path: ${{ runner.temp }}/arm64-artifact
+
+      - name: Download arm64 MSI artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: ${{ needs.build-arm64.outputs.msi_artifact_name }}
+          path: ${{ runner.temp }}/arm64-msi
+
+      - name: "Smoke 1: PE machine (PressureCalculator.exe = arm64, no glfw)"
+        shell: pwsh
+        run: |
+          $dir = Join-Path $env:RUNNER_TEMP "arm64-artifact/PressureCalculator"
+          if (-not (Test-Path (Join-Path $dir "PressureCalculator.exe"))) { throw "Artifact layout unexpected: PressureCalculator.exe not found in $dir" }
+          if (Test-Path (Join-Path $dir "glfw3.dll")) { throw "glfw3.dll present in arm64 portable (must be excluded, D-CS-2)" }
+          function Get-PEMachine([string]$path) {
+            $b = [IO.File]::ReadAllBytes($path)
+            return [BitConverter]::ToUInt16($b, [BitConverter]::ToInt32($b, 0x3C) + 4)
+          }
+          # PressureCalculator は native を持たないため検査対象は exe のみ。
+          $m = Get-PEMachine (Join-Path $dir "PressureCalculator.exe")
+          "PressureCalculator.exe: machine=0x{0:X4}" -f $m
+          if ($m -ne 0xAA64) { throw "PressureCalculator.exe is not ARM64 (machine=0x$($m.ToString('X4')))" }
+
+      - name: "Smoke 2: PressureCalculator.exe --smoke (arch assertion)"
+        shell: pwsh
+        run: |
+          $dir = Join-Path $env:RUNNER_TEMP "arm64-artifact/PressureCalculator"
+          $out = Join-Path $env:RUNNER_TEMP "smoke-result.txt"
+          $p = Start-Process -FilePath (Join-Path $dir "PressureCalculator.exe") -ArgumentList @("--smoke", "`"$out`"") -WorkingDirectory $dir -PassThru
+          if (-not $p.WaitForExit(600000)) { Stop-Process -Id $p.Id -Force; throw "--smoke did not finish within 10 minutes." }
+          if (-not (Test-Path $out)) { throw "--smoke produced no output file (exit $($p.ExitCode))." }
+          $result = Get-Content $out -Raw
+          Write-Host $result
+          if ($p.ExitCode -ne 0) { throw "--smoke reported failure (exit $($p.ExitCode))." }
+          if ($result -notmatch [regex]::Escape("arch=Arm64")) { throw "--smoke output missing expected 'arch=Arm64'." }
+
+      - name: "Smoke 3: GUI launch (main window appears and survives)"
+        shell: pwsh
+        run: |
+          Add-Type -TypeDefinition @'
+          using System;
+          using System.Collections.Generic;
+          using System.Runtime.InteropServices;
+          using System.Text;
+          public static class WinEnum {
+            delegate bool EnumProc(IntPtr h, IntPtr lp);
+            [DllImport("user32.dll")] static extern bool EnumWindows(EnumProc cb, IntPtr lp);
+            [DllImport("user32.dll")] static extern uint GetWindowThreadProcessId(IntPtr h, out uint pid);
+            [DllImport("user32.dll")] static extern bool IsWindowVisible(IntPtr h);
+            [DllImport("user32.dll", CharSet = CharSet.Unicode)] static extern int GetWindowText(IntPtr h, StringBuilder sb, int n);
+            [DllImport("user32.dll")] static extern IntPtr GetWindow(IntPtr h, uint cmd);
+            public static List<string> List(int pid) {
+              var r = new List<string>();
+              EnumWindows((h, lp) => {
+                uint wpid; GetWindowThreadProcessId(h, out wpid);
+                if (wpid == pid) {
+                  var sb = new StringBuilder(512); GetWindowText(h, sb, 512);
+                  r.Add((IsWindowVisible(h) ? "visible" : "hidden") + "|" + (GetWindow(h, 4) != IntPtr.Zero ? "owned" : "unowned") + "|" + sb);
+                }
+                return true;
+              }, IntPtr.Zero);
+              return r;
+            }
+          }
+          '@
+          $dir = Join-Path $env:RUNNER_TEMP "arm64-artifact/PressureCalculator"
+          $p = Start-Process -FilePath (Join-Path $dir "PressureCalculator.exe") -WorkingDirectory $dir -PassThru
+          $deadline = (Get-Date).AddSeconds(480)
+          $shown = $false
+          $lastLog = [DateTime]::MinValue
+          while ((Get-Date) -lt $deadline) {
+            if ($p.HasExited) { throw "PressureCalculator.exe exited prematurely (exit $($p.ExitCode))." }
+            $windows = [WinEnum]::List($p.Id)
+            if ($windows | Where-Object { $_ -like 'visible|unowned|Pressure Calculator*' }) { $shown = $true; break }
+            if (((Get-Date) - $lastLog).TotalSeconds -ge 30) {
+              $p.Refresh()
+              Write-Host ("t={0:f0}s cpu={1:f1}s windows: {2}" -f ((Get-Date) - $p.StartTime).TotalSeconds, $p.TotalProcessorTime.TotalSeconds, ($windows -join ' / '))
+              $lastLog = Get-Date
+            }
+            Start-Sleep -Seconds 3
+          }
+          if (-not $shown) {
+            Write-Host "Final window list: $(([WinEnum]::List($p.Id)) -join ' / ')"
+            Stop-Process -Id $p.Id -Force
+            throw "PressureCalculator main window did not appear within 480 s."
+          }
+          Write-Host "Main window appeared."
+          Start-Sleep -Seconds 10
+          if ($p.HasExited) { throw "PressureCalculator.exe crashed shortly after showing the main window (exit $($p.ExitCode))." }
+          Stop-Process -Id $p.Id -Force
+          Write-Host "GUI launch smoke OK."
+
+      - name: "Smoke 4: arm64 MSI (per-user install, --smoke, uninstall)"
+        shell: pwsh
+        run: |
+          # MSI の Template/UpgradeCode/ProductVersion 検査はビルド側 (x64 ランナー、build-arm64-portable.yml) で実施済み。
+          $msi = Join-Path $env:RUNNER_TEMP "arm64-msi/${{ steps.names.outputs.msi_name }}"
+          if (-not (Test-Path $msi)) { throw "MSI artifact not found: $msi" }
+          $hasDesktop = $false
+          try { $hasDesktop = ((dotnet --list-runtimes) | Select-String "Microsoft.WindowsDesktop.App 10\.") -ne $null } catch {}
+          if (-not $hasDesktop) {
+            Write-Host "Installing .NET 10 Desktop Runtime (arm64) for the smoke test..."
+            Invoke-WebRequest https://dot.net/v1/dotnet-install.ps1 -OutFile "$env:RUNNER_TEMP\dotnet-install.ps1"
+            & "$env:RUNNER_TEMP\dotnet-install.ps1" -Runtime windowsdesktop -Channel 10.0 -Architecture arm64 -InstallDir "$env:RUNNER_TEMP\dotnet"
+            $env:DOTNET_ROOT = "$env:RUNNER_TEMP\dotnet"
+          }
+          $p = Start-Process msiexec -ArgumentList '/i', "`"$msi`"", '/qn', '/l*v', "$env:RUNNER_TEMP\msi-install.log" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "MSI install failed (exit $($p.ExitCode)). See msi-install.log artifact." }
+          $appDir = "$env:LOCALAPPDATA\Crystallography Software\PressureCalculator"
+          if (-not (Test-Path "$appDir\PressureCalculator.exe")) { throw "installed PressureCalculator.exe missing in $appDir" }
+          $out = Join-Path $env:RUNNER_TEMP "msi-smoke-result.txt"
+          $p = Start-Process -FilePath "$appDir\PressureCalculator.exe" -ArgumentList @("--smoke", "`"$out`"") -WorkingDirectory $appDir -PassThru
+          if (-not $p.WaitForExit(600000)) { Stop-Process -Id $p.Id -Force; throw "--smoke (MSI install) did not finish within 10 minutes." }
+          if (-not (Test-Path $out)) { throw "--smoke produced no output file (exit $($p.ExitCode))." }
+          $result = Get-Content $out -Raw
+          Write-Host $result
+          if ($p.ExitCode -ne 0) { throw "--smoke reported failure (exit $($p.ExitCode))." }
+          if ($result -notmatch [regex]::Escape("arch=Arm64")) { throw "--smoke output missing expected 'arch=Arm64'." }
+          $p = Start-Process msiexec -ArgumentList '/x', "`"$msi`"", '/qn', '/l*v', "$env:RUNNER_TEMP\msi-uninstall.log" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "MSI uninstall failed (exit $($p.ExitCode))." }
+          if (Test-Path "$appDir\PressureCalculator.exe") { throw "uninstall left PressureCalculator.exe behind" }
+          Write-Host "MSI smoke OK (install -> --smoke -> uninstall)."
+
+      - name: Upload smoke diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: smoke-arm64-diagnostics
+          path: |
+            ${{ runner.temp }}/smoke-result.txt
+            ${{ runner.temp }}/msi-smoke-result.txt
+            ${{ runner.temp }}/msi-install.log
+            ${{ runner.temp }}/msi-uninstall.log
+          if-no-files-found: ignore
+
+      - name: Create release ZIP and stage arm64 assets
+        shell: pwsh
+        run: |
+          $out = Join-Path $env:RUNNER_TEMP "arm64-out"
+          New-Item -ItemType Directory -Force -Path $out | Out-Null
+          $zip = Join-Path $out "${{ steps.names.outputs.zip_name }}"
+          Compress-Archive -Path (Join-Path $env:RUNNER_TEMP "arm64-artifact/PressureCalculator") -DestinationPath $zip -Force
+          $msi = Join-Path $env:RUNNER_TEMP "arm64-msi/${{ steps.names.outputs.msi_name }}"
+          if (-not (Test-Path $msi)) { throw "MSI not found: $msi" }
+          Copy-Item $msi $out
+          Get-ChildItem $out | ForEach-Object { Write-Host "arm64 asset: $($_.Name) ($($_.Length) bytes)" }
+
+      - name: Upload arm64 release assets
+        uses: actions/upload-artifact@v6
+        with:
+          name: arm64-release-assets
+          path: ${{ runner.temp }}/arm64-out
+
+  # ---- 5. release: x64 必須・arm64 は揃っていれば一緒に、1 回の gh release create で原子的に公開 ----
+  release:
+    needs: [prepare, build-x64, build-arm64, smoke-arm64]
+    if: ${{ !cancelled() && needs.prepare.outputs.needed == 'true' && needs.build-x64.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Download x64 release assets
+        uses: actions/download-artifact@v7
+        with:
+          name: x64-release-assets
+          path: ${{ runner.temp }}/x64
+
+      - name: Download arm64 release assets
+        if: ${{ needs.build-arm64.result == 'success' && needs.smoke-arm64.result == 'success' }}
+        uses: actions/download-artifact@v7
+        with:
+          name: arm64-release-assets
+          path: ${{ runner.temp }}/arm64
+
+      - name: Create tag and GitHub Release
+        id: create
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          ARM64_BUILD: ${{ needs.build-arm64.result }}
+          ARM64_SMOKE: ${{ needs.smoke-arm64.result }}
+          HISTORY_LINE: ${{ needs.prepare.outputs.history_line }}
+        run: |
+          $ver = "${{ needs.prepare.outputs.version }}"
+          $tag = "${{ needs.prepare.outputs.tag }}"
+          $historyLine = $env:HISTORY_LINE
+          $dryRun = $env:DRY_RUN -eq 'true'
+          $arm64Ok = ($env:ARM64_BUILD -eq 'success') -and ($env:ARM64_SMOKE -eq 'success')
+
+          $x64 = Join-Path $env:RUNNER_TEMP "x64"
+          $assets = @(
+            (Join-Path $x64 "PressureCalculator-setup.msi")
+            (Join-Path $x64 "PressureCalculatorSetup.msi")
+            (Join-Path $x64 "PressureCalculator-v.$ver.zip")
+          )
+
+          if ($arm64Ok) {
+            $arm64 = Join-Path $env:RUNNER_TEMP "arm64"
+            $assets += (Join-Path $arm64 "PressureCalculator-v.${ver}_arm64.zip")
+            $assets += (Join-Path $arm64 "PressureCalculator-setup_arm64.msi")
+            $mark = ""
+            $footnote = @()
+          } else {
+            Write-Warning "ARM64 build/smoke did not succeed (build=$env:ARM64_BUILD smoke=$env:ARM64_SMOKE); publishing x64-only with footnote."
+            $mark = "&dagger;"
+            $footnote = @("", "&dagger; Arm64 files are attached after on-device verification and may appear slightly later than the x64 files.")
+          }
+
+          $notes = @(
+            $historyLine
+            ""
+            "| Download | Description |"
+            "|---|---|"
+            "| **[PressureCalculator-setup.msi](https://github.com/seto77/PressureCalculator/releases/download/v.$ver/PressureCalculator-setup.msi)** | **Recommended.** Installer for ordinary (x64) Windows PCs. |"
+            "| [PressureCalculator-setup_arm64.msi](https://github.com/seto77/PressureCalculator/releases/download/v.$ver/PressureCalculator-setup_arm64.msi) | Installer for Windows on Arm (Snapdragon PCs, or Apple Silicon Macs running Windows via virtualization, etc.).$mark |"
+            "| [PressureCalculator-v.$ver.zip](https://github.com/seto77/PressureCalculator/releases/download/v.$ver/PressureCalculator-v.$ver.zip) | Portable (x64): no installation, self-contained. Suitable for PCs where you have no administrator rights. |"
+            "| [PressureCalculator-v.${ver}_arm64.zip](https://github.com/seto77/PressureCalculator/releases/download/v.$ver/PressureCalculator-v.${ver}_arm64.zip) | Portable for Windows on Arm: no installation, no administrator rights needed.$mark |"
+            "| PressureCalculatorSetup.msi | Identical to PressureCalculator-setup.msi (legacy name for auto-update from older versions). |"
+          ) + $footnote
+          $notesPath = Join-Path $env:RUNNER_TEMP "release-notes.txt"
+          $notes | Set-Content -Path $notesPath -Encoding UTF8
+
+          foreach ($a in $assets) { if (-not (Test-Path $a)) { throw "Release asset missing: $a" } }
+
+          if ($dryRun) {
+            Write-Host "=== DRY RUN: would 'gh release create $tag' with assets: ==="
+            $assets | ForEach-Object { Write-Host "  $_" }
+            Write-Host "=== notes ==="; Get-Content $notesPath | ForEach-Object { Write-Host $_ }
+            $stage = Join-Path $env:RUNNER_TEMP "release-staged"
+            New-Item -ItemType Directory -Force -Path $stage | Out-Null
+            $assets | ForEach-Object { Copy-Item $_ $stage }
+            Copy-Item $notesPath $stage
+            "staged=$stage" >> $env:GITHUB_OUTPUT
+            return
+          }
+
+          # 原子的: tag 未存在時に --target のコミットへ tag を作成し release と一括で作る (orphan tag を防ぐ)
+          # 260625Cl -R 必須: release job は checkout しない (artifact DL のみ) ため、-R が無いと gh が
+          #   リポジトリを特定できず "fatal: not a git repository" で失敗する。
+          gh release create $tag $assets `
+            -R $env:GITHUB_REPOSITORY `
+            --target $env:GITHUB_SHA `
+            --title "PressureCalculator $tag" `
+            --notes-file $notesPath
+          if ($LASTEXITCODE -ne 0) { throw "gh release create failed (exit $LASTEXITCODE)." }
+          Write-Host "Released $tag with $($assets.Count) assets (arm64Ok=$arm64Ok)."
+
+      - name: Upload staged release assets (dry-run inspection)
+        if: ${{ inputs.dry_run }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: release-staged-${{ needs.prepare.outputs.tag }}
+          path: ${{ steps.create.outputs.staged }}
