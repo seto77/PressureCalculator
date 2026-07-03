@@ -33,7 +33,7 @@ internal static class GuiCapture
         Application.SetDefaultFont(Crystallography.Controls.FontHelper.GetUIFont());
 
         int exitCode = 0;
-        var f = new FormMain();
+        var f = new FormMain { SuppressRegistrySave = true };//260704Cl: キャプチャ実行でユーザー設定 (Culture/ウィンドウ状態) を上書きしない
         f.Shown += (s, e) =>
         {
             try

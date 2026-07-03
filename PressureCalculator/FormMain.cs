@@ -80,9 +80,13 @@ namespace PressureCalculator
         {
         }
 
+        //260704Cl 追加: GuiCapture (--capture) 実行時は設定を保存しない (キャプチャ用のカルチャ・ウィンドウ状態でユーザー設定を汚染しないため)
+        internal bool SuppressRegistrySave = false;
+
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveInitialRegistry();
+            if (!SuppressRegistrySave)//260704Cl 追加
+                SaveInitialRegistry();
         }
 
         #endregion
