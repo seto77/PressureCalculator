@@ -1,12 +1,13 @@
 # Traffic Data: PressureCalculator
 
-Last updated: 2026-07-28
+Last updated: 2026-07-29
 
 ## Views
 
 ### Daily (最大14日保持)
 | Date | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
+| 2026-07-28 | 0 | 0 |
 | 2026-07-27 | 0 | 0 |
 | 2026-07-26 | 0 | 0 |
 | 2026-07-25 | 0 | 0 |
@@ -19,7 +20,6 @@ Last updated: 2026-07-28
 | 2026-07-18 | 0 | 0 |
 | 2026-07-17 | 0 | 0 |
 | 2026-07-16 | 0 | 0 |
-| 2026-07-15 | 0 | 0 |
 
 ### Weekly (最大14週保持)
 | Period | Total Views | Unique Visitors |
@@ -58,6 +58,7 @@ Last updated: 2026-07-28
 ### Daily (最大14日保持)
 | Date | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
+| 2026-07-28 | 1 | 1 |
 | 2026-07-27 | 5 | 4 |
 | 2026-07-26 | 24 | 12 |
 | 2026-07-25 | 4 | 4 |
@@ -70,12 +71,11 @@ Last updated: 2026-07-28
 | 2026-07-18 | 11 | 7 |
 | 2026-07-17 | 3 | 3 |
 | 2026-07-16 | 43 | 19 |
-| 2026-07-15 | 0 | 0 |
 
 ### Weekly (最大14週保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026-W31 | 5 | 4 |
+| 2026-W31 | 6 | 5 |
 | 2026-W30 | 62 | 42 |
 | 2026-W29 | 72 | 39 |
 | 2026-W28 | 0 | 0 |
@@ -93,7 +93,7 @@ Last updated: 2026-07-28
 ### Monthly (最大12か月保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026-07 | 143 | 88 |
+| 2026-07 | 144 | 89 |
 | 2026-06 | 206 | 109 |
 | 2026-05 | 315 | 167 |
 | 2026-04 | 219 | 111 |
@@ -102,20 +102,20 @@ Last updated: 2026-07-28
 ### Yearly (無制限)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026 | 884 | 476 |
+| 2026 | 885 | 477 |
 
 ## Referrers
 
 ### Weekly (最大2週保持)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
-| 2026-W31 | github.com | 2 | 2 |
+| 2026-W31 | github.com | 3 | 3 |
 | 2026-W30 | github.com | 10 | 7 |
 
 ### Monthly (最大3か月保持)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
-| 2026-07 | github.com | 20 | 13 |
+| 2026-07 | github.com | 21 | 14 |
 | 2026-06 | github.com | 217 | 51 |
 | 2026-06 | Bing | 13 | 13 |
 | 2026-05 | Google | 276 | 72 |
@@ -125,7 +125,7 @@ Last updated: 2026-07-28
 ### Yearly (無制限)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
-| 2026 | github.com | 659 | 165 |
+| 2026 | github.com | 660 | 166 |
 | 2026 | Google | 338 | 79 |
 | 2026 | Bing | 30 | 30 |
 
@@ -134,9 +134,9 @@ Last updated: 2026-07-28
 ### Weekly (最大2週保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026-W31 | /seto77/PressureCalculator | Overview | 2 | 2 |
-| 2026-W31 | /seto77/PressureCalculator/commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | /commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | 2 | 2 |
-| 2026-W31 | /seto77/PressureCalculator/commits/master | /commits/master | 2 | 2 |
+| 2026-W31 | /seto77/PressureCalculator | Overview | 3 | 3 |
+| 2026-W31 | /seto77/PressureCalculator/commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | /commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | 3 | 3 |
+| 2026-W31 | /seto77/PressureCalculator/commits/master | /commits/master | 3 | 3 |
 | 2026-W30 | /seto77/PressureCalculator | Overview | 8 | 7 |
 | 2026-W30 | /seto77/PressureCalculator/commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | /commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | 6 | 6 |
 | 2026-W30 | /seto77/PressureCalculator/commits/master | /commits/master | 6 | 6 |
@@ -145,9 +145,9 @@ Last updated: 2026-07-28
 ### Monthly (最大3か月保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026-07 | /seto77/PressureCalculator | Overview | 14 | 13 |
-| 2026-07 | /seto77/PressureCalculator/commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | /commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | 8 | 8 |
-| 2026-07 | /seto77/PressureCalculator/commits/master | /commits/master | 8 | 8 |
+| 2026-07 | /seto77/PressureCalculator | Overview | 15 | 14 |
+| 2026-07 | /seto77/PressureCalculator/commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | /commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | 9 | 9 |
+| 2026-07 | /seto77/PressureCalculator/commits/master | /commits/master | 9 | 9 |
 | 2026-07 | /seto77/PressureCalculator/issues | /issues | 6 | 6 |
 | 2026-06 | /seto77/PressureCalculator | Overview | 58 | 41 |
 | 2026-06 | /seto77/PressureCalculator/tree/master | /tree/master | 33 | 6 |
@@ -178,7 +178,7 @@ Last updated: 2026-07-28
 ### Yearly (無制限)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026 | /seto77/PressureCalculator | Overview | 289 | 202 |
+| 2026 | /seto77/PressureCalculator | Overview | 290 | 203 |
 | 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 235 | 102 |
 | 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 178 | 52 |
 | 2026 | /seto77/PressureCalculator/releases | /releases | 138 | 138 |
@@ -192,8 +192,8 @@ Last updated: 2026-07-28
 | 2026 | /seto77/PressureCalculator/blame/master/LICENSE.md | /blame/master/LICENSE.md | 13 | 13 |
 | 2026 | /seto77/PressureCalculator/commit/21b0ee04dc9b837d0577b856d1245fb8933f34aa | /commit/21b0ee04dc9b837d0577b856d1245fb8933f34aa | 13 | 13 |
 | 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator/Properties | /tree/master/PressureCalculator/Properties | 9 | 9 |
-| 2026 | /seto77/PressureCalculator/commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | /commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | 8 | 8 |
-| 2026 | /seto77/PressureCalculator/commits/master | /commits/master | 8 | 8 |
+| 2026 | /seto77/PressureCalculator/commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | /commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | 9 | 9 |
+| 2026 | /seto77/PressureCalculator/commits/master | /commits/master | 9 | 9 |
 | 2026 | /seto77/PressureCalculator/issues | /issues | 6 | 6 |
 | 2026 | /seto77/PressureCalculator/blame/master/PressureCalculatorSetup/setup.exe | /blame/master/PressureCalculatorSetup/setup.exe | 5 | 5 |
 | 2026 | /seto77/PressureCalculator/commit/cdbf23acf3d88ebcc89e264a5729bf6ebba39ba0 | /commit/cdbf23acf3d88ebcc89e264a5729bf6ebba39ba0 | 5 | 5 |
@@ -222,6 +222,7 @@ Last updated: 2026-07-28
 ### Daily (最大14日保持)
 | Date | Stars | Forks | Open Issues | Watchers |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-07-29 | 1 | 0 | 0 | 1 |
 | 2026-07-28 | 1 | 0 | 0 | 1 |
 | 2026-07-27 | 1 | 0 | 0 | 1 |
 | 2026-07-26 | 1 | 0 | 0 | 1 |
@@ -265,4 +266,4 @@ Last updated: 2026-07-28
 | ---- | ---- | ---- | ---- | ---- |
 | 2026 | 1 | 0 | 0 | 1 |
 
-<!-- meta: last_collected_paths=2026-07-28 last_collected_referrers=2026-07-28 -->
+<!-- meta: last_collected_paths=2026-07-29 last_collected_referrers=2026-07-29 -->
