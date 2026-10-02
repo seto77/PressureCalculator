@@ -1,12 +1,13 @@
 # Traffic Data: PressureCalculator
 
-Last updated: 2026-10-01
+Last updated: 2026-10-02
 
 ## Views
 
 ### Daily (最大14日保持)
 | Date | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
+| 2026-10-01 | 0 | 0 |
 | 2026-09-30 | 1 | 1 |
 | 2026-09-29 | 0 | 0 |
 | 2026-09-28 | 0 | 0 |
@@ -19,7 +20,6 @@ Last updated: 2026-10-01
 | 2026-09-21 | 0 | 0 |
 | 2026-09-20 | 0 | 0 |
 | 2026-09-19 | 0 | 0 |
-| 2026-09-18 | 0 | 0 |
 
 ### Weekly (最大14週保持)
 | Period | Total Views | Unique Visitors |
@@ -42,6 +42,7 @@ Last updated: 2026-10-01
 ### Monthly (最大12か月保持)
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
+| 2026-10 | 0 | 0 |
 | 2026-09 | 6 | 5 |
 | 2026-08 | 3 | 3 |
 | 2026-07 | 5 | 2 |
@@ -60,6 +61,7 @@ Last updated: 2026-10-01
 ### Daily (最大14日保持)
 | Date | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
+| 2026-10-01 | 18 | 12 |
 | 2026-09-30 | 4 | 3 |
 | 2026-09-29 | 11 | 6 |
 | 2026-09-28 | 4 | 3 |
@@ -72,12 +74,11 @@ Last updated: 2026-10-01
 | 2026-09-21 | 1 | 1 |
 | 2026-09-20 | 12 | 7 |
 | 2026-09-19 | 14 | 9 |
-| 2026-09-18 | 4 | 3 |
 
 ### Weekly (最大14週保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026-W40 | 19 | 12 |
+| 2026-W40 | 37 | 24 |
 | 2026-W39 | 53 | 37 |
 | 2026-W38 | 56 | 35 |
 | 2026-W37 | 41 | 28 |
@@ -95,6 +96,7 @@ Last updated: 2026-10-01
 ### Monthly (最大12か月保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
+| 2026-10 | 18 | 12 |
 | 2026-09 | 196 | 134 |
 | 2026-08 | 128 | 86 |
 | 2026-07 | 151 | 95 |
@@ -106,7 +108,7 @@ Last updated: 2026-10-01
 ### Yearly (無制限)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026 | 1216 | 703 |
+| 2026 | 1234 | 715 |
 
 ## Referrers
 
@@ -139,7 +141,7 @@ Last updated: 2026-10-01
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
 | 2026-W40 | /seto77/PressureCalculator/releases | /releases | 12 | 8 |
-| 2026-W40 | /seto77/PressureCalculator | Overview | 2 | 2 |
+| 2026-W40 | /seto77/PressureCalculator | Overview | 3 | 3 |
 | 2026-W40 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 1 | 1 |
 | 2026-W39 | /seto77/PressureCalculator/releases | /releases | 21 | 14 |
 | 2026-W39 | /seto77/PressureCalculator | Overview | 7 | 7 |
@@ -149,7 +151,7 @@ Last updated: 2026-10-01
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
 | 2026-10 | /seto77/PressureCalculator/releases | /releases | 3 | 2 |
-| 2026-10 | /seto77/PressureCalculator | Overview | 1 | 1 |
+| 2026-10 | /seto77/PressureCalculator | Overview | 2 | 2 |
 | 2026-09 | /seto77/PressureCalculator/releases | /releases | 39 | 26 |
 | 2026-09 | /seto77/PressureCalculator | Overview | 28 | 28 |
 | 2026-09 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 14 | 14 |
@@ -160,7 +162,7 @@ Last updated: 2026-10-01
 ### Yearly (無制限)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026 | /seto77/PressureCalculator | Overview | 355 | 268 |
+| 2026 | /seto77/PressureCalculator | Overview | 356 | 269 |
 | 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 235 | 102 |
 | 2026 | /seto77/PressureCalculator/releases | /releases | 180 | 166 |
 | 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 178 | 52 |
@@ -204,6 +206,7 @@ Last updated: 2026-10-01
 ### Daily (最大14日保持)
 | Date | Stars | Forks | Open Issues | Watchers |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-10-02 | 1 | 0 | 0 | 1 |
 | 2026-10-01 | 1 | 0 | 0 | 1 |
 | 2026-09-30 | 1 | 0 | 0 | 1 |
 | 2026-09-29 | 1 | 0 | 0 | 1 |
@@ -217,7 +220,6 @@ Last updated: 2026-10-01
 | 2026-09-21 | 1 | 0 | 0 | 1 |
 | 2026-09-20 | 1 | 0 | 0 | 1 |
 | 2026-09-19 | 1 | 0 | 0 | 1 |
-| 2026-09-18 | 1 | 0 | 0 | 1 |
 
 ### Weekly (最大14週保持)
 | Period | Stars | Forks | Open Issues | Watchers |
@@ -251,4 +253,4 @@ Last updated: 2026-10-01
 | ---- | ---- | ---- | ---- | ---- |
 | 2026 | 1 | 0 | 0 | 1 |
 
-<!-- meta: last_collected_paths=2026-10-01 last_collected_referrers=2026-10-01 -->
+<!-- meta: last_collected_paths=2026-10-02 last_collected_referrers=2026-10-02 -->
