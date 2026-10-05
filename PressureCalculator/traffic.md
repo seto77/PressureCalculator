@@ -1,12 +1,13 @@
 # Traffic Data: PressureCalculator
 
-Last updated: 2026-10-04
+Last updated: 2026-10-05
 
 ## Views
 
 ### Daily (最大14日保持)
 | Date | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
+| 2026-10-04 | 0 | 0 |
 | 2026-10-03 | 1 | 1 |
 | 2026-10-02 | 1 | 1 |
 | 2026-10-01 | 0 | 0 |
@@ -19,7 +20,6 @@ Last updated: 2026-10-04
 | 2026-09-24 | 0 | 0 |
 | 2026-09-23 | 0 | 0 |
 | 2026-09-22 | 0 | 0 |
-| 2026-09-21 | 0 | 0 |
 
 ### Weekly (最大14週保持)
 | Period | Total Views | Unique Visitors |
@@ -37,7 +37,6 @@ Last updated: 2026-10-04
 | 2026-W30 | 3 | 1 |
 | 2026-W29 | 0 | 0 |
 | 2026-W28 | 2 | 1 |
-| 2026-W27 | 0 | 0 |
 
 ### Monthly (最大12か月保持)
 | Period | Total Views | Unique Visitors |
@@ -61,6 +60,7 @@ Last updated: 2026-10-04
 ### Daily (最大14日保持)
 | Date | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
+| 2026-10-04 | 5 | 3 |
 | 2026-10-03 | 10 | 7 |
 | 2026-10-02 | 16 | 9 |
 | 2026-10-01 | 18 | 12 |
@@ -73,12 +73,11 @@ Last updated: 2026-10-04
 | 2026-09-24 | 6 | 4 |
 | 2026-09-23 | 4 | 3 |
 | 2026-09-22 | 10 | 6 |
-| 2026-09-21 | 1 | 1 |
 
 ### Weekly (最大14週保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026-W40 | 63 | 40 |
+| 2026-W40 | 68 | 43 |
 | 2026-W39 | 53 | 37 |
 | 2026-W38 | 56 | 35 |
 | 2026-W37 | 41 | 28 |
@@ -91,12 +90,11 @@ Last updated: 2026-10-04
 | 2026-W30 | 62 | 42 |
 | 2026-W29 | 72 | 39 |
 | 2026-W28 | 0 | 0 |
-| 2026-W27 | 4 | 3 |
 
 ### Monthly (最大12か月保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026-10 | 44 | 28 |
+| 2026-10 | 49 | 31 |
 | 2026-09 | 196 | 134 |
 | 2026-08 | 128 | 86 |
 | 2026-07 | 151 | 95 |
@@ -108,7 +106,7 @@ Last updated: 2026-10-04
 ### Yearly (無制限)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026 | 1260 | 731 |
+| 2026 | 1265 | 734 |
 
 ## Referrers
 
@@ -117,8 +115,6 @@ Last updated: 2026-10-04
 | ---- | ---- | ---- | ---- |
 | 2026-W40 | Bing | 8 | 4 |
 | 2026-W40 | github.com | 1 | 1 |
-| 2026-W39 | Bing | 14 | 7 |
-| 2026-W39 | github.com | 7 | 7 |
 
 ### Monthly (最大3か月保持)
 | Period | Referrer | Total Count | Unique |
@@ -140,17 +136,15 @@ Last updated: 2026-10-04
 ### Weekly (最大2週保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-W41 | /seto77/PressureCalculator | Overview | 3 | 3 |
 | 2026-W40 | /seto77/PressureCalculator/releases | /releases | 12 | 8 |
 | 2026-W40 | /seto77/PressureCalculator | Overview | 8 | 8 |
 | 2026-W40 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 1 | 1 |
-| 2026-W39 | /seto77/PressureCalculator/releases | /releases | 21 | 14 |
-| 2026-W39 | /seto77/PressureCalculator | Overview | 7 | 7 |
-| 2026-W39 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 7 | 7 |
 
 ### Monthly (最大3か月保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026-10 | /seto77/PressureCalculator | Overview | 7 | 7 |
+| 2026-10 | /seto77/PressureCalculator | Overview | 10 | 10 |
 | 2026-10 | /seto77/PressureCalculator/releases | /releases | 3 | 2 |
 | 2026-09 | /seto77/PressureCalculator/releases | /releases | 39 | 26 |
 | 2026-09 | /seto77/PressureCalculator | Overview | 28 | 28 |
@@ -162,7 +156,7 @@ Last updated: 2026-10-04
 ### Yearly (無制限)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026 | /seto77/PressureCalculator | Overview | 361 | 274 |
+| 2026 | /seto77/PressureCalculator | Overview | 364 | 277 |
 | 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 235 | 102 |
 | 2026 | /seto77/PressureCalculator/releases | /releases | 180 | 166 |
 | 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 178 | 52 |
@@ -191,7 +185,7 @@ Last updated: 2026-10-04
 
 | Release Tag | Release Date | Asset Name | Download Count |
 | ---- | ---- | ---- | ---- |
-| v.1.009 | 2025-10-16 | PressureCalculatorSetup.msi | 35 |
+| v.1.009 | 2025-10-16 | PressureCalculatorSetup.msi | 36 |
 | v.1.008 | 2025-10-16 | PressureCalculatorSetup.msi | 8 |
 | v.1.007 | 2023-10-11 | PressureCalculatorSetup.msi | 72 |
 | v.1.004 | 2023-10-07 | PressureCalculatorSetup.msi | 5 |
@@ -199,13 +193,14 @@ Last updated: 2026-10-04
 | v.1.002 | 2021-07-03 | PressureCalculatorSetup.msi | 13 |
 | v.1.001 | 2021-05-15 | PressureCalculatorSetup.msi | 11 |
 
-**TOTAL: 184**
+**TOTAL: 185**
 
 ## Stats
 
 ### Daily (最大14日保持)
 | Date | Stars | Forks | Open Issues | Watchers |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-10-05 | 1 | 0 | 0 | 1 |
 | 2026-10-04 | 1 | 0 | 0 | 1 |
 | 2026-10-03 | 1 | 0 | 0 | 1 |
 | 2026-10-02 | 1 | 0 | 0 | 1 |
@@ -219,11 +214,11 @@ Last updated: 2026-10-04
 | 2026-09-24 | 1 | 0 | 0 | 1 |
 | 2026-09-23 | 1 | 0 | 0 | 1 |
 | 2026-09-22 | 1 | 0 | 0 | 1 |
-| 2026-09-21 | 1 | 0 | 0 | 1 |
 
 ### Weekly (最大14週保持)
 | Period | Stars | Forks | Open Issues | Watchers |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-W41 | 1 | 0 | 0 | 1 |
 | 2026-W40 | 1 | 0 | 0 | 1 |
 | 2026-W39 | 1 | 0 | 0 | 1 |
 | 2026-W38 | 1 | 0 | 0 | 1 |
@@ -253,4 +248,4 @@ Last updated: 2026-10-04
 | ---- | ---- | ---- | ---- | ---- |
 | 2026 | 1 | 0 | 0 | 1 |
 
-<!-- meta: last_collected_paths=2026-10-04 last_collected_referrers=2026-10-04 -->
+<!-- meta: last_collected_paths=2026-10-05 last_collected_referrers=2026-10-05 -->
