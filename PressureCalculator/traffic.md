@@ -1,12 +1,13 @@
 # Traffic Data: PressureCalculator
 
-Last updated: 2026-11-02
+Last updated: 2026-11-03
 
 ## Views
 
 ### Daily (最大14日保持)
 | Date | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
+| 2026-11-02 | 0 | 0 |
 | 2026-11-01 | 1 | 1 |
 | 2026-10-31 | 0 | 0 |
 | 2026-10-30 | 3 | 3 |
@@ -19,11 +20,11 @@ Last updated: 2026-11-02
 | 2026-10-23 | 0 | 0 |
 | 2026-10-22 | 0 | 0 |
 | 2026-10-21 | 2 | 1 |
-| 2026-10-20 | 0 | 0 |
 
 ### Weekly (最大14週保持)
 | Period | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
+| 2026-W45 | 0 | 0 |
 | 2026-W44 | 11 | 5 |
 | 2026-W43 | 5 | 4 |
 | 2026-W42 | 1 | 1 |
@@ -61,6 +62,7 @@ Last updated: 2026-11-02
 ### Daily (最大14日保持)
 | Date | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
+| 2026-11-02 | 19 | 12 |
 | 2026-11-01 | 10 | 5 |
 | 2026-10-31 | 16 | 10 |
 | 2026-10-30 | 16 | 9 |
@@ -73,11 +75,11 @@ Last updated: 2026-11-02
 | 2026-10-23 | 12 | 9 |
 | 2026-10-22 | 2 | 2 |
 | 2026-10-21 | 3 | 2 |
-| 2026-10-20 | 18 | 10 |
 
 ### Weekly (最大14週保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
+| 2026-W45 | 19 | 12 |
 | 2026-W44 | 62 | 39 |
 | 2026-W43 | 67 | 43 |
 | 2026-W42 | 97 | 60 |
@@ -95,7 +97,7 @@ Last updated: 2026-11-02
 ### Monthly (最大12か月保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026-11 | 10 | 5 |
+| 2026-11 | 29 | 17 |
 | 2026-10 | 305 | 197 |
 | 2026-09 | 196 | 134 |
 | 2026-08 | 128 | 86 |
@@ -108,21 +110,21 @@ Last updated: 2026-11-02
 ### Yearly (無制限)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026 | 1531 | 905 |
+| 2026 | 1550 | 917 |
 
 ## Referrers
 
 ### Weekly (最大2週保持)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
-| 2026-W45 | github.com | 4 | 4 |
+| 2026-W45 | github.com | 8 | 8 |
 | 2026-W44 | github.com | 14 | 14 |
 | 2026-W44 | Bing | 5 | 5 |
 
 ### Monthly (最大3か月保持)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
-| 2026-11 | github.com | 8 | 8 |
+| 2026-11 | github.com | 12 | 12 |
 | 2026-10 | Bing | 30 | 29 |
 | 2026-10 | github.com | 14 | 14 |
 | 2026-09 | github.com | 28 | 28 |
@@ -131,7 +133,7 @@ Last updated: 2026-11-02
 ### Yearly (無制限)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
-| 2026 | github.com | 732 | 238 |
+| 2026 | github.com | 736 | 242 |
 | 2026 | Google | 338 | 79 |
 | 2026 | Bing | 86 | 72 |
 
@@ -140,15 +142,15 @@ Last updated: 2026-11-02
 ### Weekly (最大2週保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026-W45 | /seto77/PressureCalculator | Overview | 5 | 5 |
-| 2026-W45 | /seto77/PressureCalculator/tree/master | /tree/master | 3 | 2 |
-| 2026-W45 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 2 | 1 |
-| 2026-W45 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 1 | 1 |
-| 2026-W45 | /seto77/PressureCalculator/releases/tag/v.1.007 | /releases/tag/v.1.007 | 1 | 1 |
-| 2026-W45 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 1 | 1 |
-| 2026-W45 | /seto77/PressureCalculator/tree/master/PressureCalculator/ZIP | /tree/master/PressureCalculator/ZIP | 1 | 1 |
-| 2026-W45 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 1 | 1 |
-| 2026-W45 | /seto77/pressurecalculator/blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | /blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | 1 | 1 |
+| 2026-W45 | /seto77/PressureCalculator | Overview | 10 | 10 |
+| 2026-W45 | /seto77/PressureCalculator/tree/master | /tree/master | 6 | 4 |
+| 2026-W45 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 4 | 2 |
+| 2026-W45 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 2 | 2 |
+| 2026-W45 | /seto77/PressureCalculator/releases/tag/v.1.007 | /releases/tag/v.1.007 | 2 | 2 |
+| 2026-W45 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 2 | 2 |
+| 2026-W45 | /seto77/PressureCalculator/tree/master/PressureCalculator/ZIP | /tree/master/PressureCalculator/ZIP | 2 | 2 |
+| 2026-W45 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 2 | 2 |
+| 2026-W45 | /seto77/pressurecalculator/blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | /blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | 2 | 2 |
 | 2026-W44 | /seto77/PressureCalculator | Overview | 19 | 19 |
 | 2026-W44 | /seto77/PressureCalculator/tree/master | /tree/master | 8 | 5 |
 | 2026-W44 | /seto77/PressureCalculator/releases/tag/v.1.007 | /releases/tag/v.1.007 | 7 | 7 |
@@ -163,15 +165,15 @@ Last updated: 2026-11-02
 ### Monthly (最大3か月保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026-11 | /seto77/PressureCalculator | Overview | 9 | 9 |
-| 2026-11 | /seto77/PressureCalculator/tree/master | /tree/master | 6 | 4 |
-| 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 4 | 2 |
-| 2026-11 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 2 | 2 |
-| 2026-11 | /seto77/PressureCalculator/releases/tag/v.1.007 | /releases/tag/v.1.007 | 2 | 2 |
-| 2026-11 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 2 | 2 |
-| 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculator/ZIP | /tree/master/PressureCalculator/ZIP | 2 | 2 |
-| 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 2 | 2 |
-| 2026-11 | /seto77/pressurecalculator/blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | /blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | 2 | 2 |
+| 2026-11 | /seto77/PressureCalculator | Overview | 14 | 14 |
+| 2026-11 | /seto77/PressureCalculator/tree/master | /tree/master | 9 | 6 |
+| 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 6 | 3 |
+| 2026-11 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 3 | 3 |
+| 2026-11 | /seto77/PressureCalculator/releases/tag/v.1.007 | /releases/tag/v.1.007 | 3 | 3 |
+| 2026-11 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 3 | 3 |
+| 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculator/ZIP | /tree/master/PressureCalculator/ZIP | 3 | 3 |
+| 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 3 | 3 |
+| 2026-11 | /seto77/pressurecalculator/blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | /blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | 3 | 3 |
 | 2026-10 | /seto77/PressureCalculator | Overview | 61 | 61 |
 | 2026-10 | /seto77/PressureCalculator/releases | /releases | 31 | 30 |
 | 2026-10 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 10 | 10 |
@@ -189,14 +191,14 @@ Last updated: 2026-11-02
 ### Yearly (無制限)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026 | /seto77/PressureCalculator | Overview | 424 | 337 |
+| 2026 | /seto77/PressureCalculator | Overview | 429 | 342 |
 | 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 235 | 102 |
 | 2026 | /seto77/PressureCalculator/releases | /releases | 208 | 194 |
 | 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 178 | 52 |
-| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 118 | 66 |
-| 2026 | /seto77/PressureCalculator/tree/master | /tree/master | 106 | 36 |
+| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 120 | 67 |
+| 2026 | /seto77/PressureCalculator/tree/master | /tree/master | 109 | 38 |
 | 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | /blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | 74 | 45 |
-| 2026 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 43 | 30 |
+| 2026 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 44 | 31 |
 | 2026 | /seto77/PressureCalculator/stargazers | /stargazers | 41 | 41 |
 | 2026 | /seto77/PressureCalculator/tree/master/Crystallography | /tree/master/Crystallography | 35 | 29 |
 | 2026 | /seto77/PressureCalculator/tree/master/references | /tree/master/references | 17 | 11 |
@@ -204,15 +206,15 @@ Last updated: 2026-11-02
 | 2026 | /seto77/PressureCalculator/commits/master | /commits/master | 14 | 14 |
 | 2026 | /seto77/PressureCalculator/blame/master/LICENSE.md | /blame/master/LICENSE.md | 13 | 13 |
 | 2026 | /seto77/PressureCalculator/commit/21b0ee04dc9b837d0577b856d1245fb8933f34aa | /commit/21b0ee04dc9b837d0577b856d1245fb8933f34aa | 13 | 13 |
-| 2026 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 12 | 12 |
+| 2026 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 13 | 13 |
+| 2026 | /seto77/pressurecalculator/blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | /blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | 10 | 10 |
 | 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator/Properties | /tree/master/PressureCalculator/Properties | 9 | 9 |
-| 2026 | /seto77/pressurecalculator/blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | /blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | 9 | 9 |
-| 2026 | /seto77/PressureCalculator/releases/tag/v.1.007 | /releases/tag/v.1.007 | 8 | 8 |
+| 2026 | /seto77/PressureCalculator/releases/tag/v.1.007 | /releases/tag/v.1.007 | 9 | 9 |
 | 2026 | /seto77/PressureCalculator/issues | /issues | 6 | 6 |
 | 2026 | /seto77/PressureCalculator/blame/master/PressureCalculatorSetup/setup.exe | /blame/master/PressureCalculatorSetup/setup.exe | 5 | 5 |
 | 2026 | /seto77/PressureCalculator/commit/cdbf23acf3d88ebcc89e264a5729bf6ebba39ba0 | /commit/cdbf23acf3d88ebcc89e264a5729bf6ebba39ba0 | 5 | 5 |
-| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator/ZIP | /tree/master/PressureCalculator/ZIP | 4 | 4 |
-| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 4 | 4 |
+| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator/ZIP | /tree/master/PressureCalculator/ZIP | 5 | 5 |
+| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 5 | 5 |
 | 2026 | /seto77/PressureCalculator/tree/master/Crystallography.Controls | /tree/master/Crystallography.Controls | 3 | 3 |
 | 2026 | /seto77/PressureCalculator/blob/master/PressureCalculator/FormMain.resx | /blob/master/PressureCalculator/FormMain.resx | 3 | 3 |
 | 2026 | /seto77/PressureCalculator/tree/master/Crystallography.Controls/Crystal | /tree/master/Crystallography.Controls/Crystal | 2 | 2 |
@@ -238,6 +240,7 @@ Last updated: 2026-11-02
 ### Daily (最大14日保持)
 | Date | Stars | Forks | Open Issues | Watchers |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-11-03 | 1 | 0 | 0 | 1 |
 | 2026-11-02 | 1 | 0 | 0 | 1 |
 | 2026-11-01 | 1 | 0 | 0 | 1 |
 | 2026-10-31 | 1 | 0 | 0 | 1 |
@@ -251,7 +254,6 @@ Last updated: 2026-11-02
 | 2026-10-23 | 1 | 0 | 0 | 1 |
 | 2026-10-22 | 1 | 0 | 0 | 1 |
 | 2026-10-21 | 1 | 0 | 0 | 1 |
-| 2026-10-20 | 1 | 0 | 0 | 1 |
 
 ### Weekly (最大14週保持)
 | Period | Stars | Forks | Open Issues | Watchers |
@@ -288,4 +290,4 @@ Last updated: 2026-11-02
 | ---- | ---- | ---- | ---- | ---- |
 | 2026 | 1 | 0 | 0 | 1 |
 
-<!-- meta: last_collected_paths=2026-11-02 last_collected_referrers=2026-11-02 -->
+<!-- meta: last_collected_paths=2026-11-03 last_collected_referrers=2026-11-03 -->
