@@ -15,7 +15,11 @@
     <!-- 260703Cl 追加: design-time ビルド (WinForms デザイナーの background build) では RID を外す。
          RID を無条件で持つと out-of-process デザイナーが別プロジェクトの基底クラス Crystallography.Controls.FormBase を
          ロードできず「基本クラス … を読み込めませんでした」になる (兄弟4アプリ実績)。 -->
-    <RuntimeIdentifier Condition="'$(DesignTimeBuild)' != 'true'">win-x64</RuntimeIdentifier>
+    <!-- 261105Cl 変更: sln の ARM64 構成 (-r 無し) で NETSDK1032 (RID win-x64 と PlatformTarget arm64 の不整合) になるため、
+         Platform=ARM64 のときだけ win-arm64 にする。x64/AnyCPU は従来通り win-x64。CI は -r を明示するので影響なし。
+         旧: <RuntimeIdentifier Condition="'$(DesignTimeBuild)' != 'true'">win-x64</RuntimeIdentifier> -->
+    <RuntimeIdentifier Condition="'$(DesignTimeBuild)' != 'true' and '$(Platform)' != 'ARM64'">win-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(DesignTimeBuild)' != 'true' and '$(Platform)' == 'ARM64'">win-arm64</RuntimeIdentifier>
   </PropertyGroup>
 
   <!-- 260703Cl 追加: arm64 は bin\Release を x64 と共有しない (x64 MSI への arm64 混入防止)。CSManager 同型 -->
