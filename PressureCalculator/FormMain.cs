@@ -460,8 +460,11 @@ namespace PressureCalculator
                         {
                             if (i + j > -1 && i + j < Original.Pt.Count)
                             {
-                                count += Original.Pt[i + j].Y * Math.Exp(-j * j / n / n);
-                                weight += Math.Exp(-j * j / n / n);
+                                //261105Cl 変更: j, n が int のため -j * j / n / n が整数除算になり、重みが exp(-floor(j²/n²)) の階段関数になっていた。double で計算する
+                                //count += Original.Pt[i + j].Y * Math.Exp(-j * j / n / n);
+                                //weight += Math.Exp(-j * j / n / n);
+                                count += Original.Pt[i + j].Y * Math.Exp(-(double)j * j / n / n);
+                                weight += Math.Exp(-(double)j * j / n / n);
                             }
                         }
                         OriginalSmooth.Pt.Add(new PointD(Original.Pt[i].X, count / weight));
@@ -508,8 +511,11 @@ namespace PressureCalculator
                         for (int j = -50; j <= 50; j++)
                             if (i + j > -1 && i + j < BottomProfile.Pt.Count)
                             {
-                                count += BottomProfile.Pt[i + j].Y * Math.Exp(-j * j / n / n);
-                                weight += Math.Exp(-j * j / n / n);
+                                //261105Cl 変更: 整数除算の修正 (上の元プロファイル側と同じ)
+                                //count += BottomProfile.Pt[i + j].Y * Math.Exp(-j * j / n / n);
+                                //weight += Math.Exp(-j * j / n / n);
+                                count += BottomProfile.Pt[i + j].Y * Math.Exp(-(double)j * j / n / n);
+                                weight += Math.Exp(-(double)j * j / n / n);
                             }
                         BottomProfileSmooth.Pt.Add(new PointD(BottomProfile.Pt[i].X, count / weight));
                     }
