@@ -140,6 +140,15 @@ namespace PressureCalculator
                 //this.radioButtonTempUnitC.Checked = (string)regKey.GetValue("radioButtonTempUnitC.Checked", "True") == "True";
                 this.radioButtonTempUnitC.Checked = (string)regKey.GetValue("radioButtonTempUnitC.Checked", "False") == "True";
 
+                // 261105Cl 追加: 測定 R1₀ (R1(T,P=0)) と「Ragan の式から計算」も保存・復元する (従来は起動のたびに Designer 既定 694.65 nm / オフへ戻っていた)。
+                //  キー名は既存の流儀 (コントロール名.Text / .Checked)。どちらのキーも過去のどの版でも書かれていない (R1₀ は 2021-05 の初版だけ "textBoxMaoRamda0.Text" に保存し、
+                //  その後このキーは参照R1 を入れていた) ので、古いレジストリから意味の違う値を読むことはない。キーが無ければ Designer 既定のまま。
+                //  参照R1/参照T/温度単位を読んだ後に置く: チェックが復元されると CheckedChanged → calcR1_0() が確定済みの入力で R1₀ を計算し直す。
+                var defaultR1_0 = numericBoxRubyR1_0.Value; // 261105Cl 追加: Designer 既定 (694.65 nm)
+                numericBoxRubyR1_0.Text = (string)regKey.GetValue("numericBoxRubyR1_0.Text", numericBoxRubyR1_0.Text); // 261105Cl 追加
+                if (numericBoxRubyR1_0.Value is not (>= 600 and <= 800)) // 261105Cl 追加: 参照R1 と同じく、ルビー R1 として明らかにおかしい値・読めない値は既定値へ
+                    numericBoxRubyR1_0.Value = defaultR1_0; // 261105Cl 追加
+                this.checkBoxRubyR1_0CalculatedFromRagan.Checked = (string)regKey.GetValue("checkBoxRubyR1_0CalculatedFromRagan.Checked", "False") == "True"; // 261105Cl 追加
 
                 regKey.Close();
             }
@@ -168,6 +177,9 @@ namespace PressureCalculator
 
             regKey.SetValue("radioButtonTempUnitK.Checked", radioButtonTempUnitK.Checked);
             regKey.SetValue("radioButtonTempUnitC.Checked", radioButtonTempUnitC.Checked);
+
+            regKey.SetValue("numericBoxRubyR1_0.Text", numericBoxRubyR1_0.Text); // 261105Cl 追加: 測定 R1₀
+            regKey.SetValue("checkBoxRubyR1_0CalculatedFromRagan.Checked", checkBoxRubyR1_0CalculatedFromRagan.Checked); // 261105Cl 追加: 「Ragan の式から計算」
 
             regKey.SetValue("Culture", Thread.CurrentThread.CurrentUICulture.Name);//260703Cl 追加: UI 言語の永続化 (Program.Main が起動時に読む)
 
