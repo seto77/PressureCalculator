@@ -1,0 +1,12 @@
+// Minimal stand-ins for Crystallography types used by EOS.cs / Spline.cs (harness only)
+using System;
+using System.Collections.Generic;
+namespace Crystallography {
+public struct PointD : IComparable {
+    public double X, Y;
+    public PointD(double x, double y) { X = x; Y = y; }
+    public int CompareTo(object obj) { int v = X.CompareTo(((PointD)obj).X); return v != 0 ? v : Y.CompareTo(((PointD)obj).Y); }
+}
+public class Profile { public List<PointD> Pt = new(); }
+public static class UniversalConstants { public const double A = 6.0221367E23; public const double R = 8.3144621; }
+}
