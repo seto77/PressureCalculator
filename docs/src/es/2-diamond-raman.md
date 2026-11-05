@@ -19,7 +19,7 @@ Tanto el espectro original como la derivada pueden suavizarse de forma independi
 |---|---|
 | Akahama (2004) | polinomio en la posición del borde; los coeficientes son editables |
 | Akahama (2006) | P = K₀ x [1 + ½(K₀′ − 1) x], x = Δν/ν₀, con K₀ (547 GPa) y K₀′ (3.75) editables; calibrada hasta el rango multimegabar |
-| Fratanduono et al. (2021, <300 GPa) | P = 503.77 x + 753.83 x² |
+| Fratanduono et al. (2021, <300 GPa) | P = 530.77 x + 753.83 x² |
 | Fratanduono et al. (2021, >200 GPa) | P = 199.49 − 852.78 x + 3103.8 x² |
 
 Las dos ramas de Fratanduono et al. (2021) se solapan entre 200 y 300 GPa; utilice la rama apropiada para su rango de presión.

@@ -19,7 +19,7 @@
 |---|---|
 | Akahama (2004) | 关于边缘位置的多项式；系数可编辑 |
 | Akahama (2006) | P = K₀ x [1 + ½(K₀′ − 1) x]，x = Δν/ν₀，K₀ (547 GPa) 与 K₀′ (3.75) 可编辑；标定范围可达数百 GPa |
-| Fratanduono et al. (2021, <300 GPa) | P = 503.77 x + 753.83 x² |
+| Fratanduono et al. (2021, <300 GPa) | P = 530.77 x + 753.83 x² |
 | Fratanduono et al. (2021, >200 GPa) | P = 199.49 − 852.78 x + 3103.8 x² |
 
 Fratanduono et al. (2021) 的两个分支在 200-300 GPa 之间相互重叠；请根据所处的压力范围选用合适的分支。

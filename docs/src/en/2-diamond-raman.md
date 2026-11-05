@@ -19,7 +19,7 @@ Both the original spectrum and the derivative can be smoothed independently with
 |---|---|
 | Akahama (2004) | polynomial in the edge position; the coefficients are editable |
 | Akahama (2006) | P = K₀ x [1 + ½(K₀′ − 1) x], x = Δν/ν₀, with editable K₀ (547 GPa) and K₀′ (3.75); calibrated up to the multimegabar range |
-| Fratanduono et al. (2021, <300 GPa) | P = 503.77 x + 753.83 x² |
+| Fratanduono et al. (2021, <300 GPa) | P = 530.77 x + 753.83 x² |
 | Fratanduono et al. (2021, >200 GPa) | P = 199.49 − 852.78 x + 3103.8 x² |
 
 The two Fratanduono et al. (2021) branches overlap between 200 and 300 GPa; use the branch appropriate for your pressure range.

@@ -19,7 +19,7 @@
 |---|---|
 | Akahama (2004) | 邊緣位置的多項式；係數可編輯 |
 | Akahama (2006) | P = K₀ x [1 + ½(K₀′ − 1) x], x = Δν/ν₀，K₀ (547 GPa) 與 K₀′ (3.75) 可編輯；校準範圍達數百 GPa（multimegabar）的超高壓區 |
-| Fratanduono et al. (2021, <300 GPa) | P = 503.77 x + 753.83 x² |
+| Fratanduono et al. (2021, <300 GPa) | P = 530.77 x + 753.83 x² |
 | Fratanduono et al. (2021, >200 GPa) | P = 199.49 − 852.78 x + 3103.8 x² |
 
 Fratanduono et al. (2021) 的兩個分支在 200-300 GPa 之間重疊；請依實驗的壓力範圍選用合適的分支。

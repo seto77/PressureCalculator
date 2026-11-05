@@ -1541,7 +1541,8 @@ namespace PressureCalculator
             label19.Name = "label19";
             label19.Size = new Size(387, 13);
             label19.TabIndex = 1;
-            label19.Text = "Fratanduono+ (2021, <300GPa):  P = 503.77 × Δν/ν0 + 753.83 × (Δν/ν0)² = ";
+            //label19.Text = "Fratanduono+ (2021, <300GPa):  P = 503.77 × Δν/ν0 + 753.83 × (Δν/ν0)² = "; //261105Cl 変更: 503.77 は誤記。計算 (FormMain.cs) と原論文 (Science 372, 1063: 530.77 ± 17) は 530.77
+            label19.Text = "Fratanduono+ (2021, <300GPa):  P = 530.77 × Δν/ν0 + 753.83 × (Δν/ν0)² = ";
             // 
             // label3
             // 

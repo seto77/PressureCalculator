@@ -19,7 +19,7 @@ Sowohl das Originalspektrum als auch die Ableitung können unabhängig voneinand
 |---|---|
 | Akahama (2004) | Polynom in der Kantenposition; die Koeffizienten sind editierbar |
 | Akahama (2006) | P = K₀ x [1 + ½(K₀′ − 1) x], x = Δν/ν₀, mit editierbarem K₀ (547 GPa) und K₀′ (3.75); kalibriert bis in den Multimegabar-Bereich |
-| Fratanduono et al. (2021, <300 GPa) | P = 503.77 x + 753.83 x² |
+| Fratanduono et al. (2021, <300 GPa) | P = 530.77 x + 753.83 x² |
 | Fratanduono et al. (2021, >200 GPa) | P = 199.49 − 852.78 x + 3103.8 x² |
 
 Die beiden Zweige von Fratanduono et al. (2021) überlappen sich zwischen 200 und 300 GPa; verwenden Sie den für Ihren Druckbereich geeigneten Zweig.
