@@ -118,12 +118,17 @@ namespace PressureCalculator
                 this.fittingRangeDiamond = Convert.ToDouble(regKey.GetValue("fittingRangeDiamond", fittingRangeDiamond));
 
                 this.textBoxDiamondRamanNu0.Text = (string)regKey.GetValue("textBoxAkahama2006Nu0.Text", textBoxDiamondRamanNu0.Text);
-                numericBoxRubyRefR1.Text = (string)regKey.GetValue("numericBoxRubyR1_0.Text", numericBoxRubyRefR1.Text);
+                //261105Cl 変更: 次行は Save 側で一度も書かれないキー ("numericBoxRubyR1_0.Text") を参照R1へ読む死んだ行 (直後の "numericBoxRubyRefR1.Text" で必ず上書き) なので廃止
+                //numericBoxRubyRefR1.Text = (string)regKey.GetValue("numericBoxRubyR1_0.Text", numericBoxRubyRefR1.Text);
                 numericBoxRubyRefT.Text = (string)regKey.GetValue("numericBoxRubyRefT.Text", numericBoxRubyRefT.Text);
-                numericBoxRubyRefR1.Text = (string)regKey.GetValue("numericBoxRubyRefR1.Text", numericBoxRubyRefT.Text);
+                //261105Cl 変更: 既定値に温度欄 (numericBoxRubyRefT.Text = 297.15) を渡していたため、初回起動で参照R1が 297.15 nm になり保存されていた。既定値は参照R1欄自身 (Designer 既定 694.25 nm)
+                //numericBoxRubyRefR1.Text = (string)regKey.GetValue("numericBoxRubyRefR1.Text", numericBoxRubyRefT.Text);
+                numericBoxRubyRefR1.Text = (string)regKey.GetValue("numericBoxRubyRefR1.Text", numericBoxRubyRefR1.Text);
 
                 this.radioButtonTempUnitK.Checked = (string)regKey.GetValue("radioButtonTempUnitK.Checked", "True") == "True";
-                this.radioButtonTempUnitC.Checked = (string)regKey.GetValue("radioButtonTempUnitC.Checked", "True") == "True";
+                //261105Cl 変更: 既定 "True" だと初回起動で K の直後に ℃ が選ばれ、297.15 (K のつもりの既定値) が 297.15 ℃ と解釈されていた。既定は Designer と同じ K
+                //this.radioButtonTempUnitC.Checked = (string)regKey.GetValue("radioButtonTempUnitC.Checked", "True") == "True";
+                this.radioButtonTempUnitC.Checked = (string)regKey.GetValue("radioButtonTempUnitC.Checked", "False") == "True";
 
 
                 regKey.Close();
@@ -147,7 +152,7 @@ namespace PressureCalculator
             regKey.SetValue("fittingRangeRuby", fittingRangeRuby);
             regKey.SetValue("fittingRangeDiamond", fittingRangeDiamond);
             regKey.SetValue("textBoxAkahama2006Nu0.Text", textBoxDiamondRamanNu0.Text);
-            regKey.SetValue("textBoxMaoRamda0.Text", numericBoxRubyRefR1.Text);
+            //regKey.SetValue("textBoxMaoRamda0.Text", numericBoxRubyRefR1.Text);//261105Cl 変更: 読み込み側に対応するキーが無い (参照R1は下の "numericBoxRubyRefR1.Text" で保存・復元) ので廃止
             regKey.SetValue("numericBoxRubyRefT.Text", numericBoxRubyRefT.Text);
             regKey.SetValue("numericBoxRubyRefR1.Text", numericBoxRubyRefR1.Text);
 
