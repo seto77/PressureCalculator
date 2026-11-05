@@ -44,12 +44,17 @@ namespace PressureCalculator
 
             //260703Cl 追加: F1 オンラインヘルプの URL 解決ロジックを登録 (起動時に 1 回、IPAnalyzer/FormMain と同方式)。
             //  マニュアルは mkdocs-static-i18n (folder mode): en はサイトルート直下、他言語は /{lang}/ 配下。
+            //261105Cl 変更: 上の説明は誤り。docs/mkdocs.yml は static-i18n を使わず明示 nav で、英語の本文ページは en/ 配下 (en/1-ruby-fluorescence.md 等)。
+            //  サイトルート直下にあるのは英語のホーム (index.md) だけで、/en/ 自体にはホームが無い。
+            //  旧コードは英語で /{HelpPage}/ を開いて 404 だった (2026-11-05 に curl で確認: /1-ruby-fluorescence/ 404, /en/1-ruby-fluorescence/ 200, /en/ 404, / 200)。
+            //  よって ページあり = 全言語 /{lang}/{HelpPage}/、ページ無し (ホーム) = 英語はルート・他言語は /{lang}/。
             Crystallography.Controls.FormBase.HelpUrlResolver = f =>
             {
                 var lang = Crystallography.SupportedCultures.Current.HelpCulture;
                 return string.IsNullOrEmpty(f.HelpPage)
                     ? (lang == "en" ? "https://seto77.github.io/PressureCalculator/" : $"https://seto77.github.io/PressureCalculator/{lang}/")
-                    : (lang == "en" ? $"https://seto77.github.io/PressureCalculator/{f.HelpPage}/" : $"https://seto77.github.io/PressureCalculator/{lang}/{f.HelpPage}/");
+                    //: (lang == "en" ? $"https://seto77.github.io/PressureCalculator/{f.HelpPage}/" : $"https://seto77.github.io/PressureCalculator/{lang}/{f.HelpPage}/");
+                    : $"https://seto77.github.io/PressureCalculator/{lang}/{f.HelpPage}/"; // 261105Cl 変更: en も /en/{HelpPage}/
             };
         }
 
