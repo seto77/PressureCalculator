@@ -72,6 +72,20 @@ namespace PressureCalculator
                 es: "Número de decimales", pt: "Número de casas decimais", it: "Numero di cifre decimali",
                 ru: "Число десятичных знаков", zhHans: "小数位数", zhHant: "小數位數", ko: "소수점 이하 자릿수");
 
+            //261105Cl 追加: EOS 適用温度範囲外の凡例のツールチップ (ToolTip は CodeLocalizer の対象外のため実行時 Loc で差し替える。凡例の文言は PressureCalculatorLocalizationData)
+            toolTip.SetToolTip(labelEOSValidityWarning, Crystallography.Localization.Loc( // 261105Cl 追加
+                en: "Pressures shown in red are computed at a temperature (Temperature, or also T₀ for Pb) outside the range where that scale is valid. The value is still shown (extrapolated) and is not changed; hover over it for the valid range.",
+                ja: "赤で表示した圧力は、そのスケールの適用範囲外の温度 (Temperature、Pb では T₀ も) で計算した値です。値はそのまま (外挿で) 表示しており変更していません。値にマウスを置くと有効範囲を表示します。",
+                de: "Rot angezeigte Drücke wurden bei einer Temperatur (Temperature, bei Pb auch T₀) außerhalb des Gültigkeitsbereichs der jeweiligen Skala berechnet. Der Wert wird weiterhin (extrapoliert) angezeigt und nicht verändert; zeigen Sie mit der Maus darauf, um den gültigen Bereich zu sehen.",
+                fr: "Les pressions affichées en rouge sont calculées à une température (Temperature, ou aussi T₀ pour Pb) hors du domaine de validité de l'échelle. La valeur reste affichée (extrapolée) et n'est pas modifiée ; survolez-la pour voir le domaine valide.",
+                es: "Las presiones mostradas en rojo se calculan a una temperatura (Temperature, o también T₀ para Pb) fuera del rango de validez de la escala. El valor se sigue mostrando (extrapolado) y no se modifica; pase el ratón sobre él para ver el rango válido.",
+                pt: "As pressões mostradas em vermelho são calculadas a uma temperatura (Temperature, ou também T₀ para Pb) fora do intervalo de validade da escala. O valor continua sendo mostrado (extrapolado) e não é alterado; passe o mouse sobre ele para ver o intervalo válido.",
+                it: "Le pressioni mostrate in rosso sono calcolate a una temperatura (Temperature, o anche T₀ per Pb) fuori dall'intervallo di validità della scala. Il valore resta visualizzato (estrapolato) e non viene modificato; passa il mouse sopra per vedere l'intervallo valido.",
+                ru: "Давления, показанные красным, вычислены при температуре (Temperature, для Pb также T₀) вне области применимости шкалы. Значение по-прежнему показывается (экстраполяция) и не изменяется; наведите на него курсор, чтобы увидеть допустимый диапазон.",
+                zhHans: "红色显示的压力是在该标尺适用范围之外的温度（Temperature，Pb 还包括 T₀）下计算的。数值仍照常（外推）显示，未作更改；将鼠标悬停在数值上可查看有效范围。",
+                zhHant: "紅色顯示的壓力是在該標尺適用範圍之外的溫度（Temperature，Pb 還包括 T₀）下計算的。數值仍照常（外推）顯示，未作更改；將滑鼠停在數值上可查看有效範圍。",
+                ko: "빨간색으로 표시된 압력은 해당 스케일의 유효 범위를 벗어난 온도(Temperature, Pb는 T₀도 포함)에서 계산된 값입니다. 값은 그대로(외삽하여) 표시되며 변경되지 않습니다. 값 위에 마우스를 올리면 유효 범위가 표시됩니다."));
+
             MouseRange = false;
 
             timer.Start();
@@ -1087,6 +1101,94 @@ namespace PressureCalculator
             Re();
             Mo();
             Pb();
+            UpdateEosValidityWarnings(); // 261105Cl 追加
+        }
+
+        // 261105Cl 追加: EOS ごとの適用温度範囲。範囲外ならその圧力を赤字にし、ツールチップで範囲を示す (表示だけ。計算値は一切変えない)。
+        //  Kind 0 = 公表された表の温度範囲 (外側は表の外挿)。Pb は T₀ でも a₀ の表 (0–310 K) を引くので T₀ も調べる。
+        //  Kind 1 = 熱的な項が高温向けの形 (熱圧力が (T − 300 K) に比例: Anderson/Holmes/Ueda、高温の熱膨張式 α = a + bT + c/T² と K の (T − 300 K) 依存: Dubrovinsky (98)/Zhao (00))。室温未満は非物理的。
+        //  Kind 2 = 室温 (300 K) の等温式で温度を使わない (Fratanduono/Sata/Sakai/Ross/Re の 3 種)。厳密には 300 K だけだが、室温の入力 (295 K 等) で警告が出続けないよう 290–310 K の外で警告。
+        //  Kind 3 = 著者が示す適用範囲 (Matsui (09): 3000 K・300 GPa まで)。
+        //  Debye 模型の熱圧力 (MGD) を持ち範囲の記載を確かめられないもの (Shim, Matsui (12), MgO 4 種, Jephcoat, Huang) は対象外。
+        private (Crystallography.Controls.NumericBox Box, double Tmin, double Tmax, int Kind, Color ForeColor)[] eosValidity;
+
+        // 261105Cl 追加
+        private void UpdateEosValidityWarnings()
+        {
+            const double inf = double.PositiveInfinity;
+            eosValidity ??= new (Crystallography.Controls.NumericBox Box, double Tmin, double Tmax, int Kind)[]
+            {
+                (numericalTextBoxGoldJamieson, 200, 1500, 0), (numericalTextBoxGoldAnderson, 300, inf, 1), (numericalTextBoxGoldTsuchiya, 300, 2500, 0),
+                (numericBoxAuYokoo, 0, 3000, 0), (numericBoxAuFratanduono, 290, 310, 2),
+                (numericalTextBoxPtJamieson, 200, 1500, 0), (numericalTextBoxPtHolmes, 300, inf, 1), (numericalTextBoxPtMatsui, 0, 3000, 3),
+                (numericBoxPtYokoo, 0, 3000, 0), (numericBoxPtFratanduono, 290, 310, 2),
+                (numericalTextBoxNaClB1Brown, 300, 1200, 0),
+                (numericalTextBoxNaClB2SataPt, 290, 310, 2), (numericalTextBoxNaClB2SataMgO, 290, 310, 2), (numericalTextBoxNaClB2Ueda, 300, inf, 1),
+                (numericalTextBoxNaClB2SakaiBM, 290, 310, 2), (numericalTextBoxNaClB2SakaiVinet, 290, 310, 2),
+                (numericBoxCorundumDubrovinsky, 300, inf, 1),
+                (numericalTextBoxArRoss, 290, 310, 2),
+                (numericalTextBoxReZha, 300, 3000, 0), (numericBoxReAnz, 290, 310, 2), (numericBoxReSakai, 290, 310, 2), (numericBoxReDub, 290, 310, 2),
+                (numericBoxMoZhao, 300, inf, 1),
+                (numericBoxPbStrassle, 0, 300, 0),
+            }.Select(e => (e.Box, e.Tmin, e.Tmax, e.Kind, e.Box.ValueForeColor)).ToArray(); // 元の文字色を覚えておき、範囲内に戻ったら戻す
+
+            double t = numericBoxTemperature.Value, t0 = numericBoxTemperature0.Value;
+            bool any = false;
+            foreach (var (box, tmin, tmax, kind, foreColor) in eosValidity)
+            {
+                bool isPb = box == numericBoxPbStrassle;
+                bool outside = t < tmin || t > tmax || (isPb && (t0 < 0 || t0 > 310));
+                box.ValueForeColor = outside ? Color.Red : foreColor;
+                if (!outside) { box.ToolTip = ""; continue; }
+                any = true;
+                var range = isPb ? "T: 0–300 K, T₀: 0–310 K" : $"{tmin}–{tmax} K";
+                box.ToolTip = Crystallography.Localization.Loc(
+                    en: "Outside the validity range of this scale (extrapolated).", ja: "このスケールの適用範囲外です (外挿値)。",
+                    de: "Außerhalb des Gültigkeitsbereichs dieser Skala (extrapoliert).", fr: "Hors du domaine de validité de cette échelle (extrapolé).",
+                    es: "Fuera del rango de validez de esta escala (extrapolado).", pt: "Fora do intervalo de validade desta escala (extrapolado).",
+                    it: "Fuori dall'intervallo di validità di questa scala (estrapolato).", ru: "Вне области применимости этой шкалы (экстраполяция).",
+                    zhHans: "超出该标尺的适用范围（外推值）。", zhHant: "超出該標尺的適用範圍（外推值）。", ko: "이 스케일의 적용 범위를 벗어났습니다 (외삽값).")
+                    + "\r\n" + kind switch
+                    {
+                        0 => Crystallography.Localization.Loc(
+                            en: $"Valid temperature range: {range} (range of the published table).", ja: $"有効な温度範囲: {range} (公表された表の範囲)。",
+                            de: $"Gültiger Temperaturbereich: {range} (Bereich der veröffentlichten Tabelle).", fr: $"Plage de température valide : {range} (domaine de la table publiée).",
+                            es: $"Rango de temperatura válido: {range} (rango de la tabla publicada).", pt: $"Faixa de temperatura válida: {range} (faixa da tabela publicada).",
+                            it: $"Intervallo di temperatura valido: {range} (intervallo della tabella pubblicata).", ru: $"Допустимый диапазон температур: {range} (диапазон опубликованной таблицы).",
+                            zhHans: $"有效温度范围：{range}（已发表数据表的范围）。", zhHant: $"有效溫度範圍：{range}（已發表數據表的範圍）。", ko: $"유효 온도 범위: {range} (발표된 표의 범위)."),
+                        1 => Crystallography.Localization.Loc(
+                            en: "Valid for T ≥ 300 K: the thermal term is a high-temperature form (linear in T − 300 K, or a high-temperature thermal-expansion fit) and is not physical below room temperature.",
+                            ja: "T ≥ 300 K で有効: 熱的な項が高温向けの形 ((T − 300 K) に比例、または高温の熱膨張の式) で、室温より低温では物理的に正しくありません。",
+                            de: "Gültig für T ≥ 300 K: Der thermische Term ist eine Hochtemperaturform (linear in T − 300 K oder eine Hochtemperatur-Anpassung der Wärmeausdehnung) und unterhalb der Raumtemperatur nicht physikalisch.",
+                            fr: "Valable pour T ≥ 300 K : le terme thermique est une forme de haute température (linéaire en T − 300 K, ou un ajustement de la dilatation thermique à haute température) et n'est pas physique en dessous de la température ambiante.",
+                            es: "Válido para T ≥ 300 K: el término térmico es una forma de alta temperatura (lineal en T − 300 K, o un ajuste de la dilatación térmica a alta temperatura) y no es físico por debajo de la temperatura ambiente.",
+                            pt: "Válido para T ≥ 300 K: o termo térmico é uma forma de alta temperatura (linear em T − 300 K, ou um ajuste da expansão térmica em alta temperatura) e não é físico abaixo da temperatura ambiente.",
+                            it: "Valido per T ≥ 300 K: il termine termico è una forma di alta temperatura (lineare in T − 300 K, o un fit dell'espansione termica ad alta temperatura) e non è fisico al di sotto della temperatura ambiente.",
+                            ru: "Применимо при T ≥ 300 K: тепловой член записан в высокотемпературной форме (линейно по T − 300 K или как высокотемпературная аппроксимация теплового расширения) и не имеет физического смысла ниже комнатной температуры.",
+                            zhHans: "适用于 T ≥ 300 K：热项为高温形式（与 T − 300 K 成线性，或高温热膨胀拟合式），在室温以下没有物理意义。",
+                            zhHant: "適用於 T ≥ 300 K：熱項為高溫形式（與 T − 300 K 成線性，或高溫熱膨脹擬合式），在室溫以下沒有物理意義。",
+                            ko: "T ≥ 300 K에서 유효: 열적 항이 고온용 형태(T − 300 K에 선형, 또는 고온 열팽창 피팅식)이므로 실온 이하에서는 물리적으로 맞지 않습니다."),
+                        2 => Crystallography.Localization.Loc(
+                            en: "This scale is a room-temperature (300 K) isotherm and does not use the temperature; it is shown in red outside 290–310 K.",
+                            ja: "このスケールは室温 (300 K) の等温式で、温度を使いません。290–310 K の外では赤で表示します。",
+                            de: "Diese Skala ist eine Raumtemperatur-Isotherme (300 K) und verwendet die Temperatur nicht; außerhalb von 290–310 K wird sie rot angezeigt.",
+                            fr: "Cette échelle est une isotherme à température ambiante (300 K) et n'utilise pas la température ; elle est affichée en rouge hors de 290–310 K.",
+                            es: "Esta escala es una isoterma a temperatura ambiente (300 K) y no usa la temperatura; se muestra en rojo fuera de 290–310 K.",
+                            pt: "Esta escala é uma isoterma à temperatura ambiente (300 K) e não usa a temperatura; é mostrada em vermelho fora de 290–310 K.",
+                            it: "Questa scala è un'isoterma a temperatura ambiente (300 K) e non usa la temperatura; viene mostrata in rosso fuori da 290–310 K.",
+                            ru: "Эта шкала — изотерма при комнатной температуре (300 K) и не использует температуру; вне 290–310 K значение показывается красным.",
+                            zhHans: "该标尺为室温（300 K）等温线，不使用温度；在 290–310 K 之外以红色显示。",
+                            zhHant: "該標尺為室溫（300 K）等溫線，不使用溫度；在 290–310 K 之外以紅色顯示。",
+                            ko: "이 스케일은 실온(300 K) 등온식이며 온도를 사용하지 않습니다. 290–310 K 밖에서는 빨간색으로 표시합니다."),
+                        _ => Crystallography.Localization.Loc(
+                            en: $"Valid range stated by the authors: up to {tmax} K.", ja: $"著者が示す適用範囲: {tmax} K まで。",
+                            de: $"Von den Autoren angegebener Gültigkeitsbereich: bis {tmax} K.", fr: $"Domaine de validité indiqué par les auteurs : jusqu'à {tmax} K.",
+                            es: $"Rango de validez indicado por los autores: hasta {tmax} K.", pt: $"Intervalo de validade indicado pelos autores: até {tmax} K.",
+                            it: $"Intervallo di validità indicato dagli autori: fino a {tmax} K.", ru: $"Область применимости, указанная авторами: до {tmax} K.",
+                            zhHans: $"作者给出的适用范围：至 {tmax} K。", zhHant: $"作者給出的適用範圍：至 {tmax} K。", ko: $"저자가 제시한 적용 범위: {tmax} K까지."),
+                    };
+            }
+            labelEOSValidityWarning.Visible = any;
         }
 
         #region Gold

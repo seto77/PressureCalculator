@@ -50,6 +50,8 @@ internal static class PressureCalculatorLocalizationData
             new("groupBoxPlatinum", "Text", "Platinum", "白金", "Platin", "Platine", "Platino", "Platina", "Platino", "Платина", "铂", "鉑", "백금"),
             new("groupBoxPericlase", "Text", "Periclase", "ペリクレース", "Periklas", "Périclase", "Periclasa", "Periclásio", "Periclasio", "Периклаз", "方镁石", "方鎂石", "페리클레이스"),
             new("groupBoxCorundum", "Text", "Corundum", "コランダム", "Korund", "Corindon", "Corindón", "Coríndon", "Corindone", "Корунд", "刚玉", "剛玉", "강옥"),
+            // 261105Cl 追加: EOS の適用温度範囲外の凡例 (FormMain.UpdateEosValidityWarnings が表示を切り替える。ツールチップは FormMain_Load で Loc)
+            new("labelEOSValidityWarning", "Text", "⚠ Red: temperature outside the validity range of that scale (extrapolated)", "⚠ 赤字: そのスケールの適用温度範囲外 (外挿値)", "⚠ Rot: Temperatur außerhalb des Gültigkeitsbereichs der Skala (extrapoliert)", "⚠ En rouge : température hors du domaine de validité de l'échelle (extrapolé)", "⚠ En rojo: temperatura fuera del rango de validez de la escala (extrapolado)", "⚠ Em vermelho: temperatura fora do intervalo de validade da escala (extrapolado)", "⚠ In rosso: temperatura fuori dall'intervallo di validità della scala (estrapolato)", "⚠ Красным: температура вне области применимости шкалы (экстраполяция)", "⚠ 红色：温度超出该标尺的适用范围（外推值）", "⚠ 紅色：溫度超出該標尺的適用範圍（外推值）", "⚠ 빨간색: 해당 스케일의 적용 온도 범위 밖 (외삽값)"), // 261105Cl 追加
         };
     }
 }

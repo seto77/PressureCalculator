@@ -339,6 +339,8 @@ namespace PressureCalculator
             helpToolStripMenuItem = new ToolStripMenuItem();
             helpOnlineManualToolStripMenuItem = new ToolStripMenuItem();
             timer = new System.Windows.Forms.Timer(components);
+            labelEOSValidityWarning = new Label(); // 261105Cl 追加
+            toolTip = new ToolTip(components); // 261105Cl 追加
             ((ISupportInitialize)numericUpDownDifferentiationRunningAverage).BeginInit();
             ((ISupportInitialize)numericUpDownOriginalRunningAverage).BeginInit();
             ((ISupportInitialize)numericUpDownOriginalGaussian).BeginInit();
@@ -3488,6 +3490,7 @@ namespace PressureCalculator
             // 
             panel2.Controls.Add(numericBoxTemperature);
             panel2.Controls.Add(numericBoxTemperature0);
+            panel2.Controls.Add(labelEOSValidityWarning); // 261105Cl 追加
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
@@ -3543,6 +3546,20 @@ namespace PressureCalculator
             numericBoxTemperature0.ThousandsSeparator = true;
             numericBoxTemperature0.Value = 300D;
             numericBoxTemperature0.ValueChanged += textBox_TextChanged;
+            // 
+            // labelEOSValidityWarning
+            // 261105Cl 追加 (この節すべて): 温度がいずれかの EOS の適用範囲外のときだけ表示する凡例 (表示は FormMain.UpdateEosValidityWarnings)。文言は PressureCalculatorLocalizationData、ツールチップは FormMain_Load で 11 言語
+            // 
+            labelEOSValidityWarning.AutoSize = true; // 261105Cl 追加
+            labelEOSValidityWarning.Font = new Font("Segoe UI Symbol", 9F); // 261105Cl 追加
+            labelEOSValidityWarning.ForeColor = Color.Red; // 261105Cl 追加
+            labelEOSValidityWarning.Location = new Point(248, 6); // 261105Cl 追加
+            labelEOSValidityWarning.Name = "labelEOSValidityWarning"; // 261105Cl 追加
+            labelEOSValidityWarning.Size = new Size(415, 15); // 261105Cl 追加
+            labelEOSValidityWarning.TabIndex = 21; // 261105Cl 追加
+            labelEOSValidityWarning.Text = "⚠ Red: temperature outside the validity range of that scale (extrapolated)"; // 261105Cl 追加
+            toolTip.SetToolTip(labelEOSValidityWarning, "Pressures shown in red are computed at a temperature (Temperature, or also T₀ for Pb) outside the range where that scale is valid. The value is still shown (extrapolated) and is not changed; hover over it for the valid range."); // 261105Cl 追加
+            labelEOSValidityWarning.Visible = false; // 261105Cl 追加
             // 
             // menuStrip1
             // 
@@ -3816,6 +3833,8 @@ namespace PressureCalculator
         public Crystallography.Controls.NumericBox numericBoxPbA0;
         public Crystallography.Controls.NumericBox numericBoxTemperature;
         public Crystallography.Controls.NumericBox numericBoxTemperature0;
+        private Label labelEOSValidityWarning; // 261105Cl 追加
+        private ToolTip toolTip; // 261105Cl 追加
     }
 
 
