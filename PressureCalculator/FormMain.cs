@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks; // 261105Cl 追加: timer_Tick の await Task.Delay 用
 using System.Windows.Forms;
 
 namespace PressureCalculator
@@ -1548,17 +1549,27 @@ namespace PressureCalculator
                 timer.Stop();
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private bool fileWatchBusy = false; // 261105Cl 追加: timer_Tick の再入防止 (下の await 中や MessageBox 表示中に次の Tick が来ても、同じ更新を重ねて読まない・ダイアログを積まない)
+
+        //261105Cl 変更: UI スレッドで Thread.Sleep(200) を毎秒 2 回 (ファイル未更新でも) 呼び、読み込み後は UI が毎秒約 0.4 s 固まっていた (Q-13)。
+        //  1 回目の Sleep の役目は「書き込み側 (分光器ソフト) が書き終えるのを待ってから読む」なので、更新を検出したときだけ await Task.Delay(200) で待つ (UI は塞がない)。
+        //  2 回目の Sleep は読み込み後の何もしない待ちで、UI を止める以外の効果が無いので廃止。検出 → 200 ms 後に再読込、という挙動は従来どおり。
+        //private void timer_Tick(object sender, EventArgs e)
+        private async void timer_Tick(object sender, EventArgs e)
         {
+            if (fileWatchBusy) return; // 261105Cl 追加
             //ファイルの更新を監視
             if (File.Exists(currentFileName))
             {
                 var time = File.GetLastWriteTime(currentFileName);
-                Thread.Sleep(200);
+                //Thread.Sleep(200);//261105Cl 変更: 下の await Task.Delay(200) へ (更新があったときだけ待つ)
                 if (time > lastWriteTime)
                 {
+                    fileWatchBusy = true; // 261105Cl 追加
+                    await Task.Delay(200); // 261105Cl 追加: 書き込み側が書き終えるのを待つ (旧 Thread.Sleep(200) の役目)。UI スレッドは塞がない
                     try
                     {
+                        if (IsDisposed) return; // 261105Cl 追加: 待っている間にウィンドウが閉じられた場合は何もしない (finally で解除)
                         Original = readFile(currentFileName);
                         CalcSmoothingAndDifferentiation();
                         graphControlTop.Profile = OriginalSmooth;
@@ -1575,8 +1586,9 @@ namespace PressureCalculator
                         zhHant: "無法開啟檔案。", ko: "파일을 열 수 없습니다."));
                         return;
                     }
+                    finally { fileWatchBusy = false; } // 261105Cl 追加: MessageBox を閉じた後に解除 (次の Tick で再試行するのは従来どおり)
                 }
-                Thread.Sleep(200);
+                //Thread.Sleep(200);//261105Cl 変更: 廃止 (UI を止めるだけの待ち)
             }
         }
 
