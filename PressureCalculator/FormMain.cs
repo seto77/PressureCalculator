@@ -123,7 +123,11 @@ namespace PressureCalculator
                 numericBoxRubyRefT.Text = (string)regKey.GetValue("numericBoxRubyRefT.Text", numericBoxRubyRefT.Text);
                 //261105Cl 変更: 既定値に温度欄 (numericBoxRubyRefT.Text = 297.15) を渡していたため、初回起動で参照R1が 297.15 nm になり保存されていた。既定値は参照R1欄自身 (Designer 既定 694.25 nm)
                 //numericBoxRubyRefR1.Text = (string)regKey.GetValue("numericBoxRubyRefR1.Text", numericBoxRubyRefT.Text);
+                var defaultRefR1 = numericBoxRubyRefR1.Value; // 261105Cl 追加: Designer 既定 (694.25 nm)
                 numericBoxRubyRefR1.Text = (string)regKey.GetValue("numericBoxRubyRefR1.Text", numericBoxRubyRefR1.Text);
+                // 261105Cl 追加: 上の不具合で 297.15 nm などが保存されたままの環境を救う。ルビー R1 として明らかにおかしい値 (600–800 nm の外、読めない値) は既定値へ戻す
+                if (numericBoxRubyRefR1.Value is not (>= 600 and <= 800)) // 261105Cl
+                    numericBoxRubyRefR1.Value = defaultRefR1; // 261105Cl
 
                 this.radioButtonTempUnitK.Checked = (string)regKey.GetValue("radioButtonTempUnitK.Checked", "True") == "True";
                 //261105Cl 変更: 既定 "True" だと初回起動で K の直後に ℃ が選ばれ、297.15 (K のつもりの既定値) が 297.15 ℃ と解釈されていた。既定は Designer と同じ K
