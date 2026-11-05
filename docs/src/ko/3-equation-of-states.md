@@ -14,7 +14,7 @@
 
 | 물질 | 스케일 |
 |---|---|
-| 금 | Jamieson (1982), Anderson (1989), Sim (2002), Tsuchiya (2003), Yokoo (2009), Fratanduono (2021) |
+| 금 | Jamieson (1982), Anderson (1989), Shim (2002), Tsuchiya (2003), Yokoo (2009), Fratanduono (2021) |
 | 백금 | Jamieson (1982), Holmes (1989), Matsui (2009), Yokoo (2009), Fratanduono (2021) |
 | NaCl B1 | Brown (1999), Matsui (2012) |
 | NaCl B2 | Sata (2002) (Pt/Mg 압력 기준), Ueda+ (2008), Sakai+ (2011) BM/Vinet |

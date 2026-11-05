@@ -1898,11 +1898,14 @@ namespace PressureCalculator
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI Symbol", 9F);
             label15.ImeMode = ImeMode.NoControl;
-            label15.Location = new Point(34, 107);
+            //label15.Location = new Point(34, 107); //261105Cl 変更: "Shim" で 7px 広がる分だけ左へ (右端 x=84 を他の文献ラベルと揃える)
+            label15.Location = new Point(27, 107);
             label15.Name = "label15";
-            label15.Size = new Size(50, 15);
+            //label15.Size = new Size(50, 15); //261105Cl 変更
+            label15.Size = new Size(57, 15);
             label15.TabIndex = 7;
-            label15.Text = "Sim (02)";
+            //label15.Text = "Sim (02)"; //261105Cl 変更: Shim, Duffy & Takemura (2002) の誤記
+            label15.Text = "Shim (02)";
             // 
             // label27
             // 

@@ -14,7 +14,7 @@ La pressione viene determinata dalla costante reticolare misurata (o dal volume 
 
 | Materiale | Scale |
 |---|---|
-| Oro | Jamieson (1982), Anderson (1989), Sim (2002), Tsuchiya (2003), Yokoo (2009), Fratanduono (2021) |
+| Oro | Jamieson (1982), Anderson (1989), Shim (2002), Tsuchiya (2003), Yokoo (2009), Fratanduono (2021) |
 | Platino | Jamieson (1982), Holmes (1989), Matsui (2009), Yokoo (2009), Fratanduono (2021) |
 | NaCl B1 | Brown (1999), Matsui (2012) |
 | NaCl B2 | Sata (2002) (riferimenti di pressione Pt/Mg), Ueda+ (2008), Sakai+ (2011) BM/Vinet |

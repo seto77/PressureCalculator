@@ -14,7 +14,7 @@
 
 | 物質 | 標度 |
 |---|---|
-| 金 | Jamieson (1982), Anderson (1989), Sim (2002), Tsuchiya (2003), Yokoo (2009), Fratanduono (2021) |
+| 金 | Jamieson (1982), Anderson (1989), Shim (2002), Tsuchiya (2003), Yokoo (2009), Fratanduono (2021) |
 | 鉑 | Jamieson (1982), Holmes (1989), Matsui (2009), Yokoo (2009), Fratanduono (2021) |
 | NaCl B1 | Brown (1999), Matsui (2012) |
 | NaCl B2 | Sata (2002)（Pt/Mg 壓力參考）, Ueda+ (2008), Sakai+ (2011) BM/Vinet |

@@ -1077,7 +1077,7 @@ namespace PressureCalculator
             numericalTextBoxGoldJamieson.Value = EOS.Au_Jamieson(a / 10, a0 / 10, t);
             //Anderson
             numericalTextBoxGoldAnderson.Value = EOS.Au_Anderson(t, a / 10, a0 / 10);
-            //Sim
+            //Shim (Shim, Duffy & Takemura 2002) 261105Cl 変更: 旧コメント "//Sim" は誤記
             numericalTextBoxGoldSim.Value = EOS.BirchMurnaghan3rd(167, 5.0, v0, v) + EOS.MieGruneisen(4, 1, 170, 2.97, 1.0, 300, v0, t, v);
             //Tsuchiya
             numericalTextBoxGoldTsuchiya.Value = EOS.Au_Tsuchiya(a / 10, a0 / 10, t);
@@ -1090,7 +1090,8 @@ namespace PressureCalculator
             [
             ("Jamieson82",numericalTextBoxGoldJamieson.Value ),
         ("Anderson89",numericalTextBoxGoldAnderson.Value ),
-        ("Sim02",numericalTextBoxGoldSim.Value ),
+        //("Sim02",numericalTextBoxGoldSim.Value ),
+        ("Shim02",numericalTextBoxGoldSim.Value ),//261105Cl 変更: Sim は Shim (Shim, Duffy & Takemura 2002) の誤記
         ("Tsuchiya03",numericalTextBoxGoldTsuchiya.Value ),
         ("Yokoo09",numericBoxAuYokoo.Value ),
         ("Fratanduono21",numericBoxAuFratanduono.Value ),
