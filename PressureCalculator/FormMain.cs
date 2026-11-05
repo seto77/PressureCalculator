@@ -76,7 +76,9 @@ namespace PressureCalculator
 
             numericBoxRubyRefR1_ValueChanged(sender, e);
         }
-        private void FormDiamondRaman_Closed(object sender, System.EventArgs e)
+        //261105Cl 変更: 旧 Form.Closed (WFDEV004: 非推奨) を FormClosed に置換。本体は元々空なので挙動は不変
+        //private void FormDiamondRaman_Closed(object sender, System.EventArgs e)
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
         }
 
