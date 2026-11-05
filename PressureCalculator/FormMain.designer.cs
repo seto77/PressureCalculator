@@ -3624,7 +3624,7 @@ namespace PressureCalculator
             MainMenuStrip = menuStrip1;
             Name = "FormMain";
             Text = "Pressure Calculator";
-            Closed += FormDiamondRaman_Closed;
+            FormClosed += FormMain_FormClosed;
             FormClosing += FormMain_FormClosing;
             Load += FormMain_Load;
             DragDrop += FormMain_DragDrop;
