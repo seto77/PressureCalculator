@@ -1,12 +1,13 @@
 # Traffic Data: PressureCalculator
 
-Last updated: 2026-11-22
+Last updated: 2026-11-24
 
 ## Views
 
 ### Daily (最大14日保持)
 | Date | Total Views | Unique Visitors |
 | ---- | ---- | ---- |
+| 2026-11-22 | 0 | 0 |
 | 2026-11-21 | 1 | 1 |
 | 2026-11-20 | 1 | 1 |
 | 2026-11-19 | 0 | 0 |
@@ -18,8 +19,6 @@ Last updated: 2026-11-22
 | 2026-11-13 | 11 | 1 |
 | 2026-11-12 | 0 | 0 |
 | 2026-11-11 | 0 | 0 |
-| 2026-11-10 | 1 | 1 |
-| 2026-11-09 | 0 | 0 |
 
 ### Weekly (最大14週保持)
 | Period | Total Views | Unique Visitors |
@@ -37,7 +36,6 @@ Last updated: 2026-11-22
 | 2026-W37 | 1 | 1 |
 | 2026-W36 | 0 | 0 |
 | 2026-W35 | 1 | 1 |
-| 2026-W34 | 0 | 0 |
 
 ### Monthly (最大12か月保持)
 | Period | Total Views | Unique Visitors |
@@ -62,6 +60,7 @@ Last updated: 2026-11-22
 ### Daily (最大14日保持)
 | Date | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
+| 2026-11-22 | 6 | 3 |
 | 2026-11-21 | 5 | 4 |
 | 2026-11-20 | 4 | 3 |
 | 2026-11-19 | 1 | 1 |
@@ -73,13 +72,11 @@ Last updated: 2026-11-22
 | 2026-11-13 | 21 | 13 |
 | 2026-11-12 | 4 | 3 |
 | 2026-11-11 | 5 | 3 |
-| 2026-11-10 | 17 | 10 |
-| 2026-11-09 | 13 | 8 |
 
 ### Weekly (最大14週保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026-W47 | 41 | 24 |
+| 2026-W47 | 47 | 27 |
 | 2026-W46 | 65 | 41 |
 | 2026-W45 | 164 | 66 |
 | 2026-W44 | 62 | 39 |
@@ -92,12 +89,11 @@ Last updated: 2026-11-22
 | 2026-W37 | 41 | 28 |
 | 2026-W36 | 30 | 24 |
 | 2026-W35 | 33 | 20 |
-| 2026-W34 | 35 | 23 |
 
 ### Monthly (最大12か月保持)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026-11 | 280 | 136 |
+| 2026-11 | 286 | 139 |
 | 2026-10 | 305 | 197 |
 | 2026-09 | 196 | 134 |
 | 2026-08 | 128 | 86 |
@@ -110,33 +106,33 @@ Last updated: 2026-11-22
 ### Yearly (無制限)
 | Period | Total Clones | Unique Cloners |
 | ---- | ---- | ---- |
-| 2026 | 1801 | 1036 |
+| 2026 | 1807 | 1039 |
 
 ## Referrers
 
 ### Weekly (最大2週保持)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
+| 2026-W48 | Bing | 1 | 1 |
+| 2026-W48 | Google | 1 | 1 |
+| 2026-W48 | mail.cjlu.edu.cn | 1 | 1 |
+| 2026-W48 | seto77.github.io | 1 | 1 |
 | 2026-W47 | Bing | 9 | 6 |
 | 2026-W47 | github.com | 7 | 4 |
 | 2026-W47 | Google | 6 | 6 |
 | 2026-W47 | mail.cjlu.edu.cn | 5 | 5 |
 | 2026-W47 | search.lilo.org | 1 | 1 |
 | 2026-W47 | seto77.github.io | 1 | 1 |
-| 2026-W46 | github.com | 29 | 23 |
-| 2026-W46 | Bing | 11 | 6 |
-| 2026-W46 | search.lilo.org | 6 | 6 |
-| 2026-W46 | Google | 2 | 2 |
 
 ### Monthly (最大3か月保持)
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
 | 2026-11 | github.com | 75 | 63 |
-| 2026-11 | Bing | 23 | 15 |
+| 2026-11 | Bing | 24 | 16 |
 | 2026-11 | search.lilo.org | 12 | 12 |
-| 2026-11 | Google | 8 | 8 |
-| 2026-11 | mail.cjlu.edu.cn | 5 | 5 |
-| 2026-11 | seto77.github.io | 1 | 1 |
+| 2026-11 | Google | 9 | 9 |
+| 2026-11 | mail.cjlu.edu.cn | 6 | 6 |
+| 2026-11 | seto77.github.io | 2 | 2 |
 | 2026-10 | Bing | 30 | 29 |
 | 2026-10 | github.com | 14 | 14 |
 | 2026-09 | github.com | 28 | 28 |
@@ -146,17 +142,24 @@ Last updated: 2026-11-22
 | Period | Referrer | Total Count | Unique |
 | ---- | ---- | ---- | ---- |
 | 2026 | github.com | 799 | 293 |
-| 2026 | Google | 346 | 87 |
-| 2026 | Bing | 109 | 87 |
+| 2026 | Google | 347 | 88 |
+| 2026 | Bing | 110 | 88 |
 | 2026 | search.lilo.org | 12 | 12 |
-| 2026 | mail.cjlu.edu.cn | 5 | 5 |
-| 2026 | seto77.github.io | 1 | 1 |
+| 2026 | mail.cjlu.edu.cn | 6 | 6 |
+| 2026 | seto77.github.io | 2 | 2 |
 
 ## Popular Paths
 
 ### Weekly (最大2週保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-W48 | /seto77/PressureCalculator/releases | /releases | 5 | 3 |
+| 2026-W48 | /seto77/PressureCalculator | Overview | 5 | 2 |
+| 2026-W48 | /seto77/PressureCalculator/branches | /branches | 1 | 1 |
+| 2026-W48 | /seto77/PressureCalculator/commits | /commits | 1 | 1 |
+| 2026-W48 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 1 | 1 |
+| 2026-W48 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 1 | 1 |
+| 2026-W48 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 1 | 1 |
 | 2026-W47 | /seto77/PressureCalculator | Overview | 33 | 12 |
 | 2026-W47 | /seto77/PressureCalculator/releases | /releases | 33 | 18 |
 | 2026-W47 | /seto77/PressureCalculator/pulls | /pulls | 13 | 4 |
@@ -168,38 +171,25 @@ Last updated: 2026-11-22
 | 2026-W47 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 2 | 2 |
 | 2026-W47 | /seto77/PressureCalculator/blob/master/.gitignore | /blob/master/.gitignore | 1 | 1 |
 | 2026-W47 | /seto77/PressureCalculator/blob/master/README-PORTABLE.txt | /blob/master/README-PORTABLE.txt | 1 | 1 |
-| 2026-W46 | /seto77/PressureCalculator | Overview | 39 | 27 |
-| 2026-W46 | /seto77/PressureCalculator/pulls | /pulls | 24 | 6 |
-| 2026-W46 | /seto77/PressureCalculator/releases | /releases | 23 | 14 |
-| 2026-W46 | /seto77/PressureCalculator/pull/2 | /pull/2 | 12 | 6 |
-| 2026-W46 | /seto77/PressureCalculator/tree/master | /tree/master | 10 | 7 |
-| 2026-W46 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 8 | 5 |
-| 2026-W46 | /seto77/PressureCalculator/blob/master/.gitignore | /blob/master/.gitignore | 6 | 6 |
-| 2026-W46 | /seto77/PressureCalculator/blob/master/README-PORTABLE.txt | /blob/master/README-PORTABLE.txt | 6 | 6 |
-| 2026-W46 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 4 | 4 |
-| 2026-W46 | /seto77/PressureCalculator/tree/master/PressureCalculator/ZIP | /tree/master/PressureCalculator/ZIP | 3 | 3 |
-| 2026-W46 | /seto77/PressureCalculator/branches | /branches | 2 | 2 |
-| 2026-W46 | /seto77/PressureCalculator/commits | /commits | 2 | 2 |
-| 2026-W46 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 2 | 2 |
 
 ### Monthly (最大3か月保持)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026-11 | /seto77/PressureCalculator | Overview | 118 | 82 |
-| 2026-11 | /seto77/PressureCalculator/releases | /releases | 64 | 40 |
+| 2026-11 | /seto77/PressureCalculator | Overview | 123 | 84 |
+| 2026-11 | /seto77/PressureCalculator/releases | /releases | 69 | 43 |
 | 2026-11 | /seto77/PressureCalculator/pulls | /pulls | 48 | 13 |
 | 2026-11 | /seto77/PressureCalculator/tree/master | /tree/master | 34 | 23 |
-| 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 30 | 19 |
+| 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 31 | 20 |
 | 2026-11 | /seto77/PressureCalculator/pull/2 | /pull/2 | 24 | 12 |
+| 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 13 | 13 |
 | 2026-11 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 12 | 12 |
 | 2026-11 | /seto77/PressureCalculator/blob/master/.gitignore | /blob/master/.gitignore | 12 | 12 |
 | 2026-11 | /seto77/PressureCalculator/blob/master/README-PORTABLE.txt | /blob/master/README-PORTABLE.txt | 12 | 12 |
-| 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 12 | 12 |
+| 2026-11 | /seto77/PressureCalculator/branches | /branches | 9 | 9 |
+| 2026-11 | /seto77/PressureCalculator/commits | /commits | 9 | 9 |
 | 2026-11 | /seto77/PressureCalculator/releases/tag/v.1.007 | /releases/tag/v.1.007 | 8 | 8 |
 | 2026-11 | /seto77/PressureCalculator/tree/master/PressureCalculator/ZIP | /tree/master/PressureCalculator/ZIP | 8 | 8 |
-| 2026-11 | /seto77/PressureCalculator/branches | /branches | 8 | 8 |
-| 2026-11 | /seto77/PressureCalculator/commits | /commits | 8 | 8 |
-| 2026-11 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 6 | 6 |
+| 2026-11 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 7 | 7 |
 | 2026-11 | /seto77/pressurecalculator/blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | /blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | 3 | 3 |
 | 2026-10 | /seto77/PressureCalculator | Overview | 61 | 61 |
 | 2026-10 | /seto77/PressureCalculator/releases | /releases | 31 | 30 |
@@ -218,11 +208,11 @@ Last updated: 2026-11-22
 ### Yearly (無制限)
 | Period | Path | Title | Total Count | Unique |
 | ---- | ---- | ---- | ---- | ---- |
-| 2026 | /seto77/PressureCalculator | Overview | 533 | 410 |
-| 2026 | /seto77/PressureCalculator/releases | /releases | 272 | 234 |
+| 2026 | /seto77/PressureCalculator | Overview | 538 | 412 |
+| 2026 | /seto77/PressureCalculator/releases | /releases | 277 | 237 |
 | 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/setup.exe | /blob/master/PressureCalculatorSetup/setup.exe | 235 | 102 |
 | 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup | /tree/master/PressureCalculatorSetup | 178 | 52 |
-| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 144 | 83 |
+| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator | /tree/master/PressureCalculator | 145 | 84 |
 | 2026 | /seto77/PressureCalculator/tree/master | /tree/master | 134 | 55 |
 | 2026 | /seto77/PressureCalculator/blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | /blob/master/PressureCalculatorSetup/PressureCalculatorSetup.msi | 74 | 45 |
 | 2026 | /seto77/PressureCalculator/blob/master/LICENSE.md | /blob/master/LICENSE.md | 53 | 40 |
@@ -231,11 +221,11 @@ Last updated: 2026-11-22
 | 2026 | /seto77/PressureCalculator/tree/master/Crystallography | /tree/master/Crystallography | 35 | 29 |
 | 2026 | /seto77/PressureCalculator/pull/2 | /pull/2 | 24 | 12 |
 | 2026 | /seto77/PressureCalculator/tree/master/references | /tree/master/references | 17 | 11 |
-| 2026 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 16 | 16 |
+| 2026 | /seto77/PressureCalculator/releases/tag/v.1.009 | /releases/tag/v.1.009 | 17 | 17 |
+| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 15 | 15 |
 | 2026 | /seto77/PressureCalculator/commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | /commit/3dd41da7cac1be89c050cb4907b22296ad061f78 | 14 | 14 |
 | 2026 | /seto77/PressureCalculator/commits/master | /commits/master | 14 | 14 |
 | 2026 | /seto77/PressureCalculator/releases/tag/v.1.007 | /releases/tag/v.1.007 | 14 | 14 |
-| 2026 | /seto77/PressureCalculator/tree/master/PressureCalculatorSetup.Wix | /tree/master/PressureCalculatorSetup.Wix | 14 | 14 |
 | 2026 | /seto77/PressureCalculator/blame/master/LICENSE.md | /blame/master/LICENSE.md | 13 | 13 |
 | 2026 | /seto77/PressureCalculator/commit/21b0ee04dc9b837d0577b856d1245fb8933f34aa | /commit/21b0ee04dc9b837d0577b856d1245fb8933f34aa | 13 | 13 |
 | 2026 | /seto77/PressureCalculator/blob/master/.gitignore | /blob/master/.gitignore | 12 | 12 |
@@ -243,8 +233,8 @@ Last updated: 2026-11-22
 | 2026 | /seto77/pressurecalculator/blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | /blob/HEAD/docs/src/zh-Hant/1-ruby-fluorescence.md | 10 | 10 |
 | 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator/ZIP | /tree/master/PressureCalculator/ZIP | 10 | 10 |
 | 2026 | /seto77/PressureCalculator/tree/master/PressureCalculator/Properties | /tree/master/PressureCalculator/Properties | 9 | 9 |
-| 2026 | /seto77/PressureCalculator/branches | /branches | 8 | 8 |
-| 2026 | /seto77/PressureCalculator/commits | /commits | 8 | 8 |
+| 2026 | /seto77/PressureCalculator/branches | /branches | 9 | 9 |
+| 2026 | /seto77/PressureCalculator/commits | /commits | 9 | 9 |
 | 2026 | /seto77/PressureCalculator/issues | /issues | 6 | 6 |
 | 2026 | /seto77/PressureCalculator/blame/master/PressureCalculatorSetup/setup.exe | /blame/master/PressureCalculatorSetup/setup.exe | 5 | 5 |
 | 2026 | /seto77/PressureCalculator/commit/cdbf23acf3d88ebcc89e264a5729bf6ebba39ba0 | /commit/cdbf23acf3d88ebcc89e264a5729bf6ebba39ba0 | 5 | 5 |
@@ -273,6 +263,7 @@ Last updated: 2026-11-22
 ### Daily (最大14日保持)
 | Date | Stars | Forks | Open Issues | Watchers |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-11-24 | 1 | 0 | 0 | 1 |
 | 2026-11-22 | 1 | 0 | 0 | 1 |
 | 2026-11-21 | 1 | 0 | 0 | 1 |
 | 2026-11-20 | 1 | 0 | 0 | 1 |
@@ -284,11 +275,11 @@ Last updated: 2026-11-22
 | 2026-11-13 | 1 | 0 | 0 | 1 |
 | 2026-11-12 | 1 | 0 | 0 | 1 |
 | 2026-11-11 | 1 | 0 | 0 | 1 |
-| 2026-11-10 | 1 | 0 | 0 | 1 |
 
 ### Weekly (最大14週保持)
 | Period | Stars | Forks | Open Issues | Watchers |
 | ---- | ---- | ---- | ---- | ---- |
+| 2026-W48 | 1 | 0 | 0 | 1 |
 | 2026-W47 | 1 | 0 | 0 | 1 |
 | 2026-W46 | 1 | 0 | 0 | 1 |
 | 2026-W45 | 1 | 0 | 0 | 1 |
@@ -302,7 +293,6 @@ Last updated: 2026-11-22
 | 2026-W37 | 1 | 0 | 0 | 1 |
 | 2026-W36 | 1 | 0 | 0 | 1 |
 | 2026-W35 | 1 | 0 | 0 | 1 |
-| 2026-W34 | 1 | 0 | 0 | 1 |
 
 ### Monthly (最大12か月保持)
 | Period | Stars | Forks | Open Issues | Watchers |
@@ -321,4 +311,4 @@ Last updated: 2026-11-22
 | ---- | ---- | ---- | ---- | ---- |
 | 2026 | 1 | 0 | 0 | 1 |
 
-<!-- meta: last_collected_paths=2026-11-22 last_collected_referrers=2026-11-22 -->
+<!-- meta: last_collected_paths=2026-11-24 last_collected_referrers=2026-11-24 -->
